@@ -225,13 +225,16 @@ button.ui-button::-moz-focus-inner {
 	padding: 0;
 }
 .ui-datepicker {
-	width: 17em;
-	padding: .2em .2em 0;
+	width: auto;
+	/*padding: .2em .2em 0;*/
 	display: none;
+	font-size: 1.3em !important;
+    font-family: "Calibri Light" !important;
 }
 .ui-datepicker .ui-datepicker-header {
 	position: relative;
 	padding: .2em 0;
+	border-bottom: 1px solid #ffffff6e;
 }
 .ui-datepicker .ui-datepicker-prev,
 .ui-datepicker .ui-datepicker-next {
@@ -267,6 +270,9 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker .ui-datepicker-title {
 	margin: 0 2.3em;
+	padding: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 	line-height: 1.8em;
 	text-align: center;
 }
@@ -283,12 +289,16 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-datepicker table {
 	width: 100%;
+	padding: 15px;
+    border-spacing: 10px;
 	font-size: .9em;
-	border-collapse: collapse;
-	margin: 0 0 .4em;
+	border-collapse: inherit;
+	margin: 0;
 }
 .ui-datepicker th {
 	padding: .7em .3em;
+	padding-top: 0em;
+    padding-bottom: 1.5em;
 	text-align: center;
 	font-weight: bold;
 	border: 0;
@@ -800,18 +810,18 @@ body .ui-tooltip {
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #222;
-	background: #15262F url(../../images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
-	color: #666;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
+	/*border: 1px solid #222;*/
+	background: #07b0ff;
+    color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
 }
 .ui-widget-content a {
 	color: #222222;
 }
 .ui-widget-header {
-	border: 0px solid #aaaaaa;
-	background: #254251 url(../../images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;
-	color: #ccc;
+	/*border: 0px solid #aaaaaa;
+	background: #254251 url(../../images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;*/
+	color: #fff;
 	font-weight: bold;
 }
 .ui-widget-header a {
@@ -823,10 +833,14 @@ body .ui-tooltip {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-	border: 0px solid #d3d3d3;
-	background: #1b303c url(../../images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;
+	/*border: 0px solid #d3d3d3;
+	background: #1b303c url(../../images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x;*/
 	font-weight: normal;
-	color: #999;
+	color: #fff;
+    text-align: center;
+    border: 1px solid #ffffff9c;
+    font-size: 1.3em;
+    width: 50px;
 
 }
 .ui-state-default a,

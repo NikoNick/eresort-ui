@@ -26,3 +26,23 @@ Route::get('/hasil', function () {
 Route::get('/detail', function () {
 	return view('detail');
 });
+
+Route::get('/reservasi', function () {
+	return view('reservation');
+});
+
+Route::get('/reservasi-2', function () {
+	return view('reservation-2');
+});
+
+Route::get('/reservasi-3', function () {
+	return view('reservation-3');
+});
+
+Route::get('/reservasi-4', function () {
+	return view('reservation-4');
+});
+
+Route::get('/reservasi-5', function () {
+	return view('reservation-5');
+});

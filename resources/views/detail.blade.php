@@ -16,6 +16,13 @@
 			font-family: Raleway !important;
 		}
 
+		.bg {
+			width: 100%;
+			height: 100vh;
+			position: fixed;
+			background: #fff;
+		}
+
 		.background {
 			/*background: url('../img/thumbnail-2.jpg');*/
 			width: 100%;
@@ -50,12 +57,27 @@
 			margin-top: 450px;
 		}
 
+		.background.free-roam .bg {
+			margin-top: 100%;
+		}
+
 		.background.free-roam .content, .background.free-roam .navbar .logo button {
 			opacity: 0;
 		}
 
 		.background.free-roam .btn-slider {
 			display: block;
+		}
+
+		.background.free-roam .title h1, .background.free-roam b {
+			color: #fff;
+			text-shadow: 0px 0px 10px #000;
+		}
+
+		.background.free-roam .right {
+			margin-top: 50px;
+			opacity: 0;
+			transition-delay: 0s;
 		}
 
 		.navbar {
@@ -73,9 +95,9 @@
 		}
 
 		.navbar .logo button {
-			border: 1px solid #fff;
-		    background: #00000047;
-		    color: #fff;
+			border: 1px solid #b5b5b5;
+		    background: transparent;
+		    color: #000;
 		    font-weight: 700;
 		    letter-spacing: 2px;
 		    font-size: 1.2em;
@@ -100,15 +122,15 @@
 
 		.navbar .special .btn-icon {
 			background: #fff;
+			border: 1px solid #b5b5b5;
 		    padding: 12px 15px;
 		    margin-left: 15px;
 		}
 
 		.title {
 			z-index: 5;
-			flex-grow: 1;
 			padding: 00px 100px;
-			margin-top: 250px;
+			margin-top: 50px;
 			position: relative;
 		}
 
@@ -116,16 +138,28 @@
 			font-size: 2.3em;
 		    margin-right: 10px;
 		    color: #ff9b00;
-		    text-shadow: 2px 2px 10px #000;
+		    text-shadow: none;
 		}
 
 		.title h1 {
 		    font-family: Raleway;
-		    color: #fff;
+		    color: #000;
 		    letter-spacing: 5px;
 		    font-size: 4em;
 		    font-weight: 700;
-		    text-shadow: 2px 2px 10px #000;
+		    margin-bottom: 20px;
+		    text-shadow: none;
+		}
+
+		.title b.basic-info {
+			font-weight: 600;
+		    font-size: 1.4em;
+		    letter-spacing: 2px;
+		    font-family: Raleway;
+		}
+
+		.title b.basic-info span {
+			margin-right: 20px;
 		}
 
 		.content {
@@ -155,20 +189,17 @@
 		}
 
 		.content .desc {
-			background: #000000bd;	
-		    padding: 50px 100px;
-		    color: #fff;
+			background: transparent;
+		    padding: 0px 100px;
+		    color: #000;
 		    font-size: 1.3em;
 		    height: 250px;
-		    display: flex;
-		    align-items: row;
-		    align-items: center;
 		}
 
 		.content .desc .inner-content {
-			display: none;
+			/*display: none;*/
 			letter-spacing: 1px;
-			opacity: 0;
+			/*opacity: 0;*/
 			transition: all 0.6s;
 			transition-timing-function: cubic-bezier(0.25, 0.55, 0.265, 1);
 		}
@@ -181,25 +212,17 @@
 			display: flex;
 		}
 
-		#tentang b.basic-info {
-			font-weight: 500;
-			letter-spacing: 3px;
-		}
-
-		#tentang b.basic-info span {
-			margin-right: 20px;
-		}
-
 		#tentang p {
 			font-weight: 300;
 		    margin-top: 20px;
 		    text-align: justify;
-		    line-height: 30px;
+		    line-height: 50px;
+		    letter-spacing: 2px;
 		}
 
 		#tentang .harga {
 			text-align: right;
-			padding: 0px 0px 0px 200px;
+			padding: 0px 0px 0px 400px;
 		}
 
 		#tentang .harga h1 {
@@ -232,14 +255,31 @@
             transition-timing-function: cubic-bezier(0.25, 0.55, 0.265, 1);
         }
 
+        #fasilitas {
+        	display: flex;
+        	margin-top: 70px;
+        }
+
         .facility {
         	text-align: center;
         	padding: 0px 20px;
-        	border: 1px solid #fff;
-        	border-radius: 10px;
-        	height: 110px;
+        	border-right: 1px solid #b5b5b5;
         	min-width: 110px;
-        	margin-right: 15px;
+        }
+
+        .facility:last-child {
+        	border: none;
+        }
+
+        .facility img {
+		    width: 35px;
+    		margin-bottom: 15px;
+        }
+
+        .facility p {
+        	margin: 0;
+            font-weight: 600;
+    		font-size: 0.9em;
         }
 
         .komentar {
@@ -355,6 +395,49 @@
         	opacity: 0;
         }
 
+        .flex {
+        	display: flex;
+        }
+
+        .right {
+        	padding: 0px 100px;
+        	transition-delay: 0.5s;
+        }
+
+        .card {
+        	position: relative;
+        	padding: 20px 25px;
+        	border: 1px solid #b5b5b5;
+        	border-radius: 10px;
+        	min-width: 500px;
+        	align-items: center;
+        	margin-top: 30px;
+        }
+
+        .card .img {
+        	width: 300px !important;
+        	height: 120px;
+        	margin-right: 20px;
+        	border-radius: 10px;
+        	background-image: url('../img/thumbnail-3.jpg');
+        	background-size: cover;
+        }
+
+
+        .card b {
+    	    letter-spacing: 1px;
+    		font-weight: 800;
+        }
+
+        .card span {
+        	font-size: 1.5em;
+        }
+
+        .card .sub-desc {
+    	    letter-spacing: 2px;
+		    margin-top: 10px;
+		    margin-bottom: 0;
+        }
 	</style>
 </head>
 <body>
@@ -389,8 +472,9 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
+	
 	<div class="background">
-		
+		<div class="bg animation"></div>	
 		<div class="navbar">
 			<div class="logo">
 				<button class="btn animation"><a href="/hasil">< Kembali</a></button>
@@ -400,97 +484,102 @@
 				<button id="btn-free" class="btn btn-icon"><i class="fas fa-check"></i></button>
 			</div>
 		</div>
-		<div class="title animation">
-			<div class="rating">
-				<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+		<div class="flex">
+			<div>
+				<div class="title animation">
+					<div class="rating">
+						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+					</div>
+					<h1>Mabely Grand Hotel</h1>
+					<b class="basic-info"><span>Jl. Overste Isdiman Gg.II / 5A, Purwokerto</span> <span>|</span> 0857-0160-9034</b>
+				</div>
+				<div class="content animation">
+					<div class="desc">
+						<div id="tentang" class="inner-content active flex">
+							<div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
+							</div>
+						</div>
+						<div id="fasilitas" class="inner-content">
+							<div class="facility">
+								<img src="{{ asset('img/fasilitas-1.png') }}">
+								<p>Ruang Tamu</p>
+							</div>
+							<div class="facility">
+								<img src="{{ asset('img/fasilitas-2.png') }}">
+								<p>Ruang Makan</p>
+							</div>
+							<div class="facility">
+								<img src="{{ asset('img/fasilitas-3.png') }}">
+								<p>Pantry</p>
+							</div>
+							<div class="facility">
+								<img src="{{ asset('img/fasilitas-4.png') }}">
+								<p>LED TV</p>
+							</div>
+							<div class="facility">
+								<img src="{{ asset('img/fasilitas-5.png') }}">
+								<p>Breakfast</p>
+							</div>
+						</div>
+						<!-- <div id="review" class="inner-content">
+							<div class="komentar">
+								<div class="profil">
+									<img src="{{ asset('img/jones.jpg') }}">
+									<h1>4.5</h1>
+								</div>
+								<div class="comment">
+									<b>Niko Prianto</b>
+									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area. Wonderful service and everything. <i class="fab fa-angrycreative"></i></p>	
+								</div>
+								
+							</div>
+							<div class="komentar">
+								<div class="profil">
+									<img src="{{ asset('img/jones.jpg') }}">
+									<h1>5.0</h1>
+								</div>
+								<div class="comment">
+									<b>Shafa Rizky F</b>
+									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area <i class="fab fa-angrycreative"></i></p>	
+								</div>
+								
+							</div>
+							<div class="komentar">
+								<div class="profil">
+									<img src="{{ asset('img/jones.jpg') }}">
+									<h1>4.0</h1>
+								</div>
+								<div class="comment">
+									<b>Mega Nurul Hidayah</b>
+									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything <i class="fab fa-angrycreative"></i></p>	
+								</div>
+								
+							</div>
+						</div> -->
+					</div>
+				</div>
 			</div>
-			<h1>Mabely Grand Hotel</h1>
-		</div>
-		<div class="content animation">
-			<ul class="nav inline">
-				<li for="tentang" class="active">TENTANG</li>
-				<li for="fasilitas">FASILITAS</li>
-				<li for="review">REVIEW</li>
-			</ul>
-			<div class="desc">
-				<div id="tentang" class="inner-content active flex">
+			<div class="right animation">
+				<div class="card flex">
+					<div id="deluxe" class="img"></div>
 					<div>
-						<b class="basic-info"><span><i class="fas fa-map-marker"></i> Jl. Overste Isdiman Gg.II / 5A, Purwokerto</span> <span>|</span> <i class="fas fa-phone"></i> 0857-0160-9034</b>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
-					</div>
-					<div class="harga">
-						<h1>Rp 355.000</h1>
-						<div class="flex">
-							<b></b>
-							<span>malam</span>	
-						</div>
-						
+						<p><b>DELUXE ROOM</b></p>
+						<span>Rp 355.000 / malam</span>
+						<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
 					</div>
 				</div>
-				<div id="fasilitas" class="inner-content">
-					<div class="facility">
-						<h1><i class="fas fa-check"></i></h1>
-						<p>Wi-Fi</p>
-					</div>
-					<div class="facility">
-						<h1><i class="fas fa-trash"></i></h1>
-						<p>TV</p>
-					</div>
-					<div class="facility">
-						<h1><i class="fas fa-times"></i></h1>
-						<p>Kolam Renang</p>
-					</div>
-					<div class="facility">
-						<h1><i class="fas fa-home"></i></h1>
-						<p>Gazebo</p>
-					</div>
-					<div class="facility">
-						<h1><i class="fas fa-mars"></i></h1>
-						<p>AC</p>
-					</div>
-					<ul>
-						<li>Halaman Luas</li>
-						<li>Pemandangan Hutan Pinus yang Segar dan Asri</li>
-						<li>Udara Sejuk</li>
-					</ul>
-				</div>
-				<div id="review" class="inner-content">
-					<div class="komentar">
-						<div class="profil">
-							<img src="{{ asset('img/jones.jpg') }}">
-							<h1>4.5</h1>
-						</div>
-						<div class="comment">
-							<b>Niko Prianto</b>
-							<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area. Wonderful service and everything. <i class="fab fa-angrycreative"></i></p>	
-						</div>
-						
-					</div>
-					<div class="komentar">
-						<div class="profil">
-							<img src="{{ asset('img/jones.jpg') }}">
-							<h1>5.0</h1>
-						</div>
-						<div class="comment">
-							<b>Shafa Rizky F</b>
-							<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area <i class="fab fa-angrycreative"></i></p>	
-						</div>
-						
-					</div>
-					<div class="komentar">
-						<div class="profil">
-							<img src="{{ asset('img/jones.jpg') }}">
-							<h1>4.0</h1>
-						</div>
-						<div class="comment">
-							<b>Mega Nurul Hidayah</b>
-							<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything <i class="fab fa-angrycreative"></i></p>	
-						</div>
-						
+				<div class="card flex">
+					<div id="executive" class="img"></div>
+					<div>
+						<p><b>EXECUTIVE ROOM</b></p>
+						<span>Rp 300.000 / malam</span>
+						<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		<div class="btn-slider">
 			<button class="btn btn-icon slide-left animation"><i class="fas fa-angle-left"></i></button>
 			<button class="btn btn-icon slide-right animation"><i class="fas fa-angle-right"></i></button>
