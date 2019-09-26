@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Palawi Resort</title>
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/custom-fonts.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('font awesome/css/font-awesome.min.css') }}">
 	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
