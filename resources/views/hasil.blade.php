@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('font awesome/css/font-awesome.min.css') }}">
 	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
 	<style type="text/css">
 		a, a:hover {
 			color: inherit;
@@ -282,37 +283,13 @@
 		    background-size: cover;
 		    margin-bottom: 40px;
 		    box-shadow: 2px 2px 0px 0px #656565;
+		    background-image: url('../img/thumbnail-1.jpeg');
 		}
 
 		.content .right-content .thumbnails .thumbnail:hover .desc {
 	        margin-top: 0;
 	        background: #000000a3;
 		}		
-
-		.content .right-content .thumbnails .thumbnail#thumbnail-1 {
-			background-image: url('../img/thumbnail-1.jpeg');
-		}
-
-		.content .right-content .thumbnails .thumbnail#thumbnail-2 {
-			background-image: url('../img/thumbnail-2.jpg');
-		}
-
-		.content .right-content .thumbnails .thumbnail#thumbnail-3 {
-			background-image: url('../img/thumbnail-3.jpg');
-		}
-
-		.content .right-content .thumbnails .thumbnail#thumbnail-4 {
-			background-image: url('../img/thumbnail-4.jpg');
-		}
-
-		.content .right-content .thumbnails .thumbnail#thumbnail-5 {
-			background-image: url('../img/thumbnail-5.jpg');
-		}
-
-		.content .right-content .thumbnails .thumbnail#thumbnail-6 {
-			background-image: url('../img/thumbnail-5.jpg');
-
-		}
 
 		.content .right-content .thumbnails .thumbnail .desc {
 		    height: 100%;
@@ -327,7 +304,7 @@
 
 		.content .right-content .thumbnails .thumbnail .desc b {
 			font-weight: 600;
-    		letter-spacing: 1px;
+    		letter-spacing: 2px;
 		}
 
 		.content .right-content .thumbnails .thumbnail .desc p {
@@ -335,8 +312,8 @@
 		}
 
 		.content .right-content .thumbnails .thumbnail .desc p span {
-		    font-size: 1.6em;
-		    font-weight: 300;
+		    font-size: 1.4em;
+		    font-weight: 500;
 		    color: #ffc53e;
 		}
 
@@ -460,6 +437,7 @@
 								<div>
 									<b>Mabely Grand Hotel</b>
 									<p><span>Rp 355.000</span> /malam</p>
+									<p><span>Rp 355.000</span> /malam</p>
 								</div>
 								<div class="list-icons">
 									<span><i class="fas fa-trash"></i></span>
@@ -518,7 +496,92 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
+
+	<form id="form-target" method="POST" action="/detail">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="text" name="start_date" value="{{ $start_date }}">
+		<input type="text" name="end_date" value="{{ $end_date }}">
+		<input type="text" name="id_resort">
+
+		<button type="submit">OK</button>
+	</form>
 </body>
+<script type="text/javascript">
+	var data = {!! $result !!};
+	var resorts = data.data;
+
+	$('.thumbnails').empty();
+
+	$.each(resorts, function(index, resort) {
+		var id_resort = resort.id;
+		var nama_resort = resort.name;
+		var harga_sewa = resort.price.service_price;
+			harga_sewa = accounting.formatMoney(harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+		var $harga_rata = '<p><span>' + harga_sewa + '</span> /malam</p>';
+
+		// var tipe_kamar = resort.availability;
+
+		// if (tipe_kamar.length > 1) {
+		// 	var harga_terendah = 0;
+		// 	var harga_tertinggi = 0;
+
+		// 	$.each(tipe_kamar, function(index, kamar) {
+		// 		var nama_kamar = kamar.name;
+		// 		var harga = kamar.price.service_price;
+
+		// 		harga_terkini = harga;
+
+		// 		if (index == 0) {
+		// 			harga_terendah = harga;
+		// 			harga_tertinggi = harga;
+		// 		}
+
+		// 		if (harga < harga_terendah) {
+		// 			harga_terendah = harga;
+		// 		} else if (harga > harga_tertinggi) {
+		// 			harga_tertinggi = harga;
+		// 		}
+		// 	});
+
+		// 	harga_terendah = accounting.formatMoney(harga_terendah, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+		// 	harga_tertinggi = accounting.formatMoney(harga_tertinggi, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+		// 	var $harga_rata = '<p><span>' + harga_terendah + ' - ' + harga_tertinggi + '</span></p>';
+		// } else {
+		// 	var harga = tipe_kamar[0].price.service_price;
+		// 		harga = accounting.formatMoney(harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+		// 	var $harga_rata = '<p><span>' + harga + '</span> /malam</p>';
+		// }
+
+		var $thumbnail = 
+		'<div class="col-md-4">' +
+			'<div id="' + id_resort + '" class="thumbnail">' +
+				'<div class="desc animation">' +
+					'<div>' +
+						'<b>' + nama_resort + '</b>' +
+						$harga_rata +
+					'</div>' +
+					'<div class="list-icons">' +
+						'<span><i class="fas fa-trash"></i></span>' +
+						'<span><i class="fas fa-times"></i></span>' +
+						'<span><i class="fas fa-search"></i></span>' +
+					'</div>' +
+				'</div>' +
+			'</div>' +
+		'</div>';
+
+		$('.thumbnails').append($thumbnail);
+	});
+
+	$('.thumbnail').on('click', function() {
+		var id_resort = $(this).attr('id');
+
+		$('#form-target').find('input[name="id_resort"]').val(id_resort);
+		$('#form-target').find('button').click();
+	})
+
+
+</script>
 </html>

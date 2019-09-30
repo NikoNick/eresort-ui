@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('font awesome/css/font-awesome.min.css') }}">
 	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
 	<style type="text/css">
 		a, a:hover {
 			color: inherit;
@@ -15,6 +16,7 @@
 
 		body {
 			font-family: Raleway !important;
+			overflow: hidden;
 		}
 
 		.bg {
@@ -428,6 +430,7 @@
         .card b {
     	    letter-spacing: 1px;
     		font-weight: 800;
+    		text-transform: uppercase;
         }
 
         .card span {
@@ -481,7 +484,7 @@
 				<button class="btn animation"><a href="/hasil">< Kembali</a></button>
 			</div>
 			<div class="special">
-				<button class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> BOOKING</button>
+				<button id="btn-reservasi" class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> BOOKING</button>
 				<button id="btn-free" class="btn btn-icon"><i class="fas fa-check"></i></button>
 			</div>
 		</div>
@@ -491,7 +494,7 @@
 					<div class="rating">
 						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 					</div>
-					<h1>Mabely Grand Hotel</h1>
+					<h1 class="val-nama">Mabely Grand Hotel</h1>
 					<b class="basic-info"><span>Jl. Overste Isdiman Gg.II / 5A, Purwokerto</span> <span>|</span> 0857-0160-9034</b>
 				</div>
 				<div class="content animation">
@@ -586,27 +589,61 @@
 			<button class="btn btn-icon slide-right animation"><i class="fas fa-angle-right"></i></button>
 		</div>
 	</div>
+
+	<form id="form-target" method="POST" action="/reservasi">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="text" name="start_date" value="{{ $start_date }}">
+		<input type="text" name="end_date" value="{{ $end_date }}">
+		<input type="text" name="id_resort" value="{{ $result->id }}">
+
+		<button type="submit">OK</button>
+	</form>
 </body>
 <script type="text/javascript">
-	$('.nav.inline li').on('click', function() {
-		var active_tab = $('.nav.inline li.active');
-		var active_content = $('.content .desc .inner-content.active');
-		var target_tab = $(this);
-		var target_content = $('#' + target_tab.attr('for'));
+	var resort = {!! json_encode($result) !!};
+	var id_resort = resort.id;
+	var nama_resort = resort.name;
+	var tipe_kamar = resort.variant;
+	var harga_sewa = resort.price.service_price;
+		harga_sewa = accounting.formatMoney(
+					harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
-		active_tab.removeClass('active');
-		target_tab.addClass('active');
-		active_content.removeClass('active');
-		setTimeout(function() {
-			active_content.removeClass('flex');
-		}, 200);
-		setTimeout(function() {
-			target_content.addClass('flex');
-		}, 400);
-		setTimeout(function() {
-			target_content.addClass('active');
-		}, 600);
+	$('.right').empty();
+
+	var $kamar = 
+				'<div class="card flex">' +
+					'<div id="deluxe" class="img"></div>' +
+					'<div>' +
+						'<p><b>SEWA SATU VILLA</b></p>' +
+						'<span>' + harga_sewa + ' / malam</span>' +
+						'<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>' +
+					'</div>' +
+				'</div>';
+
+	$('.right').append($kamar);
+
+	$.each(tipe_kamar, function(index, kamar) {
+		var id_kamar = kamar.id;
+		var nama_kamar = kamar.name;
+		var harga = kamar.price.service_price;
+			harga = accounting.formatMoney(
+					harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+		var $kamar = 
+				'<div class="card flex">' +
+					'<div id="deluxe" class="img"></div>' +
+					'<div>' +
+						'<p><b>' + nama_kamar + '</b></p>' +
+						'<span>' + harga + ' / malam</span>' +
+						'<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>' +
+					'</div>' +
+				'</div>';
+
+		$('.right').append($kamar);
+
 	})
+
+	$('.val-nama').text(nama_resort);
 
 	$('#btn-free').on('click', function() {
 		var state = $('.background').hasClass('free-roam');
@@ -616,6 +653,10 @@
 		} else {
 			$('.background').addClass('free-roam');
 		}
+	})
+
+	$('#btn-reservasi').on('click', function() {
+		$('#form-target').find('button').click();
 	})
 
 	$('.slide-left').on('click', function() {

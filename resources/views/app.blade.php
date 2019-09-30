@@ -221,15 +221,16 @@
 		</div>
 		<div class="content">
 			<h1>Pastikan Liburanmu Nyaman dengan Palawi</h1>
-			<form>
+			<form method="POST" action="/hasil">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="field-row">
-					<input type="text" name="" class="form-control" placeholder="Destinasi Tujuan">
-					<button class="btn btn-warning"><a href="/hasil">BOOKING</a></button>
+					<input type="text" name="location" class="form-control" placeholder="Destinasi Tujuan">
+					<button type="submit" class="btn btn-warning">BOOKING</button>
 				</div>
 				<div class="field-row">
-					<input type="text" name="" class="form-control" placeholder="Check In">
-					<input type="text" name="" class="form-control" placeholder="Check Out">
-					<input type="text" name="" class="form-control margin-0" placeholder="0">
+					<input type="text" name="start_date" class="form-control" placeholder="Check In">
+					<input type="text" name="end_date" class="form-control" placeholder="Check Out">
+					<input type="text" name="class" class="form-control margin-0" placeholder="0">
 				</div>
 			</form>
 		</div>

@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
 	<style type="text/css">
 		a, a:hover {
 			color: inherit;
@@ -30,11 +31,11 @@
         }
 
 		.bg {
-			width: 100%;
-			height: 100vh;
+			width: 200vw;
+			height: 200vh;
 			position: absolute;
-			top: 0;
-			left: 0;
+			top: -500px;
+			left: -200px;
 		    background: #000000b3;
 		    display: none;
     		z-index: 2;
@@ -108,6 +109,18 @@
 			align-items: center;
 		}
 
+		#step-2 .orders .order .nama {
+			color: #b5b5b5;
+		}
+
+		#step-2 .orders .order.selected .nama {
+			color: #000;
+		}
+
+		#step-2 .orders .order.selected .nama {
+			color: #000;
+		}		
+
 		.order .left div, .order .right div {
 		    margin: 0px 50px;
 		    font-size: 1.2em;
@@ -127,22 +140,26 @@
 		    flex-grow: 1;
 		}
 
-		.order .left label {
+		/*.order .left label {
 			width: 25px;
 			height: 25px;
 			border: 1px solid #b5b5b5;
 			border-radius: 5px;
 			margin: 0;
-		}
+		}*/
 
 		.order .left .nama {
 			flex-grow: 1;
 		}
 
 		.order .qty p {
-			padding: 10px 20px;
-			border: 1px solid #0000005c;
-			border-radius: 5px;
+			padding-right: 10px;
+		}
+
+		.order .qty input {
+			width: 50px;
+			border: none;
+			outline: none;
 		}
 
 		.order.total {
@@ -206,7 +223,7 @@
 			white-space: nowrap;
 		}
 
-		.input-field ul li:hover {
+		.input-field ul li:hover, .input-field ul li.active {
 			background: #ffffff36;
 		}
 
@@ -678,11 +695,64 @@
 		    margin-top: 20px;
 		    line-height: 30px;
 		}
+
+		/*styling checkbox button */
+            [type="checkbox"]:checked,
+            [type="checkbox"]:not(:checked) {
+                position: absolute;
+                left: -9999px;
+            }
+
+            [type="checkbox"]:checked + label,
+            [type="checkbox"]:not(:checked) + label
+            {
+                position: relative;
+                cursor: pointer;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border: 1px solid #949494;
+                border-radius: 5px;
+            }
+
+            [type="checkbox"]:checked + label:before,
+            [type="checkbox"]:not(:checked) + label:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 20px;
+                height: 20px;
+            }
+
+            [type="checkbox"]:checked + label:after,
+            [type="checkbox"]:not(:checked) + label:after {
+                content: '';
+                width: 9px;
+                height: 9px;
+                background: #438fed;
+                position: absolute;
+                top: 4px;
+                left: 5px;
+                -webkit-transition: all 0.2s ease;
+                transition: all 0.2s ease;
+            }
+
+            [type="checkbox"]:not(:checked) + label:after {
+                opacity: 0;
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            [type="checkbox"]:checked + label:after {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
 	</style>
 </head>
 <body>
 	<div class="background">
-		<div class="bg"></div>
 		<div class="order-steps flex">
 			<div for="step-1" class="step">
 				<div class="bar"></div>
@@ -711,34 +781,35 @@
 				<h1 class="anim-slide-left-right animation disappear">Apa Yang Anda Butuhkan ?</h1>
 			</div>
 			<div class="form anim-slide-right-left animation disappear">
+				<div class="bg"></div>
 				<span>Pesan kamar untuk tanggal </span>
 				<div class="input-field tanggal">
 					<span class="input-field-toggle">22 September 2019</span>
 					<div class="date-field">
-						<input type="text" name="date" placeholder="Tanggal Check-In">
+						<input type="text" class="date" name="start_date" value="{{ $start_date }}">
 					</div>
 				</div>
 				<span> sampai</span> <br>
 				<div class="input-field tanggal">
 					<span class="input-field-toggle">25 September 2019</span>
 					<div class="date-field">
-						<input type="text" name="date" placeholder="Tanggal Check-In">
+						<input type="text" class="date" name="end_date" value="{{ $end_date }}">
 					</div>
 				</div>
 				<span> di </span>
 				<div class="input-field">
-					<span class="input-field-toggle">Mabely Grand Hotel</span>
-					<ul class="animation">
+					<span class="input-field-toggle input-nama-resort">Mabely Grand Hotel</span>
+					<ul class="list-resort animation">
 						<p class="header">Pilih Tempat Penginapan</p>
 						<li>Mabely Grand Hotel</li>
-						<li>Rasamala Villa</li>
-						<li>Manokwari Villa</li>
-						<li>Rosenberry Villa</li>
+						<li class="active">Rosenberry Villa</li>
+						<li>Verdenara Villa</li>
+						<li>Ocika Villa</li>
 					</ul>
 				</div>
 			</div>
 			<div class="nav-button animation anim-slide-down-up disappear">
-				<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, <a>Cek Jadwal !</a></span>
+				<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, <a class="form-next">Cek Jadwal !</a></span>
 			</div>
 		</div>
 
@@ -756,54 +827,13 @@
 
 				<div class="orders animation anim-slide-down-up disappear">
 					<p>Pilihan Ruangan</p>
-					<div class="order flex">
-						<div class="left flex">
-							<label></label>
-							<div class="nama">
-								<b>DELUXE ROOM</b>
-							</div>
-							<div><p>Sisa 2 kamar</p></div>
-							<div><p>Rp 420.000 / malam</p></div>
-						</div>
-						<div class="right flex">
-							<div class="qty"><p>x 2</p></div>
-							<div class="harga"><p>Rp 710.000</p></div>
-						</div>
-					</div>
-					<div class="order flex">
-						<div class="left flex">
-							<label></label>
-							<div class="nama">
-								<b>EXECUTIVE ROOM</b>
-							</div>
-							<div><p>Sisa 2 kamar</p></div>
-							<div><p>Rp 355.000 / malam</p></div>
-						</div>
-						<div class="right flex">
-							<div class="qty"><p>x 2</p></div>
-							<div class="harga"><p>Rp 710.000</p></div>
-						</div>
-					</div>
-					<div class="order flex">
-						<div class="left flex">
-							<label></label>
-							<div class="nama">
-								<b>MEETING ROOM</b>
-							</div>
-							<div><p>Sisa 2 kamar</p></div>
-							<div><p>Rp 355.000 / malam</p></div>
-						</div>
-						<div class="right flex">
-							<div class="qty"><p>x 2</p></div>
-							<div class="harga"><p>Rp 710.000</p></div>
-						</div>
-					</div>
+					<div id="list-kamar"></div>
 					<div class="order total flex">
 						<div class="left flex">
 						</div>
 						<div class="right flex">
 							<div><label>TOTAL</label></div>
-							<div class="harga"><p>Rp 0</p></div>
+							<div class="harga"><p class="grand-total">Rp 0</p></div>
 						</div>
 					</div>
 					<div class="nav-button animation anim-slide-down-up disappear">
@@ -935,13 +965,14 @@
 				<h1>Beritahu Kami Tentang Anda</h1>
 			</div>
 			<div class="form animation anim-scale-black disappear">
+				<div class="bg"></div>
 				<span>Nama saya </span>
 				<div class="input-field tanggal">
-					<span class="input-field-toggle">Niko Prianto</span>
+					<span class="input-field-toggle">Nama Lengkap Anda</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Nama Lengkap</p>
-							<input type="text" name="nama" placeholder="Nama Lengkap Anda">
+							<input type="text" name="identitas_nama" placeholder="Nama Lengkap Anda">
 							<button>
 								<i class="fas fa-check"></i>
 							</button>
@@ -950,11 +981,11 @@
 				</div>
 				<span>silahkan hubungi saya di </span> <br>
 				<div class="input-field tanggal">
-					<span class="input-field-toggle">0867-0160-9034</span>
+					<span class="input-field-toggle">0000-0000-0000</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Telepon</p>
-							<input type="text" name="nama" placeholder="xxxx-xxxx-xxxx">
+							<input type="text" name="identitas_telepon" placeholder="xxxx-xxxx-xxxx">
 							<button>
 								<i class="fas fa-check"></i>
 							</button>
@@ -963,11 +994,11 @@
 				</div>
 				<span> atau lewat email </span>
 				<div class="input-field tanggal">
-					<span class="input-field-toggle">nikonick47@gmail.com</span>
+					<span class="input-field-toggle">john_doe@mail.com</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Email Anda</p>
-							<input type="text" name="nama" placeholder="john_doe@mail.com">
+							<input type="text" name="identitas_email" placeholder="john_doe@mail.com">
 							<button>
 								<i class="fas fa-check"></i>
 							</button>
@@ -1118,7 +1149,7 @@
 						</div>
 					</div>
 					<div class="nav-button animation anim-slide-down-up disappear">
-						<button class="btn btn-warning"><a>PESAN & BAYAR</a></button>
+						<button id="btn-book" class="btn btn-warning"><a>PESAN & BAYAR</a></button>
 					</div>
 				</div>
 			</div>
@@ -1126,11 +1157,48 @@
 	</div>
 </body>
 <script type="text/javascript">
+	var base_url = window.location.origin;
+
 	$(document).ready(function() {
-		$('input[name="date"]').datepicker({ dateFormat: 'dd/mm/yy' });
+		var resorts = {!! $resorts !!}.data;
+		var start_date = {!! json_encode($start_date) !!};
+		var end_date = {!! json_encode($end_date) !!};
+		var id_resort_terpilih = {!! json_encode($id_resort) !!};
+
+		$('input.date').datepicker({ dateFormat: 'yy-mm-dd' });
+
+		$('input.date').on('change', function() {
+			var date = dateToString($(this).val());
+			$('.bg').hide();
+			$(this).parent().parent().find('.input-field-toggle').text(date);
+		})
+
+		$('input[name="start_date"]').val(start_date).change();
+		$('input[name="end_date"]').val(end_date).change();
+
+		$('ul.list-resort').empty();
+
+		$.each(resorts, function(index, resort) {
+			var id_resort = resort.id;
+			var nama_resort = resort.name;
+
+			var $list = $('<li id="' + id_resort + '">' + nama_resort + '</li>');
+
+			if (id_resort == id_resort_terpilih) {
+				$list.addClass('active');
+				$('.input-nama-resort').text(nama_resort);
+			}
+
+			$('ul.list-resort').append($list);
+		})
+
 		$('.input-field-toggle').on('click', function() {
 			showInput($(this));
 		});
+		$('.input-field.tanggal .input-field-toggle').on('click', function() {
+			$(this).parent().find('.date-field input.date').focus();
+		});
+		
 
 		$('.input-field ul li').on('click', function() {
 			$('.bg').hide();
@@ -1150,14 +1218,7 @@
 			}, 500);
 		});
 
-		$('.input-field.tanggal .input-field-toggle').on('click', function() {
-			$(this).parent().find('.date-field input[name="date"]').focus();
-		});
-		$('input[name="date"]').on('change', function() {
-			var date = dateToString($(this).val());
-			$('.bg').hide();
-			$(this).parent().parent().find('.input-field-toggle').text(date);
-		})
+		
 
 		$('.bg').on('click', function() {
 			$('.bg').hide();
@@ -1167,6 +1228,62 @@
 				$('.input-field ul.show').removeClass('show');
 			}, 500);
 		})
+
+		$('.form-next').on('click', function() {
+			var start_date = $('input[name="start_date"]').val();
+			var end_date = $('input[name="end_date"]').val();
+			var id_resort = $('ul.list-resort li.active').attr('id');
+
+			$.post(
+				base_url + '/resort/availability',
+				{
+					'_token' : '{{ csrf_token() }}',
+					'start_date' : start_date,
+					'end_date' : end_date,
+					'id_resort' : id_resort
+				},
+				function(data) {
+					var resort_variant = $.parseJSON(data)[0].availability;
+
+					$('#list-kamar').empty();
+
+					$.each(resort_variant, function(index, kamar) {
+						var id_kamar = kamar.id;
+						var nama_kamar = kamar.name;
+						var id_harga = kamar.price.id;
+						var harga = kamar.price.service_price;
+						var harga_string = accounting.formatMoney(
+						harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+						var sisa_kamar = kamar.count_availability;
+
+						var $kamar = 
+							'<div id="' + id_kamar + '" class="order flex">' +
+								'<div class="left flex">' +
+									'<span>' +
+										'<input type="checkbox" id="checkbox-' + id_kamar + '" class="checkbox">' +
+										'<label for="checkbox-' + id_kamar + '"></label>' +
+									'</span>' +
+									'<div class="nama">' +
+										'<b>' + nama_kamar + '</b>' +
+									'</div>' +
+									'<div><p>Sisa <span class="sisa">' + sisa_kamar + '</span> kamar</p></div>' +
+									'<div><p>' + harga_string + ' / malam</p><input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '"></div>' +
+								'</div>' +
+								'<div class="right flex">' +
+									'<div class="qty flex center"><p>x</p><input type="number" value="0" min="0" disabled="true"></div>' +
+									'<div class="harga"><p>Rp 0</p><input type="hidden" name="total" value="0"></div>' +
+								'</div>' +
+							'</div>';
+
+						$('#list-kamar').append($kamar);
+					})
+
+					$('.order input[type="number"]').on('change', inputNumberListener);
+					$('.order input.checkbox').on('change', checkboxListener);
+				}
+			)
+		})
+		
 
 		$('.order-steps .step').on('click', function() {
 			$('.order-steps .step.active').removeClass('active');
@@ -1195,26 +1312,54 @@
 				}, 1000);				
 		});
 
-		// $('.animation').on('click', function() {
-		// 	if ($(this).hasClass('disappear')) {
-		// 		$(this).removeClass('disappear');
-		// 	} else {
-		// 		$(this).addClass('disappear');
-		// 	}
-		// })
+		$('#btn-book').on('click', function() {
+			var start_date = $('input[name="start_date"]').val();
+			var end_date = $('input[name="end_date"]').val();
+			var id_resort = $('ul.list-resort li.active').attr('id');
+			var identitas_nama = $('input[name="identitas_nama"]').val();
+			var identitas_email = $('input[name="identitas_email"]').val();
+			var identitas_telepon = $('input[name="identitas_telepon"]').val();
 
-		// $(document).on('click', function(e) {
-		// 	var $target = $('.bg');
-  //           var $trigger = $('.input-field ul.show');
+			var obj_booking = {
+				'name' : identitas_nama,
+				'email' : identitas_email,
+				'phone' : identitas_telepon,
+				'full_payment' : false,
+				'location_id' : 1,
+				'items' : []
+			};
 
-  //           if ($target.parent().hasClass('show')) {
-  //               if (!$target.is(e.target) && $target.has(e.target).length === 0) {
-  //                   if (!$trigger.is(e.target)) {
-  //                       $('.overlay').removeClass('show');
-  //                   }
-  //               }   
-  //           }
-		// })
+			var array_kamar = [];
+			$('#list-kamar').find('.order.selected').each(function() {
+				var id_kamar = $(this).attr('id');
+				var id_harga = $(this).find('input[name="harga"]').attr('id');
+
+				var obj_kamar = {
+					'item_detail_id' : id_kamar,
+					'price_id' : id_harga,
+					'person' : 1,
+					'start_time' : start_date + ' 10:00:00',
+					'end_time' : end_date + '11:00:00'
+				};
+
+				array_kamar.push(obj_kamar);
+			})
+
+			obj_booking.items = array_kamar;
+
+			$.post(
+				base_url + '/booking',
+				{
+					'_token' : '{{ csrf_token() }}',
+					'data' : obj_booking
+				},
+				function(data) {
+					alert(data);
+				}
+			)
+
+		})
+
 	})
 
 	function showInput(trigger) {
@@ -1230,6 +1375,47 @@
 
 	function hideInput() {
 		
+	}
+
+	function checkboxListener() {
+		var value = $(this).prop('checked');
+
+		if (value == true) {
+			$(this).closest('.order').addClass('selected');
+			$(this).closest('.order').find('input[type="number"]').attr('disabled', false);
+		} else {
+			$(this).closest('.order').removeClass('selected');
+			$(this).closest('.order').find('input[type="number"]').attr('disabled', true);
+			$(this).closest('.order').find('input[type="number"]').val(0).change();
+		}
+	}
+
+	function inputNumberListener() {
+		var harga = $(this).closest('.order').find('input[name="harga"]').val();
+		var qty = $(this).val();
+
+		var total_harga = qty * parseInt(harga);
+
+		$(this).closest('.order').find('.harga').find('input').val(total_harga);
+
+			total_harga = accounting.formatMoney(
+				total_harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+		$(this).closest('.order').find('.harga p').text(total_harga);
+
+		var orders = $(this).closest('.orders').find('.order:not(.total)').find('.harga input');
+
+		var grand_total = 0;
+		$.each(orders, function(index, order) {
+			var total = parseInt($(order).val());
+
+			grand_total = grand_total + total;
+		})
+
+		grand_total = accounting.formatMoney(
+				grand_total, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+		$(this).closest('.orders').find('.total').find('.harga p').text(grand_total);
 	}
 
 	function monthString(month) {
@@ -1248,9 +1434,9 @@
     }
 
     function dateToString(date) {
-        var day = date.split('/')[0];
-        var month = date.split('/')[1];
-        var year = date.split('/')[2];
+        var day = date.split('-')[2];
+        var month = date.split('-')[1];
+        var year = date.split('-')[0];
         var newDate = day + ' ' + monthString(month) + ' ' + year;
 
         return newDate;
