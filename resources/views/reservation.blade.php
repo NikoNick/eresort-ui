@@ -968,7 +968,7 @@
 				<div class="bg"></div>
 				<span>Nama saya </span>
 				<div class="input-field tanggal">
-					<span class="input-field-toggle">Nama Lengkap Anda</span>
+					<span class="input-field-toggle" default="Nama Lengkap Anda">Nama Lengkap Anda</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Nama Lengkap</p>
@@ -981,7 +981,7 @@
 				</div>
 				<span>silahkan hubungi saya di </span> <br>
 				<div class="input-field tanggal">
-					<span class="input-field-toggle">0000-0000-0000</span>
+					<span class="input-field-toggle" default="0000-0000-0000">0000-0000-0000</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Telepon</p>
@@ -994,7 +994,7 @@
 				</div>
 				<span> atau lewat email </span>
 				<div class="input-field tanggal">
-					<span class="input-field-toggle">john_doe@mail.com</span>
+					<span class="input-field-toggle" default="john_doe@mail.com">john_doe@mail.com</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Email Anda</p>
@@ -1007,7 +1007,7 @@
 				</div>
 				<span> atau ke alamat </span>
 				<div class="input-field">
-					<span class="input-field-toggle allow-whitespace">Jl. Overste Isdiman Gg.II/5A Purwokerto</span>
+					<span class="input-field-toggle allow-whitespace" default="Alamat Anda">Jl. Overste Isdiman Gg.II/5A Purwokerto</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Alamat Anda</p>
@@ -1165,6 +1165,8 @@
 		var end_date = {!! json_encode($end_date) !!};
 		var id_resort_terpilih = {!! json_encode($id_resort) !!};
 
+		console.log(resorts);
+
 		$('input.date').datepicker({ dateFormat: 'yy-mm-dd' });
 
 		$('input.date').on('change', function() {
@@ -1210,8 +1212,15 @@
 		});
 
 		$('.text-field button').on('click', function() {
+			var value = $(this).prev().val();
+			var default_value = $(this).parent().parent().parent().find('.input-field-toggle').attr('default');
 			$('.bg').hide();
-			$('.text-field-wrapper.show').parent().find('.input-field-toggle').text($(this).prev().val());	
+
+			console.log(default_value);
+
+			if (value == '') value = default_value;
+			
+			$('.text-field-wrapper.show').parent().find('.input-field-toggle').text(value);	
 			$('.text-field-wrapper.show').removeClass('fade');
 			setTimeout(function() {
 				$('.text-field-wrapper.show').removeClass('show');
@@ -1243,7 +1252,8 @@
 					'id_resort' : id_resort
 				},
 				function(data) {
-					var resort_variant = $.parseJSON(data)[0].availability;
+					console.log($.parseJSON(data));
+					var resort_variant = $.parseJSON(data).availability;
 
 					$('#list-kamar').empty();
 

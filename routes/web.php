@@ -48,7 +48,7 @@ Route::post('/hasil', function() {
 });
 
 Route::post('/detail', function () {
-	// ambil data form
+	//ambil data form
 	$start_date = $_POST['start_date'];
 	$end_date = $_POST['end_date'];
 	$id_resort = $_POST['id_resort'];
@@ -65,6 +65,8 @@ Route::post('/detail', function () {
 	curl_close($ch);
 
 	return view('detail', compact('result', 'start_date', 'end_date'));
+
+	// return view('detail');
 });
 
 Route::post('/reservasi', function () {

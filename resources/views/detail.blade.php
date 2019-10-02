@@ -481,7 +481,7 @@
 		<div class="bg animation"></div>	
 		<div class="navbar">
 			<div class="logo">
-				<button class="btn animation"><a href="/hasil">< Kembali</a></button>
+				<button id="btn-back" class="btn animation">< Kembali</button>
 			</div>
 			<div class="special">
 				<button id="btn-reservasi" class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> BOOKING</button>
@@ -644,6 +644,10 @@
 	})
 
 	$('.val-nama').text(nama_resort);
+
+	$('#btn-back').on('click', function() {
+		window.history.back();
+	})
 
 	$('#btn-free').on('click', function() {
 		var state = $('.background').hasClass('free-roam');

@@ -4,8 +4,10 @@
 	<title>Palawi Resort</title>
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/custom-fonts.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('font awesome/css/font-awesome.min.css') }}">
 	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
 	<style type="text/css">
 		a, a:hover {
 			color: inherit;
@@ -157,22 +159,53 @@
 		    word-spacing: 10px;
 		}
 
+		.input-wrapper {
+			display: flex;
+			background: #fff;
+			border-radius: 8px;
+			align-items: center;
+			padding: 0px 25px;
+		}
+
+		.input-wrapper b {
+			white-space: nowrap;
+			letter-spacing: 1px;
+			font-weight: 800;
+			/*padding: 0px 25px;*/
+		}
+
+		.input-wrapper i {
+			margin: 0 25px;
+			font-size: 1.2em;
+		}
+
 		.content .field-row {
 			display: flex;
-		    padding: 15px 500px;
+		    padding: 15px 420px;
 		    align-items: stretch;
 		}
 
-		.content .field-row input {
+		.content .field-row .input-wrapper {
+			margin-right: 30px;
 			flex-grow: 1;
-		    margin-right: 30px;
-		    padding: 20px 30px;
+		}
+
+		.content .field-row input {
+		    padding: 20px 25px;
 		    font-size: 1.1em;
     		letter-spacing: 3px;
 		    font-weight: 500;
 		    font-family: Raleway;
+		    border: 0;
 		    border-radius: 8px;
 		    height: auto;
+		    outline: none !important;
+		    box-shadow: none;
+		}
+
+		.content .field-row input[type="number"] {
+		    padding: 20px 0px;
+		    width: 50px;
 		}
 
 		.content .field-row button {
@@ -193,6 +226,41 @@
 			color: #fff;
 			letter-spacing: 2px;
 			margin-top: 150px;
+		}
+
+		.ui-widget-content {
+			background: #fff;
+			color: #000;
+		}
+
+		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+			color: #000;
+			border: 1px solid #00000057;
+		}
+
+		.ui-widget-header {
+			color: #000;
+		}
+
+		.ui-datepicker .ui-datepicker-header {
+			border-bottom: 1px solid #00000057;
+		}
+
+		.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+		    background: #ffa22a;
+		    color: #fff;
+		}
+
+		.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+		    background: #ff7979;
+		    font-weight: normal;
+		    color: #fff;
+		}
+
+		.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+		    background: #00daff;
+		    font-weight: normal;
+		    color: #fff;
 		}
 	</style>
 </head>
@@ -224,13 +292,27 @@
 			<form method="POST" action="/hasil">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="field-row">
-					<input type="text" name="location" class="form-control" placeholder="Destinasi Tujuan">
+					<div class="input-wrapper">
+						<b>LOKASI</b>
+						<input type="text" name="location" class="form-control" placeholder="Destinasi Tujuan">
+					</div>
+					
 					<button type="submit" class="btn btn-warning">BOOKING</button>
 				</div>
 				<div class="field-row">
-					<input type="text" name="start_date" class="form-control" placeholder="Check In">
-					<input type="text" name="end_date" class="form-control" placeholder="Check Out">
-					<input type="text" name="class" class="form-control margin-0" placeholder="0">
+					<div class="input-wrapper">
+						<b>CHECK IN</b>
+						<input type="text" class="date" name="start_date" class="form-control" placeholder="Check In">
+					</div>
+					<div class="input-wrapper">
+						<b>CHECK OUT</b>
+						<input type="text" class="date" name="end_date" class="form-control" placeholder="Check Out">
+					</div>
+					<div class="input-wrapper margin-0">
+						<input type="number" name="class" class="form-control" placeholder="0">
+						<b>ORANG</b>
+					</div>
+					
 				</div>
 			</form>
 		</div>
@@ -239,4 +321,10 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	$('input.date').datepicker({ 
+		dateFormat: 'yy-mm-dd',
+		minDate: 0
+	});
+</script>
 </html>
