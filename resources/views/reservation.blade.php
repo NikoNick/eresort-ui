@@ -1351,7 +1351,7 @@
 					'price_id' : id_harga,
 					'person' : 1,
 					'start_time' : start_date + ' 10:00:00',
-					'end_time' : end_date + '11:00:00'
+					'end_time' : end_date + ' 11:00:00'
 				};
 
 				array_kamar.push(obj_kamar);
