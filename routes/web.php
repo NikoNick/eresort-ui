@@ -114,7 +114,7 @@ Route::post('/resort/availability', function() {
 });
 
 Route::post('/booking', function() {
-	$data = $_POST['data'];
+	$data = $_POST;
 	$data = http_build_query($data);
 
 	$url = 'api.resort.shafarizkyf.com/api/booking';

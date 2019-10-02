@@ -1160,6 +1160,8 @@
 	var base_url = window.location.origin;
 
 	$(document).ready(function() {
+
+
 		var resorts = {!! $resorts !!}.data;
 		var start_date = {!! json_encode($start_date) !!};
 		var end_date = {!! json_encode($end_date) !!};
@@ -1357,16 +1359,34 @@
 
 			obj_booking.items = array_kamar;
 
-			$.post(
-				base_url + '/booking',
-				{
-					'_token' : '{{ csrf_token() }}',
-					'data' : obj_booking
-				},
-				function(data) {
-					alert(data);
+			console.log(obj_booking);
+
+			$.ajax({
+				url: 'http://api.resort.shafarizkyf.com/api/booking',
+				method: 'POST',
+				data: obj_booking,
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+					'X-CSRF-TOKEN': "{{ csrf_token() }}"
 				}
-			)
+			}).then(response => {
+				console.log(response)
+			}).fail(error => {
+				console.log(error)
+				console.log(error.response)
+			})
+
+			// $.post(
+			// 	base_url + '/booking',
+			// 	{
+			// 		'_token' : '{{ csrf_token() }}',
+			// 		'data' : obj_booking
+			// 	},
+			// 	function(data) {
+			// 		alert(data);
+			// 	}
+			// )
 
 		})
 
