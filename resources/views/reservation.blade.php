@@ -1367,8 +1367,7 @@
 				data: obj_booking,
 				headers: {
 					'Accept': 'application/json',
-					'Content-Type': 'application/json',
-					'X-CSRF-TOKEN': "{{ csrf_token() }}"
+					'Content-Type': 'application/json'
 				}
 			}).then(response => {
 				console.log(response)
