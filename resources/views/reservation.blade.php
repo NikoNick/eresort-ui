@@ -1364,7 +1364,7 @@
 			$.ajax({
 				url: 'http://api.resort.shafarizkyf.com/api/booking',
 				method: 'POST',
-				data: obj_booking,
+				data: JSON.stringify(obj_booking),
 				headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
