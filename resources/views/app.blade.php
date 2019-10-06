@@ -190,7 +190,7 @@
 			flex-grow: 1;
 		}
 
-		.content .field-row input {
+		.content .field-row input, .content .field-row select {
 		    padding: 20px 25px;
 		    font-size: 1.1em;
     		letter-spacing: 3px;
@@ -201,6 +201,7 @@
 		    height: auto;
 		    outline: none !important;
 		    box-shadow: none;
+		    width: 100%;
 		}
 
 		.content .field-row input[type="number"] {
@@ -294,7 +295,11 @@
 				<div class="field-row">
 					<div class="input-wrapper">
 						<b>LOKASI</b>
-						<input type="text" name="location" class="form-control" placeholder="Destinasi Tujuan">
+						<select name="location">
+							@foreach($result as $lokasi)
+								<option value="{{ $lokasi->id }}">{{ $lokasi->name }}</option>
+							@endforeach
+						</select>
 					</div>
 					
 					<button type="submit" class="btn btn-warning">BOOKING</button>
@@ -326,5 +331,7 @@
 		dateFormat: 'yy-mm-dd',
 		minDate: 0
 	});
+
+
 </script>
 </html>

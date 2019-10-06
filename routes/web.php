@@ -16,7 +16,18 @@ Route::get('/', function () {
 });
 
 Route::get('/search', function () {
-	return view('app');
+	$url = 'api.resort.shafarizkyf.com/api/location';
+
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_URL, $url);
+
+	$result = json_decode(curl_exec($ch));
+
+	curl_close($ch);
+
+	return view('app', compact('result'));
 });
 
 Route::post('/hasil', function() {
@@ -131,5 +142,44 @@ Route::post('/booking', function() {
 	curl_close($ch);
 
 	return $resorts;
+});
+
+Route::post('/booksession', function() {
+	$invoice = $_POST['invoice'];
+	$email = $_POST['email'];
+
+	session_start();
+
+	$_SESSION['invoice'] = $invoice;
+	$_SESSION['email'] = $email;
+
+	return redirect('/book-detail');
+});
+
+Route::get('/book-detail', function() {
+	// session_start();
+
+	// $invoice = $_POST['invoice'];
+	// $email = $_POST['email'];
+
+	// if (isset($invoice)) {
+	// 	// $url = 'api.resort.shafarizkyf.com/api/booking/search?invoice=' . $invoice . '&email=' . $email;
+
+	// 	// $ch = curl_init();
+
+	// 	// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	// 	// curl_setopt($ch, CURLOPT_URL, $url);
+
+	// 	// $resorts = curl_exec($ch);
+
+	// 	// curl_close($ch);
+
+	// 	return view('monitor');
+	// } else {
+	// 	echo $invoice;
+	// }
+
+return view('monitor');
+	
 });
 

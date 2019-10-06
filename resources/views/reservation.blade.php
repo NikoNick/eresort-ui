@@ -235,6 +235,10 @@
 		    padding: 0px 20px;
 		}
 
+		.input-field:has(span) {
+			border: 1px solid red !important;
+		}
+
 		.order-steps {
 			padding: 80px 120px 50px;
 		}
@@ -749,30 +753,78 @@
                 -webkit-transform: scale(1);
                 transform: scale(1);
             }
+
+        #step-6 {
+        	padding: 100px 450px;
+        }
+
+        #step-6 h1 {
+        	text-align: center;
+        	font-weight: 900;
+        }
+
+        #step-6 h3 {
+    	    margin-bottom: 100px;
+		    text-align: center;
+		    /* margin-left: -200px; */
+		    font-size: 2.5em;
+		    letter-spacing: 8px;
+		    line-height: 80px;
+		    font-weight: 200;
+		    font-family: Raleway;
+        }
+
+        #step-6 .norek {
+        	border: 1px solid #b5b5b5;
+        	padding: 15px;
+        	border-radius: 8px;
+        	display: flex;
+        	align-items: center;
+        	margin: 0 200px;
+		    font-size: 1.8em;
+		    background: #2eb0ff;
+		    letter-spacing: 5px;
+		    color: #fff;
+		    box-shadow: 0px 5px 0px 0px #dcdcdc;
+        }
+
+        #step-6 .norek .nama-bank {
+    	    font-weight: 900;
+		    text-align: left;
+		    font-style: italic;
+        }
+
+        #step-6 .norek p {
+        	font-family: Calibri Light;
+        }
 	</style>
 </head>
 <body>
 	<div class="background">
 		<div class="order-steps flex">
-			<div for="step-1" class="step">
+			<div id="trigger-1" class="step">
 				<div class="bar"></div>
 				<p>1. LIHAT JADWAL</p>
 			</div>
-			<div for="step-2" class="step">
+			<div id="trigger-2" class="step">
 				<div class="bar"></div>
 				<p>2. RESERVASI</p>
 			</div>
-			<div for="step-3" class="step">
+			<div id="trigger-3" class="step">
 				<div class="bar"></div>
 				<p>3. EXTRA ORDER</p>
 			</div>
-			<div for="step-4" class="step">
+			<div id="trigger-4" class="step">
 				<div class="bar"></div>
 				<p>4. IDENTITAS DIRI</p>
 			</div>
-			<div for="step-5" class="step">
+			<div id="trigger-5" class="step">
 				<div class="bar"></div>
-				<p>5. PEMBAYARAN</p>
+				<p>5. CHECK OUT</p>
+			</div>
+			<div id="trigger-6" class="step">
+				<div class="bar"></div>
+				<p>6. PEMBAYARAN</p>
 			</div>
 		</div>
 		
@@ -809,7 +861,7 @@
 				</div>
 			</div>
 			<div class="nav-button animation anim-slide-down-up disappear">
-				<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, <a class="form-next">Cek Jadwal !</a></span>
+				<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, <a for="1" next="2" class="form-nav form-next">Cek Jadwal !</a></span>
 			</div>
 		</div>
 
@@ -837,7 +889,7 @@
 						</div>
 					</div>
 					<div class="nav-button animation anim-slide-down-up disappear">
-						<span>Saya memesan 2 Deluxe Room & 1 Executive Room, <a>Lanjutkan</a></span>
+						<span>Saya memesan 2 Deluxe Room & 1 Executive Room, <a next="3" class="form-nav">Lanjutkan</a></span>
 					</div>
 				</div>
 			</div>
@@ -956,7 +1008,7 @@
 				</div>
 			</div>
 			<div class="nav-button animation anim-slide-down-up disappear">
-				<span>Tidak ada tambahan, <a>Lanjutkan</a></span>
+				<span>Tidak ada tambahan, <a next="4" class="form-nav">Lanjutkan</a></span>
 			</div>
 		</div>
 
@@ -967,39 +1019,39 @@
 			<div class="form animation anim-scale-black disappear">
 				<div class="bg"></div>
 				<span>Nama saya </span>
-				<div class="input-field tanggal">
-					<span class="input-field-toggle" default="Nama Lengkap Anda">Nama Lengkap Anda</span>
+				<div class="input-field">
+					<span id="input-nama" class="input-field-toggle" default="Nama Lengkap Anda">Nama Lengkap Anda</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Nama Lengkap</p>
-							<input type="text" name="identitas_nama" placeholder="Nama Lengkap Anda">
-							<button>
+							<input type="text" name="identitas_nama" placeholder="Nama Lengkap Anda" class="input" value="">
+							<button next="input-telepon">
 								<i class="fas fa-check"></i>
 							</button>
 						</div>
 					</div>
 				</div>
 				<span>silahkan hubungi saya di </span> <br>
-				<div class="input-field tanggal">
-					<span class="input-field-toggle" default="0000-0000-0000">0000-0000-0000</span>
+				<div class="input-field">
+					<span id="input-telepon" class="input-field-toggle" default="0000-0000-0000">0000-0000-0000</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Telepon</p>
-							<input type="text" name="identitas_telepon" placeholder="xxxx-xxxx-xxxx">
-							<button>
+							<input type="text" name="identitas_telepon" placeholder="xxxx-xxxx-xxxx" class="input" value="">
+							<button next="input-email">
 								<i class="fas fa-check"></i>
 							</button>
 						</div>
 					</div>
 				</div>
 				<span> atau lewat email </span>
-				<div class="input-field tanggal">
-					<span class="input-field-toggle" default="john_doe@mail.com">john_doe@mail.com</span>
+				<div class="input-field">
+					<span id="input-email" class="input-field-toggle" default="john_doe@mail.com">john_doe@mail.com</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Email Anda</p>
-							<input type="text" name="identitas_email" placeholder="john_doe@mail.com">
-							<button>
+							<input type="text" name="identitas_email" placeholder="john_doe@mail.com" class="input" value="">
+							<button next="input-alamat">
 								<i class="fas fa-check"></i>
 							</button>
 						</div>
@@ -1007,12 +1059,12 @@
 				</div>
 				<span> atau ke alamat </span>
 				<div class="input-field">
-					<span class="input-field-toggle allow-whitespace" default="Alamat Anda">Jl. Overste Isdiman Gg.II/5A Purwokerto</span>
+					<span id="input-alamat" class="input-field-toggle allow-whitespace" default="Alamat Anda">Jl. Overste Isdiman Gg.II/5A Purwokerto</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Alamat Anda</p>
-							<textarea placeholder="Jl. Overste Isdiman Gg.II/5A, Purwokerto"></textarea>
-							<button>
+							<textarea placeholder="Jl. Overste Isdiman Gg.II/5A, Purwokerto" class="input" value=""></textarea>
+							<button next="">
 								<i class="fas fa-check"></i>	
 							</button>
 						</div>
@@ -1020,7 +1072,7 @@
 				</div>
 			</div>
 			<div class="nav-button animation anim-slide-down-up disappear">
-				<span>Identitas saya sudah benar, <a>Lanjutkan</a></span>
+				<span>Identitas saya sudah benar, <a next="5" class="form-nav">Lanjutkan</a></span>
 			</div>
 		</div>
 		<div id="step-5" class="form-reservasi gone">
@@ -1149,9 +1201,17 @@
 						</div>
 					</div>
 					<div class="nav-button animation anim-slide-down-up disappear">
-						<button id="btn-book" class="btn btn-warning"><a>PESAN & BAYAR</a></button>
+						<button id="btn-book" class="btn btn-warning"><a next="6" class="form-nav">PESAN & BAYAR</a></button>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div id="step-6" class="form-reservasi gone">
+			<h3 class="animation anim-slide-down-up disappear">Harap segera melakukan pembayaran lewat transfer ke rekening berikut</h3>
+			<div class="animation anim-scale-black disappear norek">
+				<b class="flex-grow-1 nama-bank">BCA</b>
+				<p class="flex-grow-1">0192342156</p>
+				<b>a.n Palawi Resort Baturraden</b>
 			</div>
 		</div>
 	</div>
@@ -1160,7 +1220,7 @@
 	var base_url = window.location.origin;
 
 	$(document).ready(function() {
-
+		showForm('1');
 
 		var resorts = {!! $resorts !!}.data;
 		var start_date = {!! json_encode($start_date) !!};
@@ -1169,7 +1229,10 @@
 
 		console.log(resorts);
 
-		$('input.date').datepicker({ dateFormat: 'yy-mm-dd' });
+		$('input.date').datepicker({ 
+			dateFormat: 'yy-mm-dd' ,
+			minDate: 0
+		});
 
 		$('input.date').on('change', function() {
 			var date = dateToString($(this).val());
@@ -1215,10 +1278,9 @@
 
 		$('.text-field button').on('click', function() {
 			var value = $(this).prev().val();
+			var next_form = $(this).attr('next');
 			var default_value = $(this).parent().parent().parent().find('.input-field-toggle').attr('default');
 			$('.bg').hide();
-
-			console.log(default_value);
 
 			if (value == '') value = default_value;
 			
@@ -1227,9 +1289,20 @@
 			setTimeout(function() {
 				$('.text-field-wrapper.show').removeClass('show');
 			}, 500);
+
+			if (next_form != '') {
+				setTimeout(function() {
+					$('#' + next_form).click();
+				}, 600);
+			}
 		});
 
-		
+		$('.text-field .input').on('keypress', function(e) {
+			if (e.which == 13) {
+				$(this).next().click();
+			}
+
+		})
 
 		$('.bg').on('click', function() {
 			$('.bg').hide();
@@ -1296,33 +1369,25 @@
 			)
 		})
 		
+		$('.form-nav').on('click', function() {
+			var key = $(this).attr('next');
+			
+			showForm(key);
+		})
 
-		$('.order-steps .step').on('click', function() {
-			$('.order-steps .step.active').removeClass('active');
-
-			var $step_trigger = $(this);
-				$step_trigger.addClass('active');
-				$step_trigger.prev().addClass('finished');
-
-			var step_target = $(this).attr('for');
-			var $step_target = $('#' + step_target);
-			var $active_step = $('.form-reservasi.active');
-
-				$active_step.find('.animation').addClass('disappear');
-				setTimeout(function() {
-					$active_step.addClass('gone');
-					$active_step.removeClass('active');
-
-					
-					$step_target.removeClass('gone');
-				}, 800);
-
-				setTimeout(function() {
-					$step_target.removeClass('disappear');
-					$step_target.addClass('active');
-					$step_target.find('.animation').removeClass('disappear');
-				}, 1000);				
-		});
+		$('.norek').on('click', function() {
+			$.post(
+				base_url + '/booksession',
+				{
+					'_token' : '{{ csrf_token() }}',
+					'invoice' : 'inv/20190927/cob/0001',
+					'email' : 'shafarizkyf@gmail.com'
+				},
+				function (data) {
+					alert(data);
+				}
+			);
+		})
 
 		$('#btn-book').on('click', function() {
 			var start_date = $('input[name="start_date"]').val();
@@ -1370,7 +1435,7 @@
 					'Content-Type': 'application/json'
 				}
 			}).then(response => {
-				console.log(response)
+				window.location.replace("/book-detail");
 			}).fail(error => {
 				console.log(error)
 				console.log(error.response)
@@ -1391,10 +1456,36 @@
 
 	})
 
+	function showForm(key) {
+		var $step_trigger = $('#trigger-' + key);
+		var $step_target = $('.form-reservasi#step-' + key);
+		var $active_step = $('.form-reservasi.active');						
+			$step_trigger.addClass('active');
+			$step_trigger.prev().addClass('finished');
+
+			$active_step.find('.animation').addClass('disappear');
+			setTimeout(function() {
+				$active_step.addClass('gone');
+				$active_step.removeClass('active');
+
+				
+				$step_target.removeClass('gone');
+			}, 800);
+
+			setTimeout(function() {
+				$step_target.removeClass('disappear');
+				$step_target.addClass('active');
+				$step_target.find('.animation').removeClass('disappear');
+			}, 1000);
+
+		console.log($step_trigger);
+	}
+
 	function showInput(trigger) {
 		$('.bg').show();
 		trigger.parent().find('ul').addClass('show');
 		trigger.parent().find('.text-field-wrapper').addClass('show');
+		trigger.parent().find('.text-field-wrapper').find('.input').focus();
 
 		setTimeout(function() {
 			trigger.parent().find('ul').addClass('fade');	
