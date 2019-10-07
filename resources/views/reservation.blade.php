@@ -111,6 +111,8 @@
 
 		#step-2 .orders .order .nama {
 			color: #b5b5b5;
+			text-transform: uppercase;
+			font-size: 1em;
 		}
 
 		#step-2 .orders .order.selected .nama {
@@ -122,10 +124,10 @@
 		}		
 
 		.order .left div, .order .right div {
-		    margin: 0px 50px;
-		    font-size: 1.2em;
+		    margin: 0px 20px;
+		    font-size: 1.1em;
 		    letter-spacing: 2px;
-		    margin-right: 20px;
+		    /*margin-right: 20px;*/
 		}
 
 		.order .left div p, .order .right div p {
@@ -1072,7 +1074,7 @@
 				</div>
 			</div>
 			<div class="nav-button animation anim-slide-down-up disappear">
-				<span>Identitas saya sudah benar, <a next="5" class="form-nav">Lanjutkan</a></span>
+				<span>Identitas saya sudah benar, <a id="btn-submit-detail" next="5" class="form-nav">Lanjutkan</a></span>
 			</div>
 		</div>
 		<div id="step-5" class="form-reservasi gone">
@@ -1082,7 +1084,7 @@
 						<div class="flex">
 							<div class="thumbnail"></div>
 							<div>
-								<h2>Rasamala Villa</h2>
+								<h2 class="val-nama-resort">Rasamala Villa</h2>
 								<div class="rating">
 									<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 								</div>
@@ -1101,10 +1103,22 @@
 							</div>
 							<div class="desc">
 								<label>TANGGAL</label>
-								<span>04 Sep 2019 - 05 Sep 2019</span>
+								<span class="val-tanggal">04 Sep 2019 - 05 Sep 2019</span>
+							</div>
+							<div class="desc">
+								<label>A.N</label>
+								<span class="val-nama">Niko Prianto</span>
+							</div>
+							<div class="desc">
+								<label>TELEPON</label>
+								<span class="val-telepon">0857-0160-9034</span>
+							</div>
+							<div class="desc">
+								<label>E-MAIL</label>
+								<span class="val-email">nikonick47@gmail.com</span>
 							</div>
 						</div>
-						<div class="metode-pembayaran">
+						<!-- <div class="metode-pembayaran">
 							<b>Pilih Metode Pembayaran</b>
 							<div class="flex">
 								<div class="flex border">
@@ -1117,87 +1131,90 @@
 								</div>
 							</div>
 							<p class="desc">* Silahkan pilih metode pembayaran yang hendak dilakukan. Pembayaran dapat dilakukan maksimal 1 hari sebelum tanggal check-in</p>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="orders animation anim-slide-left-right disappear delay-2">
 					<p>Pesanan Anda</p>
-					<div class="order flex center">
-						<div class="left flex center">
-							<label></label>
-							<div class="nama">
-								<b>DELUXE ROOM</b>
+					<div class="order-list">
+						<div class="order flex center">
+							<div class="left flex center">
+								<label></label>
+								<div class="nama">
+									<b>DELUXE ROOM</b>
+								</div>
+								<div><p>Rp 420.000 / malam</p></div>
 							</div>
-							<div><p>Rp 420.000 / malam</p></div>
-						</div>
-						<div class="right flex center">
-							<div class="qty"><p>x 2</p></div>
-							<div><p>x4 malam</p></div>
-							<div class="harga"><p>Rp 710.000</p></div>
-						</div>
-					</div>
-					<div class="order flex center">
-						<div class="left flex center">
-							<label></label>
-							<div class="nama">
-								<b>EXECUTIVE ROOM</b>
+							<div class="right flex center">
+								<div class="qty"><p>x 2</p></div>
+								<div><p>x4 malam</p></div>
+								<div class="harga"><p>Rp 710.000</p></div>
 							</div>
-							<div><p>Rp 355.000 / malam</p></div>
 						</div>
-						<div class="right flex center">
-							<div class="qty"><p>x 2</p></div>
-							<div><p>x4 malam</p></div>
-							<div class="harga"><p>Rp 710.000</p></div>
-						</div>
-					</div>
-					<div class="order flex center">
-						<div class="left flex center">
-							<label></label>
-							<div class="nama">
-								<b>MEETING ROOM</b>
+						<div class="order flex center">
+							<div class="left flex center">
+								<label></label>
+								<div class="nama">
+									<b>EXECUTIVE ROOM</b>
+								</div>
+								<div><p>Rp 355.000 / malam</p></div>
 							</div>
-							<div><p>Rp 355.000 / malam</p></div>
-						</div>
-						<div class="right flex center">
-							<div class="qty"><p>x 2</p></div>
-							<div><p>x4 malam</p></div>
-							<div class="harga"><p>Rp 710.000</p></div>
-						</div>
-					</div>
-					<div class="order flex center">
-						<div class="left flex center">
-							<label></label>
-							<div class="nama">
-								<b>GULING</b>
+							<div class="right flex center">
+								<div class="qty"><p>x 2</p></div>
+								<div><p>x4 malam</p></div>
+								<div class="harga"><p>Rp 710.000</p></div>
 							</div>
-							<div><p>Rp 10.000 / pcs</p></div>
 						</div>
-						<div class="right flex center">
-							<div class="qty"><p>x 2</p></div>
-							<div><p>x4 malam</p></div>
-							<div class="harga"><p>Rp 710.000</p></div>
-						</div>
-					</div>
-					<div class="order flex center">
-						<div class="left flex center">
-							<label></label>
-							<div class="nama">
-								<b>BANTAL</b>
+						<div class="order flex center">
+							<div class="left flex center">
+								<label></label>
+								<div class="nama">
+									<b>MEETING ROOM</b>
+								</div>
+								<div><p>Rp 355.000 / malam</p></div>
 							</div>
-							<div><p>Rp 355.000 / pcs</p></div>
+							<div class="right flex center">
+								<div class="qty"><p>x 2</p></div>
+								<div><p>x4 malam</p></div>
+								<div class="harga"><p>Rp 710.000</p></div>
+							</div>
 						</div>
-						<div class="right flex center">
-							<div class="qty"><p>x 2</p></div>
-							<div><p>x4 malam</p></div>
-							<div class="harga"><p>Rp 710.000</p></div>
+						<div class="order flex center">
+							<div class="left flex center">
+								<label></label>
+								<div class="nama">
+									<b>GULING</b>
+								</div>
+								<div><p>Rp 10.000 / pcs</p></div>
+							</div>
+							<div class="right flex center">
+								<div class="qty"><p>x 2</p></div>
+								<div><p>x4 malam</p></div>
+								<div class="harga"><p>Rp 710.000</p></div>
+							</div>
 						</div>
+						<div class="order flex center">
+							<div class="left flex center">
+								<label></label>
+								<div class="nama">
+									<b>BANTAL</b>
+								</div>
+								<div><p>Rp 355.000 / pcs</p></div>
+							</div>
+							<div class="right flex center">
+								<div class="qty"><p>x 2</p></div>
+								<div><p>x4 malam</p></div>
+								<div class="harga"><p>Rp 710.000</p></div>
+							</div>
+						</div>	
 					</div>
+					
 					<div class="order total flex center">
 						<div class="left flex center">
 						</div>
 						<div class="right flex center">
 							<div><b>TOTAL</b></div>
-							<div class="harga"><p>Rp 4.050.000</p></div>
+							<div class="harga grand-total"><p>Rp 4.050.000</p></div>
 						</div>
 					</div>
 					<div class="nav-button animation anim-slide-down-up disappear">
@@ -1269,6 +1286,9 @@
 
 		$('.input-field ul li').on('click', function() {
 			$('.bg').hide();
+
+			$('.input-field ul li.active').removeClass('active');
+			$(this).addClass('active');
 			$('.input-field ul.show').parent().find('.input-field-toggle').text($(this).text());	
 			$('.input-field ul.show').removeClass('fade');
 			setTimeout(function() {
@@ -1301,7 +1321,6 @@
 			if (e.which == 13) {
 				$(this).next().click();
 			}
-
 		})
 
 		$('.bg').on('click', function() {
@@ -1317,6 +1336,9 @@
 			var start_date = $('input[name="start_date"]').val();
 			var end_date = $('input[name="end_date"]').val();
 			var id_resort = $('ul.list-resort li.active').attr('id');
+
+			alert(id_resort);
+			var day_diff = dateDiffInDays(start_date, end_date);
 
 			$.post(
 				base_url + '/resort/availability',
@@ -1352,11 +1374,12 @@
 										'<b>' + nama_kamar + '</b>' +
 									'</div>' +
 									'<div><p>Sisa <span class="sisa">' + sisa_kamar + '</span> kamar</p></div>' +
-									'<div><p>' + harga_string + ' / malam</p><input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '"></div>' +
+									'<div class="harga-satuan"><p>' + harga_string + ' / malam</p><input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '"></div>' +
 								'</div>' +
 								'<div class="right flex">' +
 									'<div class="qty flex center"><p>x</p><input type="number" value="0" min="0" disabled="true"></div>' +
-									'<div class="harga"><p>Rp 0</p><input type="hidden" name="total" value="0"></div>' +
+									'<div class="qty flex center"><p>x <span class="day-diff">' + day_diff + '</span> malam</p></div>' +
+									'<div class="harga total-harga"><p>Rp 0</p><input type="hidden" name="total" value="0"></div>' +
 								'</div>' +
 							'</div>';
 
@@ -1387,6 +1410,56 @@
 					alert(data);
 				}
 			);
+		})
+
+		$('#btn-submit-detail').on('click', function() {
+			var nama_resort = $('.list-resort').find('li.active').text();
+			var check_in = $('input[name="start_date"]').val();
+			var check_out = $('input[name="end_date"]').val();
+			var how_many_nights = dateDiffInDays(check_in, check_out);
+			var nama_pemesan = $('input[name="identitas_nama"]').val();
+			var telepon = $('input[name="identitas_telepon"]').val();
+			var email = $('input[name="identitas_email"]').val();
+			var grand_total = $('#step-2 .grand-total').text();
+
+			check_in = dateToString(check_in);
+			check_out = dateToString(check_out);
+
+			$('.val-nama-resort').text(nama_resort);
+			$('.val-tanggal').text(check_in + ' - ' + check_out);
+			$('.val-nama').text(nama_pemesan);
+			$('.val-telepon').text(telepon);
+			$('.val-email').text(email);
+
+			$('#step-5').find('.order-list').empty();
+
+			$('#list-kamar').find('.order.selected').each(function() {
+				var id_kamar = $(this).attr('id');
+				var id_harga = $(this).find('input[name="harga"]').attr('id');
+				var nama_kamar = $(this).find('.nama b').text();
+				var harga = $(this).find('.harga-satuan p').text();
+				var total_harga = $(this).find('.total-harga p').text();
+
+				var $order = 
+				'<div id="' + id_kamar + '" class="order flex center">' +
+					'<div class="left flex center">' +
+						'<label></label>' +
+						'<div class="nama">' +
+							'<b>' + nama_kamar + '</b>' +
+						'</div>' +
+						'<div><p>' + harga + '</p></div>' +
+					'</div>' +
+					'<div class="right flex center">' +
+						'<div class="qty"><p>x 1</p></div>' +
+						'<div><p>x' + how_many_nights + ' malam</p></div>' +
+						'<div class="harga"><p>' + total_harga + '</p></div>' +
+					'</div>' +
+				'</div>';
+
+				$('#step-5').find('.order-list').append($order);
+			})
+
+			$('#step-5').find('.grand-total').text(grand_total);
 		})
 
 		$('#btn-book').on('click', function() {
@@ -1512,9 +1585,10 @@
 
 	function inputNumberListener() {
 		var harga = $(this).closest('.order').find('input[name="harga"]').val();
+		var how_many_nights = $(this).closest('.order').find('.day-diff').text();
 		var qty = $(this).val();
 
-		var total_harga = qty * parseInt(harga);
+		var total_harga = qty * parseInt(harga) * parseInt(how_many_nights);
 
 		$(this).closest('.order').find('.harga').find('input').val(total_harga);
 
@@ -1560,6 +1634,16 @@
         var newDate = day + ' ' + monthString(month) + ' ' + year;
 
         return newDate;
+    }
+
+    function dateDiffInDays(start, end) {
+    	var new_start = new Date(start);
+    	var new_end = new Date(end);
+
+    	var diff = new Date(new_end - new_start);
+    	var day_diff = diff/1000/60/60/24;
+
+    	return day_diff;
     }
 	
 </script>

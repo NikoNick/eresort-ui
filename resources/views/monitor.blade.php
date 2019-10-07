@@ -1031,20 +1031,6 @@
 		form.append("booking_id", booking_id);
 		form.append("file", file);
 
-		// var settings = {
-		//   "url": "http://api.resort.shafarizkyf.com/api/transaction",
-		//   "method": "POST",
-		//   "headers": {
-		//     "Accept": "application/json",
-		//     "Content-Type": "application/json"
-		//   },
-		//   "enctype": 'multipart/form-data',
-		//   "processData": false,
-		//   "contentType": false,
-		//   "cache": false,
-		//   "data": form
-		// };
-
 		$.ajax({
             url: 'http://api.resort.shafarizkyf.com/api/transaction',  
             type: 'POST',
@@ -1053,7 +1039,7 @@
             contentType: false,
             processData: false
 		}).done(function (response) {
-		  console.log(response);
+		  	alert('Bukti Pembayaran Berhasil Di-Upload');
 		}).fail(function (error) {
 			console.log(error);
 			console.log(error);
