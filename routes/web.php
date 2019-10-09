@@ -179,7 +179,8 @@ Route::get('/book-detail', function() {
 	// 	echo $invoice;
 	// }
 
-return view('monitor');
+return view('book-detail');
 	
 });
+
 

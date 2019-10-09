@@ -53,10 +53,16 @@
 	/*background: transparent;*/
 	color: #000;
 }
-
 .anim-scale-black.disappear {
 	transform: scaleY(0);
 	opacity: 0;
 	/*background: #000;*/
 	color: #fff;
+}
+
+.anim-blink {
+	opacity: 1;
+}
+.anim-blink.disappear {
+	opacity: 0;
 }
