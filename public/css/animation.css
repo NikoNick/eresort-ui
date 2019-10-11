@@ -60,6 +60,16 @@
 	color: #fff;
 }
 
+.anim-scale {
+	transform: scale(1);
+	opacity: 1;
+}
+
+.anim-scale.disappear {
+	transform: scale(0);
+	opacity: 0;
+}
+
 .anim-blink {
 	opacity: 1;
 }

@@ -108,15 +108,15 @@
 		}
 
 		.navbar .special {
-			flex-grow: 1;
-			text-align: right;
+			display: flex;
+			align-items: stretch;
 		}
 
 		.navbar .special button {
 			padding: 12px 25px;
 			font-weight: 600;
 			letter-spacing: 2px;
-			border-radius: 10px;
+			/*border-radius: 10px;*/
 		}
 
 		.navbar .special .btn-warning i {
@@ -126,8 +126,9 @@
 		.navbar .special .btn-icon {
 			background: #fff;
 			border: 1px solid #b5b5b5;
-		    padding: 12px 15px;
+		    padding: 0px 15px;
 		    margin-left: 15px;
+		    font-size: 2em;
 		}
 
 		.title {
@@ -485,7 +486,7 @@
 			</div>
 			<div class="special">
 				<button id="btn-reservasi" class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> BOOKING</button>
-				<button id="btn-free" class="btn btn-icon"><i class="fas fa-check"></i></button>
+				<button id="btn-free" class="btn btn-icon"><i class="far fa-image"></i></button>
 			</div>
 		</div>
 		<div class="flex">

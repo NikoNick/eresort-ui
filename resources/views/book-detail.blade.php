@@ -24,6 +24,7 @@
 			font-family: Raleway !important;
 			background: url('../img/thumbnail-5.jpg');
 			background-size: 150%;
+			overflow: hidden;
 		}
 
 		#form-invoice {
@@ -90,6 +91,10 @@
 			display: none !important;
 		}
 
+		.invisible {
+			opacity: 0;
+		}
+
 		.marleft-15 {
 			margin-left: 15px;
 		}
@@ -121,14 +126,108 @@
 		}
 
 		.bg {
-			width: 200vw;
-			height: 200vh;
+		    width: 80vw;
+		    height: 80vh;
+		    position: absolute;
+		    top: 10vh;
+		    box-shadow: 0px 0px 50px 1px #b9b9b9;
+		    border-radius: 50px;
+		    overflow: hidden;
+		    left: 10vw;
+		    background: #000000d6;
+		    z-index: 2;
+		    padding: 0px 0px;
+		    color: #fff;
+		}
+
+		.bg>div {
+			height: 100%;
+		}
+
+		.bg .upload {
+			padding: 100px 150px;
+			height: 100%;
+			background: #fff;
+			color: #000;
+		}
+
+		.bg .upload .photo-container {
+		    width: 250px;
+			height: 250px;
+			padding: 8px;
+			box-shadow: 50px 20px 0px 0px #b5b5b52b, -50px 50px 0px 0px #b5b5b52b;
+			border: 1px solid #b5b5b5;
+			border-radius: 25px;
+		}
+
+		.bg .upload .photo-container .photo {
+			width: 100%;
+			height: 100%;
+			border-radius: 20px;
+
+			/*background: url('../img/thumbnail-5.jpg');
+			background-size: cover;*/
+		}
+
+		.bg .upload .photo-detail {
+		    margin-top: 100px;
+    		text-align: center;
+		}
+
+		.bg .upload .photo-detail h3 {
+			font-family: Raleway;
+    		letter-spacing: 2px;
+		}
+
+		.bg .upload .photo-detail button {
+			margin-top: 50px;
+		    width: 100%;
+		    letter-spacing: 3px;
+		    border-radius: 0px;
+		    padding: 10px;
+		    box-shadow: 0px 4px 0px 0px #cac
+		}
+
+		.bg .desc {
+			padding: 80px 100px;
+		}
+
+		.bg .desc>.flex {
+			margin-top: 20px;
+			margin-bottom: 80px;
+		}
+
+		.bg .desc>.flex p {
+		    font-weight: 200;
+    		font-size: 3em;
+    		margin: 0;
+		}
+
+		.bg .desc h1 {
+		    margin: 0;
+		    font-family: Raleway;
+		    letter-spacing: 2px;
+		    font-weight: 600;
+		}
+
+		.bg .desc p {
+		    line-height: 40px;
+		    font-size: 1.2em;
+		    letter-spacing: 2px;
+		}
+
+		.bg .desc .new-line {
+			position: relative;
+			margin-bottom: 30px;
+		}
+
+		.bg .desc .new-line .line {
 			position: absolute;
-			top: -500px;
-			left: -200px;
-		    background: #000000b3;
-		    display: none;
-    		z-index: 2;
+			width: 50px;
+			border-top: 1px solid;
+			display: block;
+			top: 0;
+			left: -50px;
 		}
 
 		.background {
@@ -140,6 +239,7 @@
 			overflow: hidden;
 			display: flex;
 			flex-direction: column;
+			/*filter: blur(1px);*/
 		}
 
 		.background.show-invoice .navbar .special {
@@ -181,13 +281,18 @@
 			font-size: 0.9em;
 			/*font-weight: 700;*/
 			color: #000;
-			padding: 10px 0px;
+			padding: 5px 10px;
 			letter-spacing: 2px;
 		}
 
 		.navbar .nav>li.active {
 			/*margin-right: 20px;*/
-			border-top: 2px solid;
+			position: relative;
+			font-weight: 600;
+			box-shadow: -10px 10px 0px 0px #fff, 
+						10px -10px 0px 0px #fff, 
+						1px 1px 0px 0px #000, 
+						-1px -1px 0px 0px #000;
 		}
 
 		/*.navbar .nav>li.active:before {
@@ -465,7 +570,7 @@
 			</ul>
 			<div class="special">
 				<span><b>SUDAH BAYAR ?</b> Upload Bukti Transfer</span>
-				<a class="marleft-15"><b>UPLOAD</b></a>
+				<a id="btn-upload-form" class="marleft-15"><b>UPLOAD</b></a>
 				<!-- <button class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> LOGIN</button> -->
 			</div>
 		</div>
@@ -625,6 +730,47 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="bg animation anim-scale disappear gone">
+		<div class="flex stretch">
+			<div class="upload">
+				<div class="photo-container">
+					<img src="{{ asset('img/thumbnail-5.jpg') }}" class="photo">
+				</div>
+				<div class="photo-detail">
+					<p class="font-currency val-file-size">120.3 KB</p>
+					<h3 class="val-file-name">thumbnail-5.jpg</h3>
+					<button id="btn-upload" class="btn">Upload</button>
+				</div>
+				<input type="file" name="bukti_transfer" class="invisible">
+			</div>
+			<div class="desc">
+				<div class="flex">
+					<h1 class="flex-grow-1">Upload foto bukti transfer.</h1>	
+					<p id="btn-close-form">x</p>
+				</div>
+				<div class="new-line">
+					<div class="line"><p>01</p></div>
+					<p>Terimakasih</p>	
+					<p>telah melakukan pembayaran untuk pesanan anda.</p>
+				</div>
+				<div class="new-line">
+					<div class="line"><p>02</p></div>
+					<p>Silahkan upload foto bukti transfer</p>
+					<p>agar pesanan anda dapat segera kami proses.</p>
+				</div>
+				<div class="new-line">
+					<div class="line"><p>03</p></div>
+					<p>Bukti transfer yang anda kirimkan akan di-verifikasi terlebih dahulu dalam waktu maksimal 1x24 jam</p>
+				</div>
+				
+				
+				
+
+			</div>
+			
+		</div>		
 	</div>
 
 	<input type="hidden" name="booking_id">
@@ -791,6 +937,38 @@
 		})
 	})
 
+	$('.photo-container').on('click', function() {
+		$('input[type="file"]').click();
+	})
+
+	$('input[type="file"]').on('change', function() {
+		var path = $(this).val();
+		var file_name = path.split('\\')[2];
+		var file = $(this)[0].files[0];
+		var file_size = Math.floor(file.size / 1024) + ' KB';
+
+		$('.val-file-name').text(file_name);
+		$('.val-file-size').text(file_size);
+
+		readURL(file);
+	})
+
+	$('#btn-upload-form').on('click', function() {
+		$('.bg').removeClass('gone');
+
+		setTimeout(function() {
+			$('.bg').removeClass('disappear');
+		}, 200);
+	})
+
+	$('#btn-close-form').on('click', function() {
+		$('.bg').addClass('disappear');
+
+		setTimeout(function() {
+			$('.bg').addClass('gone');
+		}, 500);
+	})
+
 	$('#btn-upload').on('click', function() {
 		var booking_id = $('input[name="booking_id"]').val();
 
@@ -887,5 +1065,15 @@
 
     	return day_diff;
     }
+
+    function readURL(file) {
+	    var reader = new FileReader();
+	    
+	    reader.onload = function(e) {
+	      	$('.photo-container .photo').attr('src', e.target.result);
+	    }
+	    
+	    reader.readAsDataURL(file);
+	}
 </script>
 </html>

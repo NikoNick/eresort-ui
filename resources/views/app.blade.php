@@ -272,10 +272,9 @@
 				<h1>PALAWI</h1>
 			</div>
 			<ul class="nav">
-				<li class="active">SEARCH</li>
-				<li>CONTACT</li>
-				<li>GALLERY</li>
-				<li>INFO WISATA</li>
+				<li class="active">PENCARIAN</li>
+				<li>KONTAK</li>
+				<li>CEK PEMBAYARAN</li>
 			</ul>
 			<div class="special">
 				<button class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> LOGIN</button>
@@ -296,6 +295,7 @@
 					<div class="input-wrapper">
 						<b>LOKASI</b>
 						<select name="location">
+							<option value="0" selected>Semua Lokasi</option>
 							@foreach($result as $lokasi)
 								<option value="{{ $lokasi->id }}">{{ $lokasi->name }}</option>
 							@endforeach
@@ -314,7 +314,7 @@
 						<input type="text" class="date" name="end_date" class="form-control" placeholder="Check Out">
 					</div>
 					<div class="input-wrapper margin-0">
-						<input type="number" name="class" class="form-control" placeholder="0">
+						<input type="number" name="class" class="form-control" min="1" value="1">
 						<b>ORANG</b>
 					</div>
 					
@@ -327,11 +327,20 @@
 	</div>
 </body>
 <script type="text/javascript">
+	var today = new Date();
+    	today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+	var tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate()+1)
+    	tomorrow = tomorrow.getFullYear() + '-' + (tomorrow.getMonth() + 1) + '-' + tomorrow.getDate();
+    // console.log(tomorrow);
+
 	$('input.date').datepicker({ 
 		dateFormat: 'yy-mm-dd',
 		minDate: 0
 	});
 
+	$('input[name="start_date"]').val(today);
+	$('input[name="end_date"]').val(tomorrow);
 
 </script>
 </html>

@@ -79,7 +79,7 @@
 
 		.background .form-reservasi .form span {
 			font-size: 2.9em;
-		    line-height: 80px;
+		    line-height: 100px;
 		    font-weight: 300;
 		    letter-spacing: 5px;
 		    word-spacing: 20px;
@@ -840,26 +840,40 @@
 				<div class="input-field tanggal">
 					<span class="input-field-toggle">22 September 2019</span>
 					<div class="date-field">
-						<input type="text" class="date" name="start_date" value="{{ $start_date }}">
+						<input type="text" class="date fillable" name="start_date" value="{{ $start_date }}">
 					</div>
 				</div>
 				<span> sampai</span> <br>
 				<div class="input-field tanggal">
 					<span class="input-field-toggle">25 September 2019</span>
 					<div class="date-field">
-						<input type="text" class="date" name="end_date" value="{{ $end_date }}">
+						<input type="text" class="date fillable" name="end_date" value="{{ $end_date }}">
 					</div>
 				</div>
 				<span> di </span>
 				<div class="input-field">
 					<span class="input-field-toggle input-nama-resort">Mabely Grand Hotel</span>
-					<ul class="list-resort animation">
+					<ul class="list-resort animation fillable">
 						<p class="header">Pilih Tempat Penginapan</p>
 						<li>Mabely Grand Hotel</li>
 						<li class="active">Rosenberry Villa</li>
 						<li>Verdenara Villa</li>
 						<li>Ocika Villa</li>
 					</ul>
+				</div>
+				<span> untuk </span>
+				<div class="input-field">
+					<span class="input-field-toggle input-jumlah-orang">2 Orang</span>
+					<div class="text-field-wrapper animation">
+						<div class="text-field">
+							<p>Jumlah Orang</p>
+							<input type="number" name="jumlah_orang" class="input fillable" value="1" min="1">
+							<button>
+								<i class="fas fa-check"></i>
+							</button>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 			<div class="nav-button animation anim-slide-down-up disappear">
@@ -875,8 +889,8 @@
 			<div class="flex">
 				<div class="reservation-desc">
 					<div class="thumbnail animation anim-slide-down-up-scale disappear"></div>
-					<h2 class="resort-title animation anim-slide-down-up disappear">Rasamala Villa</h2>
-					<p class="resort-desc animation anim-slide-down-up disappear">22 Sep 2019 - 25 Sep 2019</p>
+					<h2 class="resort-title animation anim-slide-down-up disappear val-nama-resort">Rasamala Villa</h2>
+					<p class="resort-desc animation anim-slide-down-up disappear"><span class="val-start-date">22 Sep 2019</span> - <span class="val-end-date">25 Sep 2019</span></p>
 				</div>
 
 				<div class="orders animation anim-slide-down-up disappear">
@@ -1026,20 +1040,20 @@
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Nama Lengkap</p>
-							<input type="text" name="identitas_nama" placeholder="Nama Lengkap Anda" class="input" value="">
+							<input type="text" name="identitas_nama" placeholder="Nama Lengkap Anda" class="input fillable" value="">
 							<button next="input-telepon">
 								<i class="fas fa-check"></i>
 							</button>
 						</div>
 					</div>
 				</div>
-				<span>silahkan hubungi saya di </span> <br>
+				<span>, silahkan hubungi saya di </span>
 				<div class="input-field">
 					<span id="input-telepon" class="input-field-toggle" default="0000-0000-0000">0000-0000-0000</span>
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Telepon</p>
-							<input type="text" name="identitas_telepon" placeholder="xxxx-xxxx-xxxx" class="input" value="">
+							<input type="text" name="identitas_telepon" placeholder="xxxx-xxxx-xxxx" class="input fillable" value="">
 							<button next="input-email">
 								<i class="fas fa-check"></i>
 							</button>
@@ -1052,14 +1066,14 @@
 					<div class="text-field-wrapper animation">
 						<div class="text-field">
 							<p>Email Anda</p>
-							<input type="text" name="identitas_email" placeholder="john_doe@mail.com" class="input" value="">
-							<button next="input-alamat">
+							<input type="text" name="identitas_email" placeholder="john_doe@mail.com" class="input fillable" value="">
+							<button>
 								<i class="fas fa-check"></i>
 							</button>
 						</div>
 					</div>
 				</div>
-				<span> atau ke alamat </span>
+				<!-- <span> atau ke alamat </span>
 				<div class="input-field">
 					<span id="input-alamat" class="input-field-toggle allow-whitespace" default="Alamat Anda">Jl. Overste Isdiman Gg.II/5A Purwokerto</span>
 					<div class="text-field-wrapper animation">
@@ -1071,7 +1085,7 @@
 							</button>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="nav-button animation anim-slide-down-up disappear">
 				<span>Identitas saya sudah benar, <a id="btn-submit-detail" next="5" class="form-nav">Lanjutkan</a></span>
@@ -1336,8 +1350,8 @@
 			var start_date = $('input[name="start_date"]').val();
 			var end_date = $('input[name="end_date"]').val();
 			var id_resort = $('ul.list-resort li.active').attr('id');
+			var nama_resort = $('ul.list-resort li.active').text();
 
-			alert(id_resort);
 			var day_diff = dateDiffInDays(start_date, end_date);
 
 			$.post(
@@ -1360,14 +1374,14 @@
 						var id_harga = kamar.price.id;
 						var harga = kamar.price.service_price;
 						var harga_string = accounting.formatMoney(
-						harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 						var sisa_kamar = kamar.count_availability;
 
 						var $kamar = 
 							'<div id="' + id_kamar + '" class="order flex">' +
 								'<div class="left flex">' +
 									'<span>' +
-										'<input type="checkbox" id="checkbox-' + id_kamar + '" class="checkbox">' +
+										'<input type="checkbox" id="checkbox-' + id_kamar + '" class="checkbox fillable">' +
 										'<label for="checkbox-' + id_kamar + '"></label>' +
 									'</span>' +
 									'<div class="nama">' +
@@ -1377,7 +1391,7 @@
 									'<div class="harga-satuan"><p>' + harga_string + ' / malam</p><input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '"></div>' +
 								'</div>' +
 								'<div class="right flex">' +
-									'<div class="qty flex center"><p>x</p><input type="number" value="0" min="0" disabled="true"></div>' +
+									'<div class="qty flex center"><p>x</p><input type="number" value="0" min="1" disabled="true"></div>' +
 									'<div class="qty flex center"><p>x <span class="day-diff">' + day_diff + '</span> malam</p></div>' +
 									'<div class="harga total-harga"><p>Rp 0</p><input type="hidden" name="total" value="0"></div>' +
 								'</div>' +
@@ -1385,6 +1399,13 @@
 
 						$('#list-kamar').append($kamar);
 					})
+
+					start_date = dateToString(start_date);
+					end_date = dateToString(end_date);
+
+					$('.val-nama-resort').text(nama_resort);
+					$('.val-start-date').text(start_date);
+					$('.val-end-date').text(end_date);
 
 					$('.order input[type="number"]').on('change', inputNumberListener);
 					$('.order input.checkbox').on('change', checkboxListener);
@@ -1481,8 +1502,8 @@
 
 			var array_kamar = [];
 			$('#list-kamar').find('.order.selected').each(function() {
-				var id_kamar = $(this).attr('id');
-				var id_harga = $(this).find('input[name="harga"]').attr('id');
+				var id_kamar = parseInt($(this).attr('id'));
+				var id_harga = parseInt($(this).find('input[name="harga"]').attr('id'));
 
 				var obj_kamar = {
 					'item_detail_id' : id_kamar,
@@ -1532,26 +1553,54 @@
 	function showForm(key) {
 		var $step_trigger = $('#trigger-' + key);
 		var $step_target = $('.form-reservasi#step-' + key);
-		var $active_step = $('.form-reservasi.active');						
-			$step_trigger.addClass('active');
-			$step_trigger.prev().addClass('finished');
+		var $active_step = $('.form-reservasi.active');
 
-			$active_step.find('.animation').addClass('disappear');
-			setTimeout(function() {
-				$active_step.addClass('gone');
-				$active_step.removeClass('active');
+			var array_field = $active_step.find('.fillable');
+			var count_filled = 0;
+
+			console.log(array_field);
+
+			$.each(array_field, function(index, field) {
+				if ($(field).is('ul')) {
+					var value = $(field).find('li.active').attr('id');
+				} else if ($(field).is('input[type="checkbox"]')) {
+					var value = $(field).prop('checked');
+				} else {
+					var value = $(field).val();
+				}
 
 				
-				$step_target.removeClass('gone');
-			}, 800);
 
-			setTimeout(function() {
-				$step_target.removeClass('disappear');
-				$step_target.addClass('active');
-				$step_target.find('.animation').removeClass('disappear');
-			}, 1000);
+				// console.log(tagName);
 
-		console.log($step_trigger);
+				if (value != '' || value == true) {
+					count_filled = count_filled + 1;
+				}
+
+				// console.log('aaaaaa');
+				// console.log(field);
+			})
+
+			if (array_field.length == count_filled) {
+				$step_trigger.addClass('active');
+				$step_trigger.prev().addClass('finished');
+
+				$active_step.find('.animation').addClass('disappear');
+				setTimeout(function() {
+					$active_step.addClass('gone');
+					$active_step.removeClass('active');
+					
+					$step_target.removeClass('gone');
+				}, 800);
+
+				setTimeout(function() {
+					$step_target.removeClass('disappear');
+					$step_target.addClass('active');
+					$step_target.find('.animation').removeClass('disappear');
+				}, 1000);
+			} else {
+				alert('Lengkapi Dulu Form-nya');	
+			}
 	}
 
 	function showInput(trigger) {
@@ -1575,6 +1624,7 @@
 
 		if (value == true) {
 			$(this).closest('.order').addClass('selected');
+			$(this).closest('.order').find('input[type="number"]').val(1);
 			$(this).closest('.order').find('input[type="number"]').attr('disabled', false);
 		} else {
 			$(this).closest('.order').removeClass('selected');
