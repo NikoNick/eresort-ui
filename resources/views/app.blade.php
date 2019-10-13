@@ -294,7 +294,7 @@
 				<div class="field-row">
 					<div class="input-wrapper">
 						<b>LOKASI</b>
-						<select name="location">
+						<select name="location" class="fillable">
 							<option value="0" selected>Semua Lokasi</option>
 							@foreach($result as $lokasi)
 								<option value="{{ $lokasi->id }}">{{ $lokasi->name }}</option>
@@ -302,19 +302,19 @@
 						</select>
 					</div>
 					
-					<button type="submit" class="btn btn-warning">BOOKING</button>
+					<button id="btn-search" class="btn btn-warning">BOOKING</button>
 				</div>
 				<div class="field-row">
 					<div class="input-wrapper">
 						<b>CHECK IN</b>
-						<input type="text" class="date" name="start_date" class="form-control" placeholder="Check In">
+						<input type="text" class="date fillable" name="start_date" placeholder="Check In">
 					</div>
 					<div class="input-wrapper">
 						<b>CHECK OUT</b>
-						<input type="text" class="date" name="end_date" class="form-control" placeholder="Check Out">
+						<input type="text" class="date fillable" name="end_date" placeholder="Check Out">
 					</div>
 					<div class="input-wrapper margin-0">
-						<input type="number" name="class" class="form-control" min="1" value="1">
+						<input type="number" name="person" class="form-control fillable" min="1" value="1">
 						<b>ORANG</b>
 					</div>
 					
@@ -341,6 +341,24 @@
 
 	$('input[name="start_date"]').val(today);
 	$('input[name="end_date"]').val(tomorrow);
+
+	$('#btn-search').on('click', function(e) {
+		e.preventDefault();
+		var array_field = $('form').find('.fillable');
+		var count_filled = 0;
+
+		$.each(array_field, function(index, item) {
+			var value = $(item).val();
+			
+			if (value != '') count_filled = count_filled + 1;
+		})
+
+		if (count_filled == array_field.length) {
+			$(this).unbind().click();
+		} else {
+			alert('Form Belum Lengkap');
+		}
+	})
 
 </script>
 </html>

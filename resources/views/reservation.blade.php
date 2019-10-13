@@ -1569,16 +1569,9 @@
 					var value = $(field).val();
 				}
 
-				
-
-				// console.log(tagName);
-
 				if (value != '' || value == true) {
 					count_filled = count_filled + 1;
 				}
-
-				// console.log('aaaaaa');
-				// console.log(field);
 			})
 
 			if (array_field.length == count_filled) {

@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/custom-fonts.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('font awesome/css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('linear icon/style.css') }}">
 	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
@@ -19,41 +20,35 @@
 			overflow: hidden;
 		}
 
+		.font-number {
+			font-family: Calibri Light !important;
+			font-size: 1.2em;
+		}
+
+		.font-currency {
+			font-family: Consolas;
+			font-size: 1.2em;
+		}
+
 		.bg {
 			width: 100%;
 			height: 100vh;
 			position: fixed;
 			background: #fff;
+			top: 0;
 		}
 
 		.background {
 			/*background: url('../img/thumbnail-2.jpg');*/
 			width: 100%;
 			height: 100vh;
+			position: absolute;
+			top: 0;
 			/*background-size: 130%;*/
 			overflow: hidden;
 			display: flex;
 			flex-direction: column;
 			/*animation: idle infinite 15s;*/
-		}
-
-		@keyframes idle {
-			0% {
-				background-position-x: -50px;
-				background-position-y: -50px;
-			}
-			33% {
-				background-position-x: 0px;
-				background-position-y: 0px;
-			}
-			66% {
-				background-position-x: -50px;
-				background-position-y: 0px;	
-			}
-			100% {
-				background-position-x: -50px;
-				background-position-y: -50px;
-			}
 		}
 
 		.background.free-roam .title {
@@ -64,7 +59,7 @@
 			margin-top: 100%;
 		}
 
-		.background.free-roam .content, .background.free-roam .navbar .logo button {
+		.background.free-roam #tentang, .background.free-roam .navbar .logo button {
 			opacity: 0;
 		}
 
@@ -86,7 +81,7 @@
 		.navbar {
 			width: 100%;
 			display: flex;
-			padding: 70px 100px;
+			padding: 50px 100px;
 			align-items: center;
 			flex-shrink: 0;
 			flex-grow: 0;
@@ -109,31 +104,33 @@
 
 		.navbar .special {
 			display: flex;
-			align-items: stretch;
+			align-items: center;
+		}
+
+		.navbar .special a {
+			letter-spacing: 2px;
+			margin-right: 30px;
+		}
+
+		.btn-black {
+			background: #000;
+			color: #fff;
 		}
 
 		.navbar .special button {
-			padding: 12px 25px;
-			font-weight: 600;
+			padding: 8px 20px;
+			font-weight: 500;
 			letter-spacing: 2px;
-			/*border-radius: 10px;*/
+			border-radius: 0px;
 		}
 
-		.navbar .special .btn-warning i {
-			margin-right: 10px;
-		}
-
-		.navbar .special .btn-icon {
-			background: #fff;
-			border: 1px solid #b5b5b5;
-		    padding: 0px 15px;
-		    margin-left: 15px;
-		    font-size: 2em;
+		.left {
+			padding: 0px 100px;
 		}
 
 		.title {
 			z-index: 5;
-			padding: 00px 100px;
+			/*padding: 00px 100px;*/
 			margin-top: 50px;
 			position: relative;
 		}
@@ -166,92 +163,18 @@
 			margin-right: 20px;
 		}
 
-		.content {
-			flex-grow: 0;
-			transition-delay: 1000ms;
-			position: relative;
-			z-index: 5;
-		}
-
-		.content .nav {
-			text-align: right;
-		}
-
-		.nav.inline>li {
-	        display: inline-block;
-		    font-size: 1.1em;
-		    font-family: Raleway;
-		    font-weight: 700;
-		    padding: 15px 20px;
-		    color: #fff;
-		    letter-spacing: 4px;
-		    cursor: pointer;
-		}
-
-		.nav.inline>li.active {
-			background: #000000bd;
-		}
-
-		.content .desc {
-			background: transparent;
-		    padding: 0px 100px;
-		    color: #000;
-		    font-size: 1.3em;
-		    height: 250px;
-		}
-
-		.content .desc .inner-content {
-			/*display: none;*/
-			letter-spacing: 1px;
-			/*opacity: 0;*/
-			transition: all 0.6s;
-			transition-timing-function: cubic-bezier(0.25, 0.55, 0.265, 1);
-		}
-
-		.content .desc .inner-content.active {
-			opacity: 1;
-		}
-
-		.content .desc .inner-content.flex {
-			display: flex;
+		#tentang {
+			margin-right: 100px;
 		}
 
 		#tentang p {
+			font-size: 1.2em;
 			font-weight: 300;
-		    margin-top: 20px;
+		    margin-top: 40px;
 		    text-align: justify;
 		    line-height: 50px;
 		    letter-spacing: 2px;
-		}
-
-		#tentang .harga {
-			text-align: right;
-			padding: 0px 0px 0px 400px;
-		}
-
-		#tentang .harga h1 {
-			white-space: nowrap;
-		    margin-top: 0px;
-		    font-size: 3em;
-		    color: #ff9b00;
-		    letter-spacing: 5px;
-		    font-weight: 300;
-		    font-family: Raleway;
-		}
-
-		#tentang .harga span {
-			margin-left: 10px;
-		}
-
-		#tentang .harga .flex {
-			display: flex;
-			align-items: center;
-		}
-
-		#tentang .harga .flex b {
-			flex-grow: 1;
-			height: 1px;
-			background: #ff9b00;
+		    position: relative;
 		}
 
 		.animation {
@@ -260,75 +183,52 @@
         }
 
         #fasilitas {
-        	display: flex;
-        	margin-top: 70px;
-        }
-
-        .facility {
-        	text-align: center;
-        	padding: 0px 20px;
-        	border-right: 1px solid #b5b5b5;
-        	min-width: 110px;
-        }
-
-        .facility:last-child {
-        	border: none;
-        }
-
-        .facility img {
-		    width: 35px;
-    		margin-bottom: 15px;
-        }
-
-        .facility p {
-        	margin: 0;
-            font-weight: 600;
-    		font-size: 0.9em;
-        }
-
-        .komentar {
-        	margin-right: 30px;
-        	overflow: hidden;
-        	padding: 20px 25px;
-        	border: 1px solid #fff;
-        	text-align: justify;
-        	border-radius: 10px;
-        	max-width: 700px;
-        	display: flex;
-        }
-
-        .komentar .profil {
-        	margin-right: 20px;
-        }
-
-        .komentar .comment p {
-        	margin-top: 10px;
-        	font-size: 0.9em;
-        	font-style: italic;
-        	position: relative;
-        }
-
-        .komentar .comment p i {
-    	    font-size: 10em;
-		    position: absolute;
-		    bottom: -70px;
-		    right: -30px;
-		    color: #ffffff36;
-        }
-
-        .komentar img {
-        	width: 50px;
-        	height: 50px;
-        	border-radius: 10px;
-        }
-
-        .komentar h1 {
-        	font-family: Raleway;
-		    font-weight: 100;
+    	    display: flex;
+		    margin-top: 150px;
 		    position: relative;
-		    text-align: center;
-		    font-size: 1.em;
-		    margin-bottom: 0px;
+        }
+
+        #fasilitas h1 {
+    	    position: absolute;
+		    top: 0;
+		    margin: 0;
+		    font-weight: 900;
+		    letter-spacing: 5px;
+		    font-size: 2.5em;
+		    top: -25px;
+		    color: #f5f5f5;
+        }
+
+        #fasilitas h1:after {
+    	    content: '';
+			width: 100%;
+			height: 100%;
+			background: #fff;
+			background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 150%);
+			position: absolute;
+			left: 0;
+        }
+
+        #fasilitas b {
+    	    position: relative;
+    		padding: 0px 20px;
+        }
+
+        #fasilitas b:after {
+    	    content: '';
+		    width: 80%;
+		    height: 2px;
+		    background: #000000a1;
+		    position: absolute;
+		    bottom: -20px;
+		    left: 0;
+        }
+
+        #fasilitas b span {
+	        margin: 0px 20px;
+	        font-size: 1.1em;
+    		letter-spacing: 2px;
+		    font-weight: 600;
         }
 
         #myCarousel {
@@ -403,34 +303,115 @@
         	display: flex;
         }
 
+        .flex-grow-1 {
+        	flex-grow: 1;
+        }
+
         .right {
-        	padding: 0px 100px;
-        	transition-delay: 0.5s;
+        	margin: 0px 100px;
+        	position: relative;
+        	display: flex;
+        	/*transition-delay: 0.5s;*/
+        }
+
+        .card-bg {
+    	    width: calc(100% + 50px);
+		    height: 100%;
+		    position: absolute;
+		    left: -100px;
+		    top: 80px;
+		    background: #f5f5f5;
+	        writing-mode: vertical-lr;
+		    text-orientation: upright;
+	        font-weight: 800;
+		    font-size: 1.2em;
+		    letter-spacing: 15px;
+		    cursor: pointer;
+        }
+
+        .card-bg:active {
+        	background: #f0f0f0;
+        }
+
+        .card-bg>div {
+        	margin-top: -50px;
+        	align-items: center;
+        	margin-left: 25px;
+        }
+
+        .card-bg b {
+        	font-weight: 800;
+        }
+
+        .card-bg .line {
+        	width: 1px;
+        	height: 8%;
+        	margin-bottom: 30px;
+        	background: #000;
+        }
+
+        .card-bg i {
+        	font-size: 2em;
+        }
+
+        .card-container {
+    	    position: relative; 
+    		overflow: hidden;
+        }
+
+        .card-container:after {
+        	content: '';
+		    width: 100%;
+		    height: 300px;
+		    background: #000;
+		    background: linear-gradient(180deg, rgba(0,148,233,0) 50%, rgb(255, 255, 255) 100%);
+		    position: fixed;
+		    /* top: 0; */
+		    bottom: 0px;
         }
 
         .card {
-        	position: relative;
-        	padding: 20px 25px;
-        	/*border: 1px solid #b5b5b5;*/
-        	/*border-radius: 10px;*/
-        	min-width: 500px;
-        	align-items: center;
-        	margin-top: 30px;
+    	    background: url(../img/thumbnail-5.jpg);
+		    position: relative;
+		    background-size: 100%;
+		    /*background-position-y: -100px;*/
+		    padding: 18px 25px;
+		    width: 400px;
+		    margin-top: 30px;
+		    color: #fff;
         }
 
-        .card .card-bg {
-        	width: 100%;
-        	height: 100%;
-        	position: absolute;
-        	background: #f5f5f5;
-        	top: 25px;
-        	left: 50px;
+        .card:nth-child(2) {
+        	background-image: url('../img/thumbnail-4.jpg');
         }
 
-        .card .wrapper {
+        .card:first-child:before {
+        	background: linear-gradient(180deg, rgba(110,96,210,1) 0%, rgba(47,125,223,1) 100%);
+        }
+
+        .card:nth-child(2):before {
+        	background: linear-gradient(180deg, rgba(0,148,233,1) 0%, rgba(46,76,96,1) 100%);
+        }
+
+        .card:nth-child(3):before {
+        	background: linear-gradient(180deg, rgba(47,73,92,1) 0%, rgba(0,0,0,1) 100%);
+        }
+
+        .card:before {
+    	    content: '';
+		    width: 100%;
+		    height: 100%;
+		    background: #6e60d2;
+		    opacity: 0.64;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+        }
+
+        .card>div {
         	position: relative;
         	display: flex;
-        	align-items: center;
+        	flex-direction: column;
         }
 
         .card .img {
@@ -469,19 +450,61 @@
 
 
         .card b {
-    	    letter-spacing: 1px;
     		font-weight: 800;
-    		text-transform: uppercase;
+		    font-size: 1.2em;
+    		letter-spacing: 2px;
+    		margin-bottom: 5px;
         }
 
         .card span {
-        	font-size: 1.5em;
+        	letter-spacing: 1px;
+    		font-size: 1.3em;
+        }
+
+        .card>div>h1 {
+        	text-align: right;
+		    margin-right: -35px;
+		    font-weight: 800;
+		    font-family: Raleway;
+		    letter-spacing: 5px;
+		    margin-bottom: 0;
+		    font-size: 3.5em;
+		    margin-bottom: -15px;
+		    text-shadow: -5px -3px 0px #ffffff5e;
+		    margin-top: 30px;
         }
 
         .card .sub-desc {
     	    letter-spacing: 2px;
 		    margin-top: 10px;
 		    margin-bottom: 0;
+		    font-weight: 300;
+        }
+
+        .card .info-kamar {
+        	display: flex;
+        	align-items: center;
+        	margin-right: -40px;
+		    margin-bottom: -35px;
+		    text-shadow: -5px 0px 0px #ffffff40;
+        }
+
+        .card .info-kamar b {
+    	    font-family: Arial;
+		    font-size: 7.5em;
+		    margin: 0;
+        }
+
+        .card .info-kamar p {
+    	    letter-spacing: 3px;
+		    font-weight: 800;
+		    font-size: 2.3em;
+		    margin: 0;
+		    text-align: right;
+		    margin-top: 28px;
+		    flex-grow: 1;
+		    margin-right: 10px;
+		    line-height: 35px;
         }
 	</style>
 </head>
@@ -524,104 +547,73 @@
 			<div class="logo">
 				<button id="btn-back" class="btn animation">< Kembali</button>
 			</div>
-			<div class="special">
-				<button id="btn-reservasi" class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> BOOKING</button>
-				<button id="btn-free" class="btn btn-icon"><i class="far fa-image"></i></button>
+			<div class="special flex">
+				<a id="btn-free">LIHAT GALERI</a>
+				<button id="btn-reservasi" class="btn btn-black">Booking</button>
 			</div>
 		</div>
-		<div class="flex">
-			<div>
+		<div class="flex flex-grow-1">
+			<div class="left">
 				<div class="title animation">
 					<div class="rating">
 						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 					</div>
-					<h1 class="val-nama">Mabely Grand Hotel</h1>
+					<h1 class="val-nama">Merkusii Villa</h1>
 					<b class="basic-info"><span>Jl. Overste Isdiman Gg.II / 5A, Purwokerto</span> <span>|</span> 0857-0160-9034</b>
 				</div>
-				<div class="content animation">
-					<div class="desc">
-						<div id="tentang" class="inner-content active flex">
-							<div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
-							</div>
-						</div>
-						<div id="fasilitas" class="inner-content">
-							<div class="facility">
-								<img src="{{ asset('img/fasilitas-1.png') }}">
-								<p>Ruang Tamu</p>
-							</div>
-							<div class="facility">
-								<img src="{{ asset('img/fasilitas-2.png') }}">
-								<p>Ruang Makan</p>
-							</div>
-							<div class="facility">
-								<img src="{{ asset('img/fasilitas-3.png') }}">
-								<p>Pantry</p>
-							</div>
-							<div class="facility">
-								<img src="{{ asset('img/fasilitas-4.png') }}">
-								<p>LED TV</p>
-							</div>
-							<div class="facility">
-								<img src="{{ asset('img/fasilitas-5.png') }}">
-								<p>Breakfast</p>
-							</div>
-						</div>
-						<!-- <div id="review" class="inner-content">
-							<div class="komentar">
-								<div class="profil">
-									<img src="{{ asset('img/jones.jpg') }}">
-									<h1>4.5</h1>
-								</div>
-								<div class="comment">
-									<b>Niko Prianto</b>
-									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area. Wonderful service and everything. <i class="fab fa-angrycreative"></i></p>	
-								</div>
-								
-							</div>
-							<div class="komentar">
-								<div class="profil">
-									<img src="{{ asset('img/jones.jpg') }}">
-									<h1>5.0</h1>
-								</div>
-								<div class="comment">
-									<b>Shafa Rizky F</b>
-									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area <i class="fab fa-angrycreative"></i></p>	
-								</div>
-								
-							</div>
-							<div class="komentar">
-								<div class="profil">
-									<img src="{{ asset('img/jones.jpg') }}">
-									<h1>4.0</h1>
-								</div>
-								<div class="comment">
-									<b>Mega Nurul Hidayah</b>
-									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything <i class="fab fa-angrycreative"></i></p>	
-								</div>
-								
-							</div>
-						</div> -->
-					</div>
+				<div id="tentang" class="flex-grow-1 animation">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
+				</div>
+				<div id="fasilitas" class="inner-content">
+					<h1>FASILITAS VILLA</h1>
+					<b>
+						<span>Ruang Makan</span>
+						<span>Ruang Tamu</span>
+						<span>Pantry</span>
+						<span>LED TV</span>
+						<span>Breakfast</span>
+						<span>Room Service</span>
+					</b>
 				</div>
 			</div>
 			<div class="right animation">
-				<div class="card flex">
-					<div class="card-bg"></div>
-					<div id="deluxe" class="img"></div>
-					<div>
-						<p><b>DELUXE ROOM</b></p>
-						<span>Rp 355.000 / malam</span>
-						<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
+				<div class="card-bg">
+					<div class="flex">
+						<p><b>SERVICES</b></p>
+						<div class="line"></div>
+						<p><b>PRICE</b></p>
+						<i class="lnr lnr-chevron-down"></i>
 					</div>
 				</div>
-				<div class="card flex">
-					<div class="card-bg"></div>
-					<div id="executive" class="img"></div>
-					<div>
-						<p><b>EXECUTIVE ROOM</b></p>
-						<span>Rp 300.000 / malam</span>
-						<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
+				<div class="card-container">
+					<div class="card">
+						<div>
+							<b>Book Satu Villa</b>
+							<span class="font-currency">Rp 855.000 / malam</span>
+							<h1>AVAILABLE</h1>
+						</div>
+					</div>
+					<div class="card">
+						<div>
+							<b>Merkusii Villa Executive</b>
+							<span class="font-currency">Rp 300.000 / malam</span>
+							<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
+							<div class="info-kamar">
+								<p>SISA<br>KAMAR</p>
+								<b>2</b>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div>
+							<b>Merkusii Villa Deluxe</b>
+							<span class="font-currency">Rp 400.000 / malam</span>
+							<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
+							<div class="info-kamar">
+								<p>SISA<br>KAMAR</p>
+								<b>1</b>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -651,49 +643,42 @@
 		harga_sewa = accounting.formatMoney(
 					harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
-	$('.right').empty();
+	$('.card-container').empty();
+	console.log(resort);
 
 	var $kamar = 
-				'<div class="card flex">' +
-					// '<div class="card-bg"></div>' +
-					'<div class="wrapper">' +
-						'<div id="deluxe" class="img"></div>' +
-						'<div>' +
-							'<p><b>SEWA SATU VILLA</b></p>' +
-							'<span>' + harga_sewa + ' / malam</span>' +
-							'<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>' +
-						'</div>' +
-					'</div>' +
-				'</div>';
+		'<div class="card animation active">' +
+			'<div>' +
+				'<b>Book Satu Villa</b>' +
+				'<span class="font-currency">' + harga_sewa + ' / malam</span>' +
+				'<h1>AVAILABLE</h1>' +
+			'</div>' +
+		'</div>';
 
-	$('.right').append($kamar);
+	$('.card-container').append($kamar);
 
 	$.each(tipe_kamar, function(index, kamar) {
 		var id_kamar = kamar.id;
 		var nama_kamar = kamar.name;
+		var sisa_kamar = kamar.count_availability;
 		var harga = kamar.price.service_price;
 			harga = accounting.formatMoney(
 					harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
 		var $kamar = 
-				'<div class="card flex">' +
-					// '<div class="card-bg"></div>' +
-					'<div class="wrapper">' +
-						'<div id="deluxe" class="img">' +
-							'<div class="sisa">' +
-								'<p><b>SISA</b></p>' +
-								'<h1>2</h1>' +
-							'</div>' +
-						'</div>' +
-						'<div>' +
-							'<p><b>' + nama_kamar + '</b></p>' +
-							'<span>' + harga + ' / malam</span>' +
-							'<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>' +
+				'<div class="card">' +
+					'<div>' +
+						'<b>' + nama_kamar + '</b>' +
+						'<span class="font-currency">' + harga + ' / malam</span>' +
+						'<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>' +
+						'<div class="info-kamar">' +
+							'<p>SISA<br>KAMAR</p>' +
+							'<b>' + sisa_kamar + '</b>' +
 						'</div>' +
 					'</div>' +
 				'</div>';
 
-		$('.right').append($kamar);
+		$('.card-container').append($kamar);
 
 	})
 
@@ -711,6 +696,36 @@
 		} else {
 			$('.background').addClass('free-roam');
 		}
+	})
+
+	$('.card-bg').on('click', function() {
+		var index_offset = $('.card').length;
+		var active_index = $('.card').index($('.card.active'));
+		var target_index = active_index + 1;
+
+		var margin_top = 0;
+
+		$('.card').each(function(index) {
+			var ver_position = $(this).outerHeight() + 30;
+			// alert(ver_position);
+
+			if (index < target_index) {
+				margin_top = margin_top + ver_position;
+			}
+		})
+
+		margin_top = '-' + margin_top + 'px';
+
+		$('.card.active').removeClass('active');
+
+		if (target_index == index_offset) {
+			$('.card:first-child').css('margin-top', '0px');
+			$('.card:first-child').addClass('active');	
+		} else {
+			$('.card:first-child').css('margin-top', margin_top);
+			$('.card').eq(active_index + 1).addClass('active');	
+		}
+		
 	})
 
 	$('#btn-reservasi').on('click', function() {

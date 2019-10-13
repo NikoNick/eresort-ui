@@ -35,14 +35,14 @@ Route::post('/hasil', function() {
 	$start_date = $_POST['start_date'];
 	$end_date = $_POST['end_date'];
 	$location = $_POST['location'];
-	$class = $_POST['class'];
+	$person = $_POST['person'];
 
 	// akses ke api
 	$url = 'http://api.resort.shafarizkyf.com/api/availability/resort?' . 
 			'start_date=' . $start_date . '&' .
 			'end_date=' . $end_date . '&' . 
 			'location=' . $location . '&' . 
-			'class=' . $class;
+			'person=' . $person;
 
 	$ch = curl_init();
 
@@ -57,6 +57,10 @@ Route::post('/hasil', function() {
 	// echo($start_date);
 	return view('hasil', compact('result', 'start_date', 'end_date'));
 });
+
+// Route::get('/detail', function() {
+// 	return view('hasil-2');
+// });
 
 Route::post('/detail', function () {
 	//ambil data form
@@ -75,7 +79,7 @@ Route::post('/detail', function () {
 
 	curl_close($ch);
 
-	return view('detail', compact('result', 'start_date', 'end_date'));
+	return view('hasil-2', compact('result', 'start_date', 'end_date'));
 
 	// return view('detail');
 });
