@@ -1524,8 +1524,8 @@
 					'Content-Type': 'application/json'
 				}
 			}).then(response => {
-				// window.location.replace("/book-detail");
-				console.log(obj_booking);
+				window.location.replace("/book-detail");
+				// console.log(obj_booking);
 			}).fail(error => {
 				console.log(error)
 				console.log(error.response)
