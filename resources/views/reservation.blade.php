@@ -1258,8 +1258,6 @@
 		var end_date = {!! json_encode($end_date) !!};
 		var id_resort_terpilih = {!! json_encode($id_resort) !!};
 
-		console.log(resorts);
-
 		$('input.date').datepicker({ 
 			dateFormat: 'yy-mm-dd' ,
 			minDate: 0
@@ -1363,7 +1361,6 @@
 					'id_resort' : id_resort
 				},
 				function(data) {
-					console.log($.parseJSON(data));
 					var resort_variant = $.parseJSON(data).availability;
 
 					$('#list-kamar').empty();
@@ -1518,8 +1515,6 @@
 
 			obj_booking.items = array_kamar;
 
-			console.log(obj_booking);
-
 			$.ajax({
 				url: 'http://api.resort.shafarizkyf.com/api/booking',
 				method: 'POST',
@@ -1529,22 +1524,12 @@
 					'Content-Type': 'application/json'
 				}
 			}).then(response => {
-				window.location.replace("/book-detail");
+				// window.location.replace("/book-detail");
+				console.log(obj_booking);
 			}).fail(error => {
 				console.log(error)
 				console.log(error.response)
 			})
-
-			// $.post(
-			// 	base_url + '/booking',
-			// 	{
-			// 		'_token' : '{{ csrf_token() }}',
-			// 		'data' : obj_booking
-			// 	},
-			// 	function(data) {
-			// 		alert(data);
-			// 	}
-			// )
 
 		})
 
@@ -1557,8 +1542,6 @@
 
 			var array_field = $active_step.find('.fillable');
 			var count_filled = 0;
-
-			console.log(array_field);
 
 			$.each(array_field, function(index, field) {
 				if ($(field).is('ul')) {
