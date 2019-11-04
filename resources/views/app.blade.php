@@ -302,7 +302,7 @@
 		</div>
 		<div class="search-nav">
 			<ul class="nav inline">
-				<li><a href="#tab-1">RESORT</a></li><li class="active"><a href="#tab-2">CAMPING</a></li><li><a href="#tab-3">OUTBOND</a></li>
+				<li class="active"><a href="#tab-1">RESORT</a></li><li><a href="#tab-2">CAMPING</a></li><li><a href="#tab-3">OUTBOND</a></li>
 			</ul>
 		</div>
 		<div class="content">
@@ -345,6 +345,15 @@
 				<form method="POST" action="/hasil-camping">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="field-row">
+						<div class="input-wrapper">
+							<b>LOKASI</b>
+							<select name="location" class="fillable">
+								<option value="0" selected>Semua Lokasi</option>
+								@foreach($result as $lokasi)
+									<option value="{{ $lokasi->id }}">{{ $lokasi->name }}</option>
+								@endforeach
+							</select>
+						</div>
 						<div class="input-wrapper">
 							<b class="flex-grow-1">KAPASITAS</b>
 							<input type="number" name="person" class="form-control fillable" min="1" value="1">
@@ -401,7 +410,6 @@
 	var tomorrow = new Date();
 		tomorrow.setDate(tomorrow.getDate()+1)
     	tomorrow = tomorrow.getFullYear() + '-' + ('0' + (tomorrow.getMonth() + 1)).slice(-2) + '-' + ('0' + tomorrow.getDate()).slice(-2);
-    // console.log(tomorrow);
 
 	$('input.date').datepicker({ 
 		dateFormat: 'yy-mm-dd',

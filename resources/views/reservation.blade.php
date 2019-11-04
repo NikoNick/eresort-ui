@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<style type="text/css">
 		a, a:hover {
 			color: inherit;
@@ -1279,6 +1280,7 @@
 
 		var resorts 		   	= {!! $data !!}.data;
 		var extra_item 			= {!! $extra_item !!};
+		var config 				= {!! $config !!};
 		var item_id 			= {!! json_encode($item_id) !!};
 		var end_date 		   	= {!! json_encode($end_date) !!};
 		var start_date 		   	= {!! json_encode($start_date) !!};
@@ -1517,7 +1519,11 @@
 				var payment_method = false;
 			}
 
-			console.log(payment_method);
+			var start_time = moment(check_in + 'T' + config.hour_check_in).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
+			var end_time = moment(check_out + 'T' + config.hour_check_out).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
+
+			console.log(config.hour_check_in);
+			console.log(start_time);
 
 			// const string_check_in = dateToString(check_in, 'short');
 			// const string_check_out = dateToString(check_out, 'short');
@@ -1533,7 +1539,7 @@
 			$('#step-6').find('.orders').empty();
 
 			var total_per_malam = 0;
-			var current_index = 1;
+			var current_index = 0;
 			var array_item = [];
 
 			$('#step-2 .orders').find('.order.selected').each(function(index) {
@@ -1541,7 +1547,9 @@
 					$order.removeClass('selected');
 					$order.find('.availability').remove();
 
-				current_index = current_index + index;
+				current_index = index + 1;
+
+				console.log('Loop' + index + ':' + current_index);
 
 					$order.find('.index span').text(current_index);
 
@@ -1557,8 +1565,8 @@
 					'item_detail_id' : id_kamar,
 					// 'price_id' : id_harga,
 					'person' : 1,
-					'start_time' : check_in + ' 10:00:00',
-					'end_time' : check_out + ' 11:00:00'
+					'start_time' : start_time,
+					'end_time' : end_time
 				};
 
 				array_item.push(obj_kamar);
@@ -1566,15 +1574,12 @@
 				$('#step-6').find('.orders').append($order);
 			})
 
-			console.log (current_index);
+			console.log ('after loop : ' + current_index);
 
 			$('#step-3 .orders').find('.order.selected').each(function(index) {
 				var $order = $(this).clone();
 					$order.removeClass('selected');
-					$order.find('.index span').text(current_index + index + 1);
-
-					console.log(index);
-					// $order.find('.name span:last-child').append('<sup>Tambahan</sup>');
+					$order.find('.index span').text(current_index + (index + 1));
 
 				var id_kamar = $order.attr('id');
 				var id_harga = $order.find('input[name="harga"]');
@@ -1587,8 +1592,8 @@
 					'item_detail_id' : id_kamar,
 					// 'price_id' : id_harga,
 					'person' : 1,
-					'start_time' : check_in + ' 10:00:00',
-					'end_time' : check_out + ' 11:00:00'
+					'start_time' : start_time,
+					'end_time' : end_time
 				};
 
 				array_item.push(obj_kamar);

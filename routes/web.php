@@ -122,6 +122,8 @@ Route::post('/reservasi', function () {
 	$item_id = $_POST['item_id'];
 	$start_date = $_POST['start_date'];
 
+	$url_config = 'api.resort.shafarizkyf.com/api/config/resort';
+
 	if ($business_id == 1) {
 		// api untuk mendapatkan semua daftar resort yg ada
 		$url1 = 'api.resort.shafarizkyf.com/api/availability/resort?start_date=' . $start_date . '&end_date=' . $end_date;
@@ -146,8 +148,14 @@ Route::post('/reservasi', function () {
 	$extra_item = curl_exec($ch);
 			curl_close($ch);
 
+	$ch   = curl_init();
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_URL, $url_config);
+	$config = curl_exec($ch);
+			curl_close($ch);
+
 	
-	return view('reservation', compact('data', 'extra_item', 'start_date', 'end_date', 'item_id', 'business_id'));
+	return view('reservation', compact('data', 'extra_item', 'start_date', 'end_date', 'item_id', 'business_id', 'config'));
 });
 
 Route::post('/resort/availability', function() {
