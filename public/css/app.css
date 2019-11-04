@@ -1,0 +1,273 @@
+a, a:hover {
+    color: inherit;
+    border: 0;
+}
+body {
+    font-family: Raleway !important;
+}
+
+button {
+    background: #0fffbe;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.background {
+    background: url('../img/thumbnail-5.jpg');
+    width: 100%;
+    height: 100vh;
+    background-size: 100%;
+    overflow: hidden;
+}
+
+.background:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.53;
+    content: '';
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    padding: 70px 100px;
+    align-items: center;
+}
+
+.navbar .logo, .navbar .special {
+    width: 10%;
+}
+
+.navbar .logo h1 {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold !important;
+    font-family: Raleway !important;
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.navbar .nav {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.navbar .nav>li {
+    display: inline-block;
+    margin: 0px 30px;
+    font-size: 1em;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.navbar .nav>li>span {
+    position: relative;
+}
+
+.navbar .nav>li.active {
+    font-weight: 700;
+}
+
+.navbar .nav>li.active:before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -8px;
+    width: 100%;
+    height: 10px;
+    background: #0fffbe;
+    opacity: 0.6;
+}
+
+.navbar .special {
+    text-align: right;
+}
+
+.navbar .special button {
+    padding: 12px 25px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.nav.inline>li {
+    display: inline;
+    font-size: 0.9em;
+    font-family: Raleway;
+    font-weight: 400;
+    padding: 15px 20px;
+    color: #fff;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+.nav.inline>li>a {
+    display: inline-block;
+}
+.nav.inline>li>a:hover {
+    background: transparent;
+}
+
+.nav.inline>li:hover {
+    background: #ffffff70;
+}
+
+.search-nav .nav {
+    text-align: center;
+}
+
+.search-nav .nav>li.active:before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    width: 100vw;
+    left: -100vw;
+    border-top: 1px solid #ffffffbd;
+    height: 2px;
+}
+
+.search-nav .nav>li.active:after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    width: 100vw;
+    right: -100vw;
+    border-top: 1px solid #ffffffbd;
+    height: 2px;
+}
+
+.search-nav .nav>li.active {
+    border: 1px solid #ffffff70;
+    border-top-color: transparent;
+}
+
+.content {
+    position: relative;
+}
+
+.content .tab {
+    display: none;
+}
+
+.content .tab:target {
+    display: block;
+}
+
+.content h1 {
+    font-family: Raleway;
+    text-align: center;
+    color: #fff;
+    margin-top: 120px;
+    margin-bottom: 50px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    word-spacing: 10px;
+}
+
+.input-wrapper {
+    display: flex;
+    background: #fff;
+    border-radius: 8px;
+    align-items: center;
+    padding: 0px 25px;
+}
+
+.input-wrapper b {
+    white-space: nowrap;
+    letter-spacing: 1px;
+    font-weight: 800;
+    /*padding: 0px 25px;*/
+}
+
+.input-wrapper i {
+    margin: 0 25px;
+    font-size: 1.2em;
+}
+
+.content .field-row {
+    display: flex;
+    padding: 15px 420px;
+    align-items: stretch;
+}
+
+.content .field-row .input-wrapper {
+    margin-right: 30px;
+    flex-grow: 1;
+}
+
+.content .field-row input, .content .field-row select {
+    padding: 20px 25px;
+    font-size: 1.1em;
+    letter-spacing: 3px;
+    font-weight: 500;
+    font-family: Raleway;
+    border: 0;
+    border-radius: 8px;
+    height: auto;
+    outline: none !important;
+    box-shadow: none;
+    width: 100%;
+}
+
+.content .field-row input[type="number"] {
+    padding: 20px 0px;
+    width: 50px;
+}
+
+.content .field-row button {
+    padding: 20px 55px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    border-radius: 8px;
+}
+
+.margin-0 {
+    margin: 0 !important;
+}
+
+.footer {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-top: 150px;
+}
+
+.ui-widget-content {
+    background: #fff;
+    color: #000;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    color: #000;
+    border: 1px solid #00000057;
+}
+
+.ui-widget-header {
+    color: #000;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    border-bottom: 1px solid #00000057;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    background: #ffa22a;
+    color: #fff;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    background: #ff7979;
+    font-weight: normal;
+    color: #fff;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    background: #00daff;
+    font-weight: normal;
+    color: #fff;
+}
