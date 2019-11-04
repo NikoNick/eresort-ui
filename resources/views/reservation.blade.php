@@ -882,11 +882,11 @@
         	cursor: pointer;
         }
 
-        .orders .order:hover {
+        #step-2 .orders .order:hover, #step-3 .orders .order:hover {
         	background: #f5f5f5;
         }
 
-        .orders .order:active {
+        #step-2 .orders .order:active, #step-3 .orders .order:active {
         	background: #dcdcdc;
         }
 
@@ -1490,20 +1490,6 @@
 			showForm(key);
 		})
 
-		$('.norek').on('click', function() {
-			$.post(
-				base_url + '/booksession',
-				{
-					'_token' : '{{ csrf_token() }}',
-					'invoice' : 'inv/20190927/cob/0001',
-					'email' : 'shafarizkyf@gmail.com'
-				},
-				function (data) {
-					alert(data);
-				}
-			);
-		})
-
 		$('#btn-submit-detail').on('click', function() {
 			var nama_resort = $('.list-resort').find('li.active').text();
 			var check_in = $('input[name="start_date"]').val();
@@ -1522,15 +1508,6 @@
 			var start_time = moment(check_in + 'T' + config.hour_check_in).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
 			var end_time = moment(check_out + 'T' + config.hour_check_out).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
 
-			console.log(config.hour_check_in);
-			console.log(start_time);
-
-			// const string_check_in = dateToString(check_in, 'short');
-			// const string_check_out = dateToString(check_out, 'short');
-
-			// $('.val-nama-pemesan').text(nama_pemesan);
-			// $('.val-telepon').text(telepon);
-			// $('.val-email').text(email);
 			obj_booking.name = nama_pemesan;
 			obj_booking.phone = telepon;
 			obj_booking.email = email;
@@ -1546,6 +1523,10 @@
 				var $order = $(this).clone();
 					$order.removeClass('selected');
 					$order.find('.availability').remove();
+
+				var unit = $order.find('.unit').find('input[type="number"]').val();
+					$order.find('.unit').find('input').remove();
+					$order.find('.unit').find('span').text('x ' + unit);
 
 				current_index = index + 1;
 
@@ -1581,6 +1562,10 @@
 					$order.removeClass('selected');
 					$order.find('.index span').text(current_index + (index + 1));
 
+				var unit = $order.find('.unit').find('input[type="number"]').val();
+					$order.find('.unit').find('input').remove();
+					$order.find('.unit').find('span').text('x ' + unit);
+
 				var id_kamar = $order.attr('id');
 				var id_harga = $order.find('input[name="harga"]');
 
@@ -1615,64 +1600,6 @@
 		})
 
 		$('#btn-book').on('click', function() {
-			// var start_date = $('input[name="start_date"]').val();
-			// var end_date = $('input[name="end_date"]').val();
-			// var id_resort = $('ul.list-resort li.active').attr('id');
-			// var identitas_nama = $('input[name="identitas_nama"]').val();
-			// var identitas_email = $('input[name="identitas_email"]').val();
-			// var identitas_telepon = $('input[name="identitas_telepon"]').val();
-			// var metode_pembayaran = $('.metode-pembayaran').find('input[type="checkbox"]').filter(':checked');
-			// var full_payment = $(metode_pembayaran).val();
-
-			// if (full_payment == 'true') {
-			// 	full_payment = true;
-			// } else {
-			// 	full_payment = false;
-			// }
-			
-
-			// var obj_booking = {
-			// 	'name' : identitas_nama,
-			// 	'email' : identitas_email,
-			// 	'phone' : identitas_telepon,
-			// 	'full_payment' : true,
-			// 	'location_id' : 1,
-			// 	'items' : []
-			// };
-
-			// var array_item = [];
-			// $('#list-kamar').find('.order.selected').each(function() {
-			// 	var id_kamar = parseInt($(this).attr('id'));
-			// 	var id_harga = parseInt($(this).find('input[name="harga"]').attr('id'));
-
-			// 	var obj_kamar = {
-			// 		'item_detail_id' : id_kamar,
-			// 		'price_id' : id_harga,
-			// 		'person' : 1,
-			// 		'start_time' : start_date + ' 10:00:00',
-			// 		'end_time' : end_date + ' 11:00:00'
-			// 	};
-
-			// 	array_item.push(obj_kamar);
-			// })
-
-			// $('.tambahans').find('.tambahan.selected').each(function() {
-			// 	var id_item = parseInt($(this).attr('id'));
-			// 	var id_harga = parseInt($(this).find('input[name="harga"]').attr('id'));
-
-			// 	var obj_item = {
-			// 		'item_detail_id' : id_item,
-			// 		'price_id' : id_harga,
-			// 		'person' : 1,
-			// 		'start_time' : start_date + ' 10:00:00',
-			// 		'end_time' : end_date + ' 11:00:00'
-			// 	};
-
-			// 	array_item.push(obj_item);
-			// })
-
-			// obj_booking.items = array_item;
-
 			$.ajax({
 				url: 'http://api.resort.shafarizkyf.com/api/booking',
 				method: 'POST',
@@ -1682,7 +1609,7 @@
 					'Content-Type': 'application/json'
 				}
 			}).then(response => {
-				window.location.replace("/book-detail");
+				window.location = base_url + "/book-detail";
 				// console.log(obj_booking);
 			}).fail(error => {
 				console.log(error)

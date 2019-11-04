@@ -379,7 +379,7 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="field-row">
 						<div class="input-wrapper">
-							<b>KAPASITAS</b>
+							<b>PESERTA</b>
 							<input type="number" name="person" class="form-control fillable" min="1" value="1">
 							<b>ORANG</b>
 						</div>
@@ -387,12 +387,12 @@
 					</div>
 					<div class="field-row">
 						<div class="input-wrapper">
-							<b>CHECK IN</b>
+							<b>TANGGAL</b>
 							<input type="text" class="date fillable" name="start_date" placeholder="Check In">
 						</div>
-						<div class="input-wrapper margin-0">
-							<b>CHECK OUT</b>
-							<input type="text" class="date fillable" name="end_date" placeholder="Check Out">
+						<div class="input-wrapper">
+							<b>JAM</b>
+							<input type="text" class="fillable" name="start_date" placeholder="">
 						</div>
 					</div>
 				</form>
