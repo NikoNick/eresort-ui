@@ -1609,6 +1609,7 @@
 					'Content-Type': 'application/json'
 				}
 			}).then(response => {
+				alert('Booking Berhasil');
 				window.location = base_url + "/book-detail";
 				// console.log(obj_booking);
 			}).fail(error => {

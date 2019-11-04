@@ -131,7 +131,7 @@
 
 		$('.btn-search').on('click', function(e) {
 			e.preventDefault();
-			var array_field = $('form').find('.fillable');
+			var array_field = $(this).parent().parent().find('.fillable');
 			var count_filled = 0;
 
 			$.each(array_field, function(index, item) {
