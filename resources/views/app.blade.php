@@ -294,7 +294,7 @@
 			<ul class="nav">
 				<li class="active"><span>PENCARIAN</span></li>
 				<li><span>KONTAK</span></li>
-				<li><span>PESANAN ANDA</span></li>
+				<li><a href="{{ route('booking.detail') }}"><span>PESANAN ANDA</span></a></li>
 			</ul>
 			<div class="special">
 				<button class="btn"><i class="fas fa-sign-in-alt"></i> LOGIN</button>
@@ -308,7 +308,7 @@
 		<div class="content">
 			<div id="tab-1" class="tab">
 				<h1>Pastikan Liburanmu Nyaman dengan Palawi</h1>
-				<form method="POST" action="/hasil">
+				<form method="GET" action="/hasil">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="field-row">
 						<div class="input-wrapper">
@@ -342,7 +342,7 @@
 			</div>
 			<div id="tab-2" class="tab">
 				<h1>Ayo Camping Bersama Kami!</h1>
-				<form method="POST" action="/hasil-camping">
+				<form method="GET" action="/hasil-camping">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="field-row">
 						<div class="input-wrapper">
