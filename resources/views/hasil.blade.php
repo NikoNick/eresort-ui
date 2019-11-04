@@ -17,8 +17,12 @@
 			font-family: Raleway !important;
 		}
 
+		.font-number {
+			font-family: Consolas;
+		}
+
 		.background {
-			background: #f5f5f5;
+			background: #fff;
 			width: 100%;
 			/*height: 100vh;*/
 			background-size: 130%;
@@ -26,64 +30,62 @@
 
 		.navbar {
 			width: 100%;
-			padding: 40px 100px;
-			background: #fff;
-			border-bottom: 1px solid #dcdcdc;
 			display: flex;
+			padding: 50px 180px;
 			align-items: center;
-			margin: 0;
 		}
 
-		.navbar .logo {
-			flex-grow: 1;
+		.navbar .logo, .navbar .special {
+			width: 10%;
+		}
+
+		.navbar .special img {
+			border: 1px solid #000;
+			border-radius: 50%;
+			padding: 10px;
 		}
 
 		.navbar .logo h1 {
-			color: #000;
+			font-size: 1.5em;
 			font-weight: bold !important;
 			font-family: Raleway !important;
-			letter-spacing: 5px;
+			letter-spacing: 4px;
 			margin: 0;
 		}
 
+		.navbar .nav {
+			flex-grow: 1;
+			text-align: center;
+		}
+
 		.navbar .nav>li {
-			display: inline-block;
-			margin-left: 30px;
-			font-size: 1.2em;
-			font-weight: 700;
-			color: #000;
-			letter-spacing: 2px;
+		    display: inline-block;
+		    margin: 0px 30px;
+		    font-size: 1em;
+		    font-weight: 500;
+		    letter-spacing: 2px;
+		    position: relative;
+		}
+
+		.navbar .nav>li>span {
+		    position: relative;
 		}
 
 		.navbar .nav>li.active {
-			margin-right: 20px;
-			margin-left: 50px;
+			font-weight: 700;
 		}
 
 		.navbar .nav>li.active:before {
 		    content: '';
 		    position: absolute;
-		    top: 6px;
-		    left: -20px;
-		    width: 8px;
-		    height: 8px;
-		    background: #737373;
-		    border-radius: 50px;
-		}
-
-		.navbar .nav>li.active:after {
-		    content: '';
-		    position: absolute;
-		    top: 6px;
-		    right: -20px;
-		    width: 8px;
-		    height: 8px;
-		    background: #737373;
-		    border-radius: 50px;
+		    top: 10px;
+		    left: -8px;
+		    width: 100%;
+		    height: 10px;
+		    background: #0fffbe;
 		}
 
 		.navbar .special {
-			flex-grow: 1;
 			text-align: right;
 		}
 
@@ -122,134 +124,6 @@
 			padding: 0px 180px;
 		}
 
-		.content .left-sidebar {
-			min-width: 400px;
-			display: none;
-		}
-
-		.content .left-sidebar h1 {
-		    font-family: Raleway;
-		    letter-spacing: 5px;
-		    font-weight: 700;
-		    font-size: 60px;
-		}
-
-		.content .left-sidebar .filter-tags {
-			display: flex;
-			padding: 0;
-			margin-top: 30px;
-		}
-
-		.content .left-sidebar .filter-tags>li {
-			display: flex;
-			align-items: center;
-			margin-right: 15px;
-			padding: 8px 12px;
-			border: 1px solid #b5b5b5;
-			letter-spacing: 2px;
-			border-radius: 5px;
-		}
-
-		.content .left-sidebar .filter-tags>li:last-child {
-			margin: 0;
-		}
-
-		.content .left-sidebar .filter-tags>li i {
-			margin-left: 10px;
-		}
-
-		.content .left-sidebar .filter {
-			background: #fff;
-		    padding: 20px 25px;
-		    border-radius: 5px;
-		    box-shadow: 2px 2px 0px 0px #dcdcdc;
-		    margin-top: 20px;
-		}
-
-		.content .left-sidebar .filter .title {
-			font-size: 1.1em;
-		    letter-spacing: 2px;
-		    margin-bottom: 25px;
-		}
-
-		.content .left-sidebar .filter .range-harga {
-			border-bottom: 1px solid #b5b5b5;
-			position: relative;
-			margin-top: 40px;
-			margin-bottom: 50px;
-		}
-
-		.content .left-sidebar .filter .range-harga input {
-			padding: 8px 15px;
-			border: 1px solid #b5b5b5;
-			border-radius: 50px;
-			letter-spacing: 2px;
-			width: 160px;
-			position: absolute;
-			top: -20px;
-		}
-
-		.content .left-sidebar .filter .range-harga input[name="range-akhir"] {
-			right: 0;
-		}
-
-		.content .left-sidebar .filter .slider {
-			margin-top: 45px;
-			border-radius: 50px;
-			height: 5px;
-			background: #ff9711;
-			position: relative;
-			margin-bottom: 20px;
-		}
-
-		.content .left-sidebar .filter .slider .point {
-			background: #ff9711;
-			width: 25px;
-			height: 25px;
-			border: 4px solid #fff;
-			box-shadow: 0px 0px 0px 1px #ff9711;
-			border-radius: 50px;
-			position: absolute;
-			top: -10px;
-		}
-
-		.content .left-sidebar .filter .slider .point.left {
-			left: 0;
-		}
-
-		.content .left-sidebar .filter .slider .point.right {
-			right: 0;
-		}
-
-		.content .left-sidebar .filter .list-filter {
-			padding: 0;
-			column-count: 2;
-		}
-
-		.content .left-sidebar .filter .list-filter>li:first-child {
-			margin: 0;
-		}
-
-		.content .left-sidebar .filter .list-filter>li {
-			display: flex;
-			align-items: center;
-			margin-top: 15px;
-		}
-
-		.content .left-sidebar .filter .list-filter>li span {
-			width: 25px;
-			height: 25px;
-			border: 1px solid #b5b5b5;
-			border-radius: 5px;
-			margin-right: 15px;
-		}
-
-		.content .left-sidebar .filter .list-filter>li p {
-			font-size: 1.1em;
-			letter-spacing: 1px;
-			margin: 0;
-		}
-
 		.content .right-content {
 			flex-grow: 1;
 		}
@@ -257,8 +131,7 @@
 		.content .right-content .result-info {
 			display: flex;
 			align-items: center;
-			margin-top: 15px;
-			margin-bottom: 20px;
+			margin-bottom: 50px;
 		}
 
 		.content .right-content .result-info .desc {
@@ -266,7 +139,7 @@
 		}
 
 		.content .right-content .result-info .desc p {
-			font-size: 1.1em;
+			font-size: 1em;
 			letter-spacing: 2px;
 		}
 
@@ -279,28 +152,34 @@
 			letter-spacing: 2px;
 		}
 
-		.content .right-content .result-info .pagination {
-			background: #fff;
-			border-radius: 5px;
-			box-shadow: 2px 2px 0px 0px #dcdcdc;
+		.content .right-content .result-info .sorting {
+			display: flex;
+			align-items: center;
+			letter-spacing: 1px;
 		}
 
-		.content .right-content .result-info .pagination button {
-			background: transparent;
-			border: 0;
-			border-radius: 0px;
+		.content .right-content .result-info .sorting>ul {
+			margin: 0;
+			padding-left: 15px;
+		}
+
+		.content .right-content .result-info .sorting ul>li {
+			display: inline-block;
+			padding: 5px 10px;
+			border: 1px solid #000;
 			font-weight: 600;
-			letter-spacing: 2px;
-			padding: 10px 15px;
-		}
-
-		.content .right-content .result-info .pagination button:first-child {
+			cursor: pointer;
 			
-			border-right: 1px solid #b5b5b5;
+		}
+		.content .right-content .result-info .sorting ul>li:first-child {
+			border-right: 0;
+		}
+		.content .right-content .result-info .sorting ul>li.active {
+			background: #0fffbe;
 		}
 
 		.content .right-content .room-info {
-			display: flex;
+			/*display: flex;*/
 			padding: 10px 0px;
 			font-size: 0.8em;
 			border-bottom: 1px dashed #dcdcdc;
@@ -311,9 +190,22 @@
 			flex-grow: 1;
 		}
 
+		.content .right-content .thumbnails {
+			column-count: 3;
+			column-gap: 70px;
+		}
+
+		.content .right-content .thumbnails .card {
+			column-break-inside: avoid;
+			display: inline-block;
+			margin-bottom: 50px;
+			width: 100%;
+		}
+
 		.content .right-content .thumbnails .thumbnail {
 	        height: 300px;
 		    border: 0;
+		    border-radius: 15px;
 		    overflow: hidden;
 		    padding: 25px;
 		    background-size: cover;
@@ -350,26 +242,107 @@
 		    /*margin-top: 200px;*/
 	        color: #000;
 		    font-size: 1.2em;
-		    padding: 20px 25px;
+		    padding: 20px 15px;
+		    padding-top: 35px;
+		    position: relative;
 		    box-sizing: border-box;
 		}
 
+		.content .right-content .thumbnails .desc:before {
+			background: #000;
+			box-shadow: 10px 0px 0px 0px, 20px 0px 0px 0px;
+			/*content: '';*/
+			height: 20px;
+			left: 25px;
+			position: absolute;
+			top: 0px;
+			width: 3px;
+		}
+
+		.content .right-content .thumbnails .desc .header {
+			display: flex;
+			align-items: end;
+		}
+
+		.content .right-content .thumbnails .desc .header>div:first-child {
+			flex-grow: 1;
+		}
+		.content .right-content .thumbnails .desc .header>div:first-child>p {
+			margin-top: 5px;
+			margin-bottom: 0px;
+		}
+
+		.content .right-content .thumbnails .desc .header>.location {
+		    position: relative;
+		    width: 40px;
+		    letter-spacing: 1px;
+		    line-height: 15px;
+		    font-size: 0.55em;
+		    font-weight: 900;
+		    word-break: break-word;
+		    padding: 10px 0px;
+		}
+		.content .right-content .thumbnails .desc .header>.location:before {
+	        content: '';
+		    position: absolute;
+		    width: 100%;
+		    height: 100%;
+		    border: 3px solid #00cca4;
+		    top: 0;
+		    left: 8px;
+		}
+		.content .right-content .thumbnails .desc .header>.location span {
+		    background: #fff;
+		    padding: 2px 0px;
+		    position: relative;
+		    width: 60px;
+		    text-transform: uppercase;
+		}
+
 		.content .right-content .thumbnails .desc .header b {
-			font-weight: 600;
+			font-weight: 700;
     		letter-spacing: 2px;
     		font-size: 1.2em;
 		}
 
+		.content .right-content .thumbnails .desc .header small {
+			font-size: 0.5em;
+			font-weight: 500;
+			letter-spacing: 2px;
+		}
+
 		.content .right-content .thumbnails .desc .header p {
 			letter-spacing: 1px;
-			border-bottom: 1px dashed #dcdcdc;
+			/*border-bottom: 1px dashed #dcdcdc;*/
 			padding-bottom: 20px;
+			/*margin-top: 10px;*/
 		}
 
 		.content .right-content .thumbnails .desc .header p span {
-		    font-size: 1.4em;
+		    font-size: 1em;
 		    font-weight: 500;
-		    color: #ffc53e;
+		    /*color: #ffc53e;*/
+		}
+
+		.content .right-content .thumbnails .desc .header p span.luas-area {
+			font-size: 1.8em;
+		}
+
+		.content .right-content .thumbnails .desc .variant {
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		.content .right-content .thumbnails .desc .variant .line {
+			height: 2px;
+			border-top: 1px solid #b5b5b5;
+			flex-grow: 1;
+			margin: 0px 20px;
+		}
+
+		.content .right-content .thumbnails .desc .variant p {
+			margin: 0;
 		}
 
 		.content .right-content .thumbnails .desc .list-icons {
@@ -380,6 +353,7 @@
 
 		.content .right-content .thumbnails .desc .list-icons span {
 		    flex-grow: 1;
+		    font-size: 0.8em;
 		    letter-spacing: 1px;
 		    margin-right: 8px;
 		    margin-top: 8px;
@@ -398,279 +372,29 @@
 				<h1>PALAWI</h1>
 			</div>
 			<ul class="nav">
-				<li>SEARCH</li>
-				<li>CONTACT</li>
-				<li class="active">GALLERY</li>
-				<li>INFO WISATA</li>
+				<li class="active"><span>PENCARIAN</span></li>
+				<li><span>KONTAK</span></li>
+				<li><span>PESANAN ANDA</span></li>
 			</ul>
 			<div class="special">
-				<button class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> LOGIN</button>
+				<img src="{{ asset('img/scissors.png') }}" width="50px">
 			</div>	
 		</div>
-		<div class="filter">
-			<div>
-				<input type="text" name="" placeholder="Check-In">
-			</div>
-			<div>
-				<input type="text" name="" placeholder="Check-Out">
-			</div>
-			<div>
-				<input type="text" name="" placeholder="Location">
-			</div>
-			<div>
-				<input type="text" name="" placeholder="Harga">
-			</div>
-			
-		</div>
 		<div class="content">
-			<div class="left-sidebar">
-				<h1>12 Pilihan</h1>
-				<ul class="filter-tags">
-					<li>
-						<span>Rp 100.000 - Rp 500.000</span>
-						<i class="fas fa-times"></i>
-					</li>
-					<li>
-						<span>TV</span>
-						<i class="fas fa-times"></i>
-					</li>
-				</ul>
-				<div class="filter">
-					<p class="title">Kisaran Harga per Malam</p>
-					<div class="range-harga">
-						<input type="text" placeholder="Rp 100.000" name="range-awal">
-						<input type="text" placeholder="Rp 500.000" name="range-akhir">
-					</div>
-					<div class="slider">
-						<div class="left point">
-							
-						</div>
-						<div class="right point">
-							
-						</div>
-					</div>
-				</div>
-				<div class="filter">
-					<p class="title">Fasilitas</p>
-					<ul class="list-filter">
-						<li>
-							<span></span>
-							<p>TV</p>
-						</li>
-						<li>
-							<span></span>
-							<p>AC</p>
-						</li>
-						<li>
-							<span></span>
-							<p>Wi-Fi</p>
-						</li>
-						<li>
-							<span></span>
-							<p>Kolam Renang</p>
-						</li>
-						<li>
-							<span></span>
-							<p>Taman Bermain</p>
-						</li>
-						<li>
-							<span></span>
-							<p>Gazebo</p>
-						</li>
-						<li>
-							<span></span>
-							<p>Kamar Tidur 3</p>
-						</li>
-						<li>
-							<span></span>
-							<p>Kamar Tidur 4</p>
-						</li>
-					</ul>
-				</div>
-			</div>
 			<div class="right-content">
 				<div class="result-info">
 					<div class="desc">
-						<p>BOOKING > <b>RESORT</b></p>
-						<span>Menampilkan 6 dari 12 Hasil Pencarian Tersedia</span>
+						<p>SEARCH > <b class="business-name">CAMPING AREA</b></p>
+						<span id="count-data"></span>
 					</div>
-					<div class="pagination">
-						<button class="btn">Prev</button>
-						<button class="btn">Next</button>
+					<div class="sorting">
+						<small>SORT BY</small>
+						<ul class="inline">
+							<li><small>HARGA</small></li><li class="active"><small>LUAS AREA</small></li>
+						</ul>
 					</div>
 				</div>
 				<div class="thumbnails">
-					<div class="col-md-4">
-						<div id="thumbnail-1" class="thumbnail">
-							<div>
-								<span>EXECUTIVE</span>
-								<span>DELUXE</span>
-							</div>
-						</div>
-						<div class="desc animation">
-							<div class="header">
-								<b>Mabely Grand Hotel</b>
-								<p><span>Rp 355.000</span> /malam</p>
-							</div>
-							<div class="room-info">
-								<div>
-									<p><b>Executive Room</b></p>
-									<p>Sisa dua kamar</p>
-								</div>
-								<div>
-									<p><b>Deluxe Room</b></p>
-									<p>Sisa empat kamar</p>
-								</div>
-							</div>
-							<div class="list-icons">
-								<span>Ruang Makan</span>
-								<span>Ruang Tamu</span>
-								<span>Breakfast</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div id="thumbnail-2" class="thumbnail">
-							<div>
-								<span>EXECUTIVE</span>
-							</div>
-						</div>
-						<div class="desc animation">
-							<div class="header">
-								<b>Mabely Grand Hotel</b>
-								<p><span>Rp 355.000</span> /malam</p>
-							</div>
-							<div class="room-info">
-								<div>
-									<p><b>Executive Room</b></p>
-									<p>Sisa dua kamar</p>
-								</div>
-								<div>
-									<p><b>Deluxe Room</b></p>
-									<p>Sisa empat kamar</p>
-								</div>
-							</div>
-							<div class="list-icons">
-								<span>Ruang Makan</span>
-								<span>Ruang Tamu</span>
-								<span>Breakfast</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div id="thumbnail-1" class="thumbnail">
-							<div>
-								<span>EXECUTIVE</span>
-								<span>DELUXE</span>
-							</div>
-						</div>
-						<div class="desc animation">
-							<div class="header">
-								<b>Mabely Grand Hotel</b>
-								<p><span>Rp 355.000</span> /malam</p>
-							</div>
-							<div class="room-info">
-								<div>
-									<p><b>Executive Room</b></p>
-									<p>Sisa dua kamar</p>
-								</div>
-								<div>
-									<p><b>Deluxe Room</b></p>
-									<p>Sisa empat kamar</p>
-								</div>
-							</div>
-							<div class="list-icons">
-								<span>Ruang Makan</span>
-								<span>Ruang Tamu</span>
-								<span>Breakfast</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div id="thumbnail-2" class="thumbnail">
-							<div>
-								<span>EXECUTIVE</span>
-							</div>
-						</div>
-						<div class="desc animation">
-							<div class="header">
-								<b>Mabely Grand Hotel</b>
-								<p><span>Rp 355.000</span> /malam</p>
-							</div>
-							<div class="room-info">
-								<div>
-									<p><b>Executive Room</b></p>
-									<p>Sisa dua kamar</p>
-								</div>
-								<div>
-									<p><b>Deluxe Room</b></p>
-									<p>Sisa empat kamar</p>
-								</div>
-							</div>
-							<div class="list-icons">
-								<span>Ruang Makan</span>
-								<span>Ruang Tamu</span>
-								<span>Breakfast</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div id="thumbnail-1" class="thumbnail">
-							<div>
-								<span>EXECUTIVE</span>
-								<span>DELUXE</span>
-							</div>
-						</div>
-						<div class="desc animation">
-							<div class="header">
-								<b>Mabely Grand Hotel</b>
-								<p><span>Rp 355.000</span> /malam</p>
-							</div>
-							<div class="room-info">
-								<div>
-									<p><b>Executive Room</b></p>
-									<p>Sisa dua kamar</p>
-								</div>
-								<div>
-									<p><b>Deluxe Room</b></p>
-									<p>Sisa empat kamar</p>
-								</div>
-							</div>
-							<div class="list-icons">
-								<span>Ruang Makan</span>
-								<span>Ruang Tamu</span>
-								<span>Breakfast</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div id="thumbnail-2" class="thumbnail">
-							<div>
-								<span>EXECUTIVE</span>
-							</div>
-						</div>
-						<div class="desc animation">
-							<div class="header">
-								<b>Mabely Grand Hotel</b>
-								<p><span>Rp 355.000</span> /malam</p>
-							</div>
-							<div class="room-info">
-								<div>
-									<p><b>Executive Room</b></p>
-									<p>Sisa dua kamar</p>
-								</div>
-								<div>
-									<p><b>Deluxe Room</b></p>
-									<p>Sisa empat kamar</p>
-								</div>
-							</div>
-							<div class="list-icons">
-								<span>Ruang Makan</span>
-								<span>Ruang Tamu</span>
-								<span>Breakfast</span>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -680,118 +404,194 @@
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="text" name="start_date" value="{{ $start_date }}">
 		<input type="text" name="end_date" value="{{ $end_date }}">
-		<input type="text" name="id_resort">
+		<input type="hidden" name="business_id">
+		<input type="hidden" name="data">
 
 		<button type="submit">OK</button>
 	</form>
 </body>
 <script type="text/javascript">
 	var data = {!! $result !!};
-	var resorts = data.data;
+	var catalog = {!! json_encode($catalog) !!};
+	var result = data.data;
+	console.log(catalog);
 
 	console.log(data);
 
 	$('.thumbnails').empty();
 
-	$.each(resorts, function(index, resort) {
-		var id_resort = resort.id;
-		var nama_resort = resort.name;
-		var harga_sewa = resort.price.service_price;
-			harga_sewa = accounting.formatMoney(harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-		var fasilitas_villa = resort.villa_facilities;
-
-		// var $harga_rata = '<p><span>' + harga_sewa + '</span> /malam</p>';
-
-		var tipe_kamar = resort.availability;
-
-		if (tipe_kamar.length > 1) {
-			var harga_terendah = 0;
-			var harga_tertinggi = 0;
-
-			$.each(tipe_kamar, function(index, kamar) {
-				var nama_kamar = kamar.name;
-				var harga = kamar.price.service_price;
-
-				harga_terkini = harga;
-
-				if (index == 0) {
-					harga_terendah = harga;
-					harga_tertinggi = harga;
-				}
-
-				if (harga < harga_terendah) {
-					harga_terendah = harga;
-				} else if (harga > harga_tertinggi) {
-					harga_tertinggi = harga;
-				}
-			});
-
-			harga_terendah = accounting.formatMoney(harga_terendah, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-			harga_tertinggi = accounting.formatMoney(harga_tertinggi, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-
-			var $harga_rata = '<p><span>' + harga_terendah + ' - ' + harga_tertinggi + '</span></p>';
-		} else {
-			var harga = tipe_kamar[0].price.service_price;
-				harga = accounting.formatMoney(harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-			var $harga_rata = '<p><span>' + harga + '</span> /malam</p>';
-		}
-
-		var $kamar_infos = '';
-
-		$.each(tipe_kamar, function(index, kamar) {
-			var nama_kamar = kamar.name;
-			var sisa_kamar = kamar.count_availability;
-
-			var $kamar_info = 
-			'<div>' +
-				'<p><b>' + nama_kamar + '</b></p>' +
-				'<p>Sisa ' + sisa_kamar + ' kamar</p>' +
-			'</div>';
-
-			$kamar_infos = $kamar_infos + $kamar_info;
-		});	
-
-		var $fasilitass = '';
-		$.each(fasilitas_villa, function(index, fasilitas) {
-			var nama_fasilitas = fasilitas.name;
-
-			var $fasilitas = '<span>' + nama_fasilitas + '</span>';
-
-			$fasilitass = $fasilitass + $fasilitas;
-		});
-
-		var $thumbnail = 
-		'<div class="col-md-4">' +
-			'<div id="' + id_resort + '" class="thumbnail">' +
-				'<div>' +
-					'<span>EXECUTIVE</span>' +
-					'<span>DELUXE</span>' +
-				'</div>' +
-			'</div>' +
-			'<div class="desc animation">' +
-				'<div class="header">' +
-					'<b>' + nama_resort + '</b>' +
-					$harga_rata +
-				'</div>' +
-				'<div class="room-info">' +
-					$kamar_infos +
-				'</div>' +
-				'<div class="list-icons">' +
-					$fasilitass +
-				'</div>' +
-			'</div>' +
-		'</div>';
-
-		$('.thumbnails').append($thumbnail);
-	});
+	if (catalog == 'Resort') {
+		loadResortCatalog();
+		$('input[name="business_id"]').val(1);
+	} else if (catalog == 'Camping') {
+		loadCampingCatalog();
+		$('input[name="business_id"]').val(2);
+	}
 
 	$('.thumbnail').on('click', function() {
-		var id_resort = $(this).attr('id');
+		var id_resort = parseInt($(this).parent().attr('id'));
 
-		$('#form-target').find('input[name="id_resort"]').val(id_resort);
+		var data = result.filter(detail => detail.id === id_resort)[0];
+			data = JSON.stringify(data);
+
+		$('#form-target').find('input[name="data"]').val(data);
 		$('#form-target').find('button').click();
 	})
 
+	function loadResortCatalog() {
+		$('.business-name').text('RESORT');
+		$('#count-data').html('Menampilkan <span class="font-number">' + result.length + '</span> Pilihan Resort Tersedia');
+
+		$.each(result, function(index, resort) {
+			var id_resort = resort.id;
+			var nama_resort = resort.name;
+			var harga_sewa = resort.price.service_price;
+				harga_sewa = accounting.formatMoney(harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+			var fasilitas_villa = resort.villa_facilities;
+			var lokasi = resort.location.name;
+
+			var tipe_kamar = resort.availability;
+
+			if (tipe_kamar.length > 1) {
+				var harga_terendah = 0;
+				var harga_tertinggi = 0;
+
+				$.each(tipe_kamar, function(index, kamar) {
+					var nama_kamar = kamar.name;
+					var harga = kamar.price.service_price;
+
+					harga_terkini = harga;
+
+					if (index == 0) {
+						harga_terendah = harga;
+						harga_tertinggi = harga;
+					}
+
+					if (harga < harga_terendah) {
+						harga_terendah = harga;
+					} else if (harga > harga_tertinggi) {
+						harga_tertinggi = harga;
+					}
+				});
+
+				harga_terendah = accounting.formatMoney(harga_terendah, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+				harga_tertinggi = accounting.formatMoney(harga_tertinggi, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+				var $harga_rata = '<p><span class="font-number">' + harga_terendah + ' - ' + harga_tertinggi + '</span></p>';
+			} else {
+				var harga = tipe_kamar[0].price.service_price;
+					harga = accounting.formatMoney(harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+				var $harga_rata = '<p><span class="font-number">' + harga + '</span> / malam</p>';
+			}
+
+			var $kamar_infos = '';
+
+			$.each(tipe_kamar, function(index, kamar) {
+				var nama_kamar = kamar.name;
+				var sisa_kamar = kamar.count_availability;
+
+				var $kamar_info = 
+				'<div class="variant">' +
+					'<p><b>' + nama_kamar + '</b></p>' +
+					'<span class="line"></span>' +
+					'<p>Sisa <span class="font-number">' + sisa_kamar + '</span> kamar</p>' +
+				'</div>';
+
+				$kamar_infos = $kamar_infos + $kamar_info;
+			});	
+
+			var $fasilitass = '';
+			$.each(fasilitas_villa, function(index, fasilitas) {
+				var nama_fasilitas = fasilitas.name;
+
+				var $fasilitas = '<span>' + nama_fasilitas + '</span>';
+
+				$fasilitass = $fasilitass + $fasilitas;
+			});
+
+			var $thumbnail = 
+			'<div id="' + id_resort + '" class="card">' +
+				'<div class="thumbnail">' +
+				'</div>' +
+				'<div class="desc animation">' +
+					'<div class="header">' +
+						'<div>' +
+							'<b>' + nama_resort + '</b>' +
+							$harga_rata +
+						'</div>' +
+						'<div class="location">' +
+							'<span>' + lokasi + '</span>' +
+						'</div>' +
+					'</div>' +
+					'<div class="room-info">' +
+						$kamar_infos +
+					'</div>' +
+					'<div class="list-icons">' +
+						$fasilitass +
+					'</div>' +
+				'</div>' +
+			'</div>';
+
+			$('.thumbnails').append($thumbnail);
+		});	
+	}
+
+	function loadCampingCatalog() {
+		$('.business-name').text('CAMPING AREA');
+		$('#count-data').html('Menampilkan <span class="font-number">' + result.length + '</span> Camping Area Tersedia');
+
+		console.log(result);
+
+		$.each(result, function(index, resort) {
+			var id_resort = resort.id;
+			var nama_resort = resort.name;
+			var luas_area = resort.wide.slice(0,-3);
+			var lokasi = resort.location.name;
+			var harga_sewa = resort.price.service_price;
+				harga_sewa = accounting.formatMoney(harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+			var variant = resort.availability;
+
+			var $kamar_infos = '';
+
+			$.each(variant, function(index, kamar) {
+				var nama = kamar.name;
+				var max_capacity = kamar.max_out;
+				var wide = kamar.wide;
+
+				var $kamar_info = 
+				'<div class="variant">' +
+					'<p><b>' + nama + '</b></p>' +
+					'<span class="line"></span>' +
+					'<p><span class="font-number">' + wide + '</span> m<sup>2</sup> / Max. <span class="font-number">' + max_capacity + '</span> org</p>' +
+				'</div>';
+
+				$kamar_infos = $kamar_infos + $kamar_info;
+			});
+
+			var $thumbnail = 
+			'<div id="' + id_resort + '" class="card">' +
+				'<div class="thumbnail">' +
+				'</div>' +
+				'<div class="desc animation">' +
+					'<div class="header">' +
+						'<div>' +
+							'<b>' + nama_resort + '</b>' +
+							'<p><span class="font-number">' + harga_sewa + '</span> / malam</p>' +
+						'</div>' +
+						'<div class="location">' +
+							'<span>' + lokasi + '</span>' +
+						'</div>' +
+					'</div>' +
+					'<div class="room-info">' +
+						$kamar_infos +
+					'</div>' +
+				'</div>' +
+			'</div>';
+
+			$('.thumbnails').append($thumbnail);
+		});	
+	}
 
 </script>
 </html>

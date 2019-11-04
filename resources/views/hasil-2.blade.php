@@ -629,22 +629,25 @@
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="text" name="start_date" value="{{ $start_date }}">
 		<input type="text" name="end_date" value="{{ $end_date }}">
-		<input type="text" name="id_resort" value="{{ $result->id }}">
+		<input type="text" name="business_id" value="{{ $business_id }}">
+		<input type="text" name="item_id">
 
 		<button type="submit">OK</button>
 	</form>
 </body>
 <script type="text/javascript">
 	var resort = {!! json_encode($result) !!};
+	console.log(resort);
 	var id_resort = resort.id;
 	var nama_resort = resort.name;
-	var tipe_kamar = resort.variant;
+	var tipe_kamar = resort.availability;
 	var harga_sewa = resort.price.service_price;
 		harga_sewa = accounting.formatMoney(
 					harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
+	$('input[name="item_id"]').val(id_resort);
 	$('.card-container').empty();
-	console.log(resort);
+	
 
 	var $kamar = 
 		'<div class="card animation active">' +

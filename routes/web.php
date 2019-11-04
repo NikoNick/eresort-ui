@@ -50,12 +50,40 @@ Route::post('/hasil', function() {
 	curl_setopt($ch, CURLOPT_URL, $url);
 
 	$result = curl_exec($ch);
+	$catalog = strval('Resort');
 
 	curl_close($ch);
 
 	// redirect + data
 	// echo($start_date);
-	return view('hasil', compact('result', 'start_date', 'end_date'));
+	return view('hasil', compact('result', 'start_date', 'end_date', 'catalog'));
+});
+
+Route::post('/hasil-camping', function() {
+	// ambil data form pencarian
+	$start_date = $_POST['start_date'];
+	$end_date = $_POST['end_date'];
+	$person = $_POST['person'];
+
+	// akses ke api
+	$url = 'http://api.resort.shafarizkyf.com/api/availability/area?' . 
+			'start_date=' . $start_date . '&' .
+			'end_date=' . $end_date .'&' .
+			'capacity=' . $person;
+
+	$ch = curl_init();
+
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_URL, $url);
+
+	$result = curl_exec($ch);
+	$catalog = strval('Camping');
+
+	curl_close($ch);
+
+	// redirect + data
+	// echo($start_date);
+	return view('hasil', compact('result', 'start_date', 'end_date', 'catalog'));
 });
 
 // Route::get('/detail', function() {
@@ -66,55 +94,74 @@ Route::post('/detail', function () {
 	//ambil data form
 	$start_date = $_POST['start_date'];
 	$end_date = $_POST['end_date'];
-	$id_resort = $_POST['id_resort'];
+	$business_id = $_POST['business_id'];
+	$result = json_decode($_POST['data']);
 
-	$url = 'api.resort.shafarizkyf.com/api/catalog/resort/' . $id_resort . '?show_variant=true';
+	// $url = 'api.resort.shafarizkyf.com/api/availability/resort?start_date=' . $start_date . '&end_date=' . $end_date . '&item_id=' . $id_resort;
 
-	$ch = curl_init();
+	// $ch = curl_init();
 
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_URL, $url);
+	// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	// curl_setopt($ch, CURLOPT_URL, $url);
 
-	$result = json_decode(curl_exec($ch));
+	// $result = json_decode(curl_exec($ch));
 
-	curl_close($ch);
+	// curl_close($ch);
 
-	return view('hasil-2', compact('result', 'start_date', 'end_date'));
+	return view('detail', compact('result', 'start_date', 'end_date', 'business_id'));
+
+	// var_dump($data);
 
 	// return view('detail');
 });
 
 Route::post('/reservasi', function () {
 	// ambil data form
-	$start_date = $_POST['start_date'];
+	$business_id = $_POST['business_id'];
 	$end_date = $_POST['end_date'];
-	$id_resort = $_POST['id_resort'];
+	$item_id = $_POST['item_id'];
+	$start_date = $_POST['start_date'];
 
-	// api untuk mendapatkan semua daftar resort yg ada
-	$url = 'api.resort.shafarizkyf.com/api/catalog/resort';
+	if ($business_id == 1) {
+		// api untuk mendapatkan semua daftar resort yg ada
+		$url1 = 'api.resort.shafarizkyf.com/api/availability/resort?start_date=' . $start_date . '&end_date=' . $end_date;
+		$url2 = 'http://api.resort.shafarizkyf.com/api/extra-item?business_id=1';
+	} else if ($business_id == 2) {
+		// api untuk mendapatkan semua daftar resort yg ada
+		$url1 = 'http://api.resort.shafarizkyf.com/api/availability/area?' . 
+			'start_date=' . $start_date . '&' .
+			'end_date=' . $end_date;
+		$url2 = 'http://api.resort.shafarizkyf.com/api/extra-item?business_id=2';
+	}
+	
+	$ch   = curl_init();
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_URL, $url1);
+	$data = curl_exec($ch);
+			curl_close($ch);
 
-	$ch = curl_init();
+	$ch   = curl_init();
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_URL, $url2);
+	$extra_item = curl_exec($ch);
+			curl_close($ch);
 
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_URL, $url);
-
-	$resorts = curl_exec($ch);
-
-	curl_close($ch);
-
-	// $resorts = 'ahahaha';
-
-	// echo($end_date);
-	return view('reservation', compact('resorts', 'start_date', 'end_date', 'id_resort'));
+	
+	return view('reservation', compact('data', 'extra_item', 'start_date', 'end_date', 'item_id', 'business_id'));
 });
 
 Route::post('/resort/availability', function() {
 	$start_date = $_POST['start_date'];
 	$end_date = $_POST['end_date'];
 	$id_resort = $_POST['id_resort'];	
+	$business_id = $_POST['business_id'];
 
-	// api untuk mendapatkan semua daftar resort yg ada
-	$url = 'api.resort.shafarizkyf.com/api/availability/resort?start_date=' . $start_date . '&end_date=' . $end_date . '&item_id=' . $id_resort;
+	if ($business_id == 1) {
+		// api untuk mendapatkan semua daftar resort yg ada
+		$url = 'api.resort.shafarizkyf.com/api/availability/resort?start_date=' . $start_date . '&end_date=' . $end_date . '&item_id=' . $id_resort;
+	} else if ($business_id == 2) {
+		$url = 'api.resort.shafarizkyf.com/api/availability/area?start_date=' . $start_date . '&end_date=' . $end_date . '&item_id=' . $id_resort;
+	}
 
 	$ch = curl_init();
 

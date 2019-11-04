@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<style type="text/css">
 		a, a:hover {
 			color: inherit;
@@ -164,7 +165,7 @@
 			width: 100%;
 			height: 100%;
 			border-radius: 20px;
-
+			cursor: pointer;
 			/*background: url('../img/thumbnail-5.jpg');
 			background-size: cover;*/
 		}
@@ -465,13 +466,14 @@
         	letter-spacing: 2px;
         }
 
-        .payment .nominal h1 {
+        .payment h1 {
     	    border: 1px solid #ffffff87;
 		    margin-top: 10px;
 		    padding: 15px;
 		    letter-spacing: 2px;
 		    font-size: 2.5em;
 		    border-radius: 5px;
+		    text-align: center;
         }
 
         .payment .nominal h3 {
@@ -554,6 +556,15 @@
 		    margin-left: 30px;
 		    /*border-radius: 8px;*/
 		}
+
+		.warning {
+			padding: 100px 120px;
+		}
+
+		.warning h1, .warning h3 {
+			font-family: Raleway;
+			letter-spacing: 3px;
+		}
 	</style>
 </head>
 <body>
@@ -595,6 +606,10 @@
 				</div>
 				
 			</div>
+		</div>
+		<div class="warning animation anim-slide-down-up disappear gone">
+			<h1>Mohon maaf atas ketidaknyamanan ini</h1>
+			<h3>Pesanan anda telah dibatalkan, karena batas waktu pembayaran telah habis</h3>
 		</div>
 		<div class="invoice flex stretch animation anim-blink disappear gone">
 			<div class="left">
@@ -668,10 +683,11 @@
 								<div class="line"></div>
 								<p class="font-currency">0123456789</p>
 							</div>
-							<div class="nominal martop-30">
-								<b>Jumlah yang harus dibayarkan</b>
-								<h1 class="font-currency text-center val-grand-total">Rp 1.200.000</h1>
+							<div class="flex nominal martop-30 marbot-10">
+								<b class="flex-grow-1">Jumlah tagihan</b>
+								<h3 class="font-currency"><b class="val-grand-total">Rp 1.200.000</b></h3>
 							</div>
+							<h1 class="font-currency"><b><span class="minutes">30</span> : <span class="seconds">11</span></b></h1>
 							<div class="footer martop-30">
 								<h3>a.n Palawi Resort Baturraden</h3>
 							</div>
@@ -692,17 +708,8 @@
 							</div>
 						</div>
 						<div id="paid">
-							<div class="flex payment-address">
-								<b><i>BCA</i></b>
-								<div class="line"></div>
-								<p class="font-currency">0123456789</p>
-							</div>
 							<div class="flex nominal martop-30">
-								<b class="flex-grow-1">Sisa yang harus dibayarkan</b>
-								<h4 class="font-currency val-sisa-bayar">Rp 1.200.000</h1>
-							</div>
-							<div class="footer martop-30">
-								<h3>a.n Palawi Resort Baturraden</h3>
+								<h1>Terimakasih telah melakukan pembayaran</h1>
 							</div>
 						</div>
 					</div>
@@ -764,10 +771,6 @@
 					<div class="line"><p>03</p></div>
 					<p>Bukti transfer yang anda kirimkan akan di-verifikasi terlebih dahulu dalam waktu maksimal 1x24 jam</p>
 				</div>
-				
-				
-				
-
 			</div>
 			
 		</div>		
@@ -776,6 +779,8 @@
 	<input type="hidden" name="booking_id">
 </body>
 <script type="text/javascript">
+	var booking;
+	var interval;
 
 	$('input.date').datepicker({ 
 		dateFormat: 'yy-mm-dd',
@@ -815,10 +820,10 @@
 	})
 
 	$('#btn-invoice').on('click', function() {
-		var invoice = $('input[name="invoice"]').val();
-		var email = $('input[name="email"]').val();
+		var invoice = $('input[name=invoice]').val();
+		var email = $('input[name=email]').val();
 
-		alert('hay');
+		console.log($('input'));
 
 		$.ajax({
 			url: 'http://api.resort.shafarizkyf.com/api/booking/search?invoice=' + invoice + '&email=' + email,
@@ -829,21 +834,21 @@
 			}
 		}).then(response => {
 			var data = response;
+			booking = response;
 			var booking_id = data.id;
 			var booking_details = data.details;
 			var status_pembayaran = data.is_paid;
+			var sudah_bayar = data.is_verified_payment;
 			var total_bill = data.total_bill;
 			var total_paid = data.total_paid;
 			var is_paid = data.is_paid;
 			var uang_muka = (30 * parseInt(total_bill))/100;
-				
+			var full_payment = data.full_payment;
 
 			var nama_pemesan = data.guest.name;
 			var email = data.guest.email;
 			var telepon = data.guest.phone;
 			var nama_resort = data.details[0].item_detail.item.name;
-
-			console.log(data);
 
 			$('.order-detail table tbody').empty();
 
@@ -865,7 +870,6 @@
 						harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 					total = accounting.formatMoney(
 						total, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-
 
 
 				var $row = 
@@ -899,6 +903,31 @@
 					$('.card>div#half-paid').addClass('active');
 				} else {
 					$('.card>div#not-paid').addClass('active');
+
+					interval = setInterval(function() {
+						var today = moment();
+						var created_at = moment(data.created_at);
+						var diff = (45*60) - today.diff(created_at, 'seconds');
+						var diff_minutes = Math.floor(diff/60);
+						var diff_seconds = diff % 60;
+
+						$('#not-paid').find('.minutes').text(diff_minutes);
+						$('#not-paid').find('.seconds').text(diff_seconds);
+
+						if (diff_minutes <= 0 && diff_seconds <= 0) {
+							clearInterval(interval);
+							$('.invoice').addClass('disappear');
+
+							setTimeout(function() {
+								$('.invoice').addClass('gone');
+								$('.warning').removeClass('gone');
+							}, 600);
+
+							setTimeout(function() {
+								$('.warning').removeClass('disappear');
+							}, 800);
+						}
+					}, 1000);
 				}
 			}
 
@@ -978,6 +1007,9 @@
 		form.append("booking_id", booking_id);
 		form.append("file", file);
 
+		var full_payment = booking.full_payment;
+		var total_bill = booking.total_bill;
+
 		$.ajax({
             url: 'http://api.resort.shafarizkyf.com/api/transaction',  
             type: 'POST',
@@ -986,7 +1018,34 @@
             contentType: false,
             processData: false
 		}).done(function (response) {
+			if (full_payment == '1') {
+				// full payment
+				$('.navbar .special').addClass('gone');
+
+				var sudah_bayar = accounting.formatMoney(total_bill, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+				var total_sisa = 'Rp 0';
+				var status_pembayaran = 'Lunas';
+				var target_card = $('#paid');
+			} else {
+				// dp
+				var sudah_bayar = (30/100) * total_bill;
+				var total_sisa = total_bill - sudah_bayar;
+					sudah_bayar = accounting.formatMoney(sudah_bayar, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+					total_sisa = accounting.formatMoney(total_sisa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+				var status_pembayaran = 'DP 30%';
+				var target_card = $('#half-paid');
+			}
+
 		  	alert('Bukti Pembayaran Berhasil Di-Upload');
+		  	$('.val-sudah-bayar').text(sudah_bayar);
+			$('.val-sisa-bayar').text(total_sisa);
+			$('.val-status-bayar').text(status_pembayaran);
+			$('.payment .card>div.active').removeClass('active');
+			target_card.addClass('active');
+
+			clearInterval(interval);
+
+			$('#btn-close-form').click();
 		}).fail(function (error) {
 			console.log(error);
 			console.log(error);
