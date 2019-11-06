@@ -984,27 +984,23 @@
 		<div class="order-steps flex">
 			<div id="trigger-1" class="step">
 				<div class="bar"></div>
-				<p>1. LIHAT JADWAL</p>
-			</div>
-			<div id="trigger-2" class="step">
-				<div class="bar"></div>
-				<p>2. RESERVASI</p>
+				<p>1. RESERVASI</p>
 			</div>
 			<div id="trigger-3" class="step">
 				<div class="bar"></div>
-				<p>3. EXTRA ORDER</p>
+				<p>2. EXTRA ORDER</p>
 			</div>
 			<div id="trigger-4" class="step">
 				<div class="bar"></div>
-				<p>4. IDENTITAS DIRI</p>
+				<p>3. IDENTITAS DIRI</p>
 			</div>
 			<div id="trigger-5" class="step">
 				<div class="bar"></div>
-				<p>5. PEMBAYARAN</p>
+				<p>4. PEMBAYARAN</p>
 			</div>
 			<div id="trigger-6" class="step">
 				<div class="bar"></div>
-				<p>6. CHECK OUT</p>
+				<p>5. CHECK OUT</p>
 			</div>
 		</div>
 		
@@ -1015,21 +1011,7 @@
 				</div>
 				<div class="form anim-slide-right-left animation disappear">
 					<div class="bg"></div>
-					<span id="business-text">Pesan kamar untuk tanggal </span>
-					<div class="input-field tanggal">
-						<span class="input-field-toggle">22 September 2019</span>
-						<div class="date-field">
-							<input type="text" class="date fillable" name="start_date" value="{{ $start_date }}">
-						</div>
-					</div>
-					<span> sampai</span> <br>
-					<div class="input-field tanggal">
-						<span class="input-field-toggle">25 September 2019</span>
-						<div class="date-field">
-							<input type="text" class="date fillable" name="end_date" value="{{ $end_date }}">
-						</div>
-					</div>
-					<span> di </span>
+					<span>Pesan layanan outbound </span>
 					<div class="input-field">
 						<span class="input-field-toggle input-nama-resort">Mabely Grand Hotel</span>
 						<ul class="list-resort animation fillable">
@@ -1040,20 +1022,37 @@
 							<li>Ocika Villa</li>
 						</ul>
 					</div>
+					<span> untuk tanggal </span>
+					<div class="input-field tanggal">
+						<span class="input-field-toggle">22 September 2019</span>
+						<div class="date-field">
+							<input type="text" class="date fillable" name="start_date" value="{{ $start_date }}">
+						</div>
+					</div>
+					<span> pukul </span>
+					<div class="input-field tanggal">
+						<span class="input-field-toggle">{{ $waktu }}</span>
+						<div class="text-field-wrapper animation">
+							<div class="text-field">
+								<p>Waktu Pelaksanaan</p>
+								<input type="text" name="waktu" placeholder="10:00" class="input fillable" value="{{ $waktu }}">
+								<button>
+									<i class="fas fa-check"></i>
+								</button>
+							</div>
+						</div>
+					</div>
 					<input type="hidden" name="business_id">
-				</div>
+				</div>	
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, <a for="1" next="2" class="form-nav form-next">Cek Jadwal !</a></span>
+					<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, <a for="1" next="3" class="form-nav form-next">Lanjutkan</a></span>
 				</div>
 			</div>
 			
 		</div>
 
-		<div id="step-2" class="form-reservasi gone" condition="min-1">
+		<!-- <div id="step-2" class="form-reservasi gone" condition="min-1">
 			<div class="wrapper">
-				<!-- <div class="form-title animation anim-slide-down-up disappear">
-					<h1>Silahkan Lengkapi Pesanan Anda</h1>
-				</div> -->
 				<div>
 					<div class="flex end">
 						<div class="main-info flex-grow-1">
@@ -1089,7 +1088,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<div id="step-3" class="form-reservasi gone" condition="optional">
 			<div class="wrapper">
@@ -1207,8 +1206,8 @@
 				<div>
 					<div class="flex end">
 						<div class="main-info flex-grow-1">
-							<span>Menginap di</span>
-							<p><b><span class="val-nama-item">Rasamala</span></b> <sup class="val-nama-business">Resort</sup></p>
+							<span>Pilih program</span>
+							<p><b><span class="val-nama-item">Rasamala</span></b> <sup class="val-nama-business">Outbound</sup></p>
 						</div>
 						<div class="info">
 							<span><b>CHECK-IN</b></span>
@@ -1235,7 +1234,6 @@
 							<div class="right flex">
 								<div><label>TOTAL</label></div>
 								<div class="harga">
-									<p class="font-number"><span class="val-lama-inap"></span> malam x <span class="total-per-malam">Rp 0</span></p>
 									<p class="val-grand-total">Rp 0</p>
 								</div>
 							</div>
@@ -1267,24 +1265,15 @@
 		var resorts 		   	= {!! $data !!}.data;
 		var extra_item 			= {!! $extra_item !!};
 		var config 				= {!! $config !!};
+		var waktu 				= {!! json_encode($waktu) !!};
 		var item_id 			= {!! json_encode($item_id) !!};
 		var end_date 		   	= {!! json_encode($end_date) !!};
 		var start_date 		   	= {!! json_encode($start_date) !!};
 		var business_id 	   	= {!! json_encode($business_id) !!};
 
 		$('input[name="business_id"]').val(business_id);
-		if (business_id == 1) {
-			$('#form-resort').show();
-			loadExtraItem(extra_item);
-		} else if (business_id == 2) {
-			$('#business-text').text('Pesan area camping untuk tanggal ');
-			$('.val-nama-business').text('Camp Area');
-			$('#form-resort').show();
-			loadExtraItem2(extra_item.data);
-		} 
-
 		
-	
+		loadExtraItem(extra_item.data[0].availability);
 
 		$('input.date').datepicker({ 
 			dateFormat: 'yy-mm-dd' ,
@@ -1314,10 +1303,20 @@
 		$('ul.list-resort').empty();
 
 		$.each(resorts, function(index, resort) {
-			var id_resort = resort.id;
+			var id_resort = resort.details[0].id;
 			var nama_resort = resort.name;
+			var duration_day = resort.price.duration.day;
+			var duration_hour = resort.price.duration.hour;
+			var duration_minute = resort.price.duration.minute;
+			var price = resort.price.service_price;
 
-			var $list = $('<li id="' + id_resort + '">' + nama_resort + '</li>');
+			var $list = $('<li id="' + id_resort + '">' + 
+							'<span>' + nama_resort + '</span>' + 
+							'<input type="hidden" name="day" value="' + duration_day + '">' +
+							'<input type="hidden" name="hour" value="' + duration_hour + '">' +
+							'<input type="hidden" name="minute" value="' + duration_minute + '">' +
+							'<input type="hidden" name="price" value="' + price + '">' +
+						  '</li>');
 
 			if (id_resort == item_id) {
 				$list.addClass('active');
@@ -1382,98 +1381,98 @@
 			}, 500);
 		})
 
-		$('.form-next').on('click', function() {
-			var start_date = $('input[name="start_date"]').val();
-			var end_date = $('input[name="end_date"]').val();
-			var id_resort = $('ul.list-resort li.active').attr('id');
-			var id_business = $('input[name="business_id"]').val();
-			var nama_resort = $('ul.list-resort li.active').text();
+		// $('.form-next').on('click', function() {
+		// 	var start_date = $('input[name="start_date"]').val();
+		// 	var end_date = $('input[name="end_date"]').val();
+		// 	var id_resort = $('ul.list-resort li.active').attr('id');
+		// 	var id_business = $('input[name="business_id"]').val();
+		// 	var nama_resort = $('ul.list-resort li.active').text();
 
-			day_diff = Math.round(dateDiffInDays(start_date, end_date));
+		// 	day_diff = Math.round(dateDiffInDays(start_date, end_date));
 
-			$.post(
-				base_url + '/resort/availability',
-				{
-					'_token' : '{{ csrf_token() }}',
-					'start_date' : start_date,
-					'end_date' : end_date,
-					'business_id' : id_business,
-					'id_resort' : id_resort
-				},
-				function(data) {
-					var resort_variant = $.parseJSON(data).availability;
+		// 	$.post(
+		// 		base_url + '/resort/availability',
+		// 		{
+		// 			'_token' : '{{ csrf_token() }}',
+		// 			'start_date' : start_date,
+		// 			'end_date' : end_date,
+		// 			'business_id' : id_business,
+		// 			'id_resort' : id_resort
+		// 		},
+		// 		function(data) {
+		// 			var resort_variant = $.parseJSON(data).availability;
 
-					$('#step-2 .orders').empty();
+		// 			$('#step-2 .orders').empty();
 
-					$.each(resort_variant, function(index, kamar) {
-						const item_detail = kamar.details.filter(detail => detail.is_booked === 0);
-						var id_kamar = item_detail[0].id;
-						var nama_kamar = kamar.name;
-						var id_harga = kamar.price.id;
-						var harga = kamar.price.service_price;
-						var harga_string = accounting.formatMoney(
-							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-						var sisa_kamar = kamar.count_availability;
+		// 			$.each(resort_variant, function(index, kamar) {
+		// 				const item_detail = kamar.details.filter(detail => detail.is_booked === 0);
+		// 				var id_kamar = item_detail[0].id;
+		// 				var nama_kamar = kamar.name;
+		// 				var id_harga = kamar.price.id;
+		// 				var harga = kamar.price.service_price;
+		// 				var harga_string = accounting.formatMoney(
+		// 					harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+		// 				var sisa_kamar = kamar.count_availability;
 
-						var $kamar = 
-							'<div id="' + id_kamar + '" class="order flex">' +
-								'<div class="flex name">' +
-									'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
-									'<span class="line"></span>' +
-									'<span>' + nama_kamar + '</span>' + 
-								'</div>' +
-								'<div class="availability">' + 
-									'<span>' + sisa_kamar + ' kamar</span>' + 
-								'</div>' +
-								'<div class="price">' + 
-									'<span>' + harga_string + ' / malam</span>' +
-									'<input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '">' +
-								'</div>' +
-								'<div class="unit">' +
-									'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
-								'</div>' +
-								'<div class="total-price">' +
-									'<span>Rp 0</span>' +
-									'<input type="hidden" name="total_harga" value="0">' +
-								'</div>' +
-							'</div>';
+		// 				var $kamar = 
+		// 					'<div id="' + id_kamar + '" class="order flex">' +
+		// 						'<div class="flex name">' +
+		// 							'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
+		// 							'<span class="line"></span>' +
+		// 							'<span>' + nama_kamar + '</span>' + 
+		// 						'</div>' +
+		// 						'<div class="availability">' + 
+		// 							'<span>' + sisa_kamar + ' kamar</span>' + 
+		// 						'</div>' +
+		// 						'<div class="price">' + 
+		// 							'<span>' + harga_string + ' / malam</span>' +
+		// 							'<input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '">' +
+		// 						'</div>' +
+		// 						'<div class="unit">' +
+		// 							'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
+		// 						'</div>' +
+		// 						'<div class="total-price">' +
+		// 							'<span>Rp 0</span>' +
+		// 							'<input type="hidden" name="total_harga" value="0">' +
+		// 						'</div>' +
+		// 					'</div>';
 
-						$('#step-2 .orders').append($kamar);
-					})
+		// 				$('#step-2 .orders').append($kamar);
+		// 			})
 
-					start_date = dateToString(start_date, 'short');
-					end_date = dateToString(end_date, 'short');
+		// 			start_date = dateToString(start_date, 'short');
+		// 			end_date = dateToString(end_date, 'short');
 
-					$('.val-nama-item').text(nama_resort);
-					$('.val-start-date').text(start_date);
-					$('.val-end-date').text(end_date);
-					$('.val-lama-inap').text(day_diff);
+		// 			$('.val-nama-item').text(nama_resort);
+		// 			$('.val-start-date').text(start_date);
+		// 			$('.val-end-date').text(end_date);
+		// 			$('.val-lama-inap').text(day_diff);
 
-					$('.order input[type="number"]').on('keyup', inputNumberListener);
-					$('.order input[type="number"]').on('change', inputNumberListener);
-					$('.order input.checkbox').on('change', checkboxListener);
-					$('#step-2 .order').on('click', function(e) {
-						var condition = $(this).hasClass('selected');
-						var target = $(this).find('.input-unit');
+		// 			$('.order input[type="number"]').on('keyup', inputNumberListener);
+		// 			$('.order input[type="number"]').on('change', inputNumberListener);
+		// 			$('.order input.checkbox').on('change', checkboxListener);
+		// 			$('#step-2 .order').on('click', function(e) {
+		// 				var condition = $(this).hasClass('selected');
+		// 				var target = $(this).find('.input-unit');
 
-						console.log(e.target);
+		// 				console.log(e.target);
 
-						if (condition) {
-							if (! target.is(e.target)) {
-								$(this).removeClass('selected');
-								$(this).find('input[type="number"]').attr('disabled', true);
-								$(this).find('input[type="number"]').val(0).change();
-							}
-						} else {
-							$(this).addClass('selected');
-							$(this).find('input[type="number"]').val(1).change();
-							$(this).find('input[type="number"]').attr('disabled', false);
-							$(this).find('input[type="number"]').focus();
-						}
-					})
-				}
-			)
-		})
+		// 				if (condition) {
+		// 					if (! target.is(e.target)) {
+		// 						$(this).removeClass('selected');
+		// 						$(this).find('input[type="number"]').attr('disabled', true);
+		// 						$(this).find('input[type="number"]').val(0).change();
+		// 					}
+		// 				} else {
+		// 					$(this).addClass('selected');
+		// 					$(this).find('input[type="number"]').val(1).change();
+		// 					$(this).find('input[type="number"]').attr('disabled', false);
+		// 					$(this).find('input[type="number"]').focus();
+		// 				}
+		// 			})
+		// 		}
+		// 	)
+		// })
 		
 		$('.form-nav').on('click', function() {
 			var key = $(this).attr('next');
@@ -1482,13 +1481,17 @@
 		})
 
 		$('#btn-submit-detail').on('click', function() {
-			var nama_resort = $('.list-resort').find('li.active').text();
+			var id_item = $('.list-resort').find('li.active').attr('id');
+			var nama_resort = $('.list-resort').find('li.active span').text();
 			var check_in = $('input[name="start_date"]').val();
-			var check_out = $('input[name="end_date"]').val();
-			var how_many_nights = Math.round(dateDiffInDays(check_in, check_out));
+			var duration_day = $('.list-resort').find('li.active input[name="day"]').val();
+			var duration_hour = $('.list-resort').find('li.active input[name="hour"]').val();
+			var duration_minute = $('.list-resort').find('li.active input[name="minute"]').val();
+			// var how_many_nights = Math.round(dateDiffInDays(check_in, check_out));
 			var nama_pemesan = $('input[name="identitas_nama"]').val();
 			var telepon = $('input[name="identitas_telepon"]').val();
 			var email = $('input[name="identitas_email"]').val();
+			var harga = $('.list-resort').find('li.active input[name="price"]').val();
 
 			if ($('#step-5 input.checkbox:checked').val() == 'true') {
 				var payment_method = true;
@@ -1496,8 +1499,8 @@
 				var payment_method = false;
 			}
 
-			var start_time = moment(check_in + 'T' + config.hour_check_in).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
-			var end_time = moment(check_out + 'T' + config.hour_check_out).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
+			var start_time = moment(check_in + 'T' + waktu + ':00').add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
+			var end_time = moment(check_in + 'T' + waktu + ':00').add(parseInt(duration_day), 'days').add(parseInt(duration_hour), 'hours').add(parseInt(duration_minute), 'minutes').format('YYYY-MM-DD HH:mm:SS');
 
 			obj_booking.name = nama_pemesan;
 			obj_booking.phone = telepon;
@@ -1506,47 +1509,55 @@
 
 			$('#step-6').find('.orders').empty();
 
-			var total_per_malam = 0;
+			var total_per_malam = parseInt(harga);
 			var current_index = 0;
 			var array_item = [];
 
-			$('#step-2 .orders').find('.order.selected').each(function(index) {
-				var $order = $(this).clone();
-					$order.removeClass('selected');
-					$order.find('.availability').remove();
+			// $('#step-2 .orders').find('.order.selected').each(function(index) {
+			// 	var $order = $(this).clone();
+			// 		$order.removeClass('selected');
+			// 		$order.find('.availability').remove();
 
-				var unit = $order.find('.unit').find('input[type="number"]').val();
-					$order.find('.unit').find('input').remove();
-					$order.find('.unit').find('span').text('x ' + unit);
+			// 	var unit = $order.find('.unit').find('input[type="number"]').val();
+			// 		$order.find('.unit').find('input').remove();
+			// 		$order.find('.unit').find('span').text('x ' + unit);
 
-				current_index = index + 1;
+			// 	current_index = index + 1;
 
-				console.log('Loop' + index + ':' + current_index);
+			// 	console.log('Loop' + index + ':' + current_index);
 
-					$order.find('.index span').text(current_index);
+			// 		$order.find('.index span').text(current_index);
 
-				var id_kamar = $order.attr('id');
-				var id_harga = $order.find('input[name="harga"]');
+			// 	var id_kamar = $order.attr('id');
+			// 	var id_harga = $order.find('input[name="harga"]');
 
-				var total_harga = $order.find('input[name="total_harga"]').val();
+			// 	var total_harga = $order.find('input[name="total_harga"]').val();
 
-				total_per_malam += parseInt(total_harga);
+			// 	total_per_malam += parseInt(total_harga);
 				
 
-				var obj_kamar = {
-					'item_detail_id' : id_kamar,
-					// 'price_id' : id_harga,
-					'person' : 1,
-					'start_time' : start_time,
-					'end_time' : end_time
-				};
+			// 	var obj_kamar = {
+			// 		'item_detail_id' : id_kamar,
+			// 		// 'price_id' : id_harga,
+			// 		'person' : 1,
+			// 		'start_time' : start_time,
+			// 		'end_time' : end_time
+			// 	};
 
-				array_item.push(obj_kamar);
+			// 	array_item.push(obj_kamar);
 
-				$('#step-6').find('.orders').append($order);
-			})
+			// 	$('#step-6').find('.orders').append($order);
+			// })
 
-			console.log ('after loop : ' + current_index);
+			var obj_kamar = {
+				'item_detail_id' : id_item,
+				// 'price_id' : id_harga,
+				'person' : 1,
+				'start_time' : start_time,
+				'end_time' : end_time
+			};
+
+			array_item.push(obj_kamar);
 
 			$('#step-3 .orders').find('.order.selected').each(function(index) {
 				var $order = $(this).clone();
@@ -1579,13 +1590,14 @@
 
 			obj_booking.items = array_item;
 
-			grand_total = day_diff * total_per_malam;
+			grand_total = total_per_malam;
 
 			total_per_malam = accounting.formatMoney(
 						total_per_malam, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 			grand_total = accounting.formatMoney(
 						grand_total, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
+			$('#step-6').find('.val-nama-item').text(nama_resort);
 			$('#step-6').find('.total-per-malam').text(total_per_malam);
 			$('#step-6').find('.val-grand-total').text(grand_total);
 		})
@@ -1692,66 +1704,6 @@
 		console.log(extra_item);
 
 		$.each(extra_item, function(index, item) {
-			const nama_item = item.item.name;
-			const id_item = item.item.details.filter(detail => detail.is_booked === 0)[0].id;
-			const id_harga = item.item.price.id;
-			const harga = item.item.price.service_price;
-			const harga_string = accounting.formatMoney(
-						harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-
-			var $extra_item = 
-				'<div id="' + id_item + '" class="order flex">' +
-					'<div class="flex name">' +
-						'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
-						'<span class="line"></span>' +
-						'<span>' + nama_item + '</span>' + 
-					'</div>' +
-					'<div class="price">' + 
-						'<span>' + harga_string + ' / pcs</span>' +
-						'<input type="hidden" name="harga" value="' + harga + '">' +
-					'</div>' +
-					'<div class="unit">' +
-						'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
-					'</div>' +
-					'<div class="total-price">' +
-						'<span>Rp 0</span>' +
-						'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
-					'</div>' +
-				'</div>';
-
-			$('#step-3 .orders').append($extra_item);
-		})
-
-		$('.order input[type="number"]').on('keyup', inputNumberListener);
-		$('.order input[type="number"]').on('change', inputNumberListener);
-		$('.order input.checkbox').on('change', checkboxListener);
-		$('#step-3 .order').on('click', function(e) {
-			var condition = $(this).hasClass('selected');
-			var target = $(this).find('.input-unit');
-
-			console.log(condition);
-
-			if (condition) {
-				if (! target.is(e.target)) {
-					$(this).removeClass('selected');
-					$(this).find('input[type="number"]').attr('disabled', true);
-					$(this).find('input[type="number"]').val(0).change();
-				}
-			} else {
-				$(this).addClass('selected');
-				$(this).find('input[type="number"]').val(1).change();
-				$(this).find('input[type="number"]').attr('disabled', false);
-				$(this).find('input[type="number"]').focus();
-			}
-		})
-	}
-
-	function loadExtraItem2(extra_item) {
-		$('#step-3 .orders').empty();
-
-		console.log(extra_item);
-
-		$.each(extra_item, function(index, item) {
 			const nama_item = item.name;
 			const id_item = item.details.filter(detail => detail.is_booked === 0)[0].id;
 			const id_harga = item.price.id;
@@ -1805,7 +1757,6 @@
 			}
 		})
 	}
-
 
 	function checkboxListener() {
 		var value = $(this).prop('checked');

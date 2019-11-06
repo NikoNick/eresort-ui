@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('search', 'SearchController@index')->name('search.index');
 Route::get('hasil', 'SearchController@resultResort')->name('search.result.resort');
 Route::get('hasil-camping', 'SearchController@resultCamping')->name('search.result.camping');
+Route::get('hasil-outbound', 'SearchController@resultOutbound')->name('search.result.outbound');
 Route::post('detail', 'CatalogController@detail')->name('catalog.detail');
 Route::post('reservasi', 'BookingController@index')->name('booking.index');
 Route::post('resort/availability', 'CatalogController@availability')->name('catalog.availability');

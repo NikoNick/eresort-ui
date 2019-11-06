@@ -49,4 +49,13 @@ class ExtrernalRequest {
     return self::get($url, false);
   }
 
+  public static function getOutboundAvailability(){
+    $startDate = request('start_date');
+    // $endDate = request('end_date');
+    $waktu = request('waktu');
+    $person = request('person');
+    $url = self::API_RESORT_URL . "availability/outbound-program?start_date={$startDate}";
+    return self::get($url, false);
+  }
+
 }

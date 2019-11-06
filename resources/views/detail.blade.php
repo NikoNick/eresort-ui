@@ -665,6 +665,7 @@
 		<input type="text" name="start_date" value="{{ $start_date }}">
 		<input type="text" name="end_date" value="{{ $end_date }}">
 		<input type="text" name="business_id" value="{{ $business_id }}">
+		<input type="text" name="waktu" value="{{ $waktu }}">
 		<input type="text" name="item_id">
 
 		<button type="submit">OK</button>
@@ -679,6 +680,10 @@
 	var harga_sewa = resort.price.service_price;
 		harga_sewa = accounting.formatMoney(
 					harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+	if (business_id == 3) {
+		var id_resort = resort.details[0].id;
+	}
 
 	$('input[name="item_id"]').val(id_resort);
 	$('.card-container').empty();

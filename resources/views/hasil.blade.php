@@ -30,6 +30,7 @@
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="text" name="start_date" value="{{ $start_date }}">
 		<input type="text" name="end_date" value="{{ $end_date }}">
+		<input type="text" name="waktu">
 		<input type="hidden" name="business_id">
 		<input type="hidden" name="data">
 		<button type="submit">OK</button>
@@ -46,17 +47,22 @@
 		var data = {!! $result !!};
 		var catalog = {!! json_encode($catalog) !!};
 		var result = data.data;
-		console.log(catalog);
-		console.log(data);
 
 		$('.thumbnails').empty();
 
 		if (catalog == 'Resort') {
 			loadResortCatalog();
 			$('input[name="business_id"]').val(1);
+			var waktu = '';
 		} else if (catalog == 'Camping') {
 			loadCampingCatalog();
 			$('input[name="business_id"]').val(2);
+			var waktu = '';
+		} else if (catalog == 'Outbound') {
+			var waktu = {!! json_encode($waktu) !!};
+			$('input[name="business_id"]').val(3);
+			loadOutboundCatalog();
+			$('input[name="waktu"]').val(waktu);
 		}
 
 		$('.thumbnail').on('click', function() {
@@ -217,6 +223,63 @@
 						'<div class="room-info">' +
 							$kamar_infos +
 						'</div>' +
+					'</div>' +
+				'</div>';
+
+				$('.thumbnails').append($thumbnail);
+			});
+		}
+
+		function loadOutboundCatalog() {
+			$('.business-name').text('Outbound');
+			$('#count-data').html('Menampilkan <span class="font-number">' + result.length + '</span> Layanan Outbound tersedia');
+
+			console.log(result);
+
+			$.each(result, function(index, resort) {
+				var id_resort = resort.id;
+				var nama_resort = resort.name;
+				// var luas_area = resort.wide.slice(0,-3);
+				var lokasi = resort.location.name;
+				var harga_sewa = resort.price.service_price;
+					harga_sewa = accounting.formatMoney(harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+				// var variant = resort.availability;
+
+				// var $kamar_infos = '';
+
+				// $.each(variant, function(index, kamar) {
+				// 	var nama = kamar.name;
+				// 	var max_capacity = kamar.max_out;
+				// 	var wide = kamar.wide;
+
+				// 	var $kamar_info =
+				// 	'<div class="variant">' +
+				// 		'<p><b>' + nama + '</b></p>' +
+				// 		'<span class="line"></span>' +
+				// 		'<p><span class="font-number">' + wide + '</span> m<sup>2</sup> / Max. <span class="font-number">' + max_capacity + '</span> org</p>' +
+				// 	'</div>';
+
+				// 	$kamar_infos = $kamar_infos + $kamar_info;
+				// });
+
+				var $thumbnail =
+				'<div id="' + id_resort + '" class="card">' +
+					'<div class="thumbnail">' +
+					'</div>' +
+					'<div class="desc animation">' +
+						'<div class="header">' +
+							'<div>' +
+								'<b>' + nama_resort + '</b>' +
+								'<p><span class="font-number">' + harga_sewa + '</span> / malam</p>' +
+							'</div>' +
+							'<div class="location">' +
+								'<span>' + lokasi + '</span>' +
+							'</div>' +
+						'</div>' +
+						// '<div class="room-info">' +
+						// 	$kamar_infos +
+						// '</div>' +
 					'</div>' +
 				'</div>';
 

@@ -80,7 +80,7 @@
 			</div>
 			<div id="tab-3" class="tab">
 				<h1>Outbond jadi seru!</h1>
-				<form method="GET" action="/hasil-camping">
+				<form method="GET" action="/hasil-outbound">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="field-row">
 						<div class="input-wrapper">
@@ -97,7 +97,7 @@
 						</div>
 						<div class="input-wrapper">
 							<b>JAM</b>
-							<input type="text" class="fillable" name="start_date" placeholder="">
+							<input type="text" class="fillable" name="waktu" placeholder="">
 						</div>
 					</div>
 				</form>
