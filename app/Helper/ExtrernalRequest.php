@@ -4,7 +4,7 @@ namespace App\Helper;
 
 class ExtrernalRequest {
 
-  const API_RESORT_URL = 'http://api.resort.shafarizkyf.com/api/';
+  const API_RESORT_URL = 'https://api.resort.shafarizkyf.com/api/';
 
   public static function get($url, $decode = true, $asArray = false){
     $ch = curl_init();
@@ -55,6 +55,18 @@ class ExtrernalRequest {
     $waktu = request('waktu');
     $person = request('person');
     $url = self::API_RESORT_URL . "availability/outbound-program?start_date={$startDate}";
+    return self::get($url, false);
+  }
+
+  public static function allPromo(){
+    $url = self::API_RESORT_URL . "promo";
+    return self::get($url, false);
+  }
+
+  public static function getPromo(){
+    $code = request('promo_code');
+    $url = self::API_RESORT_URL . "promo?code={$code}";
+    // var_dump($code);
     return self::get($url, false);
   }
 

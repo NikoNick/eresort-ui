@@ -169,7 +169,7 @@
 
 		#tentang p {
 			font-size: 1.1em;
-			font-weight: 300;
+			font-weight: 400;
 		    margin-top: 40px;
 		    text-align: justify;
 		    line-height: 50px;
@@ -228,7 +228,7 @@
 	        margin: 0px 20px;
 	        font-size: 1.1em;
     		letter-spacing: 2px;
-		    font-weight: 600;
+		    font-weight: 500;
         }
 
         #myCarousel {
@@ -354,7 +354,7 @@
         .card-container {
     	    position: relative; 
     		/*overflow: hidden;*/
-    		transform: translateX(-60px);
+    		/*transform: translateX(-60px);*/
         }
 
         .card-container:after {
@@ -614,12 +614,12 @@
 				</div>
 			</div>
 			<div class="right animation">
-				<div class="card-bg">
+				<!-- <div class="card-bg">
 					<div class="flex">
 						<p>Pilihan Layanan & Harga</p>
-						<!-- <div class="line"></div> -->
+						<div class="line"></div>
 					</div>
-				</div>
+				</div> -->
 				<div class="card-container">
 					<div class="card">
 						<div>

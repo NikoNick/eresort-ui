@@ -8,6 +8,7 @@ class SearchController extends Controller {
 
   public function index(){
     $result = ExtrernalRequest::getLocation();
+    // var_dump($result);
     return view('app', compact('result'));
   }
 

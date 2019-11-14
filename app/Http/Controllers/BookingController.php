@@ -42,7 +42,8 @@ class BookingController extends Controller {
   }
 
   public function store(){
-    $data = request()->all();
+    $data = request('booking_data');
+    $data = json_decode($data);
     $data = http_build_query($data);
     $url = ExtrernalRequest::API_RESORT_URL . 'booking';
     return ExtrernalRequest::post($url, $data);

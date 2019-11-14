@@ -22,3 +22,4 @@ Route::post('resort/availability', 'CatalogController@availability')->name('cata
 Route::post('booking', 'BookingController@store')->name('booking.store');
 Route::get('book-detail', 'BookingController@detail')->name('booking.detail');
 Route::post('booksession', 'BookingController@bookSession');
+Route::post('promo', 'PromoController@checkPromo');

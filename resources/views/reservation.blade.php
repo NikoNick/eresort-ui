@@ -22,6 +22,60 @@
 			font-family: Raleway !important;
 		}
 
+		.loading-screen {
+			background: #fff;
+			width: 100%;
+			height: 100vh;
+			text-align: center;
+			position: absolute;
+			z-index: 2;
+			/*opacity: 0;*/
+		}
+
+		.loading-wrapper {
+			text-align: center;
+			width: 100%;
+			position: absolute;
+			top: calc(50% - 60px);
+		}
+
+		.loading-text {
+			margin-top: 30px;
+			letter-spacing: 3px;
+		}
+
+		.loader {
+			display: inline-block;
+			border: 8px solid #f3f3f3; /* Light grey */
+			border-top: 8px solid #3498db; /* Blue */
+			border-radius: 50%;
+			width: 60px;
+			height: 60px;
+			animation: spin 2s linear infinite;
+		}
+
+		.loader.small {
+			display: inline-block;
+			border: 3px solid #f3f3f3; /* Light grey */
+			border-top: 3px solid #3498db; /* Blue */
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			top: calc(50% - 20px);
+			animation: spin 2s linear infinite;
+		}
+
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		.btn-black {
+			background: #000;
+			color: #fff;
+		}
+
 		.font-number {
 			font-family: Consolas;
 		}
@@ -46,24 +100,93 @@
     		z-index: 2;
 		}
 
+		.background-pattern {
+			position: fixed;
+			width: 100%;
+			height: 100vh;
+			z-index: 0;
+		}
+
+		.background-pattern .left {
+			position: absolute;
+			bottom: 120px;
+			left: -110px;
+		}
+
+		.background-pattern .right {
+			position: absolute;
+			right: -110px;
+			top: 320px;
+			transform: rotateY(180deg);
+		}
+
+		.background-pattern .pattern #one {
+			width: 320px;
+			height: 33px;
+			border-radius: 50px;
+			background: linear-gradient(90deg, rgba(28,173,192,1) 0%, rgba(39,254,197,1) 100%);
+		}
+
+		.background-pattern .pattern #two {
+			width: 220px;
+			height: 33px;
+			border-radius: 50px;
+			/*position: absolute;*/
+			margin-left: 150px;
+			margin-top: 20px;
+			background: linear-gradient(90deg, rgba(28,173,192,1) 0%, rgba(39,254,197,1) 100%);
+		}
+
+		.background-pattern .pattern #three {
+			display: inline-block;
+			width: 170px;
+			height: 33px;
+			border-radius: 50px;
+			/*position: absolute;*/
+			margin-left: 50px;
+			margin-top: 20px;
+			background: linear-gradient(90deg, rgba(28,173,192,1) 0%, rgba(39,254,197,1) 100%);
+		}
+
+		.background-pattern .pattern #four {
+			display: inline-block;
+			width: 33px;
+			height: 33px;
+			border-radius: 50px;
+			/*position: absolute;*/
+			margin-left: 20px;
+			margin-top: 20px;
+			background: linear-gradient(90deg, rgba(28,173,192,1) 0%, rgba(39,254,197,1) 100%);
+		}
+
+		.background-pattern .pattern.shadow {
+		    position: absolute;
+		    top: 40px;
+		    left: -40px;
+		    opacity: 0.15;
+		}
+
 		.background {
-			background: #fff;
+			/*background: #fff;*/
 			width: 100%;
 			height: 100vh;
 			/*background-size: 130%;*/
 			/*overflow: hidden;*/
 			display: flex;
+			position: relative;
+			z-index: 1;
 			flex-direction: column;
 		}
 
 		.form-title {
-			padding: 50px 0px;
+			align-items: baseline;
+			padding-bottom: 50px;
 			/*padding-bottom: 0;*/
 		}
 
 		.form-title h1 {
 			margin-top: 0;
-			font-size: 2.3em;
+			font-size: 2.1em;
 		}
 
 		.form-title p {
@@ -91,8 +214,8 @@
 		}
 
 		.background .form-reservasi .form span {
-			font-size: 2.8em;
-		    line-height: 100px;
+			font-size: 2.5em;
+		    line-height: 90px;
 		    font-weight: 300;
 		    letter-spacing: 5px;
 		    word-spacing: 20px;
@@ -134,6 +257,7 @@
 
 		.order>div {
 			padding: 25px;
+			position: relative;
 		}
 
 		#step-2 .orders .order .nama {
@@ -269,7 +393,7 @@
 
 		.order-steps {
 			background: #fff;
-			padding: 80px 120px 50px;
+			padding: 60px 120px 50px;
 			position: fixed;
 			width: 100%;
 			z-index: 1;
@@ -391,7 +515,11 @@
 		}*/
 
 		#step-3 {
-			padding: 180px 250px 100px 250px;
+			padding: 220px 250px 100px 250px;
+		}
+
+		#step-3 .form-title {
+			padding-bottom: 0px;
 		}
 
 		#step-3 .nav-button {
@@ -437,6 +565,11 @@
 
 		.form-reservasi .tambahan>.nama {
 			flex-grow: 1;
+		}
+
+		.form-reservasi .form {
+			margin-top: 30px;
+			margin-right: 250px;
 		}
 
 		.input-field {
@@ -579,8 +712,12 @@
 		    padding: 0px 20px;
 		}
 
-		#step-2, #step-6 {
-		    padding: 220px 250px 120px 250px;
+		#step-2 {
+		    padding: 200px 250px 120px 250px;
+		}
+
+		#step-6 .content {
+			padding: 50px 130px 0px 130px;
 		}
 
 		#step-6 .reservation-desc {
@@ -690,6 +827,10 @@
 			font-family: Calibri Light;
 			font-weight: bold;
 			margin-top: 10px;
+		}
+
+		#step-6 .nav-button {
+			margin-top: 0;
 		}
 
 		.harga {
@@ -832,20 +973,11 @@
         .main-info p {
     	    font-size: 2em;
     		letter-spacing: 4px;
+    		margin-bottom: 0px;
         }
 
         .main-info p>b, .main-info p>b>span {
         	position: relative;
-        }
-
-        .main-info p>b:before {
-    	    content: '';
-    	    position: absolute;
-    	    width: 100%;
-    	    height: 12px;
-    	    background: #0fffbe;
-    	    top: 20px;
-    	    left: -5px;
         }
 
         .main-info p>sup {
@@ -865,11 +997,12 @@
         .info p {
     	    font-size: 1.2em;
     		letter-spacing: 1px;
+    		margin-bottom: 0;
         }
 
         .orders {
         	border: 1px solid #c9c9c9;
-        	margin-top: 40px;
+        	margin-top: 10px;
         }
 
         .order {
@@ -899,7 +1032,7 @@
         	border-top: 3px solid #f9f9f9;
         	font-size: 0.9em;
         	color: #b5b5b5;
-        	margin-top: 40px;
+        	margin-top: 60px;
         }
 
         .order.header>div {
@@ -940,7 +1073,11 @@
         }
 
         .order .price {
-        	width: 25%;
+        	width: 20%;
+        }
+
+        .order .nights {
+        	width: 10%;
         }
 
         .order .total-price {
@@ -963,23 +1100,146 @@
         	outline: none;
         }
 
+        .order .label-disc {
+    	    font-family: Arial;
+		    font-size: 0.8em;
+		    font-weight: 500;
+		    position: absolute;
+		    white-space: nowrap;
+		    background: black;
+		    color: #fff;
+		    padding: 2px;
+		    right: -80px;
+        }
+
         #step-1, #step-4 {
         	z-index: 2;
         }
 
         .payment-method {
-        	padding: 30px 0px;
-        	margin-bottom: 10px;
+    	    margin-top: 30px;
+		    padding: 15px 25px;
+		    margin-bottom: 10px;
+		    margin-right: 30px;
+		    display: inline-block;
+		    border: 1px solid #dcdcdc;
+		    border-radius: 10px;
+        }
+
+        .payment-method:last-child {
+        	margin-right: 0;
         }
 
         .payment-method .name {
-        	font-size: 1.5em;
-        	font-weight: 700;
-        	letter-spacing: 4px;
+        	font-size: 1.2em;
+		    font-weight: 400;
+		    letter-spacing: 4px;
         }
+
+        .kode-promo {
+        	align-items: center;
+        }
+
+        .kode-promo span {
+        	letter-spacing: 2px;
+        }
+
+        .kode-promo .input-wrapper {
+        	display: flex;
+        	align-items: center;
+        }
+
+        .kode-promo #btn-check-promo {
+        	cursor: pointer;
+        }
+
+        
+        .input-wrapper {
+    	    border: 1px solid #b5b5b5;
+		    border-radius: 8px;
+		    padding: 15px 25px;
+		    margin-left: 25px;
+		}
+
+		.input-wrapper input {
+			border: none;
+			outline: none;
+			letter-spacing: 2px;
+		}
+
+		.input-wrapper b {
+		    white-space: nowrap;
+		    letter-spacing: 1px;
+		    font-weight: 800;
+		    /*padding: 0px 25px;*/
+		}
+
+		.input-wrapper i {
+		    /*margin: 0 25px;*/
+		    font-size: 1.2em;
+		}
+
+		#step-5 .content {
+			text-align: center;
+			margin-top: 60px;
+		}
+
+		#step-5 .content h1 {
+			font-weight: 400;
+		}
+
+		#step-5 .content p {
+			font-size: 1.3em;
+		    letter-spacing: 3px;
+		    margin-top: 20px;
+		}
 	</style>
 </head>
 <body>
+	<div class="background-pattern">
+		<div class="left">
+			<div class="pattern">
+				<div id="one"></div>
+				<div id="two"></div>
+				<div>
+					<span id="three"></span>
+					<span id="four"></span>
+				</div>
+			</div>
+			<div class="shadow pattern">
+				<div id="one"></div>
+				<div id="two"></div>
+				<div>
+					<span id="three"></span>
+					<span id="four"></span>
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<div class="pattern">
+				<div id="one"></div>
+				<div id="two"></div>
+				<div>
+					<span id="three"></span>
+					<span id="four"></span>
+				</div>
+			</div>
+			<div class="shadow pattern">
+				<div id="one"></div>
+				<div id="two"></div>
+				<div>
+					<span id="three"></span>
+					<span id="four"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="loading-screen animation anim-blink disappear gone">
+		<div class="loading-wrapper">
+			<div class="loader"></div>
+			<p class="loading-text">Loading</p>
+		</div>
+	</div>
 	<div class="background">
 		<div class="order-steps flex">
 			<div id="trigger-1" class="step">
@@ -1022,7 +1282,7 @@
 							<input type="text" class="date fillable" name="start_date" value="{{ $start_date }}">
 						</div>
 					</div>
-					<span> sampai</span> <br>
+					<br><span>sampai </span>
 					<div class="input-field tanggal">
 						<span class="input-field-toggle">25 September 2019</span>
 						<div class="date-field">
@@ -1074,15 +1334,19 @@
 						</div>
 					</div>
 					<div class="animation anim-slide-down-up disappear">
-						<div class="orders"></div>
-						<div class="order total flex">
-							<div class="left flex">
+						<div class="order header">
+							<div class="name">
+								<span class="index">NO</span>
+								<span class="line"></span>
+								<span>PILIHAN LAYANAN</span>
 							</div>
-							<div class="right flex">
-								<div><label>TOTAL</label></div>
-								<div class="harga"><p class="grand-total">Rp 0</p></div>
-							</div>
+							<div class="availability">TERSEDIA</div>
+							<div class="price">HARGA SEWA</div>
+							<div class="unit">UNIT</div>
+							<div class="nights"></div>
+							<div class="total-price">TOTAL HARGA</div>
 						</div>
+						<div class="orders"></div>
 						<div class="nav-button animation anim-slide-down-up disappear">
 							<span>Saya memesan 2 Deluxe Room & 1 Executive Room, <a next="3" class="form-nav">Lanjutkan</a></span>
 						</div>
@@ -1097,8 +1361,19 @@
 					<h1>Apakah Ada Tambahan ?</h1>
 					<p>Kami menyediakan fasilitas tambahan untuk kenyamanan anda</p>
 				</div>
+				<div class="order header">
+					<div class="name">
+						<span class="index">NO</span>
+						<span class="line"></span>
+						<span>LAYANAN TAMBAHAN</span>
+					</div>
+					<!-- <div class="availability">TERSEDIA</div> -->
+					<div class="price">HARGA SEWA</div>
+					<div class="unit">UNIT</div>
+					<div class="nights"></div>
+					<div class="total-price">TOTAL HARGA</div>
+				</div>
 				<div class="orders">
-					
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
 					<span>Tidak ada tambahan, <a next="4" class="form-nav">Lanjutkan</a></span>
@@ -1167,16 +1442,30 @@
 					</div> -->
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Identitas saya sudah benar, <a next="5" class="form-nav">Lanjutkan</a></span>
+					<span>Identitas saya sudah benar, <a id="btn-submit-detail" next="5" class="form-nav">Lanjutkan</a></span>
 				</div>
 			</div>
 		</div>
 		<div id="step-5" class="form-reservasi gone" condition="min-1">
 			<div class="wrapper">
-				<div class="form-title">
-					<h1 class="anim-slide-left-right animation disappear">Pilih Metode Pembayaran yang diinginkan</h1>
+				<div class="form-title flex">
+					<div class="flex-grow-1">
+						<h1 class="anim-slide-left-right animation disappear">Pilih Metode Pembayaran</h1>
+						<p>Dan gunakan kode promo untuk mendapat potongan harga</p>	
+					</div>
+					<div class="kode-promo flex">
+						<span>KODE PROMO</span>
+						<div class="input-wrapper">
+							<input type="text" name="kode_promo" placeholder="# xxxxxxx">
+							<div id="btn-check-promo">
+								<i class="fas fa-check promo-true"></i>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div>
+				<div class="content">
+					<h1>Total pesanan anda adalah <span class="val-grand-total">Rp 550.000</span></h1>
+					<p>Pembayaran dapat dilakukan dengan full payment atau bayar DP sebesar 30% terlebih dahulu</p>
 					<div class="payment-method flex-grow-1">
 						<span>
 							<input type="checkbox" id="checkbox-1" class="checkbox fillable" value="true">
@@ -1192,12 +1481,12 @@
 							<label for="checkbox-2"></label>
 						</span>
 						<span class="name">
-							DP 30%
+							DP 30% (<span class="val-half-payment">Rp 0</span>)
 						</span>
 					</div>
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span><a id="btn-submit-detail" next="6" class="form-nav">Lihat Pesanan</a></span>
+					<span><a next="6" class="form-nav">Lihat Pesanan</a></span>
 				</div>	
 			</div>
 			
@@ -1226,8 +1515,23 @@
 							<span><b>TOTAL PESANAN</b></span>
 							<p class="val-grand-total font-number">Rp 860.000</p>
 						</div>
+						<div class="info nav-button">
+							<button id="btn-book" class="btn btn-black">BOOK NOW</button>
+						</div>
 					</div>
-					<div class="animation anim-slide-down-up disappear">
+					<div class="content animation anim-slide-down-up disappear">
+						<div class="order header">
+							<div class="name">
+								<span class="index">NO</span>
+								<span class="line"></span>
+								<span>LAYANAN TAMBAHAN</span>
+							</div>
+							<!-- <div class="availability">TERSEDIA</div> -->
+							<div class="price">HARGA SEWA</div>
+							<div class="unit">UNIT</div>
+							<div class="nights"></div>
+							<div class="total-price">TOTAL HARGA</div>
+						</div>
 						<div class="orders"></div>
 						<div class="order total flex">
 							<div class="left flex">
@@ -1235,14 +1539,13 @@
 							<div class="right flex">
 								<div><label>TOTAL</label></div>
 								<div class="harga">
-									<p class="font-number"><span class="val-lama-inap"></span> malam x <span class="total-per-malam">Rp 0</span></p>
 									<p class="val-grand-total">Rp 0</p>
 								</div>
 							</div>
 						</div>
-						<div class="nav-button animation anim-slide-down-up disappear">
+						<!-- <div class="nav-button animation anim-slide-down-up disappear">
 							<span><button id="btn-book" class="btn">BOOK NOW</button></span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -1257,8 +1560,21 @@
 		'email' : '',
 		'phone' : '',
 		'full_payment' : true,
-		'location_id' : 1,
+		'name_for' : '',
+		'phone_for' : '',
+		'promo_id' : null,
 		'items' : []
+	};
+	var orders = {
+		'nama_pemesan' : '',
+		'email_pemesan' : '',
+		'telepon_pemesan' : '',
+		'metode_pembayaran' : true,
+		'lama_inap' : 0,
+		'total_per_malam' : 0,
+		'grand_total' : 0,
+		'kode_promo' : 0,
+		'items': []
 	};
 
 	$(document).ready(function() {
@@ -1275,15 +1591,11 @@
 		$('input[name="business_id"]').val(business_id);
 		if (business_id == 1) {
 			$('#form-resort').show();
-			loadExtraItem(extra_item);
 		} else if (business_id == 2) {
 			$('#business-text').text('Pesan area camping untuk tanggal ');
 			$('.val-nama-business').text('Camp Area');
 			$('#form-resort').show();
-			loadExtraItem2(extra_item.data);
 		} 
-
-		
 	
 
 		$('input.date').datepicker({ 
@@ -1382,7 +1694,64 @@
 			}, 500);
 		})
 
+		$('#btn-check-promo').on('click', function() {
+			showLoader('Checking Promo');
+			var kode_promo = $('input[name="kode_promo"]').val();
+
+			$.post(
+				base_url + '/promo',
+				{
+					'_token' : '{{ csrf_token() }}',
+					'promo_code' : kode_promo
+				},
+				function(data) {
+					if (data != '') {
+						var promo = $.parseJSON(data);
+						var id_promo = promo.id;
+						var disc = (promo.amount_percent == null) ? promo.amount_fixed : promo.amount_percent;
+						var items = promo.items;
+
+						obj_booking.promo_id = id_promo;
+						orders.kode_promo = id_promo;
+
+						$.each(items, function(index, item) {
+							const item_id = item.item.id;
+
+							$.each(orders.items, function(index2, item2) {
+								const ordered_item_id = item2.real_id;
+								const harga = item2.harga;
+								const total_harga = item2.total_harga;
+
+								if (item_id == ordered_item_id) {
+									const int_diskon = (promo.amount_percent == null) ? disc : disc * parseInt(harga);
+									item2.diskon = int_diskon;
+									item2.after_diskon = parseInt(total_harga) - int_diskon;
+								}
+							})
+						})
+
+						var grand_total_diskon = calculateDiscountBill();
+
+						var half_payment = 0.3 * grand_total_diskon;
+							half_payment = accounting.formatMoney(
+								half_payment, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+							grand_total_diskon = accounting.formatMoney(
+								grand_total_diskon, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+						$('.val-half-payment').text(half_payment);
+						$('.val-grand-total').text(grand_total_diskon);
+
+						calculateDiscount();	
+					}
+					
+
+					hideLoader();
+				}
+			)
+		})
+
 		$('.form-next').on('click', function() {
+			showLoader('Memuat Data');
 			var start_date = $('input[name="start_date"]').val();
 			var end_date = $('input[name="end_date"]').val();
 			var id_resort = $('ul.list-resort li.active').attr('id');
@@ -1390,6 +1759,12 @@
 			var nama_resort = $('ul.list-resort li.active').text();
 
 			day_diff = Math.round(dateDiffInDays(start_date, end_date));
+
+			if (business_id == 1) {
+				loadExtraItem(extra_item);
+			} else if (business_id == 2) {
+				loadExtraItem2(extra_item);
+			}	
 
 			$.post(
 				base_url + '/resort/availability',
@@ -1408,6 +1783,7 @@
 					$.each(resort_variant, function(index, kamar) {
 						const item_detail = kamar.details.filter(detail => detail.is_booked === 0);
 						var id_kamar = item_detail[0].id;
+						var fake_id = kamar.id;
 						var nama_kamar = kamar.name;
 						var id_harga = kamar.price.id;
 						var harga = kamar.price.service_price;
@@ -1416,7 +1792,7 @@
 						var sisa_kamar = kamar.count_availability;
 
 						var $kamar = 
-							'<div id="' + id_kamar + '" class="order flex">' +
+							'<div id="' + id_kamar + '" class="order flex" for="' + fake_id + '">' +
 								'<div class="flex name">' +
 									'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
 									'<span class="line"></span>' +
@@ -1431,6 +1807,10 @@
 								'</div>' +
 								'<div class="unit">' +
 									'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
+								'</div>' +
+								'<div class="nights">' +
+									'<span>' + day_diff + ' malam</span>' +
+									'<input type="hidden" name="lama_inap" value="' + day_diff + '">' +
 								'</div>' +
 								'<div class="total-price">' +
 									'<span>Rp 0</span>' +
@@ -1456,8 +1836,6 @@
 						var condition = $(this).hasClass('selected');
 						var target = $(this).find('.input-unit');
 
-						console.log(e.target);
-
 						if (condition) {
 							if (! target.is(e.target)) {
 								$(this).removeClass('selected');
@@ -1471,6 +1849,8 @@
 							$(this).find('input[type="number"]').focus();
 						}
 					})
+
+					hideLoader();
 				}
 			)
 		})
@@ -1490,23 +1870,21 @@
 			var telepon = $('input[name="identitas_telepon"]').val();
 			var email = $('input[name="identitas_email"]').val();
 
-			if ($('#step-5 input.checkbox:checked').val() == 'true') {
-				var payment_method = true;
-			} else {
-				var payment_method = false;
-			}
-
 			var start_time = moment(check_in + 'T' + config.hour_check_in).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
 			var end_time = moment(check_out + 'T' + config.hour_check_out).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
+
+			orders.nama_pemesan = nama_pemesan;
+			orders.email_pemesan = email;
+			orders.telepon_pemesan = telepon;
+			orders.lama_inap = how_many_nights;
 
 			obj_booking.name = nama_pemesan;
 			obj_booking.phone = telepon;
 			obj_booking.email = email;
-			obj_booking.full_payment = payment_method;
 
 			$('#step-6').find('.orders').empty();
 
-			var total_per_malam = 0;
+			var grand_total = 0;
 			var current_index = 0;
 			var array_item = [];
 
@@ -1516,21 +1894,20 @@
 					$order.find('.availability').remove();
 
 				var unit = $order.find('.unit').find('input[type="number"]').val();
-					$order.find('.unit').find('input').remove();
+					$order.find('.unit').find('input').attr('type', 'hidden');
 					$order.find('.unit').find('span').text('x ' + unit);
 
 				current_index = index + 1;
 
-				console.log('Loop' + index + ':' + current_index);
-
 					$order.find('.index span').text(current_index);
 
 				var id_kamar = $order.attr('id');
-				var id_harga = $order.find('input[name="harga"]');
+				var real_id = $order.attr('for');
+				var harga = parseInt($order.find('.price input').val());
 
-				var total_harga = $order.find('input[name="total_harga"]').val();
+				var total_harga = parseInt($order.find('input[name="total_harga"]').val());
 
-				total_per_malam += parseInt(total_harga);
+				grand_total += parseInt(total_harga);
 				
 
 				var obj_kamar = {
@@ -1541,12 +1918,21 @@
 					'end_time' : end_time
 				};
 
+				var order = {
+					'real_id' : real_id,
+					'item_id' : id_kamar,
+					'unit' : unit,
+					'harga' : harga,
+					'total_harga' : total_harga,
+					'diskon' : 0,
+					'after_diskon' : total_harga
+				}
+
 				array_item.push(obj_kamar);
+				orders.items.push(order);
 
 				$('#step-6').find('.orders').append($order);
 			})
-
-			console.log ('after loop : ' + current_index);
 
 			$('#step-3 .orders').find('.order.selected').each(function(index) {
 				var $order = $(this).clone();
@@ -1558,11 +1944,12 @@
 					$order.find('.unit').find('span').text('x ' + unit);
 
 				var id_kamar = $order.attr('id');
-				var id_harga = $order.find('input[name="harga"]');
+				var real_id = $order.attr('for');
+				var harga = parseInt($order.find('.price input').val());
 
-				var total_harga = $order.find('input[name="total_harga"]').val();
+				var total_harga = parseInt($order.find('input[name="total_harga"]').val());
 
-				total_per_malam += parseInt(total_harga);
+				grand_total += parseInt(total_harga);
 
 				var obj_kamar = {
 					'item_detail_id' : id_kamar,
@@ -1572,41 +1959,80 @@
 					'end_time' : end_time
 				};
 
+				var order = {
+					'real_id' : real_id,
+					'item_id' : id_kamar,
+					'unit' : unit,
+					'harga' : harga,
+					'total_harga' : total_harga,
+					'diskon' : 0,
+					'after_diskon' : total_harga
+				}
+
 				array_item.push(obj_kamar);
+				orders.items.push(order);
 
 				$('#step-6').find('.orders').append($order);
 			})
 
 			obj_booking.items = array_item;
 
-			grand_total = day_diff * total_per_malam;
+			orders.grand_total = grand_total;
 
-			total_per_malam = accounting.formatMoney(
-						total_per_malam, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+			var half_payment = 0.3 * grand_total;
+
 			grand_total = accounting.formatMoney(
 						grand_total, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+			half_payment = accounting.formatMoney(
+						half_payment, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
-			$('#step-6').find('.total-per-malam').text(total_per_malam);
-			$('#step-6').find('.val-grand-total').text(grand_total);
+			$('.val-grand-total').text(grand_total);
+			$('.val-half-payment').text(half_payment);
 		})
 
 		$('#btn-book').on('click', function() {
-			$.ajax({
-				url: 'http://api.resort.shafarizkyf.com/api/booking',
-				method: 'POST',
-				data: JSON.stringify(obj_booking),
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
+			if ($('#step-5 input.checkbox:checked').val() == 'true') {
+				var payment_method = true;
+			} else {
+				var payment_method = false;
+			}
+
+			obj_booking.full_payment = payment_method;
+
+			// $.ajax({
+			// 	url: 'http://api.resort.shafarizkyf.com/api/booking',
+			// 	method: 'POST',
+			// 	data: JSON.stringify(obj_booking),
+			// 	headers: {
+			// 		'Accept': 'application/json',
+			// 		'Content-Type': 'application/json'
+			// 	}
+			// }).then(response => {
+			// 	alert('Booking Berhasil');
+			// 	// window.location = base_url + "/book-detail";
+			// 	// console.log(obj_booking);
+			// }).fail(error => {
+			// 	console.log(error)
+			// 	console.log(error.response)
+			// })
+
+			$.post(
+				base_url + '/booking',
+				{
+					'_token' : '{{ csrf_token() }}',
+					'booking_data' : JSON.stringify(obj_booking)
+				},
+				function(data) {
+					var data = $.parseJSON(data);
+
+					if (data.success) {
+						alert('Booking Berhasil');	
+						window.location.replace('/book-detail');
+					} else {
+						alert('Booking Gagal');
+					}
 				}
-			}).then(response => {
-				alert('Booking Berhasil');
-				window.location = base_url + "/book-detail";
-				// console.log(obj_booking);
-			}).fail(error => {
-				console.log(error)
-				console.log(error.response)
-			})
+			)
 		})
 	})
 
@@ -1693,33 +2119,42 @@
 
 		$.each(extra_item, function(index, item) {
 			const nama_item = item.item.name;
-			const id_item = item.item.details.filter(detail => detail.is_booked === 0)[0].id;
-			const id_harga = item.item.price.id;
-			const harga = item.item.price.service_price;
-			const harga_string = accounting.formatMoney(
-						harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
-			var $extra_item = 
-				'<div id="' + id_item + '" class="order flex">' +
-					'<div class="flex name">' +
-						'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
-						'<span class="line"></span>' +
-						'<span>' + nama_item + '</span>' + 
-					'</div>' +
-					'<div class="price">' + 
-						'<span>' + harga_string + ' / pcs</span>' +
-						'<input type="hidden" name="harga" value="' + harga + '">' +
-					'</div>' +
-					'<div class="unit">' +
-						'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
-					'</div>' +
-					'<div class="total-price">' +
-						'<span>Rp 0</span>' +
-						'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
-					'</div>' +
-				'</div>';
+			if (item.item.count_availability != 0) {
+				const id_item = item.item.details.filter(detail => detail.is_booked === 0)[0].id;
+				const fake_id = item.item.id;
+				const id_harga = item.item.price.id;
+				const harga = item.item.price.service_price;
+				const harga_string = accounting.formatMoney(
+							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
-			$('#step-3 .orders').append($extra_item);
+				var $extra_item = 
+					'<div id="' + id_item + '" class="order flex" for="' + fake_id + '">' +
+						'<div class="flex name">' +
+							'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
+							'<span class="line"></span>' +
+							'<span>' + nama_item + '</span>' + 
+						'</div>' +
+						'<div class="price">' + 
+							'<span>' + harga_string + ' / pcs</span>' +
+							'<input type="hidden" name="harga" value="' + harga + '">' +
+						'</div>' +
+						'<div class="unit">' +
+							'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
+						'</div>' +
+						'<div class="nights">' +
+							'<span>' + day_diff + ' malam</span>' +
+							'<input type="hidden" name="lama_inap" value="' + day_diff + '">' +
+						'</div>' +
+						'<div class="total-price">' +
+							'<span>Rp 0</span>' +
+							'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
+						'</div>' +
+					'</div>';
+
+				$('#step-3 .orders').append($extra_item);	
+			}
+			
 		})
 
 		$('.order input[type="number"]').on('keyup', inputNumberListener);
@@ -1728,8 +2163,6 @@
 		$('#step-3 .order').on('click', function(e) {
 			var condition = $(this).hasClass('selected');
 			var target = $(this).find('.input-unit');
-
-			console.log(condition);
 
 			if (condition) {
 				if (! target.is(e.target)) {
@@ -1747,63 +2180,68 @@
 	}
 
 	function loadExtraItem2(extra_item) {
+		console.log(extra_item);
 		$('#step-3 .orders').empty();
 
-		console.log(extra_item);
+		if (extra_item.data.length != 0) {
+			$.each(extra_item, function(index, item) {
+				const nama_item = item.name;
+				const id_item = item.details.filter(detail => detail.is_booked === 0)[0].id;
+				const id_harga = item.price.id;
+				const harga = item.price.service_price;
+				const harga_string = accounting.formatMoney(
+							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
-		$.each(extra_item, function(index, item) {
-			const nama_item = item.name;
-			const id_item = item.details.filter(detail => detail.is_booked === 0)[0].id;
-			const id_harga = item.price.id;
-			const harga = item.price.service_price;
-			const harga_string = accounting.formatMoney(
-						harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+				var $extra_item = 
+					'<div id="' + id_item + '" class="order flex">' +
+						'<div class="flex name">' +
+							'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
+							'<span class="line"></span>' +
+							'<span>' + nama_item + '</span>' + 
+						'</div>' +
+						'<div class="price">' + 
+							'<span>' + harga_string + ' / pcs</span>' +
+							'<input type="hidden" name="harga" value="' + harga + '">' +
+						'</div>' +
+						'<div class="unit">' +
+							'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
+						'</div>' +
+						'<div class="nights">' +
+							'<span>' + day_diff + ' malam</span>' +
+							'<input type="hidden" name="lama_inap" value="' + day_diff + '">' +
+						'</div>' +
+						'<div class="total-price">' +
+							'<span>Rp 0</span>' +
+							'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
+						'</div>' +
+					'</div>';
 
-			var $extra_item = 
-				'<div id="' + id_item + '" class="order flex">' +
-					'<div class="flex name">' +
-						'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
-						'<span class="line"></span>' +
-						'<span>' + nama_item + '</span>' + 
-					'</div>' +
-					'<div class="price">' + 
-						'<span>' + harga_string + ' / pcs</span>' +
-						'<input type="hidden" name="harga" value="' + harga + '">' +
-					'</div>' +
-					'<div class="unit">' +
-						'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
-					'</div>' +
-					'<div class="total-price">' +
-						'<span>Rp 0</span>' +
-						'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
-					'</div>' +
-				'</div>';
+				$('#step-3 .orders').append($extra_item);
+			})
 
-			$('#step-3 .orders').append($extra_item);
-		})
+			$('.order input[type="number"]').on('keyup', inputNumberListener);
+			$('.order input[type="number"]').on('change', inputNumberListener);
+			$('.order input.checkbox').on('change', checkboxListener);
+			$('#step-3 .order').on('click', function(e) {
+				var condition = $(this).hasClass('selected');
+				var target = $(this).find('.input-unit');
 
-		$('.order input[type="number"]').on('keyup', inputNumberListener);
-		$('.order input[type="number"]').on('change', inputNumberListener);
-		$('.order input.checkbox').on('change', checkboxListener);
-		$('#step-3 .order').on('click', function(e) {
-			var condition = $(this).hasClass('selected');
-			var target = $(this).find('.input-unit');
-
-			console.log(condition);
-
-			if (condition) {
-				if (! target.is(e.target)) {
-					$(this).removeClass('selected');
-					$(this).find('input[type="number"]').attr('disabled', true);
-					$(this).find('input[type="number"]').val(0).change();
+				if (condition) {
+					if (! target.is(e.target)) {
+						$(this).removeClass('selected');
+						$(this).find('input[type="number"]').attr('disabled', true);
+						$(this).find('input[type="number"]').val(0).change();
+					}
+				} else {
+					$(this).addClass('selected');
+					$(this).find('input[type="number"]').val(1).change();
+					$(this).find('input[type="number"]').attr('disabled', false);
+					$(this).find('input[type="number"]').focus();
 				}
-			} else {
-				$(this).addClass('selected');
-				$(this).find('input[type="number"]').val(1).change();
-				$(this).find('input[type="number"]').attr('disabled', false);
-				$(this).find('input[type="number"]').focus();
-			}
-		})
+			})
+		}
+
+		
 	}
 
 
@@ -1837,9 +2275,10 @@
 
 	function inputNumberListener() {
 		var harga = $(this).closest('.order').find('input[name="harga"]').val();
+		var lama_inap = $(this).closest('.order').find('input[name="lama_inap"]').val();
 		var qty = $(this).val();
 
-		var total_harga = qty * parseInt(harga);
+		var total_harga = qty * parseInt(harga) * parseInt(lama_inap);
 
 		$(this).closest('.order').find('input[name="total_harga"]').val(total_harga);
 
@@ -1896,6 +2335,52 @@
 
     	return Math.round(day_diff);
     }
+
+    function showLoader(message) {
+    	$('.loading-text').text(message);
+    	$('.loading-screen').removeClass('gone');
+    	setTimeout(function() {
+    		$('.loading-screen').removeClass('disappear');	
+    	}, 200);
+    }
+
+    function hideLoader() {
+    	$('.loading-screen').addClass('disappear');	
+    	setTimeout(function() {
+    		$('.loading-screen').addClass('gone');	
+    	}, 500);	
+    }
+
+    function calculateDiscount() {
+    	$.each(orders.items, function(index, item) {
+    		var id_item = item.item_id;
+    		var total_harga = item.after_diskon;
+    		var diskon = item.diskon;
+
+    		if (diskon != 0) {
+    			total_harga = accounting.formatMoney(
+					total_harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+    			diskon = accounting.formatMoney(
+					diskon, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+	    		$('#step-6 .orders').find('.order#' + id_item).find('.total-price span').text(total_harga);
+	    		$('#step-6 .orders').find('.order#' + id_item).find('.total-price').append('<label class="label-disc">DISC ' + diskon + '</label>');
+    		}
+    			
+    	})
+    }
 	
+	function calculateDiscountBill() {
+		var grand_total = 0;
+
+		$.each(orders.items, function(index, item) {
+			var after_diskon = item.after_diskon;
+
+			grand_total = grand_total + after_diskon;
+		});
+
+		return grand_total;
+	}
+
 </script>
 </html>
