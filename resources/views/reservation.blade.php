@@ -22,6 +22,10 @@
 			font-family: Raleway !important;
 		}
 
+		button {
+			letter-spacing: 1px;
+		}
+
 		.loading-screen {
 			background: #fff;
 			width: 100%;
@@ -258,6 +262,7 @@
 		.order>div {
 			padding: 25px;
 			position: relative;
+			white-space: nowrap;
 		}
 
 		#step-2 .orders .order .nama {
@@ -1001,7 +1006,7 @@
         }
 
         .orders {
-        	border: 1px solid #c9c9c9;
+        	border: 1px solid #e4e4e4;
         	margin-top: 10px;
         }
 
@@ -1011,7 +1016,7 @@
         }
 
         .orders .order {
-        	border-top: 1px solid #c9c9c9;
+        	border-top: 1px solid #f1f1f1;
         	cursor: pointer;
         }
 
@@ -1155,7 +1160,7 @@
 
         
         .input-wrapper {
-    	    border: 1px solid #b5b5b5;
+    	    border: 1px solid #e4e4e4;
 		    border-radius: 8px;
 		    padding: 15px 25px;
 		    margin-left: 25px;
@@ -1192,6 +1197,73 @@
 			font-size: 1.3em;
 		    letter-spacing: 3px;
 		    margin-top: 20px;
+		}
+
+		.form-dialog {
+		    top: -120px;
+    		left: 600px;
+			position: absolute;
+			z-index: 5;
+			background: #fff;
+			border-radius: 5px;
+			box-shadow: 0px 5px 20px 0px #000;
+		}
+
+		.form-dialog>div {
+			padding: 30px 40px;
+		}
+
+		.form-dialog .header {
+			padding: 30px 0px;
+		}
+
+		.form-dialog .header h3 {
+		    font-family: Raleway;
+		    text-align: center;
+		    margin: 0;
+		    padding: 20px;
+		    font-size: 1.2em;
+		    letter-spacing: 2px;
+		    border-top: 1px solid #f5f5f5;
+		    border-bottom: 1px solid #f5f5f5;
+		}
+
+		.form-dialog .header p {
+		    text-align: center;
+		    font-size: 0.95em;
+		    letter-spacing: 1.5px;
+		    font-weight: 200;
+		    margin-top: 20px;
+		}
+
+		.form-dialog .body>div {
+			margin-top: 15px;
+		}
+
+		.form-dialog .body>div:first-child {
+			margin-top: 0px;
+		}
+
+		.form-dialog .input-wrapper {
+		    margin: 0;
+    		min-width: 350px;
+		}
+
+		.form-dialog .input-wrapper label {
+			margin: 0;
+			margin-right: 30px;
+			width: 60px;
+		}
+
+		.form-dialog button {
+			width: 100%;
+			background: #0ee6a2;
+		    font-weight: 700;
+		    letter-spacing: 2px;
+		    color: #fff;
+		    box-shadow: 0px 2px 0px 0px #10cc91;
+		    /*background: linear-gradient(360deg, rgb(26, 226, 178) 0%, rgb(25, 255, 194) 100%);*/
+		    padding: 12px;
 		}
 	</style>
 </head>
@@ -1383,11 +1455,45 @@
 
 		<div id="step-4" class="form-reservasi gone" condition="must-filled">
 			<div class="wrapper">
-				<div class="form-title animation anim-scale-black disappear">
-					<h1>Beritahu Kami Tentang Anda</h1>
+				<div class="form-title flex animation anim-scale-black disappear">
+					<h1 class="flex-grow-1">Beritahu Kami Tentang Anda</h1>
+					<div>
+						<button id="btn-open-guest" class="btn">Pesan untuk tamu</button>
+						
+					</div>
+					
 				</div>
 				<div class="form animation anim-scale-black disappear">
 					<div class="bg"></div>
+					<div class="form-dialog animation anim-blink disappear gone">
+						<div class="header">
+							<h3>Identitas Tamu</h3>
+							<p>Informasi data diri tamu yang akan check-in</p>
+						</div>
+						<div class="body">
+							<div>
+								<div class="input-wrapper">
+									<label>NAMA</label>
+									<input type="text" name="name_for" placeholder="Nama Lengkap">
+								</div>
+							</div>
+							<div>
+								<div class="input-wrapper">
+									<label>TELEPON</label>
+									<input type="text" name="phone_for" placeholder="xxxx-xxxx-xxxx">
+								</div>
+							</div>
+							<div>
+								<div class="input-wrapper">
+									<label>E-MAIL</label>
+									<input type="text" name="email_for" placeholder="john_doe@mail.com">
+								</div>
+							</div>
+						</div>
+						<div>
+							<button id="btn-confirm-guest" class="btn">Ok !</button>
+						</div>
+					</div>		
 					<span>Nama saya </span>
 					<div class="input-field">
 						<span id="input-nama" class="input-field-toggle" default="Nama Lengkap Anda">Nama Lengkap Anda</span>
@@ -1401,7 +1507,7 @@
 							</div>
 						</div>
 					</div>
-					<span>, silahkan hubungi saya di </span>
+					<span>silahkan hubungi saya di </span>
 					<div class="input-field">
 						<span id="input-telepon" class="input-field-toggle" default="0000-0000-0000">0000-0000-0000</span>
 						<div class="text-field-wrapper animation">
@@ -1562,6 +1668,7 @@
 		'full_payment' : true,
 		'name_for' : '',
 		'phone_for' : '',
+		'email_for' : '',
 		'promo_id' : null,
 		'items' : []
 	};
@@ -1689,8 +1796,12 @@
 			$('.bg').hide();
 
 			$('.input-field ul.show').removeClass('fade');
+			$('.text-field-wrapper.show').removeClass('fade');
+			$('.form-dialog').addClass('disappear');
 			setTimeout(function() {
 				$('.input-field ul.show').removeClass('show');
+				$('.text-field-wrapper.show').removeClass('show');
+				$('.form-dialog').addClass('gone');
 			}, 500);
 		})
 
@@ -1913,7 +2024,7 @@
 				var obj_kamar = {
 					'item_detail_id' : id_kamar,
 					// 'price_id' : id_harga,
-					'person' : 1,
+					'person' : unit,
 					'start_time' : start_time,
 					'end_time' : end_time
 				};
@@ -1954,7 +2065,7 @@
 				var obj_kamar = {
 					'item_detail_id' : id_kamar,
 					// 'price_id' : id_harga,
-					'person' : 1,
+					'person' : unit,
 					'start_time' : start_time,
 					'end_time' : end_time
 				};
@@ -1976,6 +2087,8 @@
 			})
 
 			obj_booking.items = array_item;
+
+			console.log(obj_booking);
 
 			orders.grand_total = grand_total;
 
@@ -2033,6 +2146,36 @@
 					}
 				}
 			)
+		})
+
+		$('#btn-open-guest').on('click', function() {
+			$('.bg').show();
+			$('.form-dialog').removeClass('gone');
+
+			setTimeout(function() {
+				$('.form-dialog').removeClass('disappear');				
+			}, 200);
+		})
+
+		$('#btn-confirm-guest').on('click', function() {
+			$('.bg').hide();
+			$('.form-dialog').addClass('disappear');
+
+			var name_for = $('input[name="name_for"]').val();
+			var phone_for = $('input[name="phone_for"]').val();
+			var email_for = $('input[name="email_for"]').val();
+
+			if (name_for != '') {
+				obj_booking.name_for = name_for;
+				obj_booking.phone_for = phone_for;
+				obj_booking.email_for = email_for;
+
+				$('#btn-open-guest').text('Tamu : ' + name_for);
+			}
+
+			setTimeout(function() {
+				$('.form-dialog').addClass('gone');								
+			}, 500);
 		})
 	})
 
