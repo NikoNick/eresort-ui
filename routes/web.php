@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('auth/callback', 'Auth\LoginController@callback')->name('auth.callback');
+Route::get('redirect', 'Auth\LoginController@redirect')->name('auth.redirect');
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('search', 'SearchController@index')->name('search.index');
 Route::get('hasil', 'SearchController@resultResort')->name('search.result.resort');
