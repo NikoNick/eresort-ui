@@ -8,21 +8,19 @@
 			@endslot
 		@endcomponent
 		<div class="content">
-			<div class="right-content">
-				<div class="result-info">
-					<div class="desc">
-						<p>SEARCH > <b class="business-name">CAMPING AREA</b></p>
-						<span id="count-data"></span>
-					</div>
-					<div class="sorting">
-						<small>SORT BY</small>
-						<ul class="inline">
-							<li><small>HARGA</small></li><li class="active"><small>LUAS AREA</small></li>
-						</ul>
-					</div>
+			<div class="result-info">
+				<div class="desc">
+					<p>SEARCH > <b class="business-name">CAMPING AREA</b></p>
+					<span id="count-data"></span>
 				</div>
-				<div class="thumbnails">
-				</div>
+				<!-- <div class="sorting">
+					<small>SORT BY</small>
+					<ul class="inline">
+						<li><small>HARGA</small></li><li class="active"><small>LUAS AREA</small></li>
+					</ul>
+				</div> -->
+			</div>
+			<div class="thumbnails">
 			</div>
 		</div>
 	</div>
@@ -39,6 +37,29 @@
 
 @section('css-bottom')
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/hasil.css') }}">
+	<style type="text/css">
+	@media screen and (max-width: 600px) {
+		.background {
+			padding: 0px;
+		}
+
+		.thumbnails {
+	        column-count: 1 !important;
+	        /*background-color: red;*/
+	    }
+	    .thumbnails .thumbnail {
+	        border-radius: 0px;
+	        height: 250px;
+	    }
+	    .thumbnails .card {
+	        margin-bottom: 20px;
+	    }
+	    .thumbnails .desc {
+	        font-size: 1em;
+	        padding: 35px 45px 20px;
+	    }
+	}
+	</style>
 @endsection
 
 @section('js-bottom')

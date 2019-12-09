@@ -1,13 +1,23 @@
+* {
+    font-size: 1em;
+}
+
 a, a:hover {
     color: inherit;
     border: 0;
 }
 body {
     font-family: Raleway !important;
+    overflow-x: hidden;
 }
 
 button {
     background: #0fffbe;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
 }
 
 .flex-grow-1 {
@@ -15,65 +25,113 @@ button {
 }
 
 .background {
-    background: url('../img/thumbnail-5.jpg');
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 3% 10%;
+    padding-top: 8%;
+    padding-bottom: 5%;
+    position: relative;
     width: 100%;
-    height: 100vh;
-    background-size: 100%;
-    overflow: hidden;
 }
 
-.background:before {
+.background .bg-image {
+    height: 100vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: all 0.6s;
+    transition-timing-function: cubic-bezier(0.25, 0.55, 0.265, 1);
+}
+.background .bg-image img {
+    height: 100%;
+    width: 100%;
+}
+.background .bg-image:before {
+    background: #000;
+    background: linear-gradient(135deg, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 150%);
+    content: '';
+    height: 100%;
+    opacity: 0.85;
     position: absolute;
     width: 100%;
-    height: 100%;
+}
+
+/*.background:before {
     background: #000;
-    opacity: 0.53;
     content: '';
+    height: 100%;
+    opacity: 0.53;
+    position: absolute;
+    width: 100%;
+}*/
+
+.gone {
+    display: none !important;
+}
+
+.line {
+    flex-grow: 1;
+    height: 2px;
+    margin-right: 15px;
+    margin-left: 50px;
+    border-top: 1px solid #00000052;
 }
 
 .navbar {
-    width: 100%;
-    display: flex;
-    padding: 70px 100px;
     align-items: center;
+    background: #fff;
+    border-radius: 0px;
+    display: flex;
+    left: 0;
+    padding: 3% 10%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }
-
+.navbar.transparent {
+    background: transparent;
+}
+.navbar .nav-trigger {
+    display: none;
+    position: absolute;
+    /*margin-right: 20px;*/
+}
 .navbar .logo, .navbar .special {
     width: 10%;
 }
-
 .navbar .logo h1 {
-    color: #fff;
     font-size: 1.5em;
     font-weight: bold !important;
     font-family: Raleway !important;
     letter-spacing: 4px;
     margin: 0;
 }
-
 .navbar .nav {
     flex-grow: 1;
     text-align: center;
 }
-
 .navbar .nav>li {
     display: inline-block;
-    margin: 0px 30px;
     font-size: 1em;
     font-weight: 500;
-    color: #fff;
     letter-spacing: 2px;
+    margin: 0px 30px;
     position: relative;
 }
-
-.navbar .nav>li>span {
+.navbar .nav>li>a {
+    padding: 0;
+}
+.navbar .nav>li span {
     position: relative;
 }
-
 .navbar .nav>li.active {
     font-weight: 700;
 }
-
 .navbar .nav>li.active:before {
     content: '';
     position: absolute;
@@ -84,15 +142,17 @@ button {
     background: #0fffbe;
     opacity: 0.6;
 }
-
 .navbar .special {
     text-align: right;
 }
-
 .navbar .special button {
-    padding: 12px 25px;
     font-weight: 600;
     letter-spacing: 2px;
+    padding: 10px 25px;
+}
+
+.text-white {
+    color: #fff;
 }
 
 .nav.inline>li {
@@ -147,6 +207,7 @@ button {
 
 .content {
     position: relative;
+    flex-grow: 1;
 }
 
 .content .tab {
@@ -161,8 +222,8 @@ button {
     font-family: Raleway;
     text-align: center;
     color: #fff;
-    margin-top: 120px;
-    margin-bottom: 50px;
+    margin-top: 12%;
+    margin-bottom: 2%;
     font-weight: 400;
     letter-spacing: 5px;
     word-spacing: 10px;
@@ -188,18 +249,18 @@ button {
     font-size: 1.2em;
 }
 
-.content .field-row {
+.field-row {
     display: flex;
-    padding: 15px 420px;
+    padding: 1% 20%;
     align-items: stretch;
 }
 
-.content .field-row .input-wrapper {
-    margin-right: 30px;
+.field-row .input-wrapper {
+    margin-right: 4%;
     flex-grow: 1;
 }
 
-.content .field-row input, .content .field-row select {
+.field-row input, .field-row select {
     padding: 20px 25px;
     font-size: 1.1em;
     letter-spacing: 3px;
@@ -213,12 +274,12 @@ button {
     width: 100%;
 }
 
-.content .field-row input[type="number"] {
+.field-row input[type="number"] {
     padding: 20px 0px;
     width: 50px;
 }
 
-.content .field-row button {
+.field-row button {
     padding: 20px 55px;
     font-weight: 800;
     letter-spacing: 2px;
@@ -234,7 +295,7 @@ button {
     text-align: center;
     color: #fff;
     letter-spacing: 2px;
-    margin-top: 150px;
+    margin-top: 8%;
 }
 
 .ui-widget-content {
@@ -270,4 +331,180 @@ button {
     background: #00daff;
     font-weight: normal;
     color: #fff;
+}
+
+.thumbnails {
+    column-count: 3;
+    column-gap: 70px;
+}
+@media screen and (max-width: 600px) {
+    .navbar {
+        display: block;
+        padding: 7% 10% !important;
+    }
+    .navbar .nav {
+        display: none;
+    }
+    .navbar .nav>li {
+        display: block;
+    }
+    .navbar .logo {
+        width: 100% !important;
+        /*flex-grow: 1;*/
+        text-align: center;
+    }
+    .navbar .logo h1 {
+        font-size: 1em;
+    }
+    .navbar .nav-trigger {
+        display: block;
+    }
+    .navbar .special {
+        display: none;
+    }
+}
+.thumbnails .card {
+    column-break-inside: avoid;
+    display: inline-block;
+    margin-bottom: 50px;
+    width: 100%;
+}
+.thumbnails .thumbnail {
+    height: 300px;
+    border: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 25px;
+    background-size: cover;
+    /*margin-bottom: 40px;*/
+    /*box-shadow: 2px 2px 0px 0px #656565;*/
+    background-image: url('../img/thumbnail-1.jpeg');
+}
+.thumbnails .thumbnail span {
+    text-shadow: 0px 0px 5px #000;
+    letter-spacing: 4px;
+    color: #fff;
+    border-radius: 5px;
+    margin-right: 8px;
+    font-weight: 900;
+}
+.thumbnails .desc {
+    /*height: 100%;*/
+    width: 100%;
+    background: #fff;
+    /*margin-top: 200px;*/
+    color: #000;
+    font-size: 1.2em;
+    padding: 20px 15px;
+    padding-top: 35px;
+    position: relative;
+    box-sizing: border-box;
+}
+.thumbnails .desc:before {
+    background: #000;
+    box-shadow: 10px 0px 0px 0px, 20px 0px 0px 0px;
+    /*content: '';*/
+    height: 20px;
+    left: 25px;
+    position: absolute;
+    top: 0px;
+    width: 3px;
+}
+.thumbnails .desc .header {
+    display: flex;
+    align-items: end;
+}
+.thumbnails .desc .header>div:first-child {
+    flex-grow: 1;
+}
+.thumbnails .desc .header>div:first-child>p {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.thumbnails .desc .header>.location {
+    position: relative;
+    width: 40px;
+    letter-spacing: 1px;
+    line-height: 15px;
+    font-size: 0.55em;
+    font-weight: 900;
+    word-break: break-word;
+    padding: 10px 0px;
+}
+.thumbnails .desc .header>.location:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid #00cca4;
+    top: 0;
+    left: 8px;
+}
+.thumbnails .desc .header>.location span {
+    background: #fff;
+    padding: 2px 0px;
+    position: relative;
+    width: 60px;
+    text-transform: uppercase;
+}
+.thumbnails .desc .header b {
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.2em;
+}
+.thumbnails .desc .header small {
+    font-size: 0.5em;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+.thumbnails .desc .header p {
+    letter-spacing: 1px;
+    /*border-bottom: 1px dashed #dcdcdc;*/
+    padding-bottom: 20px;
+    /*margin-top: 10px;*/
+}
+.thumbnails .desc .header p span {
+    font-size: 1em;
+    font-weight: 500;
+    /*color: #ffc53e;*/
+}
+.thumbnails .desc .header p span.luas-area {
+    font-size: 1.8em;
+}
+.thumbnails .desc .variant {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.thumbnails .desc .variant .line {
+    height: 2px;
+    border-top: 1px solid #b5b5b5;
+    flex-grow: 1;
+    margin: 0px 20px;
+}
+.thumbnails .desc .variant p {
+    margin: 0;
+}
+.thumbnails .desc .list-icons {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: wrap;
+}
+.thumbnails .desc .list-icons span {
+    flex-grow: 1;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+.thumbnails .desc .room-info {
+    /*display: flex;*/
+    padding: 10px 0px;
+    font-size: 0.8em;
+    border-bottom: 1px dashed #dcdcdc;
+    letter-spacing: 2px;
+}
+
+.thumbnails .desc .room-info>div {
+    flex-grow: 1;
 }

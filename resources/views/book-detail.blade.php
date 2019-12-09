@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Palawi Resort</title>
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/custom-fonts.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/animation.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('font awesome/css/font-awesome.min.css') }}">
-	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+@extends('layouts/app')
+
+@section('css-bottom')
 	<style type="text/css">
 		a, a:hover {
 			color: inherit;
@@ -292,17 +282,7 @@
 			left: -50px;
 		}
 
-		.background {
-			position: relative;
-			background: #fff;
-			width: 100%;
-			/*height: 100vh;*/
-			background-size: 130%;
-			/*overflow: hidden;*/
-			display: flex;
-			flex-direction: column;
-			/*filter: blur(1px);*/
-		}
+		
 
 		.background.show-invoice .navbar .special {
 			display: block;
@@ -313,94 +293,7 @@
 			padding-top: 50px;
 		}
 
-		.navbar {
-			width: 100%;
-			display: flex;
-			padding: 30px 250px;
-			padding-top: 100px;
-			align-items: center;
-			position: relative;
-			margin: 0;
-			z-index: 1;
-		}
-
-		.navbar .logo {
-			/*flex-grow: 1;*/
-			margin-right: 60px;
-		}
-
-		.navbar .logo h1 {
-			color: #000;
-			font-size: 1.5em;
-			font-weight: bold !important;
-			font-family: Raleway !important;
-			letter-spacing: 4px;
-			margin: 0;
-		}
-
-		.navbar .nav>li {
-			display: inline-block;
-			margin-left: 30px;
-			font-size: 0.9em;
-			/*font-weight: 700;*/
-			color: #000;
-			padding: 5px 10px;
-			letter-spacing: 2px;
-		}
-
-		.navbar .nav>li.active {
-			/*margin-right: 20px;*/
-			position: relative;
-			font-weight: 600;
-			box-shadow: -10px 10px 0px 0px #fff, 
-						10px -10px 0px 0px #fff, 
-						1px 1px 0px 0px #000, 
-						-1px -1px 0px 0px #000;
-		}
-
-		/*.navbar .nav>li.active:before {
-		    content: '';
-		    position: absolute;
-		    top: 6px;
-		    left: -20px;
-		    width: 8px;
-		    height: 8px;
-		    background: #000;
-		    border-radius: 50px;
-		}
-
-		.navbar .nav>li.active:after {
-		    content: '';
-		    position: absolute;
-		    top: 6px;
-		    right: -20px;
-		    width: 8px;
-		    height: 8px;
-		    background: #000;
-		    border-radius: 50px;
-		}*/
-
-		.navbar .special {
-			flex-grow: 1;
-			text-align: right;
-			letter-spacing: 2px;
-			display: none;
-		}
-
-		.navbar .special button {
-			padding: 12px 25px;
-			font-weight: 600;
-			letter-spacing: 2px;
-		}
-
-		.navbar .line {
-        	width: 100%;
-        	height: 2px;
-        	background: #dcdcdc;
-        	position: absolute;
-        	bottom: 0px;
-        	left: 0px;
-        }
+		
 
         .invoice {
         	padding: 30px 120px;
@@ -940,9 +833,281 @@
 		.text-red {
 			color: #ff2a2a;
 		}
+
+		.mobile-visible {
+			display: none;
+		}
+
+		.md-form {
+			position: relative;
+			margin-top: 5.5rem;
+		}
+
+		.md-form label {
+			position: absolute;
+			top: 0;
+			color: #b5b5b5;
+			font-size: 1.2em;
+			font-weight: 600;
+			letter-spacing: 2px;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form label.active {
+		    transform: translateY(-1.8rem) scale(0.8);
+    		font-size: 1em;
+		}
+
+		.md-form input, .md-form select {
+			border: none;
+			box-shadow: none;
+			font-size: 1.2em;
+			color: #000;
+			font-style: italic;
+			letter-spacing: 2px;
+			height: auto;
+			padding: 1.2rem 0 !important;
+			border-radius: 0;
+			border-bottom: 1px solid #dcdcdc;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form>input:focus, .md-form>select:focus {
+			outline: none;
+			box-shadow: none;
+		    border-bottom: 1px solid #4285f4;
+		    -webkit-box-shadow: 0 1px 0 0 #4285f4;
+		    box-shadow: 0 1px 0 0 #4285f4;
+		}
+
+		.md-form>input:focus+label, .md-form>select:focus+label {
+			transform: translateY(-1.8rem) scale(0.8);
+			color: #4285f4;
+		}
+
+		.md-form .md-input-wrapper {
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid #dcdcdc;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form .md-input-wrapper input, .md-form .md-input-wrapper .date-wrapper {
+			flex-grow: 1;
+			border: 0;
+			background: transparent;
+		}
+
+		.md-form .md-input-wrapper input[type="number"] {
+			flex-grow: 0;
+			width: 10%;
+			background: transparent;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper {
+			flex-grow: 1;
+			position: relative;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper .date-string {
+			font-size: 1.2em;
+			color: #000;
+			font-style: italic;
+			letter-spacing: 2px;
+			padding: 1.2rem 0 !important;
+			position: absolute;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper input {
+			opacity: 0;
+		}
+
+		.md-form .md-input-wrapper:focus-within {
+			border-bottom: 1px solid #4285f4;
+		    -webkit-box-shadow: 0 1px 0 0 #4285f4;
+		    box-shadow: 0 1px 0 0 #4285f4;
+		}
+
+		.md-form .md-input-wrapper:focus-within input {
+			outline: none;
+			box-shadow: none;
+		}
+
+		.md-form .md-input-wrapper:focus-within+label {
+			transform: translateY(-1.8rem) scale(0.8);
+			color: #4285f4;
+		}
+
+		.md-form .md-input-wrapper .separator {
+			margin: 0 20px;
+			font-style: italic;
+			letter-spacing: 1px;
+			font-weight: 600;
+			color: #b5b5b5;
+			font-size: 1em;
+		}
+
+		@media screen and (max-width: 600px) {
+			.background {
+				padding-top: 20%;
+			}
+
+			.mobile-invisible, .info {
+				display: none;
+			}
+			.mobile-visible {
+				display: block;
+			}
+
+			.background-pattern {
+				display: none !important;
+			}
+
+			#form-invoice {
+				padding: 0px;
+			}
+
+			#form-invoice h1 {
+				font-size: 1.5em;
+				margin-bottom: 10px;
+			}
+
+			.btn-invoice {
+				display: block;
+				width: 100%;
+				margin-top: 50px;
+			}
+
+			.new-invoice {
+				padding: 0px;
+			}
+
+			.new-invoice .header {
+				display: flex;
+			}
+
+			.new-invoice .header h1 {
+				margin: 0;
+			    font-size: 2em;
+			    letter-spacing: 4px;
+			    flex-grow: 1;
+			    text-align: left;
+			}
+
+			.new-invoice .header p {
+			    font-size: 0.8em;
+			    letter-spacing: 1px;
+			}
+
+			.main-info {
+				font-size: 0.6em;
+			}
+
+			.main-info p>b>span {
+				letter-spacing: 2px;
+			}
+
+			.order.header {
+				/*display: none;*/
+				font-size: 0.8em;
+			}
+
+			.orders {
+				font-size: 0.9em;
+				border: none;
+				min-height: auto;
+			}
+
+			.order {
+				font-size: 0.8em;
+				margin: 0;
+				letter-spacing: 1px;
+				border: none !important;
+				/*border-top: 1px solid #f5f5f5 !important;*/
+				padding: 0px;
+			}
+			.order>div {
+				padding: 3% 2% !important;
+			}
+
+			.order .name {
+				padding-left: 0px !important;
+				text-transform: initial;
+				font-weight: 500;
+			}
+
+			.order .line {
+				display: none;
+			}
+
+			.order .index {
+				margin-right: 10px;
+			}
+
+			.order .nights, .order .price, .order .availability {
+				display: none;
+			}
+
+			.invoice-info {
+			    font-size: 0.7em;
+    			align-items: center !important;
+    			border: none;
+			}
+
+			.invoice-info>div {
+				padding: 0px;
+			}
+
+			.invoice-info .recipient {
+				display: none;
+			}
+
+			.invoice-info .payment-status {
+				border: none;
+				padding: 0px;
+
+			}
+			.invoice-info .payment-status h1 {
+				font-size: 2em;	
+			}
+
+			.invoice-info .payment-bill {
+				flex-grow: 1;
+			}
+
+			.invoice-info .payment-bill .flex p {
+				width: 30%;
+			}
+
+			.infos {
+				display: block;
+			}
+
+			.infos button {
+				display: block;
+				width: 100%;
+			    font-size: 1em;
+			    padding: 4% 10%;
+			    margin-top: 20px;
+			}
+
+			.mobile-info {
+				margin-right: 10px;
+				flex-grow: 1;
+				margin-top: 20px;
+			}
+			.mobile-info p {
+				font-size: 1.2em;
+			}
+		}
 	</style>
+@endsection
 </head>
 <body>
+@section('body')
 	<div class="loading-screen animation anim-blink disappear gone">
 		<div class="loading-wrapper">
 			<div class="loader"></div>
@@ -950,7 +1115,7 @@
 		</div>
 	</div>
 	<div class="background">
-		<div class="navbar animation anim-blink">
+		<!-- <div class="navbar animation anim-blink">
 			<div class="logo">
 				<h1>PALAWI</h1>
 			</div>
@@ -963,12 +1128,16 @@
 			<div class="special">
 				<span><b>SUDAH BAYAR ?</b> Upload Bukti Transfer</span>
 				<a class="marleft-15"><b>UPLOAD</b></a>
-				<!-- <button class="btn btn-warning"><i class="fas fa-sign-in-alt"></i> LOGIN</button> -->
 			</div>
-		</div>
+		</div> -->
+		@component('components/navbar')
+			@slot('special')
+				<!-- <button class="btn"><i class="fas fa-sign-in-alt"></i> LOGIN</button> -->
+			@endslot
+		@endcomponent
 		<div id="form-invoice" class="animation anim-blink">
 			<h1>Cek Pesanan Anda.</h1>
-			<div class="flex stretch">
+			<div class="flex stretch mobile-invisible">
 				<p>Silahkan cek e-mail yang anda gunakan saat pemesanan untuk mendapatkan nomor invoice pesanan anda</p>
 				<div class="flex-grow-1">
 					<div class="field-row marbot-30">
@@ -982,11 +1151,22 @@
 							<b>E-MAIL</b>
 							<input type="text" name="email" placeholder="Masukkan e-mail anda" spellcheck="false">
 						</div>
-						<button id="btn-invoice" class="btn btn-warning">Cek Invoice</button>
+						<button class="btn-invoice btn btn-warning">Cek Invoice</button>
 					</div>	
 				</div>
 				
 			</div>
+		</div>
+		<div class="mobile-visible animation anim-blink">
+			<div class="md-form">
+				<input type="text" id="form1" class="form-control" name="invoice" spellcheck="false" placeholder="Masukkan Nomor Invoice">	
+				<label for="form1" class="active">NO. INVOICE</label>
+			</div>
+			<div class="md-form">
+				<input type="text" id="form1" class="form-control" name="email" spellcheck="false" placeholder="Masukkan E-mail Anda">	
+				<label for="form1" class="active">EMAIL</label>
+			</div>
+			<button class="btn-invoice btn btn-black">Cek Invoice</button>
 		</div>
 		<div class="warning animation anim-slide-down-up disappear gone">
 			<h1>Mohon maaf atas ketidaknyamanan ini</h1>
@@ -1176,8 +1356,21 @@
 						<p class="val-end-date font-number">01 Nov 2019</p>
 					</div>
 					<div class="info nav-button">
-						<button id="btn-upload-form" class="btn btn-black">BUKTI TRANSFER</button>
+						<button class="btn btn-black btn-upload-form">BUKTI TRANSFER</button>
 					</div>
+				</div>
+				<div class="infos">
+					<div class="flex">
+						<div class="mobile-info">
+							<span><b>CHECK-IN</b></span>
+							<p class="val-start-date font-number">31 Okt 2019</p>
+						</div>
+						<div class="mobile-info">
+							<span><b>CHECK-OUT</b></span>
+							<p class="val-end-date font-number">01 Nov 2019</p>
+						</div>
+					</div>
+					<button class="btn btn-black btn-upload-form">BOOK NOW</button>
 				</div>
 				<div class="order header">
 					<div class="name flex">
@@ -1382,7 +1575,9 @@
 	</div>
 
 	<input type="hidden" name="booking_id">
-</body>
+@endsection
+
+@section('js-bottom')
 <script type="text/javascript">
 	var booking;
 	var interval;
@@ -1424,9 +1619,17 @@
 
 	})
 
-	$('#btn-invoice').on('click', function() {
-		var invoice = $('input[name=invoice]').val();
-		var email = $('input[name=email]').val();
+	$('.mobile-visible input').on('change', function() {
+		var input_name = $(this).attr('name');
+		var value = $(this).val();
+			
+		var $target = $('#form-invoice').find('input[name="' + input_name + '"]');
+			$target.val(value);
+	})
+
+	$('.btn-invoice').on('click', function() {
+		var invoice = $('#form-invoice input[name=invoice]').val();
+		var email = $('#form-invoice input[name=email]').val();
 
 		showLoader('Memuat Invoice');
 
@@ -1495,7 +1698,7 @@
 							'<span>' + nama_kamar + '</span>' + 
 						'</div>' +
 						'<div class="price">' + 
-							'<span>' + harga + ' / malam</span>' +
+							'<span>' + harga + '<span class="mobile-invisible"> / malam</span></span>' +
 						'</div>' +
 						'<div class="unit">' +
 							'<span>x ' + unit + '</span>' +
@@ -1645,7 +1848,7 @@
 		readURL(file);
 	})
 
-	$('#btn-upload-form').on('click', function() {
+	$('.btn-upload-form').on('click', function() {
 		$('.bg').removeClass('gone');
 
 		setTimeout(function() {
@@ -1741,10 +1944,12 @@
 
 		$('.background').find('.navbar').addClass('disappear');
 		$('.background').find('#form-invoice').addClass('disappear');
+		$('.background').find('.mobile-visible').addClass('disappear');
 
 		setTimeout(function() {
 			$('.background').addClass('show-invoice');	
 			$('#form-invoice').addClass('gone');
+			$('.mobile-visible').addClass('gone');
 			$('.new-invoice').removeClass('gone');
 			$('.background-pattern').removeClass('gone');
 		}, 200);
@@ -1817,4 +2022,4 @@
     	}, 500);	
     }
 </script>
-</html>
+@endsection

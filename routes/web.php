@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'SearchController@index')->name('home');
 Route::get('search', 'SearchController@index')->name('search.index');
 Route::get('hasil', 'SearchController@resultResort')->name('search.result.resort');
 Route::get('hasil-camping', 'SearchController@resultCamping')->name('search.result.camping');

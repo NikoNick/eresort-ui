@@ -1,5 +1,7 @@
 @extends('layouts/app')
 
+@section('additional-class', 'text-white')
+
 @section('body')
 	<div class="background">
 		@component('components/navbar')
@@ -7,6 +9,9 @@
 				<button class="btn"><i class="fas fa-sign-in-alt"></i> LOGIN</button>
 			@endslot
 		@endcomponent
+		<div class="bg-image">
+			<img src="{{ asset('../img/index.jpg') }}">
+		</div>
 		<div class="search-nav">
 			<ul class="nav inline">
 				<li class="active"><a href="#tab-1">RESORT</a></li><li><a href="#tab-2">CAMPING</a></li><li><a href="#tab-3">OUTBOND</a></li>
@@ -14,7 +19,7 @@
 		</div>
 		<div class="content">
 			<div id="tab-1" class="tab">
-				<h1>Pastikan Liburanmu Nyaman dengan Palawi</h1>
+				<h1>Liburan Nyaman dengan Palawi</h1>
 				<form method="GET" action="/hasil">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="field-row">
@@ -107,10 +112,6 @@
 			<p><italic>COPYRIGHT</italic> PT. PALAWI RESORT BATURRADEN</p>
 		</div>
 	</div>
-@endsection
-
-@section('css-bottom')
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 @endsection
 
 @section('js-bottom')

@@ -32,7 +32,7 @@ class CatalogController extends Controller {
     $waktu = request('waktu');
     $business_id = request('business_id');
     $result = json_decode(request('data'));
-    return view('detail', compact('result', 'start_date', 'end_date', 'business_id', 'waktu'));
+    return view('hasil-2', compact('result', 'start_date', 'end_date', 'business_id', 'waktu'));
   }
 
 }

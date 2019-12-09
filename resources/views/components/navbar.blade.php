@@ -1,10 +1,13 @@
-<div class="navbar">
+<div class="navbar @yield('additional-class')">
+    <div class="nav-trigger">
+        <i class="fas fa-bars"></i>
+    </div>
     <div class="logo">
         <a href="{{ route('home') }}">
             <h1>PALAWI</h1>
         </a>
     </div>
-    <ul class="nav">
+    <ul class="nav animation anim-blink">
         <li class="active"><span>PENCARIAN</span></li>
         <li><span>KONTAK</span></li>
         <li><a href="{{ route('booking.detail') }}"><span>PESANAN ANDA</span></a></li>

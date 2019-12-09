@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Palawi Resort</title>
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/custom-fonts.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('font awesome/css/font-awesome.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('linear icon/style.css') }}">
-	<script type="text/javascript" src="{{ asset('js/jquery.v2.0.3.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
+@extends('layouts/app')
+
+@section('css-bottom')
 	<style type="text/css">
 		a, a:hover {
 			color: inherit;
@@ -18,6 +10,10 @@
 		body {
 			font-family: Raleway !important;
 			overflow: hidden;
+		}
+
+		.wrapper {
+			align-items: baseline;
 		}
 
 		.font-number {
@@ -44,6 +40,7 @@
 			height: 100vh;
 			position: absolute;
 			top: 0;
+			padding: 0px;
 			/*background-size: 130%;*/
 			overflow: hidden;
 			display: flex;
@@ -89,7 +86,15 @@
 		}
 
 		.navbar .logo {
-			flex-grow: 1;
+			/*flex-grow: 1;*/
+		}
+
+		.navbar .logo h1 {
+			font-weight: bold !important;
+		    font-family: Raleway !important;
+		    letter-spacing: 4px;
+		    margin: 0;
+			font-size: 1.2em;
 		}
 
 		.navbar .logo button {
@@ -103,8 +108,12 @@
 		}
 
 		.navbar .special {
-			display: flex;
-			align-items: center;
+			/*display: flex;
+			align-items: center;*/
+		}
+
+		.navbar .logo, .navbar .special {
+			width: 20%;
 		}
 
 		.navbar .special a {
@@ -122,6 +131,10 @@
 			font-weight: 500;
 			letter-spacing: 2px;
 			border-radius: 0px;
+			border-radius: 50px;
+			text-transform: uppercase;
+			font-weight: 600;
+			font-style: italic;
 		}
 
 		.left {
@@ -145,16 +158,23 @@
 		.title h1 {
 		    font-family: Raleway;
 		    color: #000;
-		    letter-spacing: 5px;
-		    font-size: 4em;
-		    font-weight: 700;
-		    margin-bottom: 20px;
+		    letter-spacing: 3px;
+		    font-size: 3.2em;
+		    font-weight: 800;
+		    margin-bottom: 80px;
 		    text-shadow: none;
+		}
+
+		.title h1 sup {
+			font-style: italic;
+			font-weight: 200;
+			font-size: 50%;
+			top: -1em;
 		}
 
 		.title b.basic-info {
 			font-weight: 600;
-		    font-size: 1.4em;
+		    font-size: 1.2em;
 		    letter-spacing: 2px;
 		    font-family: Raleway;
 		}
@@ -168,9 +188,9 @@
 		}
 
 		#tentang p {
-			font-size: 1.2em;
-			font-weight: 300;
-		    margin-top: 40px;
+			font-size: 1.1em;
+			font-weight: 400;
+		    margin-top: 15px;
 		    text-align: justify;
 		    line-height: 50px;
 		    letter-spacing: 2px;
@@ -180,6 +200,14 @@
 		.animation {
             transition: all 0.6s;
             transition-timing-function: cubic-bezier(0.25, 0.55, 0.265, 1);
+        }
+
+        .mobile-button {
+        	display: none !important;
+        }
+
+        .mobile-label {
+        	display: none;
         }
 
         #fasilitas {
@@ -217,8 +245,8 @@
         #fasilitas b:after {
     	    content: '';
 		    width: 80%;
+		    border-top: 1px solid #989898;
 		    height: 2px;
-		    background: #000000a1;
 		    position: absolute;
 		    bottom: -20px;
 		    left: 0;
@@ -228,7 +256,7 @@
 	        margin: 0px 20px;
 	        font-size: 1.1em;
     		letter-spacing: 2px;
-		    font-weight: 600;
+		    font-weight: 500;
         }
 
         #myCarousel {
@@ -327,6 +355,7 @@
 		    font-size: 1.2em;
 		    letter-spacing: 15px;
 		    cursor: pointer;
+		    border-radius: 45px;
         }
 
         .card-bg:active {
@@ -359,16 +388,7 @@
     		overflow: hidden;
         }
 
-        .card-container:after {
-        	content: '';
-		    width: 100%;
-		    height: 300px;
-		    background: #000;
-		    background: linear-gradient(180deg, rgba(0,148,233,0) 50%, rgb(255, 255, 255) 100%);
-		    position: fixed;
-		    /* top: 0; */
-		    bottom: 0px;
-        }
+        
 
         .card {
     	    background: url(../img/thumbnail-5.jpg);
@@ -379,6 +399,8 @@
 		    width: 400px;
 		    margin-top: 30px;
 		    color: #fff;
+		    border-radius: 20px;
+		    font-size: 0.95em;
         }
 
         .card:nth-child(2) {
@@ -402,10 +424,11 @@
 		    width: 100%;
 		    height: 100%;
 		    background: #6e60d2;
-		    opacity: 0.64;
+		    opacity: 0.84;
 		    position: absolute;
 		    top: 0;
 		    left: 0;
+		    border-radius: 20px;
         }
 
         .card>div {
@@ -506,9 +529,138 @@
 		    margin-right: 10px;
 		    line-height: 35px;
         }
+
+        @media screen and (max-width: 600px) {
+        	.navbar .special {
+        		display: none;
+        	}
+
+        	.wrapper {
+        		display: block;
+        	}
+
+        	body {
+        		overflow-y: auto;
+        	}
+        	.background {
+        		overflow-y: auto;
+        	}
+
+        	.wrapper .left, .wrapper .right {
+        		padding: 0px 10%;
+        		font-size: 0.8em;
+        		margin: 0;
+        	}
+
+        	.wrapper .left .title h1 {
+        		font-size: 3.2em;
+        		margin-bottom: 10px;
+        	}
+
+        	.title b.basic-info {
+        		display: none;
+        	}
+
+			.title b.basic-info, #tentang p {
+				font-size: 1em;
+				letter-spacing: 1px;
+			}
+
+			.mobile-button {
+				position: relative;
+				margin-top: 20px;
+				align-items: stretch;
+				display: flex !important;
+			}
+
+			.mobile-label {
+				display: inline-block;
+			}
+
+			.mobile-button button {
+				background: pink;
+				font-size: 1em;
+				font-weight: 700;
+				letter-spacing: 2px;
+				padding: 12px;
+			}
+
+			.mobile-button .btn-icon {
+				font-size: 1.5em;
+				padding: 6px 12px;
+				margin-left: 10px;
+			}
+
+			#tentang {
+				margin: 0;
+				margin-top: 50px;
+				position: relative;
+			}
+
+			#tentang p {
+				line-height: 25px;
+				margin-top: 0px;
+			}
+
+			#fasilitas {
+				margin-top: 50px;
+				display: block;
+			}
+
+			#fasilitas h1 {
+				display: none;
+			}
+
+			#fasilitas b {
+				display: block;
+				padding: 0px;
+				line-height: 20px;
+			}
+
+			#fasilitas b span {
+				font-size: 1em;
+				letter-spacing: 1px;
+				margin: 0;
+			}
+			#fasilitas b span:after {
+				content: '-';
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+			#fasilitas b span:last-child:after {
+				content: none;
+			}
+			#fasilitas b:after {
+				content: none;
+			}
+
+			.title {
+				margin-top: 0px;
+			}
+
+			.card-bg {
+				display: none;
+			}
+
+			.card-container {
+				margin-top: 50px;
+			}
+
+			.card-container .card {
+				width: 100%;
+				border-radius: 10px;
+				font-size: 0.85em;
+			}
+			.card-container .card:first-of-type {
+				margin-top: 10px;
+			}
+			.card-container .card:before {
+				border-radius: 10px;
+			}
+        }
 	</style>
-</head>
-<body>
+@endsection
+@section('body')
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
@@ -542,30 +694,33 @@
 	</div>
 	
 	<div class="background">
-		<div class="bg animation"></div>	
-		<div class="navbar">
-			<div class="logo">
-				<button id="btn-back" class="btn animation">< Kembali</button>
-			</div>
-			<div class="special flex">
+		<div class="bg animation"></div>
+		@component('components/navbar')
+			@slot('special')
 				<a id="btn-free">LIHAT GALERI</a>
-				<button id="btn-reservasi" class="btn btn-black">Booking</button>
-			</div>
-		</div>
-		<div class="flex flex-grow-1">
+				<button class="btn btn-black btn-reservasi">Booking</button>
+			@endslot
+		@endcomponent
+		<div class="wrapper flex flex-grow-1">
 			<div class="left">
 				<div class="title animation">
-					<div class="rating">
+					<!-- <div class="rating">
 						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-					</div>
-					<h1 class="val-nama">Merkusii Villa</h1>
+					</div> -->
+					<h1 class="val-nama">Merkusii Villa</h1>	
 					<b class="basic-info"><span>Jl. Overste Isdiman Gg.II / 5A, Purwokerto</span> <span>|</span> 0857-0160-9034</b>
 				</div>
+				<div class="mobile-button flex">
+					<button class="btn flex-grow-1 btn-reservasi">BOOKING</button>
+					<button class="btn btn-icon"><i class="fas fa-camera-retro"></i></button>
+				</div>
 				<div id="tentang" class="flex-grow-1 animation">
+					<label class="mobile-label">DESCRIPTION</label>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
 				</div>
 				<div id="fasilitas" class="inner-content">
 					<h1>FASILITAS VILLA</h1>
+					<label class="mobile-label">FACILITY</label>
 					<b>
 						<span>Ruang Makan</span>
 						<span>Ruang Tamu</span>
@@ -586,6 +741,7 @@
 					</div>
 				</div>
 				<div class="card-container">
+					<label class="mobile-label">SERVICES & PRICE</label>
 					<div class="card">
 						<div>
 							<b>Book Satu Villa</b>
@@ -634,7 +790,8 @@
 
 		<button type="submit">OK</button>
 	</form>
-</body>
+@endsection
+@section('js-bottom')
 <script type="text/javascript">
 	var resort = {!! json_encode($result) !!};
 	console.log(resort);
@@ -658,6 +815,7 @@
 			'</div>' +
 		'</div>';
 
+	$('.card-container').append('<label class="mobile-label">SERVICES & PRICE</label>');
 	$('.card-container').append($kamar);
 
 	$.each(tipe_kamar, function(index, kamar) {
@@ -685,7 +843,7 @@
 
 	})
 
-	$('.val-nama').text(nama_resort);
+	$('.val-nama').html(nama_resort + ' <sup>Resort</sup>');
 
 	$('#btn-back').on('click', function() {
 		window.history.back();
@@ -731,7 +889,7 @@
 		
 	})
 
-	$('#btn-reservasi').on('click', function() {
+	$('.btn-reservasi').on('click', function() {
 		$('#form-target').find('button').click();
 	})
 
@@ -742,4 +900,4 @@
 		$('.carousel-control.right').click();
 	})
 </script>
-</html>
+@endsection

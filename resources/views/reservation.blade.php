@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Palawi Resort</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/custom-fonts.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
@@ -445,6 +446,11 @@
 		    letter-spacing: 3px;
 		    font-size: 1.2em;
 		    color: #b5b5b5;
+		}
+
+		.order-steps .step p .number:after {
+			content: '.';
+			margin-right: 5px;
 		}
 
 		.order-steps .step.finished .bar:before {
@@ -1265,6 +1271,318 @@
 		    /*background: linear-gradient(360deg, rgb(26, 226, 178) 0%, rgb(25, 255, 194) 100%);*/
 		    padding: 12px;
 		}
+
+		.md-form {
+			position: relative;
+			margin-top: 5.5rem;
+		}
+
+		.md-form label {
+			position: absolute;
+			top: 0;
+			color: #b5b5b5;
+			font-size: 1.2em;
+			font-weight: 600;
+			letter-spacing: 2px;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form label.active {
+		    transform: translateY(-1.8rem) scale(0.8);
+    		font-size: 1em;
+		}
+
+		.md-form input, .md-form select {
+			border: none;
+			box-shadow: none;
+			font-size: 1.2em;
+			color: #000;
+			font-style: italic;
+			letter-spacing: 2px;
+			height: auto;
+			padding: 1.2rem 0 !important;
+			border-radius: 0;
+			border-bottom: 1px solid #dcdcdc;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form>input:focus, .md-form>select:focus {
+			outline: none;
+			box-shadow: none;
+		    border-bottom: 1px solid #4285f4;
+		    -webkit-box-shadow: 0 1px 0 0 #4285f4;
+		    box-shadow: 0 1px 0 0 #4285f4;
+		}
+
+		.md-form>input:focus+label, .md-form>select:focus+label {
+			transform: translateY(-1.8rem) scale(0.8);
+			color: #4285f4;
+		}
+
+		.md-form .md-input-wrapper {
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid #dcdcdc;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form .md-input-wrapper input, .md-form .md-input-wrapper .date-wrapper {
+			flex-grow: 1;
+			border: 0;
+			background: transparent;
+		}
+
+		.md-form .md-input-wrapper input[type="number"] {
+			flex-grow: 0;
+			width: 10%;
+			background: transparent;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper {
+			flex-grow: 1;
+			position: relative;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper .date-string {
+			font-size: 1.2em;
+			color: #000;
+			font-style: italic;
+			letter-spacing: 2px;
+			padding: 1.2rem 0 !important;
+			position: absolute;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper input {
+			opacity: 0;
+		}
+
+		.md-form .md-input-wrapper:focus-within {
+			border-bottom: 1px solid #4285f4;
+		    -webkit-box-shadow: 0 1px 0 0 #4285f4;
+		    box-shadow: 0 1px 0 0 #4285f4;
+		}
+
+		.md-form .md-input-wrapper:focus-within input {
+			outline: none;
+			box-shadow: none;
+		}
+
+		.md-form .md-input-wrapper:focus-within+label {
+			transform: translateY(-1.8rem) scale(0.8);
+			color: #4285f4;
+		}
+
+		.md-form .md-input-wrapper .separator {
+			margin: 0 20px;
+			font-style: italic;
+			letter-spacing: 1px;
+			font-weight: 600;
+			color: #b5b5b5;
+			font-size: 1em;
+		}
+
+		.mobile-visible {
+			display: none;
+		}
+
+		@media screen and (max-width: 600px) {
+			.background-pattern {
+				display: none !important;
+			}
+
+			.order-steps {
+				padding: 5% 10% !important;
+				width: 100vw !important;
+			}
+
+			.order-steps .step {
+				flex-grow: 0 !important;
+				/*font-family: Raleway;*/
+				font-size: 0.6em !important;
+				margin: 0 !important;
+			}
+
+			.order-steps .step:first-child .number {
+				margin-left: 0;
+			}
+
+			.order-steps .step:last-child .number {
+				margin-right: 0;
+			}
+
+			.order-steps .step.active.finished {
+				flex-grow: 1 !important;
+			}
+
+			.order-steps .step.active {
+				flex-grow: 1 !important;
+			}
+
+			.order-steps .step .bar {
+				display: none;
+			}
+
+			.order-steps .step .number {
+			    width: 25px;
+			    height: 25px;
+			    text-align: center;
+			    padding: 4px 8px;
+			    display: inline-block;
+			    border-radius: 50%;
+			    border: 1px solid;
+			    margin: 0px 5px;
+			}
+
+			.order-steps .step .name, .order-steps .step.active.finished .name {
+				display: none !important;
+				letter-spacing: 1px;
+				margin-left: 5px;
+			}
+
+			.order-steps .step p .number:after {
+				content: none;
+			}
+
+			.order-steps .step.active .name {
+				display: inline-block !important;
+			}
+
+			.form-reservasi {
+				padding: 5% 10% !important;
+				padding-top: 30% !important;
+				font-size: 0.8em;
+			}
+
+			.form-title {
+				padding: 0;
+				display: block !important;
+			}
+
+			.form-title h1 {
+			    letter-spacing: 2px;
+			    font-size: 1.5em;
+			}
+
+			.form-title p {
+	    		font-size: 1em;
+    			letter-spacing: 1px;
+			}
+
+			.mobile-visible {
+				display: block;
+			}
+
+			.mobile-invisible, .info {
+				display: none;
+			}
+
+			.form-reservasi .form, .nav-button span {
+				display: none;
+			}
+
+			.order.header {
+				/*display: none;*/
+				font-size: 0.8em;
+			}
+
+			.orders {
+				font-size: 0.9em;
+				border: none;
+			}
+
+			.order {
+				margin: 0;
+				letter-spacing: 1px;
+				border: none !important;
+				/*border-top: 1px solid #f5f5f5 !important;*/
+				padding: 0px;
+			}
+			.order>div {
+				padding: 3% 2% !important;
+			}
+
+			.order .price {
+				width: 30%;
+			}
+
+			.order .name {
+				padding-left: 0px !important;
+				text-transform: initial;
+				font-weight: 500;
+			}
+
+			.order .unit {
+				padding-right: 0px !important;
+			}
+
+			.order .line {
+				display: none;
+			}
+
+			.order .index {
+				margin-right: 10px;
+			}
+
+			.order .nights, .order .total-price, .order .availability {
+				display: none;
+			}
+
+			.text-center {
+				text-align: center;
+			}
+			.text-center h1 {
+				font-size: 2.5em;
+				font-family: Consolas;
+				margin-top: 10px;
+			}
+			.text-center label {
+			    font-weight: 400;
+    			letter-spacing: 1px;
+			}
+
+			#step-5 .content p {
+				font-size: 1em;
+				letter-spacing: 1px;
+			}
+
+			#step-6 .content {
+				padding: 0px;
+			}
+
+			#step-6 .order .price {
+				display: none;
+			}
+
+			#step-6 .order .unit {
+				width: 20%;
+				text-align: center;
+			}
+
+			#step-6 .order .total-price {
+				width: 25%;
+				display: block;
+			}
+
+			.btn-book {
+				display: block;
+				width: 100%;
+			    font-size: 1em;
+			    padding: 4% 10%;
+			    margin-top: 20px;
+			}
+
+			.mobile-info {
+				margin-right: 10px;
+				flex-grow: 1;
+				margin-top: 20px;
+			}
+			.mobile-info p {
+				font-size: 1.2em;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -1316,27 +1634,27 @@
 		<div class="order-steps flex">
 			<div id="trigger-1" class="step">
 				<div class="bar"></div>
-				<p>1. LIHAT JADWAL</p>
+				<p><span class="number">1</span><span class="name">LIHAT JADWAL</span></p>
 			</div>
 			<div id="trigger-2" class="step">
 				<div class="bar"></div>
-				<p>2. RESERVASI</p>
+				<p><span class="number">2</span><span class="name">RESERVASI</span></p>
 			</div>
 			<div id="trigger-3" class="step">
 				<div class="bar"></div>
-				<p>3. EXTRA ORDER</p>
+				<p><span class="number">3</span><span class="name">EXTRA ORDER</span></p>
 			</div>
 			<div id="trigger-4" class="step">
 				<div class="bar"></div>
-				<p>4. IDENTITAS DIRI</p>
+				<p><span class="number">4</span><span class="name">IDENTITAS DIRI</span></p>
 			</div>
 			<div id="trigger-5" class="step">
 				<div class="bar"></div>
-				<p>5. PEMBAYARAN</p>
+				<p><span class="number">5</span><span class="name">PEMBAYARAN</span></p>
 			</div>
 			<div id="trigger-6" class="step">
 				<div class="bar"></div>
-				<p>6. CHECK OUT</p>
+				<p><span class="number">6</span><span class="name">CHECK OUT</span></p>
 			</div>
 		</div>
 		
@@ -1344,6 +1662,36 @@
 			<div class="wrapper">
 				<div class="form-title">
 					<h1 class="anim-slide-left-right animation disappear">Apa Yang Anda Butuhkan ?</h1>
+				</div>
+				<div class="mobile-visible">
+					<div class="md-form">
+						<select name="location" class="fillable form-control">
+							<option value="0" selected>Akasia</option>
+							<option value="1" selected>Eboni</option>
+							<option value="2" selected>Merkusii</option>
+						</select>
+						<label for="form1" class="active">NAMA RESORT</label>
+					</div>
+					<div class="md-form">
+						<div class="md-input-wrapper">
+							<div class="date-wrapper">
+								<span class="date-string">10 Desember 2019</span>
+								<input type="text" id="form1" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+							</div>	
+						</div>
+						
+						<label for="form1" class="active">CHECK-IN</label>
+					</div>
+					<div class="md-form">
+						<div class="md-input-wrapper">
+							<div class="date-wrapper">
+								<span class="date-string">10 Desember 2019</span>
+								<input type="text" id="form1" class="form-control date" name="end_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+							</div>	
+						</div>
+						
+						<label for="form1" class="active">CHECK-OUT</label>
+					</div>
 				</div>
 				<div class="form anim-slide-right-left animation disappear">
 					<div class="bg"></div>
@@ -1375,7 +1723,7 @@
 					<input type="hidden" name="business_id">
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, <a for="1" next="2" class="form-nav form-next">Cek Jadwal !</a></span>
+					<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, </span><a for="1" next="2" class="form-nav form-next">Cek Jadwal !</a>
 				</div>
 			</div>
 			
@@ -1420,7 +1768,7 @@
 						</div>
 						<div class="orders"></div>
 						<div class="nav-button animation anim-slide-down-up disappear">
-							<span>Saya memesan 2 Deluxe Room & 1 Executive Room, <a next="3" class="form-nav">Lanjutkan</a></span>
+							<span>Saya memesan 2 Deluxe Room & 1 Executive Room, </span><a next="3" class="form-nav">Lanjutkan</a>
 						</div>
 					</div>
 				</div>
@@ -1448,7 +1796,7 @@
 				<div class="orders">
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Tidak ada tambahan, <a next="4" class="form-nav">Lanjutkan</a></span>
+					<span>Tidak ada tambahan, </span><a next="4" class="form-nav">Lanjutkan</a>
 				</div>
 			</div>
 		</div>
@@ -1459,9 +1807,21 @@
 					<h1 class="flex-grow-1">Beritahu Kami Tentang Anda</h1>
 					<div>
 						<button id="btn-open-guest" class="btn">Pesan untuk tamu</button>
-						
 					</div>
-					
+				</div>
+				<div class="mobile-visible">
+					<div class="md-form">
+						<input type="text" id="form1" class="form-control" name="identitas_nama" spellcheck="false" placeholder="Nama Lengkap Anda">	
+						<label for="form1" class="active">NAMA LENGKAP</label>
+					</div>
+					<div class="md-form">
+						<input type="text" id="form1" class="form-control" name="identitas_telepon" spellcheck="false" placeholder="0000-0000-0000">	
+						<label for="form1" class="active">TELEPON</label>
+					</div>
+					<div class="md-form">
+						<input type="text" id="form1" class="form-control" name="identitas_email" spellcheck="false" placeholder="john_doe@mail.com">	
+						<label for="form1" class="active">E-MAIL</label>
+					</div>
 				</div>
 				<div class="form animation anim-scale-black disappear">
 					<div class="bg"></div>
@@ -1533,26 +1893,13 @@
 							</div>
 						</div>
 					</div>
-					<!-- <span> atau ke alamat </span>
-					<div class="input-field">
-						<span id="input-alamat" class="input-field-toggle allow-whitespace" default="Alamat Anda">Jl. Overste Isdiman Gg.II/5A Purwokerto</span>
-						<div class="text-field-wrapper animation">
-							<div class="text-field">
-								<p>Alamat Anda</p>
-								<textarea placeholder="Jl. Overste Isdiman Gg.II/5A, Purwokerto" class="input" value=""></textarea>
-								<button next="">
-									<i class="fas fa-check"></i>	
-								</button>
-							</div>
-						</div>
-					</div> -->
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Identitas saya sudah benar, <a id="btn-submit-detail" next="5" class="form-nav">Lanjutkan</a></span>
+					<span>Identitas saya sudah benar, </span><a id="btn-submit-detail" next="5" class="form-nav">Lanjutkan</a>
 				</div>
 			</div>
 		</div>
-		<div id="step-5" class="form-reservasi gone" condition="min-1">
+		<div id="step-5" class="form-reservasi gone" condition="pass">
 			<div class="wrapper">
 				<div class="form-title flex">
 					<div class="flex-grow-1">
@@ -1570,8 +1917,12 @@
 					</div>
 				</div>
 				<div class="content">
-					<h1>Total pesanan anda adalah <span class="val-grand-total">Rp 550.000</span></h1>
-					<p>Pembayaran dapat dilakukan dengan full payment atau bayar DP sebesar 30% terlebih dahulu</p>
+					<div class="mobile-visible text-center">
+						<label>TOTAL PESANAN</label>
+						<h1 class="val-grand-total">Rp 550.000</h1>
+					</div>
+					<h1 class="mobile-invisible">Total pesanan anda adalah <span class="val-grand-total">Rp 550.000</span></h1>
+					<p>Setelah melakukan pemesanan, anda akan memiliki waktu 45 menit untuk melengkapi pembayaran</p><!-- 
 					<div class="payment-method flex-grow-1">
 						<span>
 							<input type="checkbox" id="checkbox-1" class="checkbox fillable" value="true">
@@ -1589,10 +1940,10 @@
 						<span class="name">
 							DP 30% (<span class="val-half-payment">Rp 0</span>)
 						</span>
-					</div>
+					</div> -->
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span><a next="6" class="form-nav">Lihat Pesanan</a></span>
+					<a next="6" class="form-nav">Lihat Pesanan</a>
 				</div>	
 			</div>
 			
@@ -1622,8 +1973,25 @@
 							<p class="val-grand-total font-number">Rp 860.000</p>
 						</div>
 						<div class="info nav-button">
-							<button id="btn-book" class="btn btn-black">BOOK NOW</button>
+							<button class="btn btn-black">BOOK NOW</button>
 						</div>
+					</div>
+					<div class="mobile-visible">
+						<div class="flex">
+							<div class="mobile-info">
+								<span><b>CHECK-IN</b></span>
+								<p class="val-start-date font-number">31 Okt 2019</p>
+							</div>
+							<div class="mobile-info">
+								<span><b>CHECK-OUT</b></span>
+								<p class="val-end-date font-number">01 Nov 2019</p>
+							</div>
+							<div class="mobile-info">
+								<span><b>DETAIL PESANAN</b></span>
+								<p class="val-detail-pesanan font-number"><span class="val-lama-inap">1</span> malam</p>
+							</div>
+						</div>
+						<button class="btn btn-black btn-book">BOOK NOW</button>
 					</div>
 					<div class="content animation anim-slide-down-up disappear">
 						<div class="order header">
@@ -1861,6 +2229,16 @@
 			)
 		})
 
+		$('.mobile-visible input').on('change', function() {
+			var input_name = $(this).attr('name');
+			var value = $(this).val();
+			
+			var $target = $(this).closest('.mobile-visible').next().find('input[name="' + input_name + '"]');
+
+			console.log($target);
+				$target.val(value);
+		})
+
 		$('.form-next').on('click', function() {
 			showLoader('Memuat Data');
 			var start_date = $('input[name="start_date"]').val();
@@ -1913,7 +2291,7 @@
 									'<span>' + sisa_kamar + ' kamar</span>' + 
 								'</div>' +
 								'<div class="price">' + 
-									'<span>' + harga_string + ' / malam</span>' +
+									'<span>' + harga_string + '<span class="mobile-invisible"> / malam</span></span>' +
 									'<input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '">' +
 								'</div>' +
 								'<div class="unit">' +
@@ -2092,25 +2470,15 @@
 
 			orders.grand_total = grand_total;
 
-			var half_payment = 0.3 * grand_total;
-
 			grand_total = accounting.formatMoney(
 						grand_total, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-			half_payment = accounting.formatMoney(
-						half_payment, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
 			$('.val-grand-total').text(grand_total);
-			$('.val-half-payment').text(half_payment);
 		})
 
-		$('#btn-book').on('click', function() {
-			if ($('#step-5 input.checkbox:checked').val() == 'true') {
-				var payment_method = true;
-			} else {
-				var payment_method = false;
-			}
+		$('.btn-book').on('click', function() {
 
-			obj_booking.full_payment = payment_method;
+			obj_booking.full_payment = true;
 
 			// $.ajax({
 			// 	url: 'http://api.resort.shafarizkyf.com/api/booking',
@@ -2279,7 +2647,7 @@
 							'<span>' + nama_item + '</span>' + 
 						'</div>' +
 						'<div class="price">' + 
-							'<span>' + harga_string + ' / pcs</span>' +
+							'<span>' + harga_string + '<span class="mobile-invisible"> / pcs</span></span>' +
 							'<input type="hidden" name="harga" value="' + harga + '">' +
 						'</div>' +
 						'<div class="unit">' +
