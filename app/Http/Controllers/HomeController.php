@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 class HomeController extends Controller {
 
   public function index(){
-    return view('index');
+    $result = ExtrernalRequest::getLocation();
+    return view('index', compact('result'));
   }
 
 }
