@@ -1178,6 +1178,39 @@
 			.order .index {
 				width: 8%;
 			}
+
+			.bg {
+				width: 100vw;
+				height: 100vh;
+				top: 0;
+				left: 0;
+				position: fixed;
+				border-radius: 0px;
+			}
+			.bg .upload {
+				flex-grow: 1;
+				padding: 5% 10%;
+			}
+			.bg .upload .photo-container {
+				margin: auto;
+				width: 200px;
+				height: 200px;
+			}
+			.bg .desc {
+				display: none;
+			}
+
+			.warning {
+				padding: 0;
+			}
+			.warning h1 {
+				font-size: 2em;
+			}
+			.warning h3 {
+				font-size: 1em;
+				font-weight: 500;
+				letter-spacing: 1px;
+			}
 		}
 	</style>
 @endsection
@@ -1277,7 +1310,7 @@
 			</div>
 			<div class="timer">
 				<h1 class="font-number">
-					<span class="minutes">20</span> : <span class="seconds">00</span>
+					<span class="hours">00</span> : <span class="minutes">20</span> : <span class="seconds">00</span>
 				</h1>
 				<div>
 					<div class="bank-list">
@@ -1769,9 +1802,11 @@
 					var today = moment();
 					var created_at = moment(data.created_at);
 					var diff = waitTime - today.diff(created_at, 'seconds');
-					var diff_minutes = Math.floor(diff/60);
-					var diff_seconds = diff % 60;
+					var diff_hours = (Math.floor(diff / 3600) <= 0) ? '00' : Math.floor(diff/3600);
+					var diff_minutes = Math.floor((diff % 3600) / 60);
+					var diff_seconds = (diff % 3600) % 60;
 
+					$('.timer').find('.hours').text(diff_hours);
 					$('.timer').find('.minutes').text(diff_minutes);
 					$('.timer').find('.seconds').text(diff_seconds);
 
@@ -1876,7 +1911,7 @@
 		form.append("booking_id", booking_id);
 		form.append("file", file);
 
-		var full_payment = booking.full_payment;
+		// var full_payment = booking.full_payment;
 		var total_bill = booking.total_bill;
 
 		$.ajax({
@@ -1887,32 +1922,32 @@
             contentType: false,
             processData: false
 		}).done(function (response) {
-			if (full_payment == '1') {
-				// full payment
-				$('.navbar .special').addClass('gone');
+			// if (full_payment == '1') {
+			// 	// full payment
+			// 	$('.navbar .special').addClass('gone');
 
-				var sudah_bayar = accounting.formatMoney(total_bill, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-				var total_sisa = 'Rp 0';
-				var status_pembayaran = 'Lunas';
-				var target_card = $('#paid');
-			} else {
-				// dp
-				var sudah_bayar = (30/100) * total_bill;
-				var total_sisa = total_bill - sudah_bayar;
-					sudah_bayar = accounting.formatMoney(sudah_bayar, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-					total_sisa = accounting.formatMoney(total_sisa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-				var status_pembayaran = 'DP 30%';
-				var target_card = $('#half-paid');
-			}
+			// 	var sudah_bayar = accounting.formatMoney(total_bill, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+			// 	var total_sisa = 'Rp 0';
+			// 	var status_pembayaran = 'Lunas';
+			// 	var target_card = $('#paid');
+			// } else {
+			// 	// dp
+			// 	var sudah_bayar = (30/100) * total_bill;
+			// 	var total_sisa = total_bill - sudah_bayar;
+			// 		sudah_bayar = accounting.formatMoney(sudah_bayar, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+			// 		total_sisa = accounting.formatMoney(total_sisa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+			// 	var status_pembayaran = 'DP 30%';
+			// 	var target_card = $('#half-paid');
+			// }
 
 		  	alert('Bukti Pembayaran Berhasil Di-Upload');
-		  	$('.val-sudah-bayar').text(sudah_bayar);
-			$('.val-sisa-bayar').text(total_sisa);
-			$('.val-status-bayar').text(status_pembayaran);
-			$('.payment .card>div.active').removeClass('active');
+			$('.val-status-bayar').text('TUNGGU KONFIRMASI');
 
 			$('#btn-close-form').click();
+			$('.btn-upload-form').hide();
+			$('.timer').hide();
 
+			clearInterval(interval);
 			hideLoader();
 		}).fail(function (error) {
 			console.log(error);

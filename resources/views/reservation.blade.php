@@ -2205,13 +2205,8 @@
 
 						var grand_total_diskon = calculateDiscountBill();
 
-						var half_payment = 0.3 * grand_total_diskon;
-							half_payment = accounting.formatMoney(
-								half_payment, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 							grand_total_diskon = accounting.formatMoney(
 								grand_total_diskon, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-
-						$('.val-half-payment').text(half_payment);
 						$('.val-grand-total').text(grand_total_diskon);
 
 						calculateDiscount();	
@@ -2635,7 +2630,7 @@
 			if (item.item.count_availability != 0) {
 				let id_item = item.item.details.filter(detail => detail.is_booked === 0);
 				if(id_item.length){
-					id_item = item_id[0].id;
+					id_item = id_item[0].id;
 					const fake_id = item.item.id;
 					const id_harga = item.item.price.id;
 					const harga = item.item.price.service_price;
