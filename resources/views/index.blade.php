@@ -449,7 +449,6 @@
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Resort</i></h1>
-				<p class="animation anim-blink">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis sit amet tempus nibh ullamcorper nec <span>Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt</span></p>	
 				<div class="v-line"></div>
 				<button for="form-resort" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>SEE MORE</span></button>
 			</div>

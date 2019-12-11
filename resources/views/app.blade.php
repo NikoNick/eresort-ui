@@ -116,6 +116,13 @@
 
 @section('js-bottom')
 	<script type="text/javascript">
+
+	console.log('here');
+
+	$.get('https://api.resort.shafarizkyf.com/oauth/client').then(response => {
+		console.log(response);
+	});
+
 		var today = new Date();
 			today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 		var tomorrow = new Date();

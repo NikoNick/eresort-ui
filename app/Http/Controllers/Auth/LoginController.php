@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller {
 
