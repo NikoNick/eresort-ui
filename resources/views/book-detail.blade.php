@@ -18,6 +18,10 @@
 			overflow-x: hidden;
 		}
 
+		.background.show-invoice {
+			padding: 6% 15%;
+		}
+
 		.loading-screen {
 			background: #fff;
 			width: 100%;
@@ -76,9 +80,6 @@
 			font-size: 0.9em;
 		}
 
-		#form-invoice {
-			padding: 100px 250px;
-		}
 
 		#form-invoice h1 {
 			margin-bottom: 80px;
@@ -525,6 +526,8 @@
 			position: absolute;
 			width: 100%;
 			height: 100vh;
+			top: 0;
+			left: 0;
 			z-index: 0;
 		}
 
@@ -589,7 +592,6 @@
 		}
 
 		.new-invoice {
-			padding: 80px 320px 150px 320px;
 			position: relative;
 		}
 
@@ -950,9 +952,38 @@
 			font-size: 1em;
 		}
 
+		.infos {
+			display: none;
+		}
+
+		.timer {
+		    width: 55%;
+		    margin: auto;
+		    display: flex;
+		    align-items: center;
+		    padding: 15px 30px;
+		    border: 1px solid #dcdcdc;
+		    border-radius: 10px;
+		    margin-bottom: 70px;
+		}
+
+		.timer h1 {
+		    font-size: 3.5em;
+		    margin: 0;
+		    flex-grow: 1;
+		}
+
+		.timer p {
+			letter-spacing: 1px;
+		}
+
 		@media screen and (max-width: 600px) {
 			.background {
 				padding-top: 20%;
+			}
+
+			.background.show-invoice {
+				padding: 8% 10%;
 			}
 
 			.mobile-invisible, .info {
@@ -1012,13 +1043,16 @@
 
 			.order.header {
 				/*display: none;*/
-				font-size: 0.8em;
+				font-size: 0.7em;
+				margin-top: 30px;
+				padding-top: 0px;
+				border-top: 1px solid #f5f5f5 !important;
 			}
 
 			.orders {
 				font-size: 0.9em;
 				border: none;
-				min-height: auto;
+				min-height: 100px;
 			}
 
 			.order {
@@ -1083,24 +1117,48 @@
 			}
 
 			.infos {
-				display: block;
+				/*display: block;*/
 			}
 
 			.infos button {
 				display: block;
 				width: 100%;
-			    font-size: 1em;
-			    padding: 4% 10%;
+		        font-size: 0.7em;
+			    font-weight: 600;
+			    padding: 3% 10%;
 			    margin-top: 20px;
 			}
 
+			.invoice-info {
+				border-top: 1px solid #f5f5f5;
+				padding-top: 10px;
+				padding-bottom: 20px;
+			}
+
 			.mobile-info {
-				margin-right: 10px;
-				flex-grow: 1;
-				margin-top: 20px;
+			    margin-right: 10px;
+			    flex-grow: 1;
+			    font-size: 0.75em;
+			    margin-top: 20px;
 			}
 			.mobile-info p {
 				font-size: 1.2em;
+			}
+
+			.new-invoice>.header {
+				margin-bottom: 50px;
+			}
+
+			.new-invoice .footer {
+				display: none;
+			}
+
+			.order .total-price {
+				width: 28%;
+			}
+
+			.order .index {
+				width: 8%;
 			}
 		}
 	</style>
@@ -1115,24 +1173,8 @@
 		</div>
 	</div>
 	<div class="background">
-		<!-- <div class="navbar animation anim-blink">
-			<div class="logo">
-				<h1>PALAWI</h1>
-			</div>
-			<ul class="nav">
-				<li class="active">SEARCH</li>
-				<li>CONTACT</li>
-				<li>PESANAN ANDA</li>
-				<li>INFO WISATA</li>
-			</ul>
-			<div class="special">
-				<span><b>SUDAH BAYAR ?</b> Upload Bukti Transfer</span>
-				<a class="marleft-15"><b>UPLOAD</b></a>
-			</div>
-		</div> -->
 		@component('components/navbar')
 			@slot('special')
-				<!-- <button class="btn"><i class="fas fa-sign-in-alt"></i> LOGIN</button> -->
 			@endslot
 		@endcomponent
 		<div id="form-invoice" class="animation anim-blink">
@@ -1171,132 +1213,6 @@
 		<div class="warning animation anim-slide-down-up disappear gone">
 			<h1>Mohon maaf atas ketidaknyamanan ini</h1>
 			<h3>Pesanan anda telah dibatalkan, karena batas waktu pembayaran telah habis</h3>
-		</div>
-		<div class="invoice flex stretch animation anim-blink disappear gone">
-			<div class="left">
-				<div class="order-info">
-					<div class="flex header marbot-30">
-						<b class="flex-grow-1">BOOKING INVOICE</b>
-						<p id="nomor-invoice" class="font-number"># INV/20191008/BAT/001</p>
-					</div>
-					<div class="content">
-						<div class="flex stretch martop-12">
-							<p class="flex-grow-1">Pesan <span id="val-nama-resort" class="marleft-15">RASAMALA VILLA</span></p>
-							<p id="val-total-kamar" class="flex-grow-1 text-center">2 Kamar</p>
-							<p id="val-lama-inap" class="flex-grow-1 text-center">1 Malam</p>
-						</div>
-						<div class="flex stretch martop-12">
-							<p class="flex-grow-1">Untuk <span class="val-nama-pemesan marleft-15">Niko Prianto</span></p>
-							<p class="flex-grow-1 text-center">C.P <span class="val-telepon marleft-15 font-number">0857-0160-9034</span></p>
-							<p class="val-email flex-grow-1 text-center">nikonick47@gmail.com</p>
-						</div>
-						<div class="flex stretch martop-12">
-							<p class="flex-grow-1">Check-In <span class="val-check-in marleft-15 font-number">05 September 2019</span></p>
-							<p class="flex-grow-1">Check-Out <span class="val-check-out marleft-15 font-number">06 September 2019</span></p>
-						</div>	
-					</div>
-				</div>
-				<div class="order-detail martop-50">
-					<div class="header marbot-15">
-						<p>Rincian Pesanan Anda</p>
-					</div>
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="text-center"><b>NO</b></th>
-								<th><b>PESANAN</b></th>
-								<th><b>HARGA PER UNIT</b></th>
-								<th><b>UNIT</b></th>
-								<th><b>BIAYA</b></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="font-number text-center">1</td>
-								<td><b>DELUXE ROOM</b></td>
-								<td class="font-number">Rp 350.000 <small>/malam</small></td>
-								<td class="font-number">x 2</td>
-								<td class="font-number">Rp 700.000</td>
-							</tr>
-							<tr>
-								<td class="font-number text-center">2</td>
-								<td><b>EXECUTIVE ROOM</b></td>
-								<td class="font-number">Rp 250.000 <small>/malam</small></td>
-								<td class="font-number">x 2</td>
-								<td class="font-number">Rp 500.000</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td class="text-right" colspan="4"><b>biaya per malam</b></td>
-								<td class="font-number val-grand-total">Rp 1.200.000</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-			<div class="right">
-				<div class="payment">
-					<div class="card marbot-50">
-						<div id="not-paid">
-							<div class="flex payment-address">
-								<b><i>BCA</i></b>
-								<div class="line"></div>
-								<p class="font-currency">0123456789</p>
-							</div>
-							<div class="flex nominal martop-30 marbot-10">
-								<b class="flex-grow-1">Jumlah tagihan</b>
-								<h3 class="font-currency"><b class="val-grand-total">Rp 1.200.000</b></h3>
-							</div>
-							<h1 class="font-currency"><b><span class="minutes">30</span> : <span class="seconds">11</span></b></h1>
-							<div class="footer martop-30">
-								<h3>a.n Palawi Resort Baturraden</h3>
-							</div>
-						</div>
-						<div id="half-paid">
-							<div class="flex payment-address">
-								<b><i>BCA</i></b>
-								<div class="line"></div>
-								<p class="font-currency">0123456789</p>
-							</div>
-							<div class="flex nominal martop-30 marbot-10">
-								<b class="flex-grow-1">Sisa tagihan</b>
-								<h3 class="font-currency"><b class="val-sisa-bayar">Rp 1.200.000</b></h3>
-							</div>
-							<p>Anda telah membayar DP sebesar <span class="font-currency val-sudah-bayar">Rp 480.000</span>, sisa tagihan dapat dibayarkan lewat transfer kembali atau dilengkapi saat check-in</p>
-							<div class="footer martop-30">
-								<h3>a.n Palawi Resort Baturraden</h3>
-							</div>
-						</div>
-						<div id="paid">
-							<div class="flex nominal martop-30">
-								<h1>Terimakasih telah melakukan pembayaran</h1>
-							</div>
-						</div>
-					</div>
-					<div class="info">
-						<div class="flex">
-							<b class="flex-grow-1">GRAND TOTAL</b>
-							<span class="font-currency"><span class="val-lama-inap">1 malam</span> x <span class="val-total-per-malam">Rp 1.200.000</span></span>
-						</div>
-						<div class="flex">
-							<h4 id="grand-total" class="flex-grow-1 font-currency text-right val-grand-total">Rp 1.200.000</h4>
-						</div>
-						<div class="flex">
-							<b class="flex-grow-1">YANG TELAH DIBAYAR</b>
-							<span class="font-currency val-sudah-bayar">Rp 0</span>
-						</div>
-						<div class="flex">
-							<b class="flex-grow-1">SISA YANG HARUS DIBAYAR</b>
-							<span class="font-currency val-sisa-bayar">Rp 1.200.000</span>
-						</div>
-						<div class="flex">
-							<b class="flex-grow-1">STATUS PEMBAYARAN</b>
-							<span class="font-currency val-status-bayar">MENUNGGU PEMBAYARAN</span>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="background-pattern animation anim-blink disappear gone">
 			<div class="left">
@@ -1341,6 +1257,12 @@
 				<h1>INVOICE</h1>
 				<p># <span class="font-currency val-invoice">INV/20191114/COB/0001</span></p>
 			</div>
+			<div class="timer">
+				<h1 class="font-number">
+					<span class="minutes">20</span> : <span class="seconds">00</span>
+				</h1>
+				<p>Mohon lengkapi pembayaran sebelum batas waktu berakhir</p>
+			</div>
 			<div class="receipt">
 				<div class="flex end">
 					<div class="main-info flex-grow-1">
@@ -1359,6 +1281,7 @@
 						<button class="btn btn-black btn-upload-form">BUKTI TRANSFER</button>
 					</div>
 				</div>
+
 				<div class="infos">
 					<div class="flex">
 						<div class="mobile-info">
@@ -1752,44 +1675,32 @@
 			var total_sisa = total_bill - total_paid;
 				lama_inap = lama_inap + ' malam';
 
-			// if (is_paid) {
-			// 	$('.card>div.active').removeClass('active');
-			// 	$('.card>div#paid').addClass('active');
-			// } else {
-			// 	$('.card>div.active').removeClass('active');
+			if (! is_paid) {
+				interval = setInterval(function() {
+					var today = moment();
+					var created_at = moment(data.created_at);
+					var diff = (45*60) - today.diff(created_at, 'seconds');
+					var diff_minutes = Math.floor(diff/60);
+					var diff_seconds = diff % 60;
 
-			// 	if (total_paid != 0) {
-			// 		alert('half paid');
-			// 		$('.card>div#half-paid').addClass('active');
-			// 	} else {
-			// 		$('.card>div#not-paid').addClass('active');
+					$('.timer').find('.minutes').text(diff_minutes);
+					$('.timer').find('.seconds').text(diff_seconds);
 
-			// 		interval = setInterval(function() {
-			// 			var today = moment();
-			// 			var created_at = moment(data.created_at);
-			// 			var diff = (45*60) - today.diff(created_at, 'seconds');
-			// 			var diff_minutes = Math.floor(diff/60);
-			// 			var diff_seconds = diff % 60;
+					if (diff_minutes <= 0 && diff_seconds <= 0) {
+						clearInterval(interval);
+						$('.invoice').addClass('disappear');
 
-			// 			$('#not-paid').find('.minutes').text(diff_minutes);
-			// 			$('#not-paid').find('.seconds').text(diff_seconds);
+						setTimeout(function() {
+							$('.invoice').addClass('gone');
+							$('.warning').removeClass('gone');
+						}, 600);
 
-			// 			if (diff_minutes <= 0 && diff_seconds <= 0) {
-			// 				clearInterval(interval);
-			// 				$('.invoice').addClass('disappear');
-
-			// 				setTimeout(function() {
-			// 					$('.invoice').addClass('gone');
-			// 					$('.warning').removeClass('gone');
-			// 				}, 600);
-
-			// 				setTimeout(function() {
-			// 					$('.warning').removeClass('disappear');
-			// 				}, 800);
-			// 			}
-			// 		}, 1000);
-			// 	}
-			// }
+						setTimeout(function() {
+							$('.warning').removeClass('disappear');
+						}, 800);
+					}
+				}, 1000);
+			}
 
 			if (is_paid || total_paid > total_bill) {
 				$('#btn-upload-form').parent().addClass('gone');

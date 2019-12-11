@@ -1973,7 +1973,7 @@
 							<p class="val-grand-total font-number">Rp 860.000</p>
 						</div>
 						<div class="info nav-button">
-							<button class="btn btn-black">BOOK NOW</button>
+							<button class="btn btn-black btn-book">BOOK NOW</button>
 						</div>
 					</div>
 					<div class="mobile-visible">
@@ -2355,9 +2355,9 @@
 			var check_in = $('input[name="start_date"]').val();
 			var check_out = $('input[name="end_date"]').val();
 			var how_many_nights = Math.round(dateDiffInDays(check_in, check_out));
-			var nama_pemesan = $('input[name="identitas_nama"]').val();
-			var telepon = $('input[name="identitas_telepon"]').val();
-			var email = $('input[name="identitas_email"]').val();
+			var nama_pemesan = $('.form input[name="identitas_nama"]').val();
+			var telepon = $('.form input[name="identitas_telepon"]').val();
+			var email = $('.form input[name="identitas_email"]').val();
 
 			var start_time = moment(check_in + 'T' + config.hour_check_in).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
 			var end_time = moment(check_out + 'T' + config.hour_check_out).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
@@ -2480,40 +2480,40 @@
 
 			obj_booking.full_payment = true;
 
-			// $.ajax({
-			// 	url: 'http://api.resort.shafarizkyf.com/api/booking',
-			// 	method: 'POST',
-			// 	data: JSON.stringify(obj_booking),
-			// 	headers: {
-			// 		'Accept': 'application/json',
-			// 		'Content-Type': 'application/json'
-			// 	}
-			// }).then(response => {
-			// 	alert('Booking Berhasil');
-			// 	// window.location = base_url + "/book-detail";
-			// 	// console.log(obj_booking);
-			// }).fail(error => {
-			// 	console.log(error)
-			// 	console.log(error.response)
-			// })
-
-			$.post(
-				base_url + '/booking',
-				{
-					'_token' : '{{ csrf_token() }}',
-					'booking_data' : JSON.stringify(obj_booking)
-				},
-				function(data) {
-					var data = $.parseJSON(data);
-
-					if (data.success) {
-						alert('Booking Berhasil');	
-						window.location.replace('/book-detail');
-					} else {
-						alert('Booking Gagal');
-					}
+			$.ajax({
+				url: 'https://api.resort.shafarizkyf.com/api/booking',
+				method: 'POST',
+				data: JSON.stringify(obj_booking),
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
 				}
-			)
+			}).then(response => {
+				alert('Booking Berhasil');
+				window.location = base_url + "/book-detail";
+				// console.log(obj_booking);
+			}).fail(error => {
+				console.log(error)
+				console.log(error.response)
+			})
+
+			// $.post(
+			// 	base_url + '/booking',
+			// 	{
+			// 		'_token' : '{{ csrf_token() }}',
+			// 		'booking_data' : JSON.stringify(obj_booking)
+			// 	},
+			// 	function(data) {
+			// 		var data = $.parseJSON(data);
+
+			// 		if (data.success) {
+			// 			alert('Booking Berhasil');	
+			// 			window.location.replace('/book-detail');
+			// 		} else {
+			// 			alert('Booking Gagal');
+			// 		}
+			// 	}
+			// )
 		})
 
 		$('#btn-open-guest').on('click', function() {

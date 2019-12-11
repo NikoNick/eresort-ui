@@ -365,7 +365,7 @@
         .card-bg>div {
         	margin-top: -50px;
         	align-items: center;
-        	margin-left: 25px;
+        	margin-left: 30px;
         }
 
         .card-bg b {
@@ -702,7 +702,7 @@
 			@endslot
 		@endcomponent
 		<div class="wrapper flex flex-grow-1">
-			<div class="left">
+			<div class="left flex-grow-1">
 				<div class="title animation">
 					<!-- <div class="rating">
 						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -716,7 +716,7 @@
 				</div>
 				<div id="tentang" class="flex-grow-1 animation">
 					<label class="mobile-label">DESCRIPTION</label>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
+					<p class="val-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
 				</div>
 				<div id="fasilitas" class="inner-content">
 					<h1>FASILITAS VILLA</h1>
@@ -734,10 +734,7 @@
 			<div class="right animation">
 				<div class="card-bg">
 					<div class="flex">
-						<p><b>SERVICES</b></p>
-						<div class="line"></div>
-						<p><b>PRICE</b></p>
-						<i class="lnr lnr-chevron-down"></i>
+						<p><b>SERVICES & PRICE</b></p>
 					</div>
 				</div>
 				<div class="card-container">
@@ -797,6 +794,7 @@
 	console.log(resort);
 	var id_resort = resort.id;
 	var nama_resort = resort.name;
+	var description = (resort.description != null) ? resort.description : 'Tidak ada deskripsi';
 	var tipe_kamar = resort.availability;
 	var harga_sewa = resort.price.service_price;
 		harga_sewa = accounting.formatMoney(
@@ -844,6 +842,7 @@
 	})
 
 	$('.val-nama').html(nama_resort + ' <sup>Resort</sup>');
+	$('.val-description').text(description);
 
 	$('#btn-back').on('click', function() {
 		window.history.back();
