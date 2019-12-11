@@ -957,7 +957,7 @@
 		}
 
 		.timer {
-		    width: 55%;
+		    width: 65%;
 		    margin: auto;
 		    display: flex;
 		    align-items: center;
@@ -977,6 +977,10 @@
 			letter-spacing: 1px;
 		}
 
+		.bank-account {
+			margin-bottom: 10px;
+		}
+
 		@media screen and (max-width: 600px) {
 			.background {
 				padding-top: 20%;
@@ -991,6 +995,20 @@
 			}
 			.mobile-visible {
 				display: block;
+			}
+
+			.timer {
+				display: block;
+				width: 100%;
+			}
+
+			.timer h1 {
+				text-align: center;
+				margin-bottom: 15px;
+			}
+
+			.timer p {
+				font-size: 0.7em;
 			}
 
 			.background-pattern {
@@ -1113,11 +1131,11 @@
 			}
 
 			.invoice-info .payment-bill .flex p {
-				width: 30%;
+				width: 35%;
 			}
 
 			.infos {
-				/*display: block;*/
+				display: block;
 			}
 
 			.infos button {
@@ -1261,7 +1279,16 @@
 				<h1 class="font-number">
 					<span class="minutes">20</span> : <span class="seconds">00</span>
 				</h1>
-				<p>Mohon lengkapi pembayaran sebelum batas waktu berakhir</p>
+				<div>
+					<div class="bank-list">
+						<div class="bank-account flex">
+							<b class="account-name">BNI</b>
+							<span class="account-num font-number"></span>
+						</div>
+					</div>
+					<p>Mohon lengkapi pembayaran sebelum batas waktu berakhir</p>
+				</div>
+				
 			</div>
 			<div class="receipt">
 				<div class="flex end">
@@ -1282,7 +1309,7 @@
 					</div>
 				</div>
 
-				<div class="infos">
+				<!-- <div class="infos">
 					<div class="flex">
 						<div class="mobile-info">
 							<span><b>CHECK-IN</b></span>
@@ -1294,7 +1321,7 @@
 						</div>
 					</div>
 					<button class="btn btn-black btn-upload-form">BOOK NOW</button>
-				</div>
+				</div> -->
 				<div class="order header">
 					<div class="name flex">
 						<span class="index">NO</span>
@@ -1456,6 +1483,9 @@
 					</div>
 				</div>
 				<p class="footer">Invoice dibuat secara otomatis oleh sistem dan sah tanpa tanda tangan</p>
+				<div class="infos">
+					<button class="btn btn-black btn-upload-form">BUKTI TRANSFER</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -1502,8 +1532,36 @@
 
 @section('js-bottom')
 <script type="text/javascript">
+	var base_url = window.location.origin;
 	var booking;
 	var interval;
+
+	$.ajax({
+		url: 'https://api.resort.shafarizkyf.com/api/bank',
+		method: 'GET',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		}
+	}).then(response => {
+		$('.bank-list').empty();
+
+		$.each(response, function(index, bank) {
+			var bank_name = bank.name;
+			var bank_account = bank.number;
+			var $_bank = 
+				'<div class="bank-account flex">' +
+					'<b class="account-name">' + bank_name + '</b>' +
+					'<span class="line flex-grow-1"></span>' +
+					'<span class="account-num font-number">' + bank_account + '</span>' +
+				'</div>';
+
+			$('.bank-list').append($_bank);
+		})
+	}).fail(error => {
+		console.log(error)
+		console.log(error.response)
+	});
 
 	$('input.date').datepicker({ 
 		dateFormat: 'yy-mm-dd',
@@ -1565,7 +1623,7 @@
 			}
 		}).then(response => {
 			var data = response;
-			booking = response;
+				booking = response;
 
 			console.log(response);
 			var booking_id = data.id;
@@ -1702,10 +1760,10 @@
 				}, 1000);
 			}
 
-			if (is_paid || total_paid > total_bill) {
-				$('#btn-upload-form').parent().addClass('gone');
+			if (is_paid) {
+				$('.btn-upload-form').hide();
 			} else {
-				$('#btn-upload-form').show();
+				$('.btn-upload-form').show();
 			}
 
 				uang_muka = accounting.formatMoney(

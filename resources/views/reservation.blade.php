@@ -2631,8 +2631,11 @@
 		$.each(extra_item, function(index, item) {
 			const nama_item = item.item.name;
 
-			if (item.item.count_availability != 0) {
-				const id_item = item.item.details.filter(detail => detail.is_booked === 0)[0].id;
+			const stocks = item.item.details.filter(detail => detail.is_booked === 0);
+
+			if (stocks.length != 0) {
+				
+				const id_item = stocks[0].id;
 				const fake_id = item.item.id;
 				const id_harga = item.item.price.id;
 				const harga = item.item.price.service_price;
