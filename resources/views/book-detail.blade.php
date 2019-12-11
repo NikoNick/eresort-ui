@@ -1563,6 +1563,8 @@
 		console.log(error.response)
 	});
 
+
+
 	$('input.date').datepicker({ 
 		dateFormat: 'yy-mm-dd',
 		minDate: 0
@@ -1732,6 +1734,34 @@
 			var lama_inap = dateDiffInDays(check_in_time.split('T')[0], check_out_time.split('T')[0]);
 			var total_sisa = total_bill - total_paid;
 				lama_inap = lama_inap + ' malam';
+			// var created_at = data.created_at.split('T')[0];
+
+			// $.ajax({
+			// 	url: 'https://api.resort.shafarizkyf.com/api/booking-time-out?booking_date=' + created_at,
+			// 	method: 'GET',
+			// 	headers: {
+			// 		'Accept': 'application/json',
+			// 		'Content-Type': 'application/json'
+			// 	}
+			// }).then(response => {
+			// 	$('.bank-list').empty();
+
+			// 	$.each(response, function(index, bank) {
+			// 		var bank_name = bank.name;
+			// 		var bank_account = bank.number;
+			// 		var $_bank = 
+			// 			'<div class="bank-account flex">' +
+			// 				'<b class="account-name">' + bank_name + '</b>' +
+			// 				'<span class="line flex-grow-1"></span>' +
+			// 				'<span class="account-num font-number">' + bank_account + '</span>' +
+			// 			'</div>';
+
+			// 		$('.bank-list').append($_bank);
+			// 	})
+			// }).fail(error => {
+			// 	console.log(error)
+			// 	console.log(error.response)
+			// });
 
 			if (! is_paid) {
 				interval = setInterval(function() {
@@ -1746,10 +1776,10 @@
 
 					if (diff_minutes <= 0 && diff_seconds <= 0) {
 						clearInterval(interval);
-						$('.invoice').addClass('disappear');
+						$('.new-invoice').addClass('disappear');
 
 						setTimeout(function() {
-							$('.invoice').addClass('gone');
+							$('.new-invoice').addClass('gone');
 							$('.warning').removeClass('gone');
 						}, 600);
 
@@ -1762,8 +1792,10 @@
 
 			if (is_paid) {
 				$('.btn-upload-form').hide();
+				$('.timer').hide();
 			} else {
 				$('.btn-upload-form').show();
+				$('.timer').show();
 			}
 
 				uang_muka = accounting.formatMoney(
