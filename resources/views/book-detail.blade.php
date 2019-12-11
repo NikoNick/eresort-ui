@@ -1735,9 +1735,10 @@
 
 			if (! is_paid) {
 				interval = setInterval(function() {
+					var waitTime = data.booking_time_out ? data.booking_time_out.wait_time_hour * 60 * 60 : 3600;
 					var today = moment();
 					var created_at = moment(data.created_at);
-					var diff = (45*60) - today.diff(created_at, 'seconds');
+					var diff = waitTime - today.diff(created_at, 'seconds');
 					var diff_minutes = Math.floor(diff/60);
 					var diff_seconds = diff % 60;
 

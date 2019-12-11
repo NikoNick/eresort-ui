@@ -1843,12 +1843,6 @@
 									<input type="text" name="phone_for" placeholder="xxxx-xxxx-xxxx">
 								</div>
 							</div>
-							<div>
-								<div class="input-wrapper">
-									<label>E-MAIL</label>
-									<input type="text" name="email_for" placeholder="john_doe@mail.com">
-								</div>
-							</div>
 						</div>
 						<div>
 							<button id="btn-confirm-guest" class="btn">Ok !</button>
@@ -2350,7 +2344,7 @@
 			showForm(key);
 		})
 
-		$('#btn-submit-detail').on('click', function() {
+		$('#btn-submit-detail').on('click', async function() {
 			var nama_resort = $('.list-resort').find('li.active').text();
 			var check_in = $('input[name="start_date"]').val();
 			var check_out = $('input[name="end_date"]').val();
@@ -2359,8 +2353,15 @@
 			var telepon = $('.form input[name="identitas_telepon"]').val();
 			var email = $('.form input[name="identitas_email"]').val();
 
-			var start_time = moment(check_in + 'T' + config.hour_check_in).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
-			var end_time = moment(check_out + 'T' + config.hour_check_out).add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
+			var start_time = moment(check_in + 'T' + config.hour_check_in).format('YYYY-MM-DD HH:mm:SS');
+			var end_time = moment(check_out + 'T' + config.hour_check_out).format('YYYY-MM-DD HH:mm:SS');
+
+			const params = `booking_date=${check_in}`;
+			const bookingTimeOut = await $.getJSON(`https://api.resort.shafarizkyf.com/api/booking-time-out?${params}`);
+
+			if(bookingTimeOut){
+				obj_booking.booking_time_out_id = bookingTimeOut.id;
+			}
 
 			orders.nama_pemesan = nama_pemesan;
 			orders.email_pemesan = email;
@@ -2631,44 +2632,44 @@
 		$.each(extra_item, function(index, item) {
 			const nama_item = item.item.name;
 
-			const stocks = item.item.details.filter(detail => detail.is_booked === 0);
+			if (item.item.count_availability != 0) {
+				let id_item = item.item.details.filter(detail => detail.is_booked === 0);
+				if(id_item.length){
+					id_item = item_id[0].id;
+					const fake_id = item.item.id;
+					const id_harga = item.item.price.id;
+					const harga = item.item.price.service_price;
+					const harga_string = accounting.formatMoney(
+								harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
-			if (stocks.length != 0) {
-				
-				const id_item = stocks[0].id;
-				const fake_id = item.item.id;
-				const id_harga = item.item.price.id;
-				const harga = item.item.price.service_price;
-				const harga_string = accounting.formatMoney(
-							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+					var $extra_item = 
+						'<div id="' + id_item + '" class="order flex" for="' + fake_id + '">' +
+							'<div class="flex name">' +
+								'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
+								'<span class="line"></span>' +
+								'<span>' + nama_item + '</span>' + 
+							'</div>' +
+							'<div class="price">' + 
+								'<span>' + harga_string + '<span class="mobile-invisible"> / pcs</span></span>' +
+								'<input type="hidden" name="harga" value="' + harga + '">' +
+							'</div>' +
+							'<div class="unit">' +
+								'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
+							'</div>' +
+							'<div class="nights">' +
+								'<span>' + day_diff + ' malam</span>' +
+								'<input type="hidden" name="lama_inap" value="' + day_diff + '">' +
+							'</div>' +
+							'<div class="total-price">' +
+								'<span>Rp 0</span>' +
+								'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
+							'</div>' +
+						'</div>';
 
-				var $extra_item = 
-					'<div id="' + id_item + '" class="order flex" for="' + fake_id + '">' +
-						'<div class="flex name">' +
-							'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
-							'<span class="line"></span>' +
-							'<span>' + nama_item + '</span>' + 
-						'</div>' +
-						'<div class="price">' + 
-							'<span>' + harga_string + '<span class="mobile-invisible"> / pcs</span></span>' +
-							'<input type="hidden" name="harga" value="' + harga + '">' +
-						'</div>' +
-						'<div class="unit">' +
-							'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
-						'</div>' +
-						'<div class="nights">' +
-							'<span>' + day_diff + ' malam</span>' +
-							'<input type="hidden" name="lama_inap" value="' + day_diff + '">' +
-						'</div>' +
-						'<div class="total-price">' +
-							'<span>Rp 0</span>' +
-							'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
-						'</div>' +
-					'</div>';
+					$('#step-3 .orders').append($extra_item);	
+				}
 
-				$('#step-3 .orders').append($extra_item);	
 			}
-			
 		})
 
 		$('.order input[type="number"]').on('keyup', inputNumberListener);

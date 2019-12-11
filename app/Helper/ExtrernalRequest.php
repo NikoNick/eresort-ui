@@ -4,6 +4,7 @@ namespace App\Helper;
 
 class ExtrernalRequest {
 
+  const RESORT_URL = 'https://api.resort.shafarizkyf.com/';
   const API_RESORT_URL = 'https://api.resort.shafarizkyf.com/api/';
 
   public static function get($url, $decode = true, $asArray = false){
@@ -21,6 +22,7 @@ class ExtrernalRequest {
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt ($ch, CURLOPT_FOLLOWLOCATION, 0);
     $result = curl_exec($ch);
     curl_close($ch);
     return $result;
