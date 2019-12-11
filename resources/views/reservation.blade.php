@@ -2635,7 +2635,7 @@
 			if (item.item.count_availability != 0) {
 				let id_item = item.item.details.filter(detail => detail.is_booked === 0);
 				if(id_item.length){
-					id_item = item_id[0].id;
+					id_item = id_item[0].id;
 					const fake_id = item.item.id;
 					const id_harga = item.item.price.id;
 					const harga = item.item.price.service_price;
