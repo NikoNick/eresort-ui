@@ -1236,18 +1236,17 @@
 					<div class="field-row marbot-30">
 						<div class="input-wrapper flex-grow-1">
 							<b>NO. INVOICE</b>
-							<input type="text" name="invoice" placeholder="Masukkan nomor invoice" class="font-number" spellcheck="false">	
+							<input type="text" name="invoice" placeholder="Masukkan nomor invoice" class="font-number" value="{{ request('invoice') }}" spellcheck="false">
 						</div>
 					</div>	
 					<div class="field-row">
 						<div class="input-wrapper flex-grow-1">
 							<b>E-MAIL</b>
-							<input type="text" name="email" placeholder="Masukkan e-mail anda" spellcheck="false">
+							<input type="text" name="email" placeholder="Masukkan e-mail anda" value="{{ request('email') }}" spellcheck="false">
 						</div>
 						<button class="btn-invoice btn btn-warning">Cek Invoice</button>
-					</div>	
+					</div>
 				</div>
-				
 			</div>
 		</div>
 		<div class="mobile-visible animation anim-blink">
@@ -1568,6 +1567,17 @@
 	var base_url = window.location.origin;
 	var booking;
 	var interval;
+
+	$(function(){
+		const invoice = $('input[name=invoice]').val();
+		const email = $('input[name=email]').val();
+
+		if(invoice && email) {
+			console.log('here');
+			$('.btn-invoice').trigger('click');
+		}
+	});
+
 
 	$.ajax({
 		url: 'https://api.resort.shafarizkyf.com/api/bank',

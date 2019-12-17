@@ -38,6 +38,15 @@ class BookingController extends Controller {
   }
 
   public function detail(){
+
+    if($invoice = request('invoice')){
+      session()->put('invoice', $invoice);
+    }
+
+    if($email = request('email')){
+      session()->put('email', $email);
+    }
+
     return view('book-detail');
   }
 
