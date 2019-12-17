@@ -69,7 +69,7 @@
 		}
 
 		.content .coba h1 {
-		    margin-top: 210px;
+		    margin-top: 180px;
 		    margin-bottom: 50px;
 		    font-size: 3.2em;
 		}
@@ -81,7 +81,7 @@
 		.content .coba p {
 			font-size: 1em;
 		    letter-spacing: 2px;
-    		line-height: 300%;
+    		line-height: 200%;
 			color: #fff;
 		}
 
@@ -453,9 +453,9 @@
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Resort</i></h1>
-				<p class="animation anim-blink">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis sit amet tempus nibh ullamcorper nec <span>Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt</span></p>
+				<p class="animation anim-blink">Sebuah resort yang berada di kawasan pegunungan. Udara yang sejuk dan kadar oksigen yang sangat baik. Cocok untuk acara meeting dan istirhat bersama keluarga atau kolega Anda.</p>
 				<div class="v-line"></div>
-				<button for="form-resort" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>SEE MORE</span></button>
+				<button for="form-resort" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>
 			</div>
 		</div>
 		<form id="form-resort" method="GET" action="/hasil" class="form animation">
@@ -513,9 +513,9 @@
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Camping</i></h1>
-				<p class="animation anim-blink">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis sit amet tempus nibh ullamcorper nec <span>Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt</span></p>	
+				<p class="animation anim-blink">Sebuah lokasi yang berada di kawasan pegunungan. Udara yang sejuk dan kadar oksigen yang sangat baik. Sangat pas untuk kegiatan camping keluarga atau pelajar.</p>
 				<div class="v-line"></div>
-				<button for="form-camping" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>SEE MORE</span></button>
+				<button for="form-camping" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>
 			</div>
 		</div>
 		<form id="form-camping" method="GET" action="/hasil-camping" class="form animation">
@@ -573,9 +573,9 @@
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Outbound</i></h1>
-				<p class="animation anim-blink">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis sit amet tempus nibh ullamcorper nec <span>Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt</span></p>	
+				<p class="animation anim-blink">Sebuah lokasi yang berada di kawasan pegunungan. Udara yang sejuk dan kadar oksigen yang sangat baik. Kegiatan outbound menjadi lebih menyenangkan</p>
 				<div class="v-line"></div>
-				<button for="form-outbound" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>SEE MORE</span></button>
+				<button for="form-outbound" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>
 			</div>
 		</div>
 		<form id="form-outbound" method="GET" action="/hasil-outbound" class="form animation">

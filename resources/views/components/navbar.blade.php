@@ -10,9 +10,7 @@
         </a>
     </div>
     <ul class="nav animation anim-blink">
-        <li class="active"><span>PENCARIAN</span></li>
-        <li><span>KONTAK</span></li>
-        <li><a href="{{ route('booking.detail') }}"><span>PESANAN ANDA</span></a></li>
+        <li><a href="{{ route('booking.detail') }}"><span>CEK PESANAN</span></a></li>
     </ul>
     <div class="special">
         {{ $special }}
