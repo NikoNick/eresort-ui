@@ -7,8 +7,10 @@ use App\Helper\ExtrernalRequest;
 class HomeController extends Controller {
 
   public function index(){
-    $result = ExtrernalRequest::getLocation();
-    return view('index', compact('result'));
+    $location = ExtrernalRequest::getLocation();
+    $business = ExtrernalRequest::getBusinessAvailability();
+
+    return view('index', compact('location', 'business'));
   }
 
 }

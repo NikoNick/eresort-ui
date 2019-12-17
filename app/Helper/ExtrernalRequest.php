@@ -72,4 +72,10 @@ class ExtrernalRequest {
     return self::get($url, false);
   }
 
+  public static function getBusinessAvailability() {
+    $url = self::API_RESORT_URL . "business";
+
+    return self::get($url, false);
+  }
+
 }

@@ -407,15 +407,15 @@
         	background-image: url('../img/thumbnail-4.jpg');
         }
 
-        .card:first-child:before {
+        .card:nth-child(2):before {
         	background: linear-gradient(180deg, rgba(110,96,210,1) 0%, rgba(47,125,223,1) 100%);
         }
 
-        .card:nth-child(2):before {
+        .card:nth-child(3):before {
         	background: linear-gradient(180deg, rgba(0,148,233,1) 0%, rgba(46,76,96,1) 100%);
         }
 
-        .card:nth-child(3):before {
+        .card:nth-child(4):before {
         	background: linear-gradient(180deg, rgba(47,73,92,1) 0%, rgba(0,0,0,1) 100%);
         }
 

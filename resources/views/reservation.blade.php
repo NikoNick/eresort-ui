@@ -174,7 +174,7 @@
 		.background {
 			/*background: #fff;*/
 			width: 100%;
-			height: 100vh;
+			/*height: 100vh;*/
 			/*background-size: 130%;*/
 			/*overflow: hidden;*/
 			display: flex;
@@ -204,11 +204,13 @@
 			padding-top: 180px;
 			padding-bottom: 120px;
 			height: auto;
-			/*min-height: 100vh;*/
+			min-height: 100vh;
+			box-sizing: content-box;
 		}
 
 		.form-reservasi>.wrapper {
 			display: flex;
+			min-height: 100%;
 			flex-direction: column;
 		}
 
@@ -402,7 +404,7 @@
 			padding: 60px 120px 50px;
 			position: fixed;
 			width: 100%;
-			z-index: 1;
+			z-index: 5;
 		}
 
 		.order-steps .step {
@@ -1632,33 +1634,33 @@
 	</div>
 	<div class="background">
 		<div class="order-steps flex">
-			<div id="trigger-1" class="step">
+			<div id="trigger-1" class="step" for="1">
 				<div class="bar"></div>
 				<p><span class="number">1</span><span class="name">LIHAT JADWAL</span></p>
 			</div>
-			<div id="trigger-2" class="step">
+			<div id="trigger-2" class="step" for="2">
 				<div class="bar"></div>
 				<p><span class="number">2</span><span class="name">RESERVASI</span></p>
 			</div>
-			<div id="trigger-3" class="step">
+			<div id="trigger-3" class="step" for="3">
 				<div class="bar"></div>
 				<p><span class="number">3</span><span class="name">EXTRA ORDER</span></p>
 			</div>
-			<div id="trigger-4" class="step">
+			<div id="trigger-4" class="step" for="4">
 				<div class="bar"></div>
 				<p><span class="number">4</span><span class="name">IDENTITAS DIRI</span></p>
 			</div>
-			<div id="trigger-5" class="step">
+			<div id="trigger-5" class="step" for="5">
 				<div class="bar"></div>
 				<p><span class="number">5</span><span class="name">PEMBAYARAN</span></p>
 			</div>
-			<div id="trigger-6" class="step">
+			<div id="trigger-6" class="step" for="6">
 				<div class="bar"></div>
 				<p><span class="number">6</span><span class="name">CHECK OUT</span></p>
 			</div>
 		</div>
 		
-		<div id="step-1" class="form-reservasi gone" condition="must-filled">
+		<div id="step-1" class="form-reservasi gone" condition="must-filled" for="1">
 			<div class="wrapper">
 				<div class="form-title">
 					<h1 class="anim-slide-left-right animation disappear">Apa Yang Anda Butuhkan ?</h1>
@@ -1693,7 +1695,7 @@
 						<label for="form1" class="active">CHECK-OUT</label>
 					</div>
 				</div>
-				<div class="form anim-slide-right-left animation disappear">
+				<div class="form anim-slide-right-left animation disappear flex-grow-1">
 					<div class="bg"></div>
 					<span id="business-text">Pesan kamar untuk tanggal </span>
 					<div class="input-field tanggal">
@@ -1729,12 +1731,12 @@
 			
 		</div>
 
-		<div id="step-2" class="form-reservasi gone" condition="min-1">
+		<div id="step-2" class="form-reservasi gone" condition="min-1" for="2">
 			<div class="wrapper">
 				<!-- <div class="form-title animation anim-slide-down-up disappear">
 					<h1>Silahkan Lengkapi Pesanan Anda</h1>
 				</div> -->
-				<div>
+				<div class="flex-grow-1">
 					<div class="flex end">
 						<div class="main-info flex-grow-1">
 							<span>Menginap di</span>
@@ -1775,7 +1777,7 @@
 			</div>
 		</div>
 
-		<div id="step-3" class="form-reservasi gone" condition="optional">
+		<div id="step-3" class="form-reservasi gone" condition="optional" for="3">
 			<div class="wrapper">
 				<div class="form-title animation anim-slide-left-right disappear">
 					<h1>Apakah Ada Tambahan ?</h1>
@@ -1793,7 +1795,7 @@
 					<div class="nights"></div>
 					<div class="total-price">TOTAL HARGA</div>
 				</div>
-				<div class="orders">
+				<div class="orders flex-grow-1">
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
 					<span>Tidak ada tambahan, </span><a next="4" class="form-nav">Lanjutkan</a>
@@ -1801,7 +1803,7 @@
 			</div>
 		</div>
 
-		<div id="step-4" class="form-reservasi gone" condition="must-filled">
+		<div id="step-4" class="form-reservasi gone" condition="must-filled" for="4">
 			<div class="wrapper">
 				<div class="form-title flex animation anim-scale-black disappear">
 					<h1 class="flex-grow-1">Beritahu Kami Tentang Anda</h1>
@@ -1823,7 +1825,7 @@
 						<label for="form1" class="active">E-MAIL</label>
 					</div>
 				</div>
-				<div class="form animation anim-scale-black disappear">
+				<div class="form animation anim-scale-black disappear flex-grow-1">
 					<div class="bg"></div>
 					<div class="form-dialog animation anim-blink disappear gone">
 						<div class="header">
@@ -1893,7 +1895,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="step-5" class="form-reservasi gone" condition="pass">
+		<div id="step-5" class="form-reservasi gone" condition="pass" for="5">
 			<div class="wrapper">
 				<div class="form-title flex">
 					<div class="flex-grow-1">
@@ -1910,7 +1912,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="content">
+				<div class="content flex-grow-1">
 					<div class="mobile-visible text-center">
 						<label>TOTAL PESANAN</label>
 						<h1 class="val-grand-total">Rp 550.000</h1>
@@ -1942,9 +1944,9 @@
 			</div>
 			
 		</div>
-		<div id="step-6" class="form-reservasi gone" condition="pass">
+		<div id="step-6" class="form-reservasi gone" condition="pass" for="6">
 			<div class="wrapper">
-				<div>
+				<div class="flex-grow-1">
 					<div class="flex end">
 						<div class="main-info flex-grow-1">
 							<span>Menginap di</span>
@@ -2023,6 +2025,7 @@
 <script type="text/javascript">
 	var base_url = window.location.origin;
 	var day_diff = 0;
+	var resort_variant = [];
 	var obj_booking = {
 		'name' : '',
 		'email' : '',
@@ -2047,7 +2050,7 @@
 	};
 
 	$(document).ready(function() {
-		showForm('1');
+		showForm('1', 'next');
 
 		var resorts 		   	= {!! $data !!}.data;
 		var extra_item 			= {!! $extra_item !!};
@@ -2254,7 +2257,7 @@
 					'id_resort' : id_resort
 				},
 				function(data) {
-					var resort_variant = $.parseJSON(data).availability;
+					resort_variant = $.parseJSON(data).availability;
 
 					$('#step-2 .orders').empty();
 
@@ -2336,7 +2339,7 @@
 		$('.form-nav').on('click', function() {
 			var key = $(this).attr('next');
 			
-			showForm(key);
+			showForm(key, 'next');
 		})
 
 		$('#btn-submit-detail').on('click', async function() {
@@ -2382,7 +2385,7 @@
 					$order.find('.unit').find('input').attr('type', 'hidden');
 					$order.find('.unit').find('span').text('x ' + unit);
 
-				current_index = index + 1;
+					current_index = index + 1;
 
 					$order.find('.index span').text(current_index);
 
@@ -2391,17 +2394,37 @@
 				var harga = parseInt($order.find('.price input').val());
 
 				var total_harga = parseInt($order.find('input[name="total_harga"]').val());
+					grand_total += parseInt(total_harga);
 
-				grand_total += parseInt(total_harga);
+				
+				var target_item = resort_variant.filter(variant => variant.id ==parseInt(real_id));
+				var target_item_details = target_item[0].details.filter(detail => detail.is_booked === 0);
+
+				$.each(target_item_details, function(index, detail) {
+					const item_detail_id = detail.id;
+
+					const obj_kamar = {
+						'item_detail_id' : item_detail_id,
+						'person' : unit,
+						'start_time' : start_time,
+						'end_time' : end_time
+					};
+
+					if ((index + 1) > unit) {
+						return false;
+					} else {
+						array_item.push(obj_kamar);
+					}
+				});
 				
 
-				var obj_kamar = {
-					'item_detail_id' : id_kamar,
-					// 'price_id' : id_harga,
-					'person' : unit,
-					'start_time' : start_time,
-					'end_time' : end_time
-				};
+				// var obj_kamar = {
+				// 	'item_detail_id' : id_kamar,
+				// 	// 'price_id' : id_harga,
+				// 	'person' : unit,
+				// 	'start_time' : start_time,
+				// 	'end_time' : end_time
+				// };
 
 				var order = {
 					'real_id' : real_id,
@@ -2413,7 +2436,6 @@
 					'after_diskon' : total_harga
 				}
 
-				array_item.push(obj_kamar);
 				orders.items.push(order);
 
 				$('#step-6').find('.orders').append($order);
@@ -2541,9 +2563,28 @@
 				$('.form-dialog').addClass('gone');								
 			}, 500);
 		})
+
+		$('.order-steps .step').on('click', function() {
+			var target_index = + $(this).attr('for');
+			var active_index = + $('.form-reservasi.active').attr('for');
+
+			if (target_index < active_index) {
+				$(this).removeClass('finished');
+				showForm(target_index, 'back');
+
+				$('.order-steps .step').each(function() {
+					var index = $(this).attr('for');
+
+					if (index > target_index) {
+						$(this).removeClass('active');
+						$(this).removeClass('finished');
+					}
+				})
+			}
+		})
 	})
 
-	function showForm(key) {
+	function showForm(key, direction) {
 		var $step_trigger = $('#trigger-' + key);
 		var $step_target = $('.form-reservasi#step-' + key);
 		var $active_step = $('.form-reservasi.active');
@@ -2579,6 +2620,10 @@
 			default :
 				var condition = (true);
 				break;
+		}
+
+		if (direction == 'back') {
+			condition = (true);
 		}
 
 		if (condition) {

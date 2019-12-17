@@ -111,6 +111,12 @@ button {
     letter-spacing: 4px;
     margin: 0;
 }
+.navbar .logo .logo-white {
+    display: none;
+}
+.navbar .logo img {
+    width: 60%;
+}
 .navbar .nav {
     flex-grow: 1;
     text-align: center;
@@ -149,6 +155,12 @@ button {
     font-weight: 600;
     letter-spacing: 2px;
     padding: 10px 25px;
+}
+.navbar.text-white .logo .logo-default {
+    display: none;
+}
+.navbar.text-white .logo .logo-white {
+    display: block;
 }
 
 .text-white {
@@ -352,6 +364,10 @@ button {
         width: 100% !important;
         /*flex-grow: 1;*/
         text-align: center;
+    }
+    .navbar .logo img {
+        width: 12%;
+        margin: auto;
     }
     .navbar .logo h1 {
         font-size: 1em;

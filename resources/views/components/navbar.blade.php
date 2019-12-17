@@ -4,7 +4,9 @@
     </div>
     <div class="logo">
         <a href="{{ route('home') }}">
-            <h1>PALAWI</h1>
+            <!-- <h1>PALAWI</h1> -->
+            <img class="logo-white" src="{{ asset('../img/logo-white.png') }}">
+            <img class="logo-default" src="{{ asset('../img/logo.png') }}">
         </a>
     </div>
     <ul class="nav animation anim-blink">

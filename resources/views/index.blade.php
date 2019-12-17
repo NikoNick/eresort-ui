@@ -13,10 +13,7 @@
 			padding: 3% 7%;
 			padding-top: 8%;
 			padding-bottom: 5%;
-		}
-
-		.background .bg-image:before {
-			/*opacity: 0;*/
+			background-size: 100% 100%;
 		}
 
 		.navbar {
@@ -37,7 +34,7 @@
 		}
 
 		.navbar .nav>li {
-			font-size: 0.85em;
+			font-size: 0.8em;
 			font-weight: 300;
 			letter-spacing: 4px;
 		}
@@ -82,9 +79,9 @@
 		}
 
 		.content .coba p {
-			font-size: 1.1em;
+			font-size: 1em;
 		    letter-spacing: 2px;
-    		line-height: 45px;
+    		line-height: 300%;
 			color: #fff;
 		}
 
@@ -348,11 +345,17 @@
 		}
 
 		@media screen and (max-width: 600px) {
+			.background {
+				background-size: cover;
+				background-position-x: 35%;
+			}
+
 			.content {
 				display: flex;
 				padding-bottom: 15%;
 			}
 			.content .coba {
+				width: 100%;
 				padding: 0px 12%;
 				text-align: center;
 				display: flex;
@@ -371,7 +374,7 @@
 		        font-weight: 300;
 			    font-size: 0.7em;
 			    letter-spacing: 1px;
-			    line-height: 28px;
+			    /*line-height: 28px;*/
 			    text-align: justify;
 			    text-align: center;
 			}
@@ -438,17 +441,19 @@
 	</div>
 	<div class="navigator">
 		<label>Resort</label>
-		<div for="0" class="bullet-point"></div>
-		<div for="1" class="bullet-point"></div>
-		<div for="2" class="bullet-point"></div>
+		<div id="point-0" for="0" class="bullet-point"></div>
+		<div id="point-1" for="1" class="bullet-point"></div>
+		<div id="point-2" for="2" class="bullet-point"></div>
 	</div>
-	<div id="content-0" prev="2" next="1" class="background active animation">
-		<div class="bg-image">
+	<div>
+	<div id="content-0" prev="2" next="1" class="background active animation" style="background-image: url('../img/index3.jpg');">
+		<!-- <div class="bg-image">
 			<img src="{{ asset('../img/index3.jpg') }}">
-		</div>
+		</div> -->
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Resort</i></h1>
+				<p class="animation anim-blink">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis sit amet tempus nibh ullamcorper nec <span>Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt</span></p>
 				<div class="v-line"></div>
 				<button for="form-resort" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>SEE MORE</span></button>
 			</div>
@@ -465,7 +470,7 @@
 				<div class="md-form">
 					<select name="location" class="fillable form-control">
 						<option value="0" selected>Semua Lokasi</option>
-						@foreach($result as $lokasi)
+						@foreach($location as $lokasi)
 							<option value="{{ $lokasi->id }}">{{ $lokasi->name }}</option>
 						@endforeach
 					</select>
@@ -501,10 +506,10 @@
 			</div>
 		</form>
 	</div>
-	<div id="content-1" prev="0" next="2" class="background gone animation">
-		<div class="bg-image">
+	<div id="content-1" prev="0" next="2" class="background gone animation" style="background-image: url('../img/index4.jpg');">
+		<!-- <div class="bg-image">
 			<img src="{{ asset('../img/index4.jpg') }}">
-		</div>
+		</div> -->
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Camping</i></h1>
@@ -525,7 +530,7 @@
 				<div class="md-form">
 					<select name="location" class="fillable form-control">
 						<option value="0" selected>Semua Lokasi</option>
-						@foreach($result as $lokasi)
+						@foreach($location as $lokasi)
 							<option value="{{ $lokasi->id }}">{{ $lokasi->name }}</option>
 						@endforeach
 					</select>
@@ -561,10 +566,10 @@
 			</div>
 		</form>
 	</div>
-	<div id="content-2" prev="1" next="0" class="background gone animation">
-		<div class="bg-image">
+	<div id="content-2" prev="1" next="0" class="background gone animation" style="background-image: url('../img/index5.jpg');">
+		<!-- <div class="bg-image">
 			<img src="{{ asset('../img/index5.jpg') }}">
-		</div>
+		</div> -->
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Outbound</i></h1>
@@ -585,7 +590,7 @@
 				<div class="md-form">
 					<select name="location" class="fillable form-control">
 						<option value="0" selected>Semua Lokasi</option>
-						@foreach($result as $lokasi)
+						@foreach($location as $lokasi)
 							<option value="{{ $lokasi->id }}">{{ $lokasi->name }}</option>
 						@endforeach
 					</select>
@@ -621,6 +626,7 @@
 			</div>
 		</form>
 	</div>
+	</div>
 @endsection
 
 @section('js-bottom')
@@ -630,6 +636,19 @@
 		var tomorrow = new Date();
 			tomorrow.setDate(tomorrow.getDate()+1)
 			tomorrow = tomorrow.getFullYear() + '-' + ('0' + (tomorrow.getMonth() + 1)).slice(-2) + '-' + ('0' + tomorrow.getDate()).slice(-2);
+
+		var business = {!! $business !!};
+		console.log(business);
+
+		$.each(business, function(index, availability) {
+			var id = availability.id - 1;
+			var is_selling = availability.is_public_selling;
+
+			if (is_selling != '1') {
+				$('.bullet-point#point-' + id).hide();
+				$('.background#content-' + id).addClass('disabled');
+			}
+		})
 
 		$('input.date').datepicker({ 
 			dateFormat: 'yy-mm-dd',
@@ -668,14 +687,41 @@
 
 			// alert(index_target);
 
+			var $_backgrounds = $('.background:not(.disabled)');
+
+			switch(trigger) {
+				case 'next' :
+					var $_target = $_active.next(':not(.disabled)');
+
+					if ($_target.length === 0) {
+						$_target = $('.background:not(.disabled)').first();
+					}
+
+					console.log($_target);
+					break;
+				case 'prev' :
+					var $_target = $_active.prev(':not(.disabled)');
+
+					if ($_target.length === 0) {
+						$_target = $('.background:not(.disabled)').last();
+					}
+
+					console.log($_target);
+					break;
+				default :
+					break;
+			}
+
+			// console.log($_backgrounds);
+
 			$_active.removeClass('active');
 			setTimeout(function() {
 				$_active.addClass('gone');
-				$('.background#content-' + index_target).removeClass('gone');
+				$_target.removeClass('gone');
 			}, 100);
 			
 			setTimeout(function() {
-				$('.background#content-' + index_target).addClass('active');	
+				$_target.addClass('active');	
 			}, 200);
 		})
 
