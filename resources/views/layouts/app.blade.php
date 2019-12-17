@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('font awesome/css/font-awesome.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('linear icon/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('linear-icon/style.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/animation.css') }}">
 	<!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/mdb.min.css') }}"> -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
