@@ -2508,7 +2508,7 @@
 		$('.btn-book').on('click', function() {
 
 			obj_booking.full_payment = true;
-
+			showLoader('Memuat Data');
 			$.ajax({
 				url: 'https://api.resort.shafarizkyf.com/api/booking',
 				method: 'POST',
@@ -2518,12 +2518,11 @@
 					'Content-Type': 'application/json'
 				}
 			}).then(response => {
-				alert('Booking Berhasil');
-				window.location = base_url + "/book-detail";
-				// console.log(obj_booking);
+				hideLoader();
+				window.location = base_url + `/book-detail?invoice=${response.data.invoice}&email=${obj_booking.email}`;
 			}).fail(error => {
-				console.log(error)
-				console.log(error.response)
+				hideLoader();
+				alert('Terjadi kesalahan memproses pemesanan');
 			})
 
 			// $.post(
