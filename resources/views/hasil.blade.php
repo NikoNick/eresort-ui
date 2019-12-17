@@ -101,7 +101,7 @@
 				var nama_resort = resort.name;
 				var harga_sewa = resort.price.service_price;
 					harga_sewa = accounting.formatMoney(harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-				var media_path = (resort.media.length != 0) ? resort.media[0].path : "{{ asset('img/thumbnail-1.jpeg') }}";
+				var media_path = (resort.media.length != 0) ? resort.media[0].path : `https://via.placeholder.com/600x600?text=${resort.name}`;
 				var fasilitas_villa = resort.villa_facilities;
 				var lokasi = resort.location.name;
 
