@@ -136,6 +136,7 @@
 		.form.show {
 			width: 32%;
 			padding: 80px;
+			padding-top: 50px;
 		}
 
 		.md-form {
@@ -219,7 +220,7 @@
 		}
 
 		.btn-wrapper button {
-			margin-top: 100px;
+			margin-top: 50px;
 		}
 
 		.md-form .md-input-wrapper {
