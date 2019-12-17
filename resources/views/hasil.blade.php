@@ -2,11 +2,7 @@
 
 @section('body')
 	<div class="background">
-		@component('components/navbar')
-			@slot('special')
-				<img src="{{ asset('img/scissors.png') }}" width="50px">
-			@endslot
-		@endcomponent
+		@component('components/navbar') @endcomponent
 		<div class="content">
 			<div class="result-info">
 				<div class="desc">
