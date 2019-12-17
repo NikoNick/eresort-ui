@@ -708,7 +708,7 @@
 						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 					</div> -->
 					<h1 class="val-nama">Merkusii Villa</h1>	
-					<b class="basic-info"><span>Jl. Overste Isdiman Gg.II / 5A, Purwokerto</span> <span>|</span> 0857-0160-9034</b>
+					<b class="basic-info"><span id="address"></span> | <span id="phone"></span></b>
 				</div>
 				<div class="mobile-button flex">
 					<button class="btn flex-grow-1 btn-reservasi">BOOKING</button>
@@ -721,14 +721,6 @@
 				<div id="fasilitas" class="inner-content">
 					<h1>FASILITAS VILLA</h1>
 					<label class="mobile-label">FACILITY</label>
-					<b>
-						<span>Ruang Makan</span>
-						<span>Ruang Tamu</span>
-						<span>Pantry</span>
-						<span>LED TV</span>
-						<span>Breakfast</span>
-						<span>Room Service</span>
-					</b>
 				</div>
 			</div>
 			<div class="right animation">
@@ -802,7 +794,15 @@
 
 	$('input[name="item_id"]').val(id_resort);
 	$('.card-container').empty();
-	
+
+	$('#address').text(resort.location.address);
+	$('#phone').text(resort.location.phone);
+
+	if(resort.villa_facilities.length){
+		let facilities = resort.villa_facilities.map(facility => `<span>${facility.name}</span>`);
+		facilities = `<b>${facilities}</b>`;
+		$('#fasilitas').append(facilities);
+	}
 
 	var $kamar = 
 		'<div class="card animation active">' +
@@ -829,7 +829,6 @@
 					'<div>' +
 						'<b>' + nama_kamar + '</b>' +
 						'<span class="font-currency">' + harga + ' / malam</span>' +
-						'<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>' +
 						'<div class="info-kamar">' +
 							'<p>SISA<br>KAMAR</p>' +
 							'<b>' + sisa_kamar + '</b>' +

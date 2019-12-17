@@ -596,7 +596,7 @@
 						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 					</div>
 					<h1 class="val-nama">Merkusii Villa</h1>
-					<b class="basic-info"><span>Jl. Overste Isdiman Gg.II / 5A, Purwokerto</span> <span>|</span> 0857-0160-9034</b>
+					<b class="basic-info"><span id="address"></span> | <span id="phone"></span></b>
 				</div>
 				<div id="tentang" class="flex-grow-1 animation">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
@@ -687,7 +687,9 @@
 
 	$('input[name="item_id"]').val(id_resort);
 	$('.card-container').empty();
-	
+
+	$('#address').text(resort.location.address);
+	$('#phone').text(resort.location.phone);
 
 	var $kamar =
 		'<div class="flex">' +

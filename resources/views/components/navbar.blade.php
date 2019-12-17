@@ -13,6 +13,6 @@
         <li><a href="{{ route('booking.detail') }}"><span>CEK PESANAN</span></a></li>
     </ul>
     <div class="special">
-        {{ $special }}
+        {{ isset($special) ? $special : null }}
     </div>
 </div>
