@@ -1725,7 +1725,7 @@
 					<input type="hidden" name="business_id">
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, </span><a for="1" next="2" class="form-nav form-next">Cek Jadwal !</a>
+					<a for="1" next="2" class="form-nav form-next">Cek Jadwal !</a>
 				</div>
 			</div>
 			
@@ -1770,7 +1770,7 @@
 						</div>
 						<div class="orders"></div>
 						<div class="nav-button animation anim-slide-down-up disappear">
-							<span>Saya memesan 2 Deluxe Room & 1 Executive Room, </span><a next="3" class="form-nav">Lanjutkan</a>
+							<a next="3" class="form-nav">Lanjutkan</a>
 						</div>
 					</div>
 				</div>
@@ -1918,7 +1918,7 @@
 						<h1 class="val-grand-total">Rp 550.000</h1>
 					</div>
 					<h1 class="mobile-invisible">Total pesanan anda adalah <span class="val-grand-total">Rp 550.000</span></h1>
-					<p>Setelah melakukan pemesanan, anda akan memiliki waktu 45 menit untuk melengkapi pembayaran</p><!-- 
+					<p>Setelah melakukan pemesanan, anda akan memiliki waktu <strong><span id="booking-timeout"></span></strong> untuk melengkapi pembayaran</p><!-- 
 					<div class="payment-method flex-grow-1">
 						<span>
 							<input type="checkbox" id="checkbox-1" class="checkbox fillable" value="true">
@@ -2067,7 +2067,7 @@
 			$('#business-text').text('Pesan area camping untuk tanggal ');
 			$('.val-nama-business').text('Camp Area');
 			$('#form-resort').show();
-		} 
+		} 	
 	
 
 		$('input.date').datepicker({ 
@@ -2180,7 +2180,7 @@
 					'_token' : '{{ csrf_token() }}',
 					'promo_code' : kode_promo
 				},
-				function(data) {
+				async function(data) {
 					if (data != '') {
 						var promo = $.parseJSON(data);
 						var id_promo = promo.id;
@@ -2207,14 +2207,17 @@
 						})
 
 						var grand_total_diskon = calculateDiscountBill();
+						grand_total_diskon = accounting.formatMoney(grand_total_diskon,
+							{
+								symbol: 'Rp', format: '%s %v',
+								thousand: '.',
+								precision: 0
+							}
+						);
 
-							grand_total_diskon = accounting.formatMoney(
-								grand_total_diskon, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 						$('.val-grand-total').text(grand_total_diskon);
-
-						calculateDiscount();	
+						calculateDiscount();
 					}
-					
 
 					hideLoader();
 				}
@@ -2231,7 +2234,7 @@
 				$target.val(value);
 		})
 
-		$('.form-next').on('click', function() {
+		$('.form-next').on('click', async function() {
 			showLoader('Memuat Data');
 			var start_date = $('input[name="start_date"]').val();
 			var end_date = $('input[name="end_date"]').val();
@@ -2246,6 +2249,9 @@
 			} else if (business_id == 2) {
 				loadExtraItem2(extra_item);
 			}	
+
+			var bookingTimeOut = await getBookingTimeOut();
+			$('#booking-timeout').text(`${bookingTimeOut.wait_time_hour} Jam`);
 
 			$.post(
 				base_url + '/resort/availability',
@@ -2487,9 +2493,14 @@
 			console.log(obj_booking);
 
 			orders.grand_total = grand_total;
-
-			grand_total = accounting.formatMoney(
-						grand_total, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+			grand_total = accounting.formatMoney(grand_total,
+				{
+					symbol: 'Rp',
+					format: '%s %v',
+					thousand: '.',
+					precision: 0
+				}
+			);
 
 			$('.val-grand-total').text(grand_total);
 		})
@@ -2935,6 +2946,13 @@
 		});
 
 		return grand_total;
+	}
+
+	async function getBookingTimeOut(){
+		const check_in = $('input[name="start_date"]').val();
+		const params = `booking_date=${check_in}`;
+		bookingTimeOut = await $.getJSON(`https://api.resort.shafarizkyf.com/api/booking-time-out?${params}`);
+		return bookingTimeOut;
 	}
 
 </script>

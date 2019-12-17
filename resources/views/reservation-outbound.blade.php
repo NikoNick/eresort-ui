@@ -1045,7 +1045,7 @@
 					<input type="hidden" name="business_id">
 				</div>	
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Saya ingin menghabiskan 3 malam di Rasamala Villa, <a for="1" next="3" class="form-nav form-next">Lanjutkan</a></span>
+					<span><a for="1" next="3" class="form-nav form-next">Lanjutkan</a></span>
 				</div>
 			</div>
 			
