@@ -42,6 +42,7 @@
 			width: 100%;
 			position: absolute;
 			top: calc(50% - 60px);
+			font-size: 0.8em;
 		}
 
 		.loading-text {
@@ -106,6 +107,7 @@
 		}
 
 		.background-pattern {
+			display: none;
 			position: fixed;
 			width: 100%;
 			height: 100vh;
@@ -185,7 +187,7 @@
 
 		.form-title {
 			align-items: baseline;
-			padding-bottom: 50px;
+			padding-bottom: 30px;
 			/*padding-bottom: 0;*/
 		}
 
@@ -200,12 +202,13 @@
 		}
 
 		.form-reservasi {
-			padding: 0px 120px;
+			padding: 5% 10%;
 			padding-top: 180px;
-			padding-bottom: 120px;
+			/*padding-bottom: 120px;*/
 			height: auto;
 			min-height: 100vh;
-			box-sizing: content-box;
+			font-size: 0.7em;
+			/*box-sizing: content-box;*/
 		}
 
 		.form-reservasi>.wrapper {
@@ -222,7 +225,7 @@
 
 		.background .form-reservasi .form span {
 			font-size: 2.5em;
-		    line-height: 90px;
+		    line-height: 70px;
 		    font-weight: 300;
 		    letter-spacing: 5px;
 		    word-spacing: 20px;
@@ -401,10 +404,11 @@
 
 		.order-steps {
 			background: #fff;
-			padding: 60px 120px 50px;
+			padding: 5% 10%;
 			position: fixed;
 			width: 100%;
 			z-index: 5;
+			font-size: 0.7em;
 		}
 
 		.order-steps .step {
@@ -513,8 +517,9 @@
 		}
 
 		.nav-button button {
-			padding: 15px 20px;
-
+			padding: 8px 20px;
+			font-size: 0.8em;
+			font-weight: 800;
 		}
 
 		.nav-button button a {
@@ -527,9 +532,9 @@
 			padding-top: 0;
 		}*/
 
-		#step-3 {
+		/*#step-3 {
 			padding: 220px 250px 100px 250px;
-		}
+		}*/
 
 		#step-3 .form-title {
 			padding-bottom: 0px;
@@ -580,10 +585,6 @@
 			flex-grow: 1;
 		}
 
-		.form-reservasi .form {
-			margin-top: 30px;
-			margin-right: 250px;
-		}
 
 		.input-field {
 			display: inline-block;
@@ -632,7 +633,7 @@
 
 		.input-field .text-field {
 		    display: flex;
-		    min-width: 500px;
+		    min-width: 400px;
 		    position: relative;
 		}
 
@@ -646,7 +647,7 @@
 			/*transition-delay: 0.5s !important;*/
 		}
 
-		.input-field .text-field input[type="text"], .input-field .text-field textarea {
+		.input-field .text-field input, .input-field .text-field textarea {
 		    font-size: 1.8em;
 		    letter-spacing: 2px;
 		    padding: 15px;
@@ -725,8 +726,8 @@
 		    padding: 0px 20px;
 		}
 
-		#step-2 {
-		    padding: 200px 250px 120px 250px;
+		#step-2, #step-3 {
+		    padding: 15% 15% 8%;
 		}
 
 		#step-6 .content {
@@ -1020,7 +1021,6 @@
 
         .order {
         	letter-spacing: 2px;
-        	padding: 0px 15px;
         }
 
         .orders .order {
@@ -1042,7 +1042,7 @@
 
         .order.header {
         	border: none;
-        	border-top: 3px solid #f9f9f9;
+        	border-top: 1px solid #f9f9f9;
         	font-size: 0.9em;
         	color: #b5b5b5;
         	margin-top: 60px;
@@ -1098,7 +1098,7 @@
         }
 
         .order .unit {
-        	width: 10%;
+        	width: 12%;
         }
 
         .order .line {
@@ -1194,11 +1194,12 @@
 
 		#step-5 .content {
 			text-align: center;
-			margin-top: 60px;
+			margin-top: 40px;
 		}
 
 		#step-5 .content h1 {
 			font-weight: 400;
+			font-size: 2.5em;
 		}
 
 		#step-5 .content p {
@@ -1398,6 +1399,7 @@
 			.order-steps {
 				padding: 5% 10% !important;
 				width: 100vw !important;
+				font-size: 1em;
 			}
 
 			.order-steps .step {
@@ -1722,6 +1724,19 @@
 							<li>Ocika Villa</li>
 						</ul>
 					</div>
+					<span> untuk </span>
+					<div class="input-field">
+						<span class="input-field-toggle">{{ $person }}</span><span> Orang</span>
+						<div class="text-field-wrapper animation">
+							<div class="text-field">
+								<p>Untuk Keperluan</p>
+								<input type="number" name="person" placeholder="2" class="input fillable" value="{{ $person }}">
+								<button>
+									<i class="fas fa-check"></i>
+								</button>
+							</div>
+						</div>
+					</div>
 					<input type="hidden" name="business_id">
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
@@ -1798,7 +1813,7 @@
 				<div class="orders flex-grow-1">
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Tidak ada tambahan, </span><a next="4" class="form-nav">Lanjutkan</a>
+					<a next="4" class="form-nav">Lanjutkan</a>
 				</div>
 			</div>
 		</div>
@@ -1891,7 +1906,7 @@
 					</div>
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Identitas saya sudah benar, </span><a id="btn-submit-detail" next="5" class="form-nav">Lanjutkan</a>
+					<a id="btn-submit-detail" next="5" class="form-nav">Lanjutkan</a>
 				</div>
 			</div>
 		</div>
@@ -1959,10 +1974,6 @@
 						<div class="info">
 							<span><b>CHECK-OUT</b></span>
 							<p class="val-end-date font-number">01 Nov 2019</p>
-						</div>
-						<div class="info">
-							<span><b>DETAIL PESANAN</b></span>
-							<p class="val-detail-pesanan font-number"><span class="val-lama-inap">1</span> malam / 2 kamar</p>
 						</div>
 						<div class="info">
 							<span><b>TOTAL PESANAN</b></span>
@@ -2059,6 +2070,9 @@
 		var end_date 		   	= {!! json_encode($end_date) !!};
 		var start_date 		   	= {!! json_encode($start_date) !!};
 		var business_id 	   	= {!! json_encode($business_id) !!};
+		var person 	   			= {!! json_encode($person) !!};
+
+		console.log(resorts);
 
 		$('input[name="business_id"]').val(business_id);
 		if (business_id == 1) {
@@ -2095,20 +2109,23 @@
 		$('input[name="start_date"]').val(start_date).change();
 		$('input[name="end_date"]').val(end_date).change();
 
-		$('ul.list-resort').empty();
+		$('.list-resort').empty();
 
 		$.each(resorts, function(index, resort) {
 			var id_resort = resort.id;
 			var nama_resort = resort.name;
 
 			var $list = $('<li id="' + id_resort + '">' + nama_resort + '</li>');
+			var $list_mobile = $('<option id="' + id_resort + '" value="id_resort">' + nama_resort + '</option>');
 
 			if (id_resort == item_id) {
 				$list.addClass('active');
+				$list_mobile.prop('selected', true);
 				$('.input-nama-resort').text(nama_resort);
 			}
 
 			$('ul.list-resort').append($list);
+			$('select.list-resort').append($list_mobile);
 		})
  
 		$('.input-field-toggle').on('click', function() {
@@ -2273,6 +2290,7 @@
 						var fake_id = kamar.id;
 						var nama_kamar = kamar.name;
 						var id_harga = kamar.price.id;
+						var is_per_pax = kamar.price.is_per_pax;
 						var harga = kamar.price.service_price;
 						var harga_string = accounting.formatMoney(
 							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
@@ -2291,6 +2309,7 @@
 								'<div class="price">' + 
 									'<span>' + harga_string + '<span class="mobile-invisible"> / malam</span></span>' +
 									'<input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '">' +
+									'<input type="hidden" name="is_per_pax" value="' + is_per_pax + '">' +
 								'</div>' +
 								'<div class="unit">' +
 									'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
@@ -2689,6 +2708,7 @@
 					const fake_id = item.item.id;
 					const id_harga = item.item.price.id;
 					const harga = item.item.price.service_price;
+					const is_per_pax = item.item.price.is_per_pax;
 					const harga_string = accounting.formatMoney(
 								harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
@@ -2702,6 +2722,7 @@
 							'<div class="price">' + 
 								'<span>' + harga_string + '<span class="mobile-invisible"> / pcs</span></span>' +
 								'<input type="hidden" name="harga" value="' + harga + '">' +
+								'<input type="hidden" name="is_per_pax" value="' + is_per_pax + '">' +
 							'</div>' +
 							'<div class="unit">' +
 								'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
@@ -2749,7 +2770,7 @@
 		$('#step-3 .orders').empty();
 
 		if (extra_item.data.length != 0) {
-			$.each(extra_item, function(index, item) {
+			$.each(extra_item.data, function(index, item) {
 				const nama_item = item.name;
 				const id_item = item.details.filter(detail => detail.is_booked === 0)[0].id;
 				const id_harga = item.price.id;
@@ -2839,9 +2860,14 @@
 	}
 
 	function inputNumberListener() {
+
 		var harga = $(this).closest('.order').find('input[name="harga"]').val();
 		var lama_inap = $(this).closest('.order').find('input[name="lama_inap"]').val();
+		var is_per_pax = $(this).closest('.order').find('input[name="is_per_pax"]').val();
 		var qty = $(this).val();
+
+		if (qty == 0 || qty == '') $(this).closest('.order').removeClass('selected');
+		if (is_per_pax == '1') qty = person;
 
 		var total_harga = qty * parseInt(harga) * parseInt(lama_inap);
 

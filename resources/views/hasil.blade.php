@@ -6,7 +6,7 @@
 		<div class="content">
 			<div class="result-info">
 				<div class="desc">
-					<p>SEARCH > <b class="business-name">CAMPING AREA</b></p>
+					<p>SEARCH > <b class="business-name">{{ $catalog }}</b></p>
 					<span id="count-data"></span>
 				</div>
 				<!-- <div class="sorting">
@@ -24,8 +24,10 @@
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="text" name="start_date" value="{{ $start_date }}">
 		<input type="text" name="end_date" value="{{ $end_date }}">
-		<input type="text" name="waktu">
-		<input type="hidden" name="business_id">
+		<input type="text" name="waktu" value="{{ $waktu }}">
+		<input type="number" name="person" value="{{ $person }}">
+		<input type="hidden" name="business_id" value="{{ $business_id }}">
+		<input type="hidden" name="business_name" value="{{ $catalog }}">
 		<input type="hidden" name="data">
 		<button type="submit">OK</button>
 	</form>
@@ -62,8 +64,11 @@
 	<script type="text/javascript" src="{{ asset('js/accounting.js') }}"></script>
 	<script type="text/javascript">
 		var data = {!! $result !!};
+		var person = {!! $person !!};
 		var catalog = {!! json_encode($catalog) !!};
 		var result = data.data;
+
+			result = result.filter(item => item.min_out <= parseInt(person));
 
 		$('.thumbnails').empty();
 
@@ -147,7 +152,7 @@
 
 					var $kamar_info =
 					'<div class="variant">' +
-						'<p><b>' + nama_kamar + '</b></p>' +
+						'<p>' + nama_kamar + '</p>' +
 						'<span class="line"></span>' +
 						'<p>Sisa <span class="font-number">' + sisa_kamar + '</span> kamar</p>' +
 					'</div>';

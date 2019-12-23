@@ -283,6 +283,10 @@
 			left: -50px;
 		}
 
+		.background {
+			font-size: 0.7em;
+		}
+
 		
 
 		.background.show-invoice .navbar .special {
@@ -787,7 +791,7 @@
         }
 
         .invoice-info .payment-status {
-        	padding: 30px 65px;
+        	/*padding: 30px 65px;*/
 		    border-left: 1px solid #e6e6e6;
 		    border-right: 1px solid #e6e6e6;
 		    margin: 0px auto;
@@ -797,7 +801,9 @@
     	    font-family: Raleway;
 		    font-weight: 200;
 		    letter-spacing: 3px;
-		    margin-top: 30px;
+		    margin: 0px;
+		    text-align: center;
+		    font-size: 2.5em;
 		    text-transform: uppercase;
         }
 

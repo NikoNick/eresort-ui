@@ -30,9 +30,11 @@ class CatalogController extends Controller {
     $start_date = request('start_date');
     $end_date = request('end_date');
     $waktu = request('waktu');
+    $person = request('person');
     $business_id = request('business_id');
+    $business_name = request('business_name');
     $result = json_decode(request('data'));
-    return view('hasil-2', compact('result', 'start_date', 'end_date', 'business_id', 'waktu'));
+    return view('hasil-2', compact('result', 'start_date', 'end_date', 'business_id', 'waktu', 'person', 'business_name'));
   }
 
 }

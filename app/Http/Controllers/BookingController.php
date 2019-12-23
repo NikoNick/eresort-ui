@@ -12,6 +12,7 @@ class BookingController extends Controller {
     $item_id = request('item_id');
     $start_date = request('start_date');
     $waktu = request('waktu');
+    $person = request('person');
 
     $url_config = ExtrernalRequest::API_RESORT_URL . 'config/resort';
     if ($business_id == 1) {
@@ -34,7 +35,7 @@ class BookingController extends Controller {
     $extra_item = ExtrernalRequest::get($extra_item_url, false);
     $config = ExtrernalRequest::get($url_config, false);
 
-    return view($page, compact('data', 'extra_item', 'start_date', 'end_date', 'item_id', 'business_id', 'config', 'waktu'));
+    return view($page, compact('data', 'extra_item', 'start_date', 'end_date', 'item_id', 'business_id', 'config', 'waktu', 'person'));
   }
 
   public function detail(){

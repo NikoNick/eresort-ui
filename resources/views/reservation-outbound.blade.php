@@ -22,6 +22,65 @@
 			font-family: Raleway !important;
 		}
 
+		button {
+			letter-spacing: 1px;
+		}
+
+		.loading-screen {
+			background: #fff;
+			width: 100%;
+			height: 100vh;
+			text-align: center;
+			position: absolute;
+			z-index: 2;
+			/*opacity: 0;*/
+		}
+
+		.loading-wrapper {
+			text-align: center;
+			width: 100%;
+			position: absolute;
+			top: calc(50% - 60px);
+			font-size: 0.8em;
+		}
+
+		.loading-text {
+			margin-top: 30px;
+			letter-spacing: 3px;
+		}
+
+		.loader {
+			display: inline-block;
+			border: 8px solid #f3f3f3; /* Light grey */
+			border-top: 8px solid #3498db; /* Blue */
+			border-radius: 50%;
+			width: 60px;
+			height: 60px;
+			animation: spin 2s linear infinite;
+		}
+
+		.loader.small {
+			display: inline-block;
+			border: 3px solid #f3f3f3; /* Light grey */
+			border-top: 3px solid #3498db; /* Blue */
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			top: calc(50% - 20px);
+			animation: spin 2s linear infinite;
+		}
+
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		.btn-black {
+			background: #000;
+			color: #fff;
+		}
+
 		.font-number {
 			font-family: Consolas;
 		}
@@ -46,24 +105,94 @@
     		z-index: 2;
 		}
 
-		.background {
-			background: #fff;
+		.background-pattern {
+			display: none;
+			position: fixed;
 			width: 100%;
 			height: 100vh;
+			z-index: 0;
+		}
+
+		.background-pattern .left {
+			position: absolute;
+			bottom: 120px;
+			left: -110px;
+		}
+
+		.background-pattern .right {
+			position: absolute;
+			right: -110px;
+			top: 320px;
+			transform: rotateY(180deg);
+		}
+
+		.background-pattern .pattern #one {
+			width: 320px;
+			height: 33px;
+			border-radius: 50px;
+			background: linear-gradient(90deg, rgba(28,173,192,1) 0%, rgba(39,254,197,1) 100%);
+		}
+
+		.background-pattern .pattern #two {
+			width: 220px;
+			height: 33px;
+			border-radius: 50px;
+			/*position: absolute;*/
+			margin-left: 150px;
+			margin-top: 20px;
+			background: linear-gradient(90deg, rgba(28,173,192,1) 0%, rgba(39,254,197,1) 100%);
+		}
+
+		.background-pattern .pattern #three {
+			display: inline-block;
+			width: 170px;
+			height: 33px;
+			border-radius: 50px;
+			/*position: absolute;*/
+			margin-left: 50px;
+			margin-top: 20px;
+			background: linear-gradient(90deg, rgba(28,173,192,1) 0%, rgba(39,254,197,1) 100%);
+		}
+
+		.background-pattern .pattern #four {
+			display: inline-block;
+			width: 33px;
+			height: 33px;
+			border-radius: 50px;
+			/*position: absolute;*/
+			margin-left: 20px;
+			margin-top: 20px;
+			background: linear-gradient(90deg, rgba(28,173,192,1) 0%, rgba(39,254,197,1) 100%);
+		}
+
+		.background-pattern .pattern.shadow {
+		    position: absolute;
+		    top: 40px;
+		    left: -40px;
+		    opacity: 0.15;
+		}
+
+		.background {
+			/*background: #fff;*/
+			width: 100%;
+			/*height: 100vh;*/
 			/*background-size: 130%;*/
 			/*overflow: hidden;*/
 			display: flex;
+			position: relative;
+			z-index: 1;
 			flex-direction: column;
 		}
 
 		.form-title {
-			padding: 50px 0px;
+			align-items: baseline;
+			padding-bottom: 30px;
 			/*padding-bottom: 0;*/
 		}
 
 		.form-title h1 {
 			margin-top: 0;
-			font-size: 2.3em;
+			font-size: 2.1em;
 		}
 
 		.form-title p {
@@ -72,15 +201,18 @@
 		}
 
 		.form-reservasi {
-			padding: 0px 120px;
+			padding: 5% 10%;
 			padding-top: 180px;
-			padding-bottom: 120px;
+			/*padding-bottom: 120px;*/
 			height: auto;
-			/*min-height: 100vh;*/
+			min-height: 100vh;
+			font-size: 0.7em;
+			/*box-sizing: content-box;*/
 		}
 
 		.form-reservasi>.wrapper {
 			display: flex;
+			min-height: 100%;
 			flex-direction: column;
 		}
 
@@ -91,8 +223,8 @@
 		}
 
 		.background .form-reservasi .form span {
-			font-size: 2.8em;
-		    line-height: 100px;
+			font-size: 2.5em;
+		    line-height: 70px;
 		    font-weight: 300;
 		    letter-spacing: 5px;
 		    word-spacing: 20px;
@@ -134,6 +266,8 @@
 
 		.order>div {
 			padding: 25px;
+			position: relative;
+			white-space: nowrap;
 		}
 
 		#step-2 .orders .order .nama {
@@ -269,10 +403,11 @@
 
 		.order-steps {
 			background: #fff;
-			padding: 80px 120px 50px;
+			padding: 5% 10%;
 			position: fixed;
 			width: 100%;
-			z-index: 1;
+			z-index: 5;
+			font-size: 0.7em;
 		}
 
 		.order-steps .step {
@@ -316,6 +451,11 @@
 		    letter-spacing: 3px;
 		    font-size: 1.2em;
 		    color: #b5b5b5;
+		}
+
+		.order-steps .step p .number:after {
+			content: '.';
+			margin-right: 5px;
 		}
 
 		.order-steps .step.finished .bar:before {
@@ -376,8 +516,9 @@
 		}
 
 		.nav-button button {
-			padding: 15px 20px;
-
+			padding: 8px 20px;
+			font-size: 0.8em;
+			font-weight: 800;
 		}
 
 		.nav-button button a {
@@ -390,8 +531,12 @@
 			padding-top: 0;
 		}*/
 
-		#step-3 {
-			padding: 180px 250px 100px 250px;
+		/*#step-3 {
+			padding: 220px 250px 100px 250px;
+		}*/
+
+		#step-3 .form-title {
+			padding-bottom: 0px;
 		}
 
 		#step-3 .nav-button {
@@ -438,6 +583,7 @@
 		.form-reservasi .tambahan>.nama {
 			flex-grow: 1;
 		}
+
 
 		.input-field {
 			display: inline-block;
@@ -486,7 +632,7 @@
 
 		.input-field .text-field {
 		    display: flex;
-		    min-width: 500px;
+		    min-width: 400px;
 		    position: relative;
 		}
 
@@ -500,7 +646,7 @@
 			/*transition-delay: 0.5s !important;*/
 		}
 
-		.input-field .text-field input[type="text"], .input-field .text-field textarea {
+		.input-field .text-field input, .input-field .text-field textarea {
 		    font-size: 1.8em;
 		    letter-spacing: 2px;
 		    padding: 15px;
@@ -579,8 +725,12 @@
 		    padding: 0px 20px;
 		}
 
-		#step-2, #step-6 {
-		    padding: 220px 250px 120px 250px;
+		#step-2, #step-3 {
+		    padding: 15% 15% 8%;
+		}
+
+		#step-6 .content {
+			padding: 50px 130px 0px 130px;
 		}
 
 		#step-6 .reservation-desc {
@@ -690,6 +840,10 @@
 			font-family: Calibri Light;
 			font-weight: bold;
 			margin-top: 10px;
+		}
+
+		#step-6 .nav-button {
+			margin-top: 0;
 		}
 
 		.harga {
@@ -832,20 +986,11 @@
         .main-info p {
     	    font-size: 2em;
     		letter-spacing: 4px;
+    		margin-bottom: 0px;
         }
 
         .main-info p>b, .main-info p>b>span {
         	position: relative;
-        }
-
-        .main-info p>b:before {
-    	    content: '';
-    	    position: absolute;
-    	    width: 100%;
-    	    height: 12px;
-    	    background: #0fffbe;
-    	    top: 20px;
-    	    left: -5px;
         }
 
         .main-info p>sup {
@@ -865,20 +1010,20 @@
         .info p {
     	    font-size: 1.2em;
     		letter-spacing: 1px;
+    		margin-bottom: 0;
         }
 
         .orders {
-        	border: 1px solid #c9c9c9;
-        	margin-top: 40px;
+        	border: 1px solid #e4e4e4;
+        	margin-top: 10px;
         }
 
         .order {
         	letter-spacing: 2px;
-        	padding: 0px 15px;
         }
 
         .orders .order {
-        	border-top: 1px solid #c9c9c9;
+        	border-top: 1px solid #f1f1f1;
         	cursor: pointer;
         }
 
@@ -896,10 +1041,10 @@
 
         .order.header {
         	border: none;
-        	border-top: 3px solid #f9f9f9;
+        	border-top: 1px solid #f9f9f9;
         	font-size: 0.9em;
         	color: #b5b5b5;
-        	margin-top: 40px;
+        	margin-top: 60px;
         }
 
         .order.header>div {
@@ -940,7 +1085,11 @@
         }
 
         .order .price {
-        	width: 25%;
+        	width: 20%;
+        }
+
+        .order .nights {
+        	width: 10%;
         }
 
         .order .total-price {
@@ -948,7 +1097,7 @@
         }
 
         .order .unit {
-        	width: 10%;
+        	width: 12%;
         }
 
         .order .line {
@@ -963,23 +1112,488 @@
         	outline: none;
         }
 
+        .order .label-disc {
+    	    font-family: Arial;
+		    font-size: 0.8em;
+		    font-weight: 500;
+		    position: absolute;
+		    white-space: nowrap;
+		    background: black;
+		    color: #fff;
+		    padding: 2px;
+		    right: -80px;
+        }
+
         #step-1, #step-4 {
         	z-index: 2;
         }
 
         .payment-method {
-        	padding: 30px 0px;
-        	margin-bottom: 10px;
+    	    margin-top: 30px;
+		    padding: 15px 25px;
+		    margin-bottom: 10px;
+		    margin-right: 30px;
+		    display: inline-block;
+		    border: 1px solid #dcdcdc;
+		    border-radius: 10px;
+        }
+
+        .payment-method:last-child {
+        	margin-right: 0;
         }
 
         .payment-method .name {
-        	font-size: 1.5em;
-        	font-weight: 700;
-        	letter-spacing: 4px;
+        	font-size: 1.2em;
+		    font-weight: 400;
+		    letter-spacing: 4px;
         }
+
+        .kode-promo {
+        	align-items: center;
+        }
+
+        .kode-promo span {
+        	letter-spacing: 2px;
+        }
+
+        .kode-promo .input-wrapper {
+        	display: flex;
+        	align-items: center;
+        }
+
+        .kode-promo #btn-check-promo {
+        	cursor: pointer;
+        }
+
+        
+        .input-wrapper {
+    	    border: 1px solid #e4e4e4;
+		    border-radius: 8px;
+		    padding: 15px 25px;
+		    margin-left: 25px;
+		}
+
+		.input-wrapper input {
+			border: none;
+			outline: none;
+			letter-spacing: 2px;
+		}
+
+		.input-wrapper b {
+		    white-space: nowrap;
+		    letter-spacing: 1px;
+		    font-weight: 800;
+		    /*padding: 0px 25px;*/
+		}
+
+		.input-wrapper i {
+		    /*margin: 0 25px;*/
+		    font-size: 1.2em;
+		}
+
+		#step-5 .content {
+			text-align: center;
+			margin-top: 40px;
+		}
+
+		#step-5 .content h1 {
+			font-weight: 400;
+			font-size: 2.5em;
+		}
+
+		#step-5 .content p {
+			font-size: 1.3em;
+		    letter-spacing: 3px;
+		    margin-top: 20px;
+		}
+
+		.form-dialog {
+		    top: -120px;
+    		left: 600px;
+			position: absolute;
+			z-index: 5;
+			background: #fff;
+			border-radius: 5px;
+			box-shadow: 0px 5px 20px 0px #000;
+		}
+
+		.form-dialog>div {
+			padding: 30px 40px;
+		}
+
+		.form-dialog .header {
+			padding: 30px 0px;
+		}
+
+		.form-dialog .header h3 {
+		    font-family: Raleway;
+		    text-align: center;
+		    margin: 0;
+		    padding: 20px;
+		    font-size: 1.2em;
+		    letter-spacing: 2px;
+		    border-top: 1px solid #f5f5f5;
+		    border-bottom: 1px solid #f5f5f5;
+		}
+
+		.form-dialog .header p {
+		    text-align: center;
+		    font-size: 0.95em;
+		    letter-spacing: 1.5px;
+		    font-weight: 200;
+		    margin-top: 20px;
+		}
+
+		.form-dialog .body>div {
+			margin-top: 15px;
+		}
+
+		.form-dialog .body>div:first-child {
+			margin-top: 0px;
+		}
+
+		.form-dialog .input-wrapper {
+		    margin: 0;
+    		min-width: 350px;
+		}
+
+		.form-dialog .input-wrapper label {
+			margin: 0;
+			margin-right: 30px;
+			width: 60px;
+		}
+
+		.form-dialog button {
+			width: 100%;
+			background: #0ee6a2;
+		    font-weight: 700;
+		    letter-spacing: 2px;
+		    color: #fff;
+		    box-shadow: 0px 2px 0px 0px #10cc91;
+		    /*background: linear-gradient(360deg, rgb(26, 226, 178) 0%, rgb(25, 255, 194) 100%);*/
+		    padding: 12px;
+		}
+
+		.md-form {
+			position: relative;
+			margin-top: 5.5rem;
+		}
+
+		.md-form label {
+			position: absolute;
+			top: 0;
+			color: #b5b5b5;
+			font-size: 1.2em;
+			font-weight: 600;
+			letter-spacing: 2px;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form label.active {
+		    transform: translateY(-1.8rem) scale(0.8);
+    		font-size: 1em;
+		}
+
+		.md-form input, .md-form select {
+			border: none;
+			box-shadow: none;
+			font-size: 1.2em;
+			color: #000;
+			font-style: italic;
+			letter-spacing: 2px;
+			height: auto;
+			padding: 1.2rem 0 !important;
+			border-radius: 0;
+			border-bottom: 1px solid #dcdcdc;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form>input:focus, .md-form>select:focus {
+			outline: none;
+			box-shadow: none;
+		    border-bottom: 1px solid #4285f4;
+		    -webkit-box-shadow: 0 1px 0 0 #4285f4;
+		    box-shadow: 0 1px 0 0 #4285f4;
+		}
+
+		.md-form>input:focus+label, .md-form>select:focus+label {
+			transform: translateY(-1.8rem) scale(0.8);
+			color: #4285f4;
+		}
+
+		.md-form .md-input-wrapper {
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid #dcdcdc;
+			transition: all 0.2s;
+			transform-origin: 0% 100%;
+		}
+
+		.md-form .md-input-wrapper input, .md-form .md-input-wrapper .date-wrapper {
+			flex-grow: 1;
+			border: 0;
+			background: transparent;
+		}
+
+		.md-form .md-input-wrapper input[type="number"] {
+			flex-grow: 0;
+			width: 10%;
+			background: transparent;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper {
+			flex-grow: 1;
+			position: relative;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper .date-string {
+			font-size: 1.2em;
+			color: #000;
+			font-style: italic;
+			letter-spacing: 2px;
+			padding: 1.2rem 0 !important;
+			position: absolute;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper input {
+			opacity: 0;
+		}
+
+		.md-form .md-input-wrapper:focus-within {
+			border-bottom: 1px solid #4285f4;
+		    -webkit-box-shadow: 0 1px 0 0 #4285f4;
+		    box-shadow: 0 1px 0 0 #4285f4;
+		}
+
+		.md-form .md-input-wrapper:focus-within input {
+			outline: none;
+			box-shadow: none;
+		}
+
+		.md-form .md-input-wrapper:focus-within+label {
+			transform: translateY(-1.8rem) scale(0.8);
+			color: #4285f4;
+		}
+
+		.md-form .md-input-wrapper .separator {
+			margin: 0 20px;
+			font-style: italic;
+			letter-spacing: 1px;
+			font-weight: 600;
+			color: #b5b5b5;
+			font-size: 1em;
+		}
+
+		.mobile-visible {
+			display: none;
+		}
+
+		@media screen and (max-width: 600px) {
+			.background-pattern {
+				display: none !important;
+			}
+
+			.order-steps {
+				padding: 5% 10% !important;
+				width: 100vw !important;
+			}
+
+			.order-steps .step {
+				flex-grow: 0 !important;
+				/*font-family: Raleway;*/
+				font-size: 0.6em !important;
+				margin: 0 !important;
+			}
+
+			.order-steps .step:first-child .number {
+				margin-left: 0;
+			}
+
+			.order-steps .step:last-child .number {
+				margin-right: 0;
+			}
+
+			.order-steps .step.active.finished {
+				flex-grow: 1 !important;
+			}
+
+			.order-steps .step.active {
+				flex-grow: 1 !important;
+			}
+
+			.order-steps .step .bar {
+				display: none;
+			}
+
+			.order-steps .step .number {
+			    width: 25px;
+			    height: 25px;
+			    text-align: center;
+			    padding: 4px 8px;
+			    display: inline-block;
+			    border-radius: 50%;
+			    border: 1px solid;
+			    margin: 0px 5px;
+			}
+
+			.order-steps .step .name, .order-steps .step.active.finished .name {
+				display: none !important;
+				letter-spacing: 1px;
+				margin-left: 5px;
+			}
+
+			.order-steps .step p .number:after {
+				content: none;
+			}
+
+			.order-steps .step.active .name {
+				display: inline-block !important;
+			}
+
+			.form-reservasi {
+				padding: 5% 10% !important;
+				padding-top: 30% !important;
+				font-size: 0.8em;
+			}
+
+			.form-title {
+				padding: 0;
+				display: block !important;
+			}
+
+			.form-title h1 {
+			    letter-spacing: 2px;
+			    font-size: 1.5em;
+			}
+
+			.form-title p {
+	    		font-size: 1em;
+    			letter-spacing: 1px;
+			}
+
+			.mobile-visible {
+				display: block;
+			}
+
+			.mobile-invisible, .info {
+				display: none;
+			}
+
+			.form-reservasi .form, .nav-button span {
+				display: none;
+			}
+
+			.order.header {
+				/*display: none;*/
+				font-size: 0.8em;
+			}
+
+			.orders {
+				font-size: 0.9em;
+				border: none;
+			}
+
+			.order {
+				margin: 0;
+				letter-spacing: 1px;
+				border: none !important;
+				/*border-top: 1px solid #f5f5f5 !important;*/
+				padding: 0px;
+			}
+			.order>div {
+				padding: 3% 2% !important;
+			}
+
+			.order .price {
+				width: 30%;
+			}
+
+			.order .name {
+				padding-left: 0px !important;
+				text-transform: initial;
+				font-weight: 500;
+			}
+
+			.order .unit {
+				padding-right: 0px !important;
+			}
+
+			.order .line {
+				display: none;
+			}
+
+			.order .index {
+				margin-right: 10px;
+			}
+
+			.order .nights, .order .total-price, .order .availability {
+				display: none;
+			}
+
+			.text-center {
+				text-align: center;
+			}
+			.text-center h1 {
+				font-size: 2.5em;
+				font-family: Consolas;
+				margin-top: 10px;
+			}
+			.text-center label {
+			    font-weight: 400;
+    			letter-spacing: 1px;
+			}
+
+			#step-5 .content p {
+				font-size: 1em;
+				letter-spacing: 1px;
+			}
+
+			#step-6 .content {
+				padding: 0px;
+			}
+
+			#step-6 .order .price {
+				display: none;
+			}
+
+			#step-6 .order .unit {
+				width: 20%;
+				text-align: center;
+			}
+
+			#step-6 .order .total-price {
+				width: 25%;
+				display: block;
+			}
+
+			.btn-book {
+				display: block;
+				width: 100%;
+			    font-size: 1em;
+			    padding: 4% 10%;
+			    margin-top: 20px;
+			}
+
+			.mobile-info {
+				margin-right: 10px;
+				flex-grow: 1;
+				margin-top: 20px;
+			}
+			.mobile-info p {
+				font-size: 1.2em;
+			}
+		}
 	</style>
 </head>
 <body>
+	<div class="loading-screen animation anim-blink disappear gone">
+		<div class="loading-wrapper">
+			<div class="loader"></div>
+			<p class="loading-text">Loading</p>
+		</div>
+	</div>
 	<div class="background">
 		<div class="order-steps flex">
 			<div id="trigger-1" class="step">
@@ -1009,6 +1623,34 @@
 				<div class="form-title">
 					<h1 class="anim-slide-left-right animation disappear">Apa Yang Anda Butuhkan ?</h1>
 				</div>
+				<div class="mobile-visible">
+					<div class="md-form">
+						<select name="list-resort" class="fillable form-control">
+							
+						</select>
+						<label for="form1" class="active">PAKET OUTBOUND</label>
+					</div>
+					<div class="md-form">
+						<div class="md-input-wrapper">
+							<div class="date-wrapper">
+								<span class="date-string">10 Desember 2019</span>
+								<input type="text" id="form1" class="form-control date" name="start_date" spellcheck="false" value="{{ $start_date }}" placeholder="Tanggal">	
+							</div>
+							<span class="separator">Pukul.</span>		
+							<input type="text" id="form2" class="form-control" name="waktu" spellcheck="false" value="{{ $waktu }}" placeholder="Waktu">
+							
+						</div>
+						<label for="form1" class="active">TANGGAL & WAKTU</label>
+					</div>
+					<div class="md-form">
+						<div class="md-input-wrapper">
+							<input type="number" id="form1" class="form-control" name="person" spellcheck="false" value="{{ $person }}" min="1">
+							<span>Orang</span>
+						</div>
+						
+						<label for="form1" class="active">KAPASITAS</label>
+					</div>	
+				</div>
 				<div class="form anim-slide-right-left animation disappear">
 					<div class="bg"></div>
 					<span>Pesan layanan outbound </span>
@@ -1030,12 +1672,25 @@
 						</div>
 					</div>
 					<span> pukul </span>
-					<div class="input-field tanggal">
+					<div class="input-field">
 						<span class="input-field-toggle">{{ $waktu }}</span>
 						<div class="text-field-wrapper animation">
 							<div class="text-field">
 								<p>Waktu Pelaksanaan</p>
 								<input type="text" name="waktu" placeholder="10:00" class="input fillable" value="{{ $waktu }}">
+								<button>
+									<i class="fas fa-check"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<span> untuk </span>
+					<div class="input-field">
+						<span class="input-field-toggle">{{ $person }}</span><span> Orang</span>
+						<div class="text-field-wrapper animation">
+							<div class="text-field">
+								<p>Untuk Keperluan</p>
+								<input type="number" name="person" placeholder="2" class="input fillable" value="{{ $person }}">
 								<button>
 									<i class="fas fa-check"></i>
 								</button>
@@ -1050,45 +1705,6 @@
 			</div>
 			
 		</div>
-
-		<!-- <div id="step-2" class="form-reservasi gone" condition="min-1">
-			<div class="wrapper">
-				<div>
-					<div class="flex end">
-						<div class="main-info flex-grow-1">
-							<span>Menginap di</span>
-							<p><b><span class="val-nama-item">Rasamala</span></b> <sup class="val-nama-business">Resort</sup></p>
-						</div>
-						<div class="info">
-							<span><b>CHECK-IN</b></span>
-							<p class="val-start-date font-number">31 Okt 2019</p>
-						</div>
-						<div class="info">
-							<span><b>CHECK-OUT</b></span>
-							<p class="val-end-date font-number">01 Nov 2019</p>
-						</div>
-						<div class="info">
-							<span><b>DETAIL PESANAN</b></span>
-							<p class="font-number"><span class="val-lama-inap">1</span> malam / <span class="val-jumlah-pilihan"></span> kamar</p>
-						</div>
-					</div>
-					<div class="animation anim-slide-down-up disappear">
-						<div class="orders"></div>
-						<div class="order total flex">
-							<div class="left flex">
-							</div>
-							<div class="right flex">
-								<div><label>TOTAL</label></div>
-								<div class="harga"><p class="grand-total">Rp 0</p></div>
-							</div>
-						</div>
-						<div class="nav-button animation anim-slide-down-up disappear">
-							<span>Saya memesan 2 Deluxe Room & 1 Executive Room, <a next="3" class="form-nav">Lanjutkan</a></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
 
 		<div id="step-3" class="form-reservasi gone" condition="optional">
 			<div class="wrapper">
@@ -1166,16 +1782,34 @@
 					</div> -->
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Identitas saya sudah benar, <a next="5" class="form-nav">Lanjutkan</a></span>
+					<span id="btn-submit-detail">Identitas saya sudah benar, <a next="5" class="form-nav">Lanjutkan</a></span>
 				</div>
 			</div>
 		</div>
-		<div id="step-5" class="form-reservasi gone" condition="min-1">
+		<div id="step-5" class="form-reservasi gone" condition="pass" for="5">
 			<div class="wrapper">
-				<div class="form-title">
-					<h1 class="anim-slide-left-right animation disappear">Pilih Metode Pembayaran yang diinginkan</h1>
+				<div class="form-title flex">
+					<div class="flex-grow-1">
+						<h1 class="anim-slide-left-right animation disappear">Pilih Metode Pembayaran</h1>
+						<p>Dan gunakan kode promo untuk mendapat potongan harga</p>	
+					</div>
+					<div class="kode-promo flex">
+						<span>KODE PROMO</span>
+						<div class="input-wrapper">
+							<input type="text" name="kode_promo" placeholder="# xxxxxxx">
+							<div id="btn-check-promo">
+								<i class="fas fa-check promo-true"></i>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div>
+				<div class="content flex-grow-1">
+					<div class="mobile-visible text-center">
+						<label>TOTAL PESANAN</label>
+						<h1 class="val-grand-total">Rp 550.000</h1>
+					</div>
+					<h1 class="mobile-invisible">Total pesanan anda adalah <span class="val-grand-total">Rp 550.000</span></h1>
+					<p>Setelah melakukan pemesanan, anda akan memiliki waktu <strong><span id="booking-timeout"></span></strong> untuk melengkapi pembayaran</p><!-- 
 					<div class="payment-method flex-grow-1">
 						<span>
 							<input type="checkbox" id="checkbox-1" class="checkbox fillable" value="true">
@@ -1191,23 +1825,23 @@
 							<label for="checkbox-2"></label>
 						</span>
 						<span class="name">
-							DP 30%
+							DP 30% (<span class="val-half-payment">Rp 0</span>)
 						</span>
-					</div>
+					</div> -->
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span><a id="btn-submit-detail" next="6" class="form-nav">Lihat Pesanan</a></span>
+					<a next="6" class="form-nav">Lihat Pesanan</a>
 				</div>	
 			</div>
 			
 		</div>
-		<div id="step-6" class="form-reservasi gone" condition="pass">
+		<div id="step-6" class="form-reservasi gone" condition="pass" for="6">
 			<div class="wrapper">
-				<div>
+				<div class="flex-grow-1">
 					<div class="flex end">
 						<div class="main-info flex-grow-1">
-							<span>Pilih program</span>
-							<p><b><span class="val-nama-item">Rasamala</span></b> <sup class="val-nama-business">Outbound</sup></p>
+							<span>Menginap di</span>
+							<p><b><span class="val-nama-item">Rasamala</span></b> <sup class="val-nama-business">Resort</sup></p>
 						</div>
 						<div class="info">
 							<span><b>CHECK-IN</b></span>
@@ -1218,15 +1852,43 @@
 							<p class="val-end-date font-number">01 Nov 2019</p>
 						</div>
 						<div class="info">
-							<span><b>DETAIL PESANAN</b></span>
-							<p class="val-detail-pesanan font-number"><span class="val-lama-inap">1</span> malam / 2 kamar</p>
-						</div>
-						<div class="info">
 							<span><b>TOTAL PESANAN</b></span>
 							<p class="val-grand-total font-number">Rp 860.000</p>
 						</div>
+						<div class="info nav-button">
+							<button class="btn btn-black btn-book">BOOK NOW</button>
+						</div>
 					</div>
-					<div class="animation anim-slide-down-up disappear">
+					<div class="mobile-visible">
+						<div class="flex">
+							<div class="mobile-info">
+								<span><b>CHECK-IN</b></span>
+								<p class="val-start-date font-number">31 Okt 2019</p>
+							</div>
+							<div class="mobile-info">
+								<span><b>CHECK-OUT</b></span>
+								<p class="val-end-date font-number">01 Nov 2019</p>
+							</div>
+							<div class="mobile-info">
+								<span><b>DETAIL PESANAN</b></span>
+								<p class="val-detail-pesanan font-number"><span class="val-lama-inap">1</span> malam</p>
+							</div>
+						</div>
+						<button class="btn btn-black btn-book">BOOK NOW</button>
+					</div>
+					<div class="content animation anim-slide-down-up disappear">
+						<div class="order header">
+							<div class="name">
+								<span class="index">NO</span>
+								<span class="line"></span>
+								<span>LAYANAN TAMBAHAN</span>
+							</div>
+							<!-- <div class="availability">TERSEDIA</div> -->
+							<div class="price">HARGA SEWA</div>
+							<div class="unit">UNIT</div>
+							<div class="nights"></div>
+							<div class="total-price">TOTAL HARGA</div>
+						</div>
 						<div class="orders"></div>
 						<div class="order total flex">
 							<div class="left flex">
@@ -1238,9 +1900,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="nav-button animation anim-slide-down-up disappear">
+						<!-- <div class="nav-button animation anim-slide-down-up disappear">
 							<span><button id="btn-book" class="btn">BOOK NOW</button></span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -1250,30 +1912,51 @@
 <script type="text/javascript">
 	var base_url = window.location.origin;
 	var day_diff = 0;
+	var resort_variant = [];
+	var select_service = [];
 	var obj_booking = {
 		'name' : '',
 		'email' : '',
 		'phone' : '',
 		'full_payment' : true,
-		'location_id' : 1,
+		'name_for' : '',
+		'phone_for' : '',
+		'email_for' : '',
+		'promo_id' : null,
 		'items' : []
+	};
+	var orders = {
+		'nama_pemesan' : '',
+		'email_pemesan' : '',
+		'telepon_pemesan' : '',
+		'metode_pembayaran' : true,
+		'lama_inap' : 0,
+		'total_per_malam' : 0,
+		'grand_total' : 0,
+		'kode_promo' : 0,
+		'items': []
 	};
 
 	$(document).ready(function() {
-		showForm('1');
+		showForm('1', 'next');
 
 		var resorts 		   	= {!! $data !!}.data;
 		var extra_item 			= {!! $extra_item !!};
 		var config 				= {!! $config !!};
 		var waktu 				= {!! json_encode($waktu) !!};
+		var person 				= {!! json_encode($person) !!};
 		var item_id 			= {!! json_encode($item_id) !!};
 		var end_date 		   	= {!! json_encode($end_date) !!};
 		var start_date 		   	= {!! json_encode($start_date) !!};
 		var business_id 	   	= {!! json_encode($business_id) !!};
 
+
+
 		$('input[name="business_id"]').val(business_id);
-		
-		loadExtraItem(extra_item.data[0].availability);
+		$('.val-nama-business').text('Outbound');
+
+		console.log(resorts);
+	
 
 		$('input.date').datepicker({ 
 			dateFormat: 'yy-mm-dd' ,
@@ -1303,26 +1986,24 @@
 		$('ul.list-resort').empty();
 
 		$.each(resorts, function(index, resort) {
-			var id_resort = resort.details[0].id;
+			var item_detail_id = resort.details.filter(data => data.is_booked === 0)[0].id;
+			var service_id = resort.id;
 			var nama_resort = resort.name;
 			var duration_day = resort.price.duration.day;
 			var duration_hour = resort.price.duration.hour;
 			var duration_minute = resort.price.duration.minute;
 			var price = resort.price.service_price;
-
-			var $list = $('<li id="' + id_resort + '">' + 
+			var $list = $('<li id="' + item_detail_id + '" for="' + service_id + '">' + 
 							'<span>' + nama_resort + '</span>' + 
 							'<input type="hidden" name="day" value="' + duration_day + '">' +
 							'<input type="hidden" name="hour" value="' + duration_hour + '">' +
 							'<input type="hidden" name="minute" value="' + duration_minute + '">' +
 							'<input type="hidden" name="price" value="' + price + '">' +
 						  '</li>');
-
-			if (id_resort == item_id) {
+			if (service_id == item_id) {
 				$list.addClass('active');
 				$('.input-nama-resort').text(nama_resort);
 			}
-
 			$('ul.list-resort').append($list);
 		})
  
@@ -1376,111 +2057,109 @@
 			$('.bg').hide();
 
 			$('.input-field ul.show').removeClass('fade');
+			$('.text-field-wrapper.show').removeClass('fade');
+			$('.form-dialog').addClass('disappear');
 			setTimeout(function() {
 				$('.input-field ul.show').removeClass('show');
+				$('.text-field-wrapper.show').removeClass('show');
+				$('.form-dialog').addClass('gone');
 			}, 500);
 		})
 
-		// $('.form-next').on('click', function() {
-		// 	var start_date = $('input[name="start_date"]').val();
-		// 	var end_date = $('input[name="end_date"]').val();
-		// 	var id_resort = $('ul.list-resort li.active').attr('id');
-		// 	var id_business = $('input[name="business_id"]').val();
-		// 	var nama_resort = $('ul.list-resort li.active').text();
+		$('#btn-check-promo').on('click', function() {
+			showLoader('Checking Promo');
+			var kode_promo = $('input[name="kode_promo"]').val();
 
-		// 	day_diff = Math.round(dateDiffInDays(start_date, end_date));
+			$.post(
+				base_url + '/promo',
+				{
+					'_token' : '{{ csrf_token() }}',
+					'promo_code' : kode_promo
+				},
+				async function(data) {
+					if (data != '') {
+						var promo = $.parseJSON(data);
+						var id_promo = promo.id;
+						var disc = (promo.amount_percent == null) ? promo.amount_fixed : promo.amount_percent;
+						var items = promo.items;
 
-		// 	$.post(
-		// 		base_url + '/resort/availability',
-		// 		{
-		// 			'_token' : '{{ csrf_token() }}',
-		// 			'start_date' : start_date,
-		// 			'end_date' : end_date,
-		// 			'business_id' : id_business,
-		// 			'id_resort' : id_resort
-		// 		},
-		// 		function(data) {
-		// 			var resort_variant = $.parseJSON(data).availability;
+						obj_booking.promo_id = id_promo;
+						orders.kode_promo = id_promo;
 
-		// 			$('#step-2 .orders').empty();
+						$.each(items, function(index, item) {
+							const item_id = item.item.id;
 
-		// 			$.each(resort_variant, function(index, kamar) {
-		// 				const item_detail = kamar.details.filter(detail => detail.is_booked === 0);
-		// 				var id_kamar = item_detail[0].id;
-		// 				var nama_kamar = kamar.name;
-		// 				var id_harga = kamar.price.id;
-		// 				var harga = kamar.price.service_price;
-		// 				var harga_string = accounting.formatMoney(
-		// 					harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-		// 				var sisa_kamar = kamar.count_availability;
+							$.each(orders.items, function(index2, item2) {
+								const ordered_item_id = item2.real_id;
+								const harga = item2.harga;
+								const total_harga = item2.total_harga;
 
-		// 				var $kamar = 
-		// 					'<div id="' + id_kamar + '" class="order flex">' +
-		// 						'<div class="flex name">' +
-		// 							'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
-		// 							'<span class="line"></span>' +
-		// 							'<span>' + nama_kamar + '</span>' + 
-		// 						'</div>' +
-		// 						'<div class="availability">' + 
-		// 							'<span>' + sisa_kamar + ' kamar</span>' + 
-		// 						'</div>' +
-		// 						'<div class="price">' + 
-		// 							'<span>' + harga_string + ' / malam</span>' +
-		// 							'<input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '">' +
-		// 						'</div>' +
-		// 						'<div class="unit">' +
-		// 							'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
-		// 						'</div>' +
-		// 						'<div class="total-price">' +
-		// 							'<span>Rp 0</span>' +
-		// 							'<input type="hidden" name="total_harga" value="0">' +
-		// 						'</div>' +
-		// 					'</div>';
+								if (item_id == ordered_item_id) {
+									const int_diskon = (promo.amount_percent == null) ? disc : disc * parseInt(harga);
+									item2.diskon = int_diskon;
+									item2.after_diskon = parseInt(total_harga) - int_diskon;
+								}
+							})
+						})
 
-		// 				$('#step-2 .orders').append($kamar);
-		// 			})
+						var grand_total_diskon = calculateDiscountBill();
+						grand_total_diskon = accounting.formatMoney(grand_total_diskon,
+							{
+								symbol: 'Rp', format: '%s %v',
+								thousand: '.',
+								precision: 0
+							}
+						);
 
-		// 			start_date = dateToString(start_date, 'short');
-		// 			end_date = dateToString(end_date, 'short');
+						$('.val-grand-total').text(grand_total_diskon);
+						calculateDiscount();
+					}
 
-		// 			$('.val-nama-item').text(nama_resort);
-		// 			$('.val-start-date').text(start_date);
-		// 			$('.val-end-date').text(end_date);
-		// 			$('.val-lama-inap').text(day_diff);
+					hideLoader();
+				}
+			)
+		})
 
-		// 			$('.order input[type="number"]').on('keyup', inputNumberListener);
-		// 			$('.order input[type="number"]').on('change', inputNumberListener);
-		// 			$('.order input.checkbox').on('change', checkboxListener);
-		// 			$('#step-2 .order').on('click', function(e) {
-		// 				var condition = $(this).hasClass('selected');
-		// 				var target = $(this).find('.input-unit');
+		$('.mobile-visible input').on('change', function() {
+			var input_name = $(this).attr('name');
+			var value = $(this).val();
+			
+			var $target = $(this).closest('.mobile-visible').next().find('input[name="' + input_name + '"]');
 
-		// 				console.log(e.target);
+			console.log($target);
+				$target.val(value);
+		})
 
-		// 				if (condition) {
-		// 					if (! target.is(e.target)) {
-		// 						$(this).removeClass('selected');
-		// 						$(this).find('input[type="number"]').attr('disabled', true);
-		// 						$(this).find('input[type="number"]').val(0).change();
-		// 					}
-		// 				} else {
-		// 					$(this).addClass('selected');
-		// 					$(this).find('input[type="number"]').val(1).change();
-		// 					$(this).find('input[type="number"]').attr('disabled', false);
-		// 					$(this).find('input[type="number"]').focus();
-		// 				}
-		// 			})
-		// 		}
-		// 	)
-		// })
+		$('.form-next').on('click', async function() {
+			showLoader('Memuat Data');
+			start_date = $('input[name="start_date"]').val();
+			waktu = $('input[name="waktu"]').val();
+			var item_detail_id = $('ul.list-resort li.active').attr('id');
+			var item_id = $('ul.list-resort li.active').attr('for');
+			var id_business = $('input[name="business_id"]').val();
+			var nama_resort = $('ul.list-resort li.active').text();
+
+			day_diff = Math.round(dateDiffInDays(start_date, end_date));
+
+			start_date = dateToString(start_date, 'short') + ' ' + waktu;
+
+			select_service = resorts.filter(resort => resort.id == item_id)[0];
+			
+			loadExtraItem(extra_item);
+
+			var bookingTimeOut = await getBookingTimeOut();
+			$('#booking-timeout').text(`${bookingTimeOut.wait_time_hour} Jam`);
+
+			hideLoader();
+		})
 		
 		$('.form-nav').on('click', function() {
 			var key = $(this).attr('next');
 			
-			showForm(key);
+			showForm(key, 'next');
 		})
 
-		$('#btn-submit-detail').on('click', function() {
+		$('#btn-submit-detail').on('click', async function() {
 			var id_item = $('.list-resort').find('li.active').attr('id');
 			var nama_resort = $('.list-resort').find('li.active span').text();
 			var check_in = $('input[name="start_date"]').val();
@@ -1492,119 +2171,159 @@
 			var telepon = $('input[name="identitas_telepon"]').val();
 			var email = $('input[name="identitas_email"]').val();
 			var harga = $('.list-resort').find('li.active input[name="price"]').val();
+			var total_harga = harga;
+			
+			var metric = 'paket';
+			var unit = 1;
 
-			if ($('#step-5 input.checkbox:checked').val() == 'true') {
-				var payment_method = true;
-			} else {
-				var payment_method = false;
+			console.log(check_in + 'T' + waktu + ':00');
+
+			var start_time = moment(check_in + 'T' + waktu + ':00').format('YYYY-MM-DD HH:mm:SS');
+			var end_time = moment(check_in + 'T' + waktu + ':00').add(parseInt(duration_day), 'days').add(parseInt(duration_hour), 'hours').add(parseInt(duration_minute), 'minutes').format('YYYY-MM-DD HH:mm:SS');
+
+
+
+			const params = `booking_date=${check_in}`;
+			const bookingTimeOut = await $.getJSON(`https://api.resort.shafarizkyf.com/api/booking-time-out?${params}`);
+
+			if(bookingTimeOut){
+				obj_booking.booking_time_out_id = bookingTimeOut.id;
 			}
 
-			var start_time = moment(check_in + 'T' + waktu + ':00').add(7, 'hours').format('YYYY-MM-DD HH:mm:SS');
-			var end_time = moment(check_in + 'T' + waktu + ':00').add(parseInt(duration_day), 'days').add(parseInt(duration_hour), 'hours').add(parseInt(duration_minute), 'minutes').format('YYYY-MM-DD HH:mm:SS');
+			orders.nama_pemesan = nama_pemesan;
+			orders.email_pemesan = email;
+			orders.telepon_pemesan = telepon;
+			// orders.lama_inap = how_many_nights;
 
 			obj_booking.name = nama_pemesan;
 			obj_booking.phone = telepon;
 			obj_booking.email = email;
-			obj_booking.full_payment = payment_method;
+
+			$('.val-nama-item').text(nama_resort);
+			$('.val-start-date').text(start_date);
 
 			$('#step-6').find('.orders').empty();
 
-			var total_per_malam = parseInt(harga);
+			if (select_service.price.is_per_pax == '1') {
+				var metric = 'orang';
+				var total_harga = person * harga;
+				var unit = person;
+			}
+
+			var harga_string = accounting.formatMoney(harga,
+				{
+					symbol: 'Rp',
+					format: '%s %v',
+					thousand: '.',
+					precision: 0
+				}
+			);
+			var total_harga_string = accounting.formatMoney(total_harga,
+				{
+					symbol: 'Rp',
+					format: '%s %v',
+					thousand: '.',
+					precision: 0
+				}
+			);
+
+			var order = '<div id="' + id_item + '" class="order flex">' +
+					'<div class="flex name">' +
+						'<span class="index"><span>1</span><i class="fas fa-check deselect"></i></span>' +
+						'<span class="line"></span>' +
+						'<span>' + nama_resort + '</span>' + 
+					'</div>' +
+					'<div class="price">' + 
+						'<span>' + harga_string + ' / ' + metric + '</span>' +
+						'<input type="hidden" name="harga" value="' + harga + '">' +
+					'</div>' +
+					'<div class="unit">' +
+						'<span>x ' + unit + '</span>' +
+					'</div>' +
+					'<div class="total-price">' +
+						'<span>' + total_harga_string + '</span>' +
+					'</div>' +
+				'</div>';
+
+			$('#step-6').find('.orders').append(order);
+
+			var grand_total = total_harga;
 			var current_index = 0;
 			var array_item = [];
-
-			// $('#step-2 .orders').find('.order.selected').each(function(index) {
-			// 	var $order = $(this).clone();
-			// 		$order.removeClass('selected');
-			// 		$order.find('.availability').remove();
-
-			// 	var unit = $order.find('.unit').find('input[type="number"]').val();
-			// 		$order.find('.unit').find('input').remove();
-			// 		$order.find('.unit').find('span').text('x ' + unit);
-
-			// 	current_index = index + 1;
-
-			// 	console.log('Loop' + index + ':' + current_index);
-
-			// 		$order.find('.index span').text(current_index);
-
-			// 	var id_kamar = $order.attr('id');
-			// 	var id_harga = $order.find('input[name="harga"]');
-
-			// 	var total_harga = $order.find('input[name="total_harga"]').val();
-
-			// 	total_per_malam += parseInt(total_harga);
-				
-
-			// 	var obj_kamar = {
-			// 		'item_detail_id' : id_kamar,
-			// 		// 'price_id' : id_harga,
-			// 		'person' : 1,
-			// 		'start_time' : start_time,
-			// 		'end_time' : end_time
-			// 	};
-
-			// 	array_item.push(obj_kamar);
-
-			// 	$('#step-6').find('.orders').append($order);
-			// })
 
 			var obj_kamar = {
 				'item_detail_id' : id_item,
 				// 'price_id' : id_harga,
-				'person' : 1,
+				'person' : unit,
 				'start_time' : start_time,
 				'end_time' : end_time
 			};
-
 			array_item.push(obj_kamar);
 
 			$('#step-3 .orders').find('.order.selected').each(function(index) {
 				var $order = $(this).clone();
 					$order.removeClass('selected');
-					$order.find('.index span').text(current_index + (index + 1));
+					$order.find('.index span').text(current_index + (index + 2));
 
 				var unit = $order.find('.unit').find('input[type="number"]').val();
 					$order.find('.unit').find('input').remove();
 					$order.find('.unit').find('span').text('x ' + unit);
 
 				var id_kamar = $order.attr('id');
-				var id_harga = $order.find('input[name="harga"]');
+				var real_id = $order.attr('for');
+				var harga = parseInt($order.find('.price input').val());
 
-				var total_harga = $order.find('input[name="total_harga"]').val();
+				var total_harga = parseInt($order.find('input[name="total_harga"]').val());
 
-				total_per_malam += parseInt(total_harga);
+				grand_total += parseInt(total_harga);
 
 				var obj_kamar = {
 					'item_detail_id' : id_kamar,
 					// 'price_id' : id_harga,
-					'person' : 1,
+					'person' : unit,
 					'start_time' : start_time,
 					'end_time' : end_time
 				};
 
+				var order = {
+					'real_id' : real_id,
+					'item_id' : id_kamar,
+					'unit' : unit,
+					'harga' : harga,
+					'total_harga' : total_harga,
+					'diskon' : 0,
+					'after_diskon' : total_harga
+				}
+
 				array_item.push(obj_kamar);
+				orders.items.push(order);
 
 				$('#step-6').find('.orders').append($order);
 			})
 
 			obj_booking.items = array_item;
 
-			grand_total = total_per_malam;
+			console.log(obj_booking);
 
-			total_per_malam = accounting.formatMoney(
-						total_per_malam, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-			grand_total = accounting.formatMoney(
-						grand_total, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+			orders.grand_total = grand_total;
+			grand_total = accounting.formatMoney(grand_total,
+				{
+					symbol: 'Rp',
+					format: '%s %v',
+					thousand: '.',
+					precision: 0
+				}
+			);
 
-			$('#step-6').find('.val-nama-item').text(nama_resort);
-			$('#step-6').find('.total-per-malam').text(total_per_malam);
-			$('#step-6').find('.val-grand-total').text(grand_total);
+			$('.val-grand-total').text(grand_total);
 		})
 
-		$('#btn-book').on('click', function() {
+		$('.btn-book').on('click', function() {
+
+			obj_booking.full_payment = true;
+			showLoader('Memuat Data');
 			$.ajax({
-				url: 'http://api.resort.shafarizkyf.com/api/booking',
+				url: 'https://api.resort.shafarizkyf.com/api/booking',
 				method: 'POST',
 				data: JSON.stringify(obj_booking),
 				headers: {
@@ -1612,17 +2331,83 @@
 					'Content-Type': 'application/json'
 				}
 			}).then(response => {
-				alert('Booking Berhasil');
-				window.location = base_url + "/book-detail";
-				// console.log(obj_booking);
+				hideLoader();
+				window.location = base_url + `/book-detail?invoice=${response.data.invoice}&email=${obj_booking.email}`;
 			}).fail(error => {
-				console.log(error)
-				console.log(error.response)
+				hideLoader();
+				alert('Terjadi kesalahan memproses pemesanan');
 			})
+
+			// $.post(
+			// 	base_url + '/booking',
+			// 	{
+			// 		'_token' : '{{ csrf_token() }}',
+			// 		'booking_data' : JSON.stringify(obj_booking)
+			// 	},
+			// 	function(data) {
+			// 		var data = $.parseJSON(data);
+
+			// 		if (data.success) {
+			// 			alert('Booking Berhasil');	
+			// 			window.location.replace('/book-detail');
+			// 		} else {
+			// 			alert('Booking Gagal');
+			// 		}
+			// 	}
+			// )
+		})
+
+		$('#btn-open-guest').on('click', function() {
+			$('.bg').show();
+			$('.form-dialog').removeClass('gone');
+
+			setTimeout(function() {
+				$('.form-dialog').removeClass('disappear');				
+			}, 200);
+		})
+
+		$('#btn-confirm-guest').on('click', function() {
+			$('.bg').hide();
+			$('.form-dialog').addClass('disappear');
+
+			var name_for = $('input[name="name_for"]').val();
+			var phone_for = $('input[name="phone_for"]').val();
+			var email_for = $('input[name="email_for"]').val();
+
+			if (name_for != '') {
+				obj_booking.name_for = name_for;
+				obj_booking.phone_for = phone_for;
+				obj_booking.email_for = email_for;
+
+				$('#btn-open-guest').text('Tamu : ' + name_for);
+			}
+
+			setTimeout(function() {
+				$('.form-dialog').addClass('gone');								
+			}, 500);
+		})
+
+		$('.order-steps .step').on('click', function() {
+			var target_index = + $(this).attr('for');
+			var active_index = + $('.form-reservasi.active').attr('for');
+
+			if (target_index < active_index) {
+				$(this).removeClass('finished');
+				showForm(target_index, 'back');
+
+				$('.order-steps .step').each(function() {
+					var index = $(this).attr('for');
+
+					if (index > target_index) {
+						$(this).removeClass('active');
+						$(this).removeClass('finished');
+					}
+				})
+			}
 		})
 	})
 
-	function showForm(key) {
+	function showForm(key, direction) {
 		var $step_trigger = $('#trigger-' + key);
 		var $step_target = $('.form-reservasi#step-' + key);
 		var $active_step = $('.form-reservasi.active');
@@ -1658,6 +2443,10 @@
 			default :
 				var condition = (true);
 				break;
+		}
+
+		if (direction == 'back') {
+			condition = (true);
 		}
 
 		if (condition) {
@@ -1703,7 +2492,8 @@
 
 		console.log(extra_item);
 
-		$.each(extra_item, function(index, item) {
+		$.each(extra_item.data, function(index, data) {
+			$.each(data.availability, function(index2, item) {
 			const nama_item = item.name;
 			const id_item = item.details.filter(detail => detail.is_booked === 0)[0].id;
 			const id_harga = item.price.id;
@@ -1714,7 +2504,7 @@
 			var $extra_item = 
 				'<div id="' + id_item + '" class="order flex">' +
 					'<div class="flex name">' +
-						'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
+						'<span class="index"><span>' + ((index2 + 1)) + '</span><i class="fas fa-check deselect"></i></span>' +
 						'<span class="line"></span>' +
 						'<span>' + nama_item + '</span>' + 
 					'</div>' +
@@ -1732,6 +2522,7 @@
 				'</div>';
 
 			$('#step-3 .orders').append($extra_item);
+			});
 		})
 
 		$('.order input[type="number"]').on('keyup', inputNumberListener);
@@ -1757,6 +2548,72 @@
 			}
 		})
 	}
+
+	function loadExtraItem2(extra_item) {
+		console.log(extra_item);
+		$('#step-3 .orders').empty();
+
+		if (extra_item.data.length != 0) {
+			$.each(extra_item, function(index, item) {
+				const nama_item = item.name;
+				const id_item = item.details.filter(detail => detail.is_booked === 0)[0].id;
+				const id_harga = item.price.id;
+				const harga = item.price.service_price;
+				const harga_string = accounting.formatMoney(
+							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+				var $extra_item = 
+					'<div id="' + id_item + '" class="order flex">' +
+						'<div class="flex name">' +
+							'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
+							'<span class="line"></span>' +
+							'<span>' + nama_item + '</span>' + 
+						'</div>' +
+						'<div class="price">' + 
+							'<span>' + harga_string + ' / pcs</span>' +
+							'<input type="hidden" name="harga" value="' + harga + '">' +
+						'</div>' +
+						'<div class="unit">' +
+							'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
+						'</div>' +
+						'<div class="nights">' +
+							'<span>' + day_diff + ' malam</span>' +
+							'<input type="hidden" name="lama_inap" value="' + day_diff + '">' +
+						'</div>' +
+						'<div class="total-price">' +
+							'<span>Rp 0</span>' +
+							'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
+						'</div>' +
+					'</div>';
+
+				$('#step-3 .orders').append($extra_item);
+			})
+
+			$('.order input[type="number"]').on('keyup', inputNumberListener);
+			$('.order input[type="number"]').on('change', inputNumberListener);
+			$('.order input.checkbox').on('change', checkboxListener);
+			$('#step-3 .order').on('click', function(e) {
+				var condition = $(this).hasClass('selected');
+				var target = $(this).find('.input-unit');
+
+				if (condition) {
+					if (! target.is(e.target)) {
+						$(this).removeClass('selected');
+						$(this).find('input[type="number"]').attr('disabled', true);
+						$(this).find('input[type="number"]').val(0).change();
+					}
+				} else {
+					$(this).addClass('selected');
+					$(this).find('input[type="number"]').val(1).change();
+					$(this).find('input[type="number"]').attr('disabled', false);
+					$(this).find('input[type="number"]').focus();
+				}
+			})
+		}
+
+		
+	}
+
 
 	function checkboxListener() {
 		var value = $(this).prop('checked');
@@ -1847,6 +2704,61 @@
 
     	return Math.round(day_diff);
     }
+
+    function showLoader(message) {
+    	$('.loading-text').text(message);
+    	$('.loading-screen').removeClass('gone');
+    	setTimeout(function() {
+    		$('.loading-screen').removeClass('disappear');	
+    	}, 200);
+    }
+
+    function hideLoader() {
+    	$('.loading-screen').addClass('disappear');	
+    	setTimeout(function() {
+    		$('.loading-screen').addClass('gone');	
+    	}, 500);	
+    }
+
+    function calculateDiscount() {
+    	$.each(orders.items, function(index, item) {
+    		var id_item = item.item_id;
+    		var total_harga = item.after_diskon;
+    		var diskon = item.diskon;
+
+    		if (diskon != 0) {
+    			total_harga = accounting.formatMoney(
+					total_harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+    			diskon = accounting.formatMoney(
+					diskon, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+	    		$('#step-6 .orders').find('.order#' + id_item).find('.total-price span').text(total_harga);
+	    		$('#step-6 .orders').find('.order#' + id_item).find('.total-price').append('<label class="label-disc">DISC ' + diskon + '</label>');
+    		}
+    			
+    	})
+    }
+	
+	function calculateDiscountBill() {
+		var grand_total = 0;
+
+		$.each(orders.items, function(index, item) {
+			var after_diskon = item.after_diskon;
+
+			grand_total = grand_total + after_diskon;
+		});
+
+		return grand_total;
+	}
+
+	async function getBookingTimeOut(){
+		const check_in = $('input[name="start_date"]').val();
+		const params = `booking_date=${check_in}`;
+		bookingTimeOut = await $.getJSON(`https://api.resort.shafarizkyf.com/api/booking-time-out?${params}`);
+		return bookingTimeOut;
+	}
+
+
 	
 </script>
 </html>

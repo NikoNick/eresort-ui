@@ -12,7 +12,7 @@
 		.background {
 			padding: 3% 7%;
 			padding-top: 8%;
-			padding-bottom: 5%;
+			padding-bottom: 10%;
 			background-size: 100% 100%;
 		}
 
@@ -59,9 +59,17 @@
 			padding-right: 0px;
 		}
 
+		.content {
+			display: flex;
+			flex-direction: column;
+		}
+
 		.content .coba {
 			padding-left: 50%;
 			text-align: right;
+			display: flex;
+			flex-grow: 1;
+			flex-direction: column;
 		}
 
 		.content .coba h1, .content .coba p {
@@ -69,9 +77,9 @@
 		}
 
 		.content .coba h1 {
-		    margin-top: 180px;
-		    margin-bottom: 50px;
-		    font-size: 3.2em;
+		    margin-top: 30%;
+		    margin-bottom: 5%;
+		    font-size: 2.5em;
 		}
 
 		.content .coba h1 i {
@@ -79,10 +87,11 @@
 		}
 
 		.content .coba p {
-			font-size: 1em;
+			font-size: 0.75em;
 		    letter-spacing: 2px;
-    		line-height: 200%;
+    		line-height: 300%;
 			color: #fff;
+			flex-grow: 1;
 		}
 
 		.content .coba .v-line {
@@ -101,11 +110,11 @@
 		    border: 2px solid #fff;
 		    border-radius: 50px;
 		    letter-spacing: 2px;
-		    font-size: 0.85em;
+		    font-size: 0.65em;
 		    font-style: italic;
-		    padding: 10px 20px;
+		    padding: 8px 15px;
 		    font-weight: 600;
-		    margin-top: 50px;
+		    /*margin-top: 50px;*/
 		}
 
 		.form button:not([type="submit"]) {
@@ -135,20 +144,20 @@
 
 		.form.show {
 			width: 32%;
-			padding: 80px;
+			padding: 60px;
 			padding-top: 50px;
 		}
 
 		.md-form {
 			position: relative;
-			margin-top: 5.5rem;
+			margin-top: 5rem;
 		}
 
 		.md-form label {
 			position: absolute;
 			top: 0;
 			color: #b5b5b5;
-			font-size: 1.2em;
+			font-size: 1em;
 			font-weight: 600;
 			letter-spacing: 2px;
 			transition: all 0.2s;
@@ -157,13 +166,13 @@
 
 		.md-form label.active {
 		    transform: translateY(-1.8rem) scale(0.8);
-    		font-size: 1em;
+    		font-size: 0.8em;
 		}
 
 		.md-form input, .md-form select {
 			border: none;
 			box-shadow: none;
-			font-size: 1.2em;
+			font-size: 0.9em;
 			color: #000;
 			font-style: italic;
 			letter-spacing: 2px;
@@ -198,6 +207,7 @@
 		}
 
 		.head {
+			font-size: 0.7em;
 			margin-bottom: 80px;
 		}
 
@@ -205,7 +215,7 @@
 		    flex-grow: 1;
 		    height: 2px;
 		    margin-right: 15px;
-		    margin-left: 50px;
+		    margin-left: 20px;
 		    border-top: 1px solid #00000052;
 		}
 
@@ -249,7 +259,8 @@
 		}
 
 		.md-form .md-input-wrapper .date-wrapper .date-string {
-			font-size: 1.2em;
+			font-size: 0.9em;
+			font-weight: 400;
 			color: #000;
 			font-style: italic;
 			letter-spacing: 2px;
@@ -283,20 +294,20 @@
 			letter-spacing: 1px;
 			font-weight: 600;
 			color: #b5b5b5;
-			font-size: 1em;
+			font-size: 0.8em;
 		}
 
 		.md-form .md-input-wrapper span {
 			font-style: italic;
 			letter-spacing: 1px;
 			font-weight: 300;
-			font-size: 1.2em;
+			font-size: 0.9em;
 			color: #000;
 		}
 
 		.bullet-point {
-			width: 12px;
-			height: 12px;
+			width: 8px;
+			height: 8px;
 			background: #fff;
 			border-radius: 50%;
 			margin: 10px 0px;
@@ -307,6 +318,7 @@
 			display: flex;
 		    align-items: center;
 		    flex-direction: column;
+		    font-size: 0.7em;
 		    position: fixed;
 		    z-index: 2;
 		    left: 7%;
@@ -375,6 +387,7 @@
 		        font-weight: 300;
 			    font-size: 0.7em;
 			    letter-spacing: 1px;
+			    flex-grow: 0;
 			    /*line-height: 28px;*/
 			    text-align: justify;
 			    text-align: center;
@@ -408,6 +421,17 @@
 			}
 			.form h1 {
 				font-size: 2.2em;
+			}
+			.form .sub-text {
+				font-size: 0.8em;
+			}
+
+			.form .head, .form label, .form button {
+				font-size: 1em !important;
+			}
+
+			.form input, .form select, .form span {
+				font-size: 1.2em !important;
 			}
 
 			.navigator {
@@ -456,7 +480,9 @@
 				<h1><b>Palawi</b> <i>Resort</i></h1>
 				<p class="animation anim-blink">Sebuah resort yang berada di kawasan pegunungan. Udara yang sejuk dan kadar oksigen yang sangat baik. Cocok untuk acara meeting dan istirhat bersama keluarga atau kolega Anda.</p>
 				<div class="v-line"></div>
-				<button for="form-resort" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>
+				<div>
+					<button for="form-resort" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>	
+				</div>
 			</div>
 		</div>
 		<form id="form-resort" method="GET" action="/hasil" class="form animation">
@@ -464,7 +490,7 @@
 				<h1><b>Palawi</b> <i>Resort</i></h1>
 				<div class="flex">
 					<span class="flex-grow-1 line"></span>
-					<p class="sub-text">CARI PENGINAPAN</p>
+					<p class="sub-text">BOOKING HOTEL, RESORT & VILLA</p>
 				</div>	
 			</div>
 			<div class="animation anim-blink disappear gone">
@@ -508,15 +534,14 @@
 		</form>
 	</div>
 	<div id="content-1" prev="0" next="2" class="background gone animation" style="background-image: url('../img/index4.jpg');">
-		<!-- <div class="bg-image">
-			<img src="{{ asset('../img/index4.jpg') }}">
-		</div> -->
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Camping</i></h1>
 				<p class="animation anim-blink">Sebuah lokasi yang berada di kawasan pegunungan. Udara yang sejuk dan kadar oksigen yang sangat baik. Sangat pas untuk kegiatan camping keluarga atau pelajar.</p>
 				<div class="v-line"></div>
-				<button for="form-camping" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>
+				<div>
+					<button for="form-camping" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>	
+				</div>
 			</div>
 		</div>
 		<form id="form-camping" method="GET" action="/hasil-camping" class="form animation">
@@ -568,15 +593,14 @@
 		</form>
 	</div>
 	<div id="content-2" prev="1" next="0" class="background gone animation" style="background-image: url('../img/index5.jpg');">
-		<!-- <div class="bg-image">
-			<img src="{{ asset('../img/index5.jpg') }}">
-		</div> -->
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Outbound</i></h1>
 				<p class="animation anim-blink">Sebuah lokasi yang berada di kawasan pegunungan. Udara yang sejuk dan kadar oksigen yang sangat baik. Kegiatan outbound menjadi lebih menyenangkan</p>
 				<div class="v-line"></div>
-				<button for="form-outbound" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>
+				<div>
+					<button for="form-outbound" class="btn btn-form"><i class="lnr lnr-magnifier"></i> <span>BOOKING</span></button>	
+				</div>
 			</div>
 		</div>
 		<form id="form-outbound" method="GET" action="/hasil-outbound" class="form animation">
@@ -604,10 +628,7 @@
 							<input type="text" id="form1" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Tanggal">	
 						</div>
 						<span class="separator">Pukul.</span>		
-						<div class="date-wrapper">
-							<span class="date-string">09:00</span>
-							<input type="text" id="form2" class="form-control date" name="end_date" spellcheck="false" value="09:00" placeholder="Waktu">
-						</div>
+						<input type="text" id="form2" class="form-control" name="waktu" spellcheck="false" value="09:00" placeholder="Waktu">
 						
 					</div>
 					<label for="form1" class="active">TANGGAL & WAKTU</label>

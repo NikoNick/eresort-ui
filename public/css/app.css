@@ -1,5 +1,5 @@
 * {
-    font-size: 1em;
+    font-size: 100%;
 }
 
 a, a:hover {
@@ -86,6 +86,7 @@ button {
     background: #fff;
     border-radius: 0px;
     display: flex;
+    font-size: 0.7em;
     left: 0;
     padding: 3% 10%;
     position: fixed;
@@ -119,11 +120,11 @@ button {
 }
 .navbar .nav {
     flex-grow: 1;
-    text-align: center;
+    text-align: right;
 }
 .navbar .nav>li {
     display: inline-block;
-    font-size: 1em;
+    font-size: 0.95em;
     font-weight: 500;
     letter-spacing: 2px;
     margin: 0px 30px;
@@ -137,6 +138,9 @@ button {
 }
 .navbar .nav>li.active {
     font-weight: 700;
+    padding: 3px 12px;
+    border: 1px solid #c5c5c5;
+    border-radius: 50px;
 }
 .navbar .nav>li.active:before {
     content: '';
@@ -147,6 +151,9 @@ button {
     height: 10px;
     background: #0fffbe;
     opacity: 0.6;
+}
+.navbar .nav>li:last-child {
+    margin-right: 0px;
 }
 .navbar .special {
     text-align: right;
@@ -349,36 +356,7 @@ button {
     column-count: 3;
     column-gap: 70px;
 }
-@media screen and (max-width: 600px) {
-    .navbar {
-        display: block;
-        padding: 7% 10% !important;
-    }
-    .navbar .nav {
-        display: none;
-    }
-    .navbar .nav>li {
-        display: block;
-    }
-    .navbar .logo {
-        width: 100% !important;
-        /*flex-grow: 1;*/
-        text-align: center;
-    }
-    .navbar .logo img {
-        width: 12%;
-        margin: auto;
-    }
-    .navbar .logo h1 {
-        font-size: 1em;
-    }
-    .navbar .nav-trigger {
-        display: block;
-    }
-    .navbar .special {
-        display: none;
-    }
-}
+
 .thumbnails .card {
     column-break-inside: avoid;
     display: inline-block;
@@ -390,7 +368,7 @@ button {
     background-image: url('../img/thumbnail-1.jpeg');
     border: 0;
     border-radius: 15px;
-    height: 300px;
+    height: 220px;
     overflow: hidden;
     padding: 0;
 }
@@ -405,7 +383,7 @@ button {
     background: #fff;
     /*margin-top: 200px;*/
     color: #000;
-    font-size: 1.2em;
+    font-size: 0.8em;
     padding: 20px 15px;
     padding-top: 35px;
     position: relative;
@@ -434,13 +412,13 @@ button {
 }
 .thumbnails .desc .header>.location {
     position: relative;
-    width: 40px;
+    width: 30px;
     letter-spacing: 1px;
-    line-height: 15px;
+    line-height: 10px;
     font-size: 0.55em;
     font-weight: 900;
     word-break: break-word;
-    padding: 10px 0px;
+    padding: 8px 0px;
 }
 .thumbnails .desc .header>.location:before {
     content: '';
@@ -485,7 +463,7 @@ button {
 .thumbnails .desc .variant {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 .thumbnails .desc .variant .line {
     height: 2px;
@@ -518,4 +496,40 @@ button {
 
 .thumbnails .desc .room-info>div {
     flex-grow: 1;
+}
+
+@media screen and (max-width: 600px) {
+    .navbar {
+        display: block;
+        padding: 7% 10% !important;
+    }
+    .navbar .nav {
+        display: none;
+    }
+    .navbar .nav>li {
+        display: block;
+    }
+    .navbar .logo {
+        width: 100% !important;
+        /*flex-grow: 1;*/
+        text-align: center;
+    }
+    .navbar .logo img {
+        width: 12%;
+        margin: auto;
+    }
+    .navbar .logo h1 {
+        font-size: 1em;
+    }
+    .navbar .nav-trigger {
+        display: block;
+    }
+    .navbar .special {
+        display: none;
+    }
+
+    .thumbnails .desc .header>.location {
+        width: 40px;
+        line-height: 15px;
+    }
 }

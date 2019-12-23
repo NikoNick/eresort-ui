@@ -9,7 +9,7 @@
 
 		body {
 			font-family: Raleway !important;
-			overflow: hidden;
+			/*overflow: hidden;*/
 		}
 
 		.wrapper {
@@ -32,20 +32,7 @@
 			position: fixed;
 			background: #fff;
 			top: 0;
-		}
-
-		.background {
-			/*background: url('../img/thumbnail-2.jpg');*/
-			width: 100%;
-			height: 100vh;
-			position: absolute;
-			top: 0;
-			padding: 0px;
-			/*background-size: 130%;*/
-			overflow: hidden;
-			display: flex;
-			flex-direction: column;
-			/*animation: idle infinite 15s;*/
+			left: 0;
 		}
 
 		.background.free-roam .title {
@@ -75,66 +62,9 @@
 			transition-delay: 0s;
 		}
 
-		.navbar {
-			width: 100%;
-			display: flex;
-			padding: 50px 100px;
-			align-items: center;
-			flex-shrink: 0;
-			flex-grow: 0;
-			position: relative;
-		}
-
-		.navbar .logo {
-			/*flex-grow: 1;*/
-		}
-
-		.navbar .logo h1 {
-			font-weight: bold !important;
-		    font-family: Raleway !important;
-		    letter-spacing: 4px;
-		    margin: 0;
-			font-size: 1.2em;
-		}
-
-		.navbar .logo button {
-			border: 1px solid #b5b5b5;
-		    background: transparent;
-		    color: #000;
-		    font-weight: 700;
-		    letter-spacing: 2px;
-		    font-size: 1.2em;
-		    padding: 12px 20px;
-		}
-
-		.navbar .special {
-			/*display: flex;
-			align-items: center;*/
-		}
-
-		.navbar .logo, .navbar .special {
-			width: 20%;
-		}
-
-		.navbar .special a {
-			letter-spacing: 2px;
-			margin-right: 30px;
-		}
-
 		.btn-black {
 			background: #000;
 			color: #fff;
-		}
-
-		.navbar .special button {
-			padding: 8px 20px;
-			font-weight: 500;
-			letter-spacing: 2px;
-			border-radius: 0px;
-			border-radius: 50px;
-			text-transform: uppercase;
-			font-weight: 600;
-			font-style: italic;
 		}
 
 		.left {
@@ -145,23 +75,25 @@
 			z-index: 5;
 			/*padding: 00px 100px;*/
 			margin-top: 50px;
-			position: relative;
+			/*position: relative;*/
 		}
 
-		.title .rating i {
-			font-size: 2.3em;
-		    margin-right: 10px;
-		    color: #ff9b00;
-		    text-shadow: none;
+		.title:after {
+		    content: '';
+		    position: absolute;
+		    width: 100%;
+		    height: 2px;
+		    left: 0;
+		    border-top: 1px solid #dcdcdc;
 		}
 
 		.title h1 {
 		    font-family: Raleway;
 		    color: #000;
 		    letter-spacing: 3px;
-		    font-size: 3.2em;
+		    font-size: 4em;
 		    font-weight: 800;
-		    margin-bottom: 80px;
+		    margin-bottom: 30px;
 		    text-shadow: none;
 		}
 
@@ -170,6 +102,11 @@
 			font-weight: 200;
 			font-size: 50%;
 			top: -1em;
+		}
+
+		.title {
+			font-size: 1rem;
+			letter-spacing: 1px;
 		}
 
 		.title b.basic-info {
@@ -181,20 +118,6 @@
 
 		.title b.basic-info span {
 			margin-right: 20px;
-		}
-
-		#tentang {
-			margin-right: 100px;
-		}
-
-		#tentang p {
-			font-size: 1.1em;
-			font-weight: 400;
-		    margin-top: 15px;
-		    text-align: justify;
-		    line-height: 50px;
-		    letter-spacing: 2px;
-		    position: relative;
 		}
 
 		.animation {
@@ -210,31 +133,10 @@
         	display: none;
         }
 
-        #fasilitas {
-    	    display: flex;
-		    margin-top: 150px;
+        #facility {
+    	    /*display: flex;*/
+		    /*margin-top: 50px;*/
 		    position: relative;
-        }
-
-        #fasilitas h1 {
-    	    position: absolute;
-		    top: 0;
-		    margin: 0;
-		    font-weight: 900;
-		    letter-spacing: 5px;
-		    font-size: 2.5em;
-		    top: -25px;
-		    color: #f5f5f5;
-        }
-
-        #fasilitas h1:after {
-    	    content: '';
-			width: 100%;
-			height: 100%;
-			background: #fff;
-			background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 150%);
-			position: absolute;
-			left: 0;
         }
 
         #fasilitas b {
@@ -386,21 +288,26 @@
         .card-container {
     	    position: relative; 
     		overflow: hidden;
+    		display: flex;
+    		flex-wrap: wrap;
         }
 
         
 
         .card {
-    	    background: url(../img/thumbnail-5.jpg);
+	        background: url(../img/thumbnail-5.jpg);
 		    position: relative;
 		    background-size: 100%;
-		    /*background-position-y: -100px;*/
-		    padding: 18px 25px;
-		    width: 400px;
+		    /* background-position-y: -100px; */
+		    padding: 10px 15px;
+		    width: calc(33.3% - 30px);
 		    margin-top: 30px;
+		    margin-right: 30px;
+		    font-size: 0.8em;
 		    color: #fff;
-		    border-radius: 20px;
-		    font-size: 0.95em;
+		    border-radius: 5px; 
+		    font-size: 0.8em;
+		    display: inline-block;
         }
 
         .card:nth-child(2) {
@@ -428,7 +335,7 @@
 		    position: absolute;
 		    top: 0;
 		    left: 0;
-		    border-radius: 20px;
+		    border-radius: 5px;
         }
 
         .card>div {
@@ -474,27 +381,26 @@
 
         .card b {
     		font-weight: 800;
-		    font-size: 1.2em;
-    		letter-spacing: 2px;
+		    /*font-size: 1.2em;*/
+    		letter-spacing: 1px;
     		margin-bottom: 5px;
         }
 
         .card span {
         	letter-spacing: 1px;
-    		font-size: 1.3em;
+    		font-size: 1em;
         }
 
         .card>div>h1 {
         	text-align: right;
-		    margin-right: -35px;
+		    margin-right: -22px;
 		    font-weight: 800;
 		    font-family: Raleway;
 		    letter-spacing: 5px;
 		    margin-bottom: 0;
-		    font-size: 3.5em;
+		    font-size: 2.5em;
 		    margin-bottom: -15px;
-		    text-shadow: -5px -3px 0px #ffffff5e;
-		    margin-top: 30px;
+		    margin-top: 60px;
         }
 
         .card .sub-desc {
@@ -507,27 +413,122 @@
         .card .info-kamar {
         	display: flex;
         	align-items: center;
-        	margin-right: -40px;
-		    margin-bottom: -35px;
-		    text-shadow: -5px 0px 0px #ffffff40;
+        	margin-right: -20px;
+        	margin-top: 20px;
+		    margin-bottom: -15px;
+		    /*text-shadow: -5px 0px 0px #ffffff40;*/
         }
 
         .card .info-kamar b {
     	    font-family: Arial;
-		    font-size: 7.5em;
+		    font-size: 5em;
 		    margin: 0;
         }
 
         .card .info-kamar p {
     	    letter-spacing: 3px;
 		    font-weight: 800;
-		    font-size: 2.3em;
+		    font-size: 1.8em;
 		    margin: 0;
 		    text-align: right;
-		    margin-top: 28px;
+		    margin-top: 5px;
 		    flex-grow: 1;
 		    margin-right: 10px;
-		    line-height: 35px;
+		    line-height: 22px;
+        }
+
+        .content-label {
+        	position: relative;
+        	font-size: 0.9em;
+        }
+
+        .content-label:before {
+        	border: 2px solid #000;
+        	content: '';
+        	height: 8px;
+        	position: absolute;
+        	left: -20px;
+        	top: 5px;
+        	width: 8px;
+        }
+
+        .general-info {
+    	    position: fixed;
+		    right: 10%;
+		    width: 18%;
+		    top: 25%;
+		    z-index: 5;
+        }
+
+        .icon {
+    	    padding: 0px 6px;
+		    border: 1px solid #0000004a;
+		    border-radius: 50%;
+		    color: #b5b5b5;
+		    margin-right: 5px;
+        }
+
+        .general-info .box-wrapper {
+        	width: 100%;
+		    padding: 20px;
+		    border: 1px solid #d6d6d6;
+		    border-radius: 10px;
+		    font-size: 1.1rem;
+		    letter-spacing: 1px;
+		    margin-top: 20px;
+		    background: #fff;
+        }
+
+        .general-info .box-wrapper label {
+        	font-size: 0.8rem;
+        }
+        .general-info .box-wrapper p {
+        	margin: 0;
+        }
+        .general-info .box-wrapper>div {
+        	margin-bottom: 20px;
+        }
+        .general-info .box-wrapper>div:last-child {
+        	margin-bottom: 0px;
+        }
+
+        .general-info button {
+    	    display: block;
+		    width: 100%;
+		    border-radius: 5px;
+		    font-size: 0.8em;
+		    letter-spacing: 1px;
+		    font-weight: 800;
+		    margin-top: 40px;
+		    padding: 5%;
+        }
+
+        .data-info {
+    	    margin-top: 50px;
+		    padding-left: 20px;
+		    padding-right: 25%;
+        }
+
+        .data-info .data {
+        	margin-top: 30px;
+        }
+        .data-info .data:first-child {
+        	margin-top: 0px;
+        }
+
+        .data-info .data>p, .data-info .data>span {
+			font-size: 0.9em;
+			font-weight: 400;
+			margin: 0;
+		    margin-top: 10px;
+		    text-align: justify;
+		    /*line-height: 50px;*/
+		    letter-spacing: 1px;
+		    position: relative;
+		}
+
+		.data-info .data>span {
+        	margin-left: 20px;
         }
 
         @media screen and (max-width: 600px) {
@@ -544,6 +545,7 @@
         	}
         	.background {
         		overflow-y: auto;
+        		padding-top: 25%;
         	}
 
         	.wrapper .left, .wrapper .right {
@@ -603,7 +605,7 @@
 			}
 
 			#fasilitas {
-				margin-top: 50px;
+				/*margin-top: 50px;*/
 				display: block;
 			}
 
@@ -643,7 +645,9 @@
 			}
 
 			.card-container {
-				margin-top: 50px;
+				display: block;
+				/*flex-wrap: wrap;*/
+				/*margin-top: 50px;*/
 			}
 
 			.card-container .card {
@@ -656,6 +660,22 @@
 			}
 			.card-container .card:before {
 				border-radius: 10px;
+			}
+
+			.data-info {
+				padding-right: 0;
+			}
+
+			.data-info .data>span {
+				display: block;
+				margin-left: 0px;
+			}
+
+			.general-info {
+				width: 100%;
+				position: relative;
+				right: 0;
+				margin-top: 30px;
 			}
         }
 	</style>
@@ -696,73 +716,89 @@
 	<div class="background">
 		<div class="bg animation"></div>
 		@component('components/navbar')
-			@slot('special')
-				<a id="btn-free">LIHAT GALERI</a>
-				<button class="btn btn-black btn-reservasi">Booking</button>
-			@endslot
 		@endcomponent
-		<div class="wrapper flex flex-grow-1">
-			<div class="left flex-grow-1">
-				<div class="title animation">
-					<!-- <div class="rating">
-						<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-					</div> -->
-					<h1 class="val-nama">Merkusii Villa</h1>	
-					<b class="basic-info"><span id="address"></span> | <span id="phone"></span></b>
-				</div>
-				<div class="mobile-button flex">
-					<button class="btn flex-grow-1 btn-reservasi">BOOKING</button>
-					<button class="btn btn-icon"><i class="fas fa-camera-retro"></i></button>
-				</div>
-				<div id="tentang" class="flex-grow-1 animation">
-					<label class="mobile-label">DESCRIPTION</label>
-					<p class="val-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor aliquam felis, sit amet tempus nibh ullamcorper nec. Maecenas suscipit dolor at blandit congue. Sed adipiscing, odio feugiat pellentesque tincidunt, est leo vestibulum erat, ac pharetra massa justo ac lorem.</p>
-				</div>
-				<div id="fasilitas" class="inner-content">
-					<h1>FASILITAS VILLA</h1>
-					<label class="mobile-label">FACILITY</label>
-				</div>
-			</div>
-			<div class="right animation">
-				<div class="card-bg">
-					<div class="flex">
-						<p><b>SERVICES & PRICE</b></p>
-					</div>
-				</div>
-				<div class="card-container">
-					<label class="mobile-label">SERVICES & PRICE</label>
-					<div class="card">
-						<div>
-							<b>Book Satu Villa</b>
-							<span class="font-currency">Rp 855.000 / malam</span>
-							<h1>AVAILABLE</h1>
-						</div>
-					</div>
-					<div class="card">
-						<div>
-							<b>Merkusii Villa Executive</b>
-							<span class="font-currency">Rp 300.000 / malam</span>
-							<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
-							<div class="info-kamar">
-								<p>SISA<br>KAMAR</p>
-								<b>2</b>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div>
-							<b>Merkusii Villa Deluxe</b>
-							<span class="font-currency">Rp 400.000 / malam</span>
-							<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
-							<div class="info-kamar">
-								<p>SISA<br>KAMAR</p>
-								<b>1</b>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="title animation">
+			<p><b>SEARCH</b> / <i class="business-name">{{ $business_name }}</i></p>
+			<h1 class="val-nama">Merkusii Villa</h1>
+			<!-- <b class="basic-info"><span id="address"></span> | <span id="phone"></span></b> -->
+			<!-- <div class="mobile-button flex">
+				<button class="btn flex-grow-1 btn-reservasi">BOOKING</button>
+				<button class="btn btn-icon"><i class="fas fa-camera-retro"></i></button>
+			</div> -->
 		</div>
+		<div class="general-info">
+			<label><span class="icon">!</span> Informasi Umum</label>
+			<div class="box-wrapper">
+				<div>
+					<label>TOTAL KAMAR</label>
+					<p>2 Kamar</p>
+				</div>
+				<div>
+					<label>TELEPON</label>
+					<p id="phone">085701609034</p>
+				</div>
+				<div>
+					<label>ALAMAT</label>
+					<p id="address">Jl. Overste Isdiman Gg.II/5A Purwokerto</p>
+				</div>
+			</div>
+			<button class="btn btn-black btn-reservasi">BOOKING</button>
+		</div>
+		<div class="data-info">
+			<div id="description" class="data animation">
+				<label class="content-label">Deskripsi</label>
+			</div>
+			<div id="facility" class="data">
+				<label class="content-label">Fasilitas Umum</label>
+			</div>
+			<div id="services" class="data">
+				<label class="content-label">Services & Price</label>
+				<div class="card-container">
+					
+				</div>
+			</div>
+			
+		</div>
+		
+		<!-- <div class="right animation">
+			<div class="card-bg">
+				<div class="flex">
+					<p><b>SERVICES & PRICE</b></p>
+				</div>
+			</div>
+			<div class="card-container">
+				<label class="content-label">Services & Price</label>
+				<div class="card">
+					<div>
+						<b>Book Satu Villa</b>
+						<span class="font-currency">Rp 855.000 / malam</span>
+						<h1>AVAILABLE</h1>
+					</div>
+				</div>
+				<div class="card">
+					<div>
+						<b>Merkusii Villa Executive</b>
+						<span class="font-currency">Rp 300.000 / malam</span>
+						<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
+						<div class="info-kamar">
+							<p>SISA<br>KAMAR</p>
+							<b>2</b>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div>
+						<b>Merkusii Villa Deluxe</b>
+						<span class="font-currency">Rp 400.000 / malam</span>
+						<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
+						<div class="info-kamar">
+							<p>SISA<br>KAMAR</p>
+							<b>1</b>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
 		
 		<div class="btn-slider">
 			<button class="btn btn-icon slide-left animation"><i class="fas fa-angle-left"></i></button>
@@ -774,6 +810,8 @@
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="text" name="start_date" value="{{ $start_date }}">
 		<input type="text" name="end_date" value="{{ $end_date }}">
+		<input type="text" name="person" value="{{ $person }}">
+		<input type="text" name="waktu" value="{{ $waktu }}">
 		<input type="text" name="business_id" value="{{ $business_id }}">
 		<input type="text" name="item_id">
 
@@ -783,10 +821,11 @@
 @section('js-bottom')
 <script type="text/javascript">
 	var resort = {!! json_encode($result) !!};
+	var business_name = {!! json_encode($business_name) !!};
 	console.log(resort);
 	var id_resort = resort.id;
 	var nama_resort = resort.name;
-	var description = (resort.description != null) ? resort.description : 'Tidak ada deskripsi';
+	var description = (resort.description != null) ? `<p>${resort.description}</p>` : `<span>Tidak ada deskripsi</span>`;
 	var tipe_kamar = resort.availability;
 	var harga_sewa = resort.price.service_price;
 		harga_sewa = accounting.formatMoney(
@@ -798,11 +837,15 @@
 	$('#address').text(resort.location.address);
 	$('#phone').text(resort.location.phone);
 
-	if(resort.villa_facilities.length){
-		let facilities = resort.villa_facilities.map(facility => `<span>${facility.name}</span>`);
-		facilities = `<b>${facilities}</b>`;
-		$('#fasilitas').append(facilities);
+	if (resort.villa_facilities.length){
+		var facilities = resort.villa_facilities.map(facility => `<span>${facility.name}</span>`);
+		facilities = `<p>${facilities.join(' - ')}</p>`;
+		
+	} else {
+		var facilities = '<span>Tidak ada fasilitas terdaftar</span>';
 	}
+
+	$('#facility').append(facilities);
 
 	var $kamar = 
 		'<div class="card animation active">' +
@@ -813,7 +856,6 @@
 			'</div>' +
 		'</div>';
 
-	$('.card-container').append('<label class="mobile-label">SERVICES & PRICE</label>');
 	$('.card-container').append($kamar);
 
 	$.each(tipe_kamar, function(index, kamar) {
@@ -840,8 +882,8 @@
 
 	})
 
-	$('.val-nama').html(nama_resort + ' <sup>Resort</sup>');
-	$('.val-description').text(description);
+	$('.val-nama').html(nama_resort + ' <sup>' + business_name + '</sup>');
+	$('#description').append(description);
 
 	$('#btn-back').on('click', function() {
 		window.history.back();
