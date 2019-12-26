@@ -1,4 +1,4 @@
-<div class="navbar @yield('additional-class')">
+<div class="navbar @yield('additional-class') animation">
     <div class="nav-trigger">
         <i class="fas fa-bars"></i>
     </div>

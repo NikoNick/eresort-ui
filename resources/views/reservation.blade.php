@@ -407,7 +407,7 @@
 			padding: 5% 10%;
 			position: fixed;
 			width: 100%;
-			z-index: 5;
+			z-index: 1;
 			font-size: 0.7em;
 		}
 
@@ -1332,7 +1332,8 @@
 			transform-origin: 0% 100%;
 		}
 
-		.md-form .md-input-wrapper input, .md-form .md-input-wrapper .date-wrapper {
+		.md-form .md-input-wrapper input, .md-form .md-input-wrapper .date-wrapper,
+		.md-form .md-input-wrapper .qty-wrapper {
 			flex-grow: 1;
 			border: 0;
 			background: transparent;
@@ -1340,16 +1341,26 @@
 
 		.md-form .md-input-wrapper input[type="number"] {
 			flex-grow: 0;
-			width: 10%;
+			width: 100%;
 			background: transparent;
 		}
 
-		.md-form .md-input-wrapper .date-wrapper {
+		.md-form .md-input-wrapper .qty-wrapper:focus-within input {
+			opacity: 1;
+		}
+
+		.md-form .md-input-wrapper .qty-wrapper:focus-within .qty-string {
+			opacity: 0;
+		}
+
+		.md-form .md-input-wrapper .date-wrapper,
+		.md-form .md-input-wrapper .qty-wrapper {
 			flex-grow: 1;
 			position: relative;
 		}
 
-		.md-form .md-input-wrapper .date-wrapper .date-string {
+		.md-form .md-input-wrapper .date-wrapper>span,
+		.md-form .md-input-wrapper .qty-wrapper>span {
 			font-size: 1.2em;
 			color: #000;
 			font-style: italic;
@@ -1358,7 +1369,8 @@
 			position: absolute;
 		}
 
-		.md-form .md-input-wrapper .date-wrapper input {
+		.md-form .md-input-wrapper .date-wrapper input,
+		.md-form .md-input-wrapper .qty-wrapper input {
 			opacity: 0;
 		}
 
@@ -1586,6 +1598,28 @@
 			.mobile-info p {
 				font-size: 1.2em;
 			}
+
+			#ui-datepicker-div {
+				top: 25% !important;
+    			left: 0px !important;
+    			width: 100% !important;
+			}
+
+			.ui-datepicker table {
+				font-size: .7em;
+			}
+
+			.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+				width: auto;
+			}
+
+			.md-form label.active {
+				transform: translateY(-1rem) scale(0.8);
+			}
+
+			.md-form {
+				margin-top: 4rem;
+			}
 		}
 	</style>
 </head>
@@ -1669,10 +1703,7 @@
 				</div>
 				<div class="mobile-visible">
 					<div class="md-form">
-						<select name="location" class="fillable form-control">
-							<option value="0" selected>Akasia</option>
-							<option value="1" selected>Eboni</option>
-							<option value="2" selected>Merkusii</option>
+						<select class="fillable form-control list-resort" name="list-resort">	
 						</select>
 						<label for="form1" class="active">NAMA RESORT</label>
 					</div>
@@ -1680,7 +1711,7 @@
 						<div class="md-input-wrapper">
 							<div class="date-wrapper">
 								<span class="date-string">10 Desember 2019</span>
-								<input type="text" id="form1" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+								<input type="text" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
 							</div>	
 						</div>
 						
@@ -1690,11 +1721,21 @@
 						<div class="md-input-wrapper">
 							<div class="date-wrapper">
 								<span class="date-string">10 Desember 2019</span>
-								<input type="text" id="form1" class="form-control date" name="end_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+								<input type="text" class="form-control date" name="end_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
 							</div>	
 						</div>
 						
 						<label for="form1" class="active">CHECK-OUT</label>
+					</div>
+					<div class="md-form">
+						<div class="md-input-wrapper">
+							<div class="qty-wrapper">
+								<span class="qty-string"><span class="qty">{{ $person }}</span> Orang</span>
+								<input type="number" id="form1" class="form-control" name="person" spellcheck="false" value="{{ $person }}" placeholder="Check-In">	
+							</div>	
+						</div>
+						
+						<label for="form1" class="active">PERSON</label>
 					</div>
 				</div>
 				<div class="form anim-slide-right-left animation disappear flex-grow-1">
@@ -1723,6 +1764,7 @@
 							<li>Verdenara Villa</li>
 							<li>Ocika Villa</li>
 						</ul>
+						<input type="hidden" class="list-resort" name="list-resort" value="{{ $item_id }}">
 					</div>
 					<span> untuk </span>
 					<div class="input-field">
@@ -2093,6 +2135,7 @@
 			var date = dateToString($(this).val(), 'long');
 			$('.bg').hide();
 			$(this).parent().parent().find('.input-field-toggle').text(date);
+			$(this).prev().text(date);
 		})
 
 		$('.checkbox').on('change', function() {
@@ -2116,11 +2159,12 @@
 			var nama_resort = resort.name;
 
 			var $list = $('<li id="' + id_resort + '">' + nama_resort + '</li>');
-			var $list_mobile = $('<option id="' + id_resort + '" value="id_resort">' + nama_resort + '</option>');
+			var $list_mobile = $('<option id="' + id_resort + '" value="' + id_resort + '">' + nama_resort + '</option>');
 
 			if (id_resort == item_id) {
 				$list.addClass('active');
 				$list_mobile.prop('selected', true);
+				$('.list-resort').val(id_resort);
 				$('.input-nama-resort').text(nama_resort);
 			}
 
@@ -2136,11 +2180,14 @@
 		});	
 
 		$('.input-field ul li').on('click', function() {
+			var id = $(this).attr('id');
+
 			$('.bg').hide();
 
 			$('.input-field ul li.active').removeClass('active');
 			$(this).addClass('active');
-			$('.input-field ul.show').parent().find('.input-field-toggle').text($(this).text());	
+			$('input[name="list-resort"]').val(id);
+			$('.input-field ul.show').parent().find('.input-field-toggle').text($(this).text());
 			$('.input-field ul.show').removeClass('fade');
 			setTimeout(function() {
 				$('.input-field ul.show').removeClass('show');
@@ -2241,13 +2288,11 @@
 			)
 		})
 
-		$('.mobile-visible input').on('change', function() {
+		$('.mobile-visible .form-control').on('change', function() {
 			var input_name = $(this).attr('name');
 			var value = $(this).val();
 			
 			var $target = $(this).closest('.mobile-visible').next().find('input[name="' + input_name + '"]');
-
-			console.log($target);
 				$target.val(value);
 		})
 
@@ -2255,9 +2300,9 @@
 			showLoader('Memuat Data');
 			var start_date = $('input[name="start_date"]').val();
 			var end_date = $('input[name="end_date"]').val();
-			var id_resort = $('ul.list-resort li.active').attr('id');
+			var id_resort = $('input[name="list-resort"]').val();
 			var id_business = $('input[name="business_id"]').val();
-			var nama_resort = $('ul.list-resort li.active').text();
+			var nama_resort = resorts.filter(resort => resort.id == id_resort)[0].name;
 
 			day_diff = Math.round(dateDiffInDays(start_date, end_date));
 
@@ -2281,6 +2326,7 @@
 				},
 				function(data) {
 					resort_variant = $.parseJSON(data).availability;
+					console.log(resort_variant);
 
 					$('#step-2 .orders').empty();
 
@@ -2290,6 +2336,7 @@
 						var fake_id = kamar.id;
 						var nama_kamar = kamar.name;
 						var id_harga = kamar.price.id;
+						var amount = kamar.amount;
 						var is_per_pax = kamar.price.is_per_pax;
 						var harga = kamar.price.service_price;
 						var harga_string = accounting.formatMoney(
@@ -2312,7 +2359,7 @@
 									'<input type="hidden" name="is_per_pax" value="' + is_per_pax + '">' +
 								'</div>' +
 								'<div class="unit">' +
-									'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
+									'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" max="' + amount + '" disabled="true">' +
 								'</div>' +
 								'<div class="nights">' +
 									'<span>' + day_diff + ' malam</span>' +
@@ -2610,6 +2657,11 @@
 					}
 				})
 			}
+		})
+
+		$('.qty-wrapper input').on('change', function() {
+			var value = $(this).val();
+			$(this).prev().find('.qty').text(value);
 		})
 	})
 

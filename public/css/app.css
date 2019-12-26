@@ -502,12 +502,36 @@ button {
     .navbar {
         display: block;
         padding: 7% 10% !important;
+        min-height: 5%;
+    }
+    .navbar.show-menu {
+        min-height: 100%;
+        background: #fff;
+        color: #000 !important;
+    }
+    .navbar.show-menu .logo .logo-white {
+        display: none;
+    }
+    .navbar.show-menu .logo .logo-default {
+        display: block;
+    }
+    .navbar.show-menu .nav {
+        display: block;
     }
     .navbar .nav {
         display: none;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 30%;
+        text-align: center !important;
     }
     .navbar .nav>li {
         display: block;
+        font-size: 1.2em !important;
+        font-weight: 700 !important;
+        letter-spacing: 2px !important;
+        margin: 45px 0px;
     }
     .navbar .logo {
         width: 100% !important;
@@ -523,6 +547,10 @@ button {
     }
     .navbar .nav-trigger {
         display: block;
+        font-size: 1.5em;
+        cursor: pointer;
+        margin-top: .4rem;
+        z-index: 5;
     }
     .navbar .special {
         display: none;

@@ -415,7 +415,7 @@
         	align-items: center;
         	margin-right: -20px;
         	margin-top: 20px;
-		    margin-bottom: -15px;
+		    margin-bottom: 5px;
 		    /*text-shadow: -5px 0px 0px #ffffff40;*/
         }
 
@@ -821,8 +821,8 @@
 @section('js-bottom')
 <script type="text/javascript">
 	var resort = {!! json_encode($result) !!};
+	var business_id = {!! json_encode($business_id) !!};
 	var business_name = {!! json_encode($business_name) !!};
-	console.log(resort);
 	var id_resort = resort.id;
 	var nama_resort = resort.name;
 	var description = (resort.description != null) ? `<p>${resort.description}</p>` : `<span>Tidak ada deskripsi</span>`;
@@ -858,22 +858,37 @@
 
 	$('.card-container').append($kamar);
 
+	console.log(tipe_kamar);
+
 	$.each(tipe_kamar, function(index, kamar) {
 		var id_kamar = kamar.id;
 		var nama_kamar = kamar.name;
 		var sisa_kamar = kamar.count_availability;
+		var description = kamar.description;
+		var max_out = kamar.max_out;
+		var wide = kamar.wide;
 		var harga = kamar.price.service_price;
 			harga = accounting.formatMoney(
 					harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+		if (business_id == '1' || business_id == '3') {
+			(description != null) ? description = '<p class="sub-desc">' + description + '</p>' : description = '';
+			var info_kamar = '<p>SISA<br>KAMAR</p>' +
+							'<b>' + sisa_kamar + '</b>';
+		}
+		if (business_id == '2') {
+			description = '<p class="sub-desc">' + 'Luas Wilayah : ' + wide + 'm<sup>2</sup>' + '</p>';
+			var info_kamar = '<p class="font-number">MAX ' + max_out + ' ORG</p>';
+		}
 
 		var $kamar = 
 				'<div class="card">' +
 					'<div>' +
 						'<b>' + nama_kamar + '</b>' +
 						'<span class="font-currency">' + harga + ' / malam</span>' +
+						description + 
 						'<div class="info-kamar">' +
-							'<p>SISA<br>KAMAR</p>' +
-							'<b>' + sisa_kamar + '</b>' +
+							info_kamar +
 						'</div>' +
 					'</div>' +
 				'</div>';

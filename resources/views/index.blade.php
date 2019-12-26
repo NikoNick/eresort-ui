@@ -16,6 +16,10 @@
 			background-size: 100% 100%;
 		}
 
+		.slides {
+			position: relative;
+		}
+
 		.navbar {
 			box-shadow: none;
 			padding: 3% 7%;
@@ -323,6 +327,8 @@
 		    z-index: 2;
 		    left: 7%;
 		    bottom: 15%;
+		    color: #fff;
+		    cursor: pointer;
 		}
 
 		.navigator label {
@@ -331,8 +337,14 @@
 		    color: #fff;
 		    letter-spacing: 3px;
 		    font-style: italic;
+		    font-size: 1.2em;
 		    font-weight: 600;
-		    margin-bottom: 15px;
+		    margin: 20px 0px;
+		    /*margin-bottom: 15px;*/
+		}
+
+		.navigator i {
+			font-size: 2em;
 		}
 
 		.mobile-navigator {
@@ -465,12 +477,14 @@
 		<div id="next" class="mobile-navigation"><i class="lnr lnr-chevron-right"></i></div>
 	</div>
 	<div class="navigator">
+		<!-- <i id="btn-prev" class="lnr lnr-chevron-up"></i> -->
 		<label>Resort</label>
-		<div id="point-0" for="0" class="bullet-point"></div>
+		<i id="btn-next" class="lnr lnr-chevron-down"></i>
+		<!-- <div id="point-0" for="0" class="bullet-point"></div>
 		<div id="point-1" for="1" class="bullet-point"></div>
-		<div id="point-2" for="2" class="bullet-point"></div>
+		<div id="point-2" for="2" class="bullet-point"></div> -->
 	</div>
-	<div>
+	<div class="slides">
 	<div id="content-0" prev="2" next="1" class="background active animation" style="background-image: url('../img/index3.jpg');">
 		<!-- <div class="bg-image">
 			<img src="{{ asset('../img/index3.jpg') }}">
@@ -533,7 +547,7 @@
 			</div>
 		</form>
 	</div>
-	<div id="content-1" prev="0" next="2" class="background gone animation" style="background-image: url('../img/index4.jpg');">
+	<div id="content-1" prev="0" next="2" class="background animation" style="background-image: url('../img/index4.jpg');">
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Camping</i></h1>
@@ -592,7 +606,7 @@
 			</div>
 		</form>
 	</div>
-	<div id="content-2" prev="1" next="0" class="background gone animation" style="background-image: url('../img/index5.jpg');">
+	<div id="content-2" prev="1" next="0" class="background animation" style="background-image: url('../img/index5.jpg');">
 		<div class="content">
 			<div id="camping" class="coba">
 				<h1><b>Palawi</b> <i>Outbound</i></h1>
@@ -653,6 +667,17 @@
 
 @section('js-bottom')
 	<script type="text/javascript">
+		var $_backgrounds = $('.background');
+    	var $_first_background = $_backgrounds.first();
+    	var $_last_background = $_backgrounds.last();
+    	var $_first_background_clone = $_first_background.clone().removeClass('active');
+    	var el_length = $_backgrounds.length;
+
+    	$_last_background.after($_first_background_clone);
+
+    	$('.navigator').on('click', slideOn);
+		// slideOn();
+
 		var today = new Date();
 			today = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
 		var tomorrow = new Date();
@@ -834,6 +859,28 @@
 	        	$('.nav').removeClass('disappear');
 				$_form.removeClass('show');
 	        }, 400);
+	    }
+
+	    function slideOn() {
+	    	var $_active_background = $('.background.active');
+	    	var index = $_active_background.index('.background');
+	    	var $_target_background = $_active_background.next();
+
+	    	var offset = '-' + $_target_background.position().top + 'px';
+
+	    	$('.slides').animate({top: offset});
+
+	    	$_active_background.removeClass('active');
+	    	$_target_background.addClass('active');
+
+	    	if (index == (el_length-1)) {
+	    		// alert('oke');
+	    		setTimeout(function() {
+	    			$('.slides').css('top', '0px');
+					$_target_background.removeClass('active');
+					$('.background').first().addClass('active');
+	    		}, 500);
+	    	}
 	    }
 	</script>
 @endsection
