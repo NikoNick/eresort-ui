@@ -68,7 +68,8 @@
 		var catalog = {!! json_encode($catalog) !!};
 		var result = data.data;
 
-			result = result.filter(item => item.min_out <= parseInt(person));
+		person = parseInt(person);
+		result = result.filter(item => item.min_out >= person && (item.max_out >= person || item.max_out == null));
 
 		$('.thumbnails').empty();
 
@@ -212,6 +213,7 @@
 					harga_sewa = accounting.formatMoney(harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
 				var variant = resort.availability;
+				var media_path = (resort.media.length != 0) ? resort.media[0].path : `https://via.placeholder.com/600x600?text=${resort.name}`;
 
 				var $kamar_infos = '';
 
@@ -233,6 +235,7 @@
 				var $thumbnail =
 				'<div id="' + id_resort + '" class="card">' +
 					'<div class="thumbnail">' +
+						'<img src="' + media_path + '">' +
 					'</div>' +
 					'<div class="desc animation">' +
 						'<div class="header">' +
@@ -265,6 +268,7 @@
 				var nama_resort = resort.name;
 				// var luas_area = resort.wide.slice(0,-3);
 				var lokasi = resort.location.name;
+				var media_path = (resort.media.length != 0) ? resort.media[0].path : `https://via.placeholder.com/600x600?text=${resort.name}`;
 				var harga_sewa = resort.price.service_price;
 					harga_sewa = accounting.formatMoney(harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
@@ -290,6 +294,7 @@
 				var $thumbnail =
 				'<div id="' + id_resort + '" class="card">' +
 					'<div class="thumbnail">' +
+						'<img src="' + media_path + '">' +
 					'</div>' +
 					'<div class="desc animation">' +
 						'<div class="header">' +
