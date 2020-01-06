@@ -124,7 +124,7 @@
 		.form button:not([type="submit"]) {
 		    color: #000;
 		    font-style: normal;
-		    display: none;
+		    /*display: none;*/
 		}
 
 		.form button[type="submit"] {
@@ -462,6 +462,20 @@
 			.background.active {
 				opacity: 1;
 			}
+
+			#ui-datepicker-div {
+				top: 25% !important;
+    			left: 0px !important;
+    			width: 100% !important;
+			}
+
+			.ui-datepicker table {
+				font-size: .7em;
+			}
+
+			.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+				width: auto;
+			}
 		}
 	</style>
 @endsection
@@ -472,6 +486,12 @@
 			<button class="btn"><i class="fas fa-sign-in-alt"></i> LOGIN</button>
 		@endslot
 	@endcomponent
+	<div class="loading-screen animation anim-blink disappear gone">
+		<div class="loading-wrapper">
+			<div class="loader"></div>
+			<p class="loading-text">Loading</p>
+		</div>
+	</div>
 	<div class="mobile-navigator">
 		<div id="prev" class="mobile-navigation"><i class="lnr lnr-chevron-left"></i></div>
 		<div id="next" class="mobile-navigation"><i class="lnr lnr-chevron-right"></i></div>
@@ -667,6 +687,12 @@
 
 @section('js-bottom')
 	<script type="text/javascript">
+		showLoader('');
+
+		$(window).load(function() {
+			hideLoader();
+		})
+
 		var $_backgrounds = $('.background');
     	var $_first_background = $_backgrounds.first();
     	var $_last_background = $_backgrounds.last();
@@ -813,16 +839,16 @@
 
 		$('.btn-cancel').on('click', closeForm);
 
-		$(document).click(function(e) {
-		    const $_form = $('.form.show');
-		    const $_trigger = $('.btn-form');
+		// $(document).click(function(e) {
+		//     const $_form = $('.form.show');
+		//     const $_trigger = $('.btn-form');
 
-		    // if the target of the click isn't the container nor a descendant of the container
-		    if (!$_trigger.is(e.target) && $_trigger.has(e.target).length === 0 && !$_form.is(e.target) && $_form.has(e.target).length === 0) 
-		    {
-		    	closeForm();
-		    }
-		});
+		//     // if the target of the click isn't the container nor a descendant of the container
+		//     if (!$_trigger.is(e.target) && $_trigger.has(e.target).length === 0 && !$_form.is(e.target) && $_form.has(e.target).length === 0) 
+		//     {
+		//     	closeForm();
+		//     }
+		// });
 
 		function monthString(month) {
 	        if (month == '01' || month == '1' ) return 'Januari';
@@ -881,6 +907,21 @@
 					$('.background').first().addClass('active');
 	    		}, 500);
 	    	}
+	    }
+
+	    function showLoader(message) {
+	    	$('.loading-text').text(message);
+	    	$('.loading-screen').removeClass('gone');
+	    	setTimeout(function() {
+	    		$('.loading-screen').removeClass('disappear');	
+	    	}, 200);
+	    }
+
+	    function hideLoader() {
+	    	$('.loading-screen').addClass('disappear');	
+	    	setTimeout(function() {
+	    		$('.loading-screen').addClass('gone');	
+	    	}, 500);	
 	    }
 	</script>
 @endsection

@@ -3,7 +3,7 @@
         <i class="fas fa-bars"></i>
     </div>
     <div class="logo">
-        <a href="http://www.mypalawi.com">
+        <a href="http://www.mypalawi.com" target="_blank">
             <!-- <h1>PALAWI</h1> -->
             <img class="logo-white" src="{{ asset('../img/logo-white.png') }}">
             <img class="logo-default" src="{{ asset('../img/logo.png') }}">

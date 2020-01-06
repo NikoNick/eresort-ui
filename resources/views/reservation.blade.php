@@ -227,7 +227,7 @@
 			font-size: 2.5em;
 		    line-height: 70px;
 		    font-weight: 300;
-		    letter-spacing: 5px;
+		    letter-spacing: 3px;
 		    word-spacing: 20px;
 		    /*padding-bottom: 50px;*/
 		    /*border-bottom: 1px solid #dcdcdc;*/
@@ -1210,7 +1210,7 @@
 
 		.form-dialog {
 		    top: -120px;
-    		left: 600px;
+    		left: 30%;
 			position: absolute;
 			z-index: 5;
 			background: #fff;
@@ -1219,7 +1219,7 @@
 		}
 
 		.form-dialog>div {
-			padding: 30px 40px;
+			padding: 30px;
 		}
 
 		.form-dialog .header {
@@ -1620,6 +1620,13 @@
 			.md-form {
 				margin-top: 4rem;
 			}
+
+			.form-dialog {
+				border-radius: 0px;
+				width: 100%;
+				left: 0px;
+				top: 20%;
+			}
 		}
 	</style>
 </head>
@@ -1862,6 +1869,30 @@
 
 		<div id="step-4" class="form-reservasi gone" condition="must-filled" for="4">
 			<div class="wrapper">
+				<div class="bg"></div>
+				<div class="form-dialog animation anim-blink disappear gone">
+					<div class="header">
+						<h3>Identitas Tamu</h3>
+						<p>Informasi data diri tamu yang akan check-in</p>
+					</div>
+					<div class="body">
+						<div>
+							<div class="input-wrapper">
+								<label>NAMA</label>
+								<input type="text" name="name_for" placeholder="Nama Lengkap">
+							</div>
+						</div>
+						<div>
+							<div class="input-wrapper">
+								<label>TELEPON</label>
+								<input type="text" name="phone_for" placeholder="xxxx-xxxx-xxxx">
+							</div>
+						</div>
+					</div>
+					<div>
+						<button id="btn-confirm-guest" class="btn">Ok !</button>
+					</div>
+				</div>
 				<div class="form-title flex animation anim-scale-black disappear">
 					<h1 class="flex-grow-1">Beritahu Kami Tentang Anda</h1>
 					<div>
@@ -1882,31 +1913,7 @@
 						<label for="form1" class="active">E-MAIL</label>
 					</div>
 				</div>
-				<div class="form animation anim-scale-black disappear flex-grow-1">
-					<div class="bg"></div>
-					<div class="form-dialog animation anim-blink disappear gone">
-						<div class="header">
-							<h3>Identitas Tamu</h3>
-							<p>Informasi data diri tamu yang akan check-in</p>
-						</div>
-						<div class="body">
-							<div>
-								<div class="input-wrapper">
-									<label>NAMA</label>
-									<input type="text" name="name_for" placeholder="Nama Lengkap">
-								</div>
-							</div>
-							<div>
-								<div class="input-wrapper">
-									<label>TELEPON</label>
-									<input type="text" name="phone_for" placeholder="xxxx-xxxx-xxxx">
-								</div>
-							</div>
-						</div>
-						<div>
-							<button id="btn-confirm-guest" class="btn">Ok !</button>
-						</div>
-					</div>		
+				<div class="form animation anim-scale-black disappear flex-grow-1">		
 					<span>Nama saya </span>
 					<div class="input-field">
 						<span id="input-nama" class="input-field-toggle" default="Nama Lengkap Anda">Nama Lengkap Anda</span>
@@ -1985,6 +1992,7 @@
 							FULL PAYMENT
 						</span>
 					</div>
+
 					<div class="payment-method flex-grow-1">
 						<span>
 							<input type="checkbox" id="checkbox-2" class="checkbox fillable" value="false">
@@ -2291,9 +2299,13 @@
 		$('.mobile-visible .form-control').on('change', function() {
 			var input_name = $(this).attr('name');
 			var value = $(this).val();
+
+
 			
 			var $target = $(this).closest('.mobile-visible').next().find('input[name="' + input_name + '"]');
 				$target.val(value);
+
+			console.log($target.val());
 		})
 
 		$('.form-next').on('click', async function() {
@@ -2422,6 +2434,7 @@
 			var nama_pemesan = $('.form input[name="identitas_nama"]').val();
 			var telepon = $('.form input[name="identitas_telepon"]').val();
 			var email = $('.form input[name="identitas_email"]').val();
+			var person = $('#step-1 .form').find('input[name="person"]').val();
 
 			var start_time = moment(check_in + 'T' + config.hour_check_in).format('YYYY-MM-DD HH:mm:SS');
 			var end_time = moment(check_out + 'T' + config.hour_check_out).format('YYYY-MM-DD HH:mm:SS');
@@ -2477,7 +2490,7 @@
 
 					const obj_kamar = {
 						'item_detail_id' : item_detail_id,
-						'person' : unit,
+						'person' : person,
 						'start_time' : start_time,
 						'end_time' : end_time
 					};
@@ -2533,7 +2546,7 @@
 				var obj_kamar = {
 					'item_detail_id' : id_kamar,
 					// 'price_id' : id_harga,
-					'person' : unit,
+					'person' : person,
 					'start_time' : start_time,
 					'end_time' : end_time
 				};
@@ -2916,6 +2929,7 @@
 		var harga = $(this).closest('.order').find('input[name="harga"]').val();
 		var lama_inap = $(this).closest('.order').find('input[name="lama_inap"]').val();
 		var is_per_pax = $(this).closest('.order').find('input[name="is_per_pax"]').val();
+		var person = $('#step-1 .form').find('input[name="person"]').val();
 		var qty = $(this).val();
 
 		if (qty == 0 || qty == '') $(this).closest('.order').removeClass('selected');
