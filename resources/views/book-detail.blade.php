@@ -1533,11 +1533,11 @@
 		<div class="flex stretch">
 			<div class="upload">
 				<div class="photo-container">
-					<img src="{{ asset('img/thumbnail-5.jpg') }}" class="photo">
+					<img src="https://www.pngitem.com/pimgs/m/77-777159_transparent-holiday-icon-png-file-upload-icon-font.png" class="photo">
 				</div>
 				<div class="photo-detail">
-					<p class="font-currency val-file-size">120.3 KB</p>
-					<h3 class="val-file-name">thumbnail-5.jpg</h3>
+					<p class="font-currency val-file-size"></p>
+					<h3 class="val-file-name"></h3>
 					<button id="btn-upload" class="btn">Upload</button>
 				</div>
 				<input type="file" name="bukti_transfer" class="invisible">
