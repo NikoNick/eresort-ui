@@ -2495,34 +2495,40 @@
 		$.each(extra_item.data, function(index, data) {
 			$.each(data.availability, function(index2, item) {
 			const nama_item = item.name;
-			const id_item = item.details.filter(detail => detail.is_booked === 0)[0].id;
-			const id_harga = item.price.id;
-			const harga = item.price.service_price;
-			const harga_string = accounting.formatMoney(
-						harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
 
-			var $extra_item = 
-				'<div id="' + id_item + '" class="order flex">' +
-					'<div class="flex name">' +
-						'<span class="index"><span>' + ((index2 + 1)) + '</span><i class="fas fa-check deselect"></i></span>' +
-						'<span class="line"></span>' +
-						'<span>' + nama_item + '</span>' + 
-					'</div>' +
-					'<div class="price">' + 
-						'<span>' + harga_string + ' / pcs</span>' +
-						'<input type="hidden" name="harga" value="' + harga + '">' +
-					'</div>' +
-					'<div class="unit">' +
-						'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
-					'</div>' +
-					'<div class="total-price">' +
-						'<span>Rp 0</span>' +
-						'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
-					'</div>' +
-				'</div>';
+			let id_item = item.details.filter(detail => detail.is_booked === 0);
 
-			$('#step-3 .orders').append($extra_item);
-			});
+			if(id_item.length) {
+				id_item = id_item[0].id
+				const id_harga = item.price.id;
+				const harga = item.price.service_price;
+				const harga_string = accounting.formatMoney(
+							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+				var $extra_item = 
+					'<div id="' + id_item + '" class="order flex">' +
+						'<div class="flex name">' +
+							'<span class="index"><span>' + ((index2 + 1)) + '</span><i class="fas fa-check deselect"></i></span>' +
+							'<span class="line"></span>' +
+							'<span>' + nama_item + '</span>' + 
+						'</div>' +
+						'<div class="price">' + 
+							'<span>' + harga_string + ' / pcs</span>' +
+							'<input type="hidden" name="harga" value="' + harga + '">' +
+						'</div>' +
+						'<div class="unit">' +
+							'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" disabled="true">' +
+						'</div>' +
+						'<div class="total-price">' +
+							'<span>Rp 0</span>' +
+							'<input id="' + id_harga + '" type="hidden" name="total_harga" value="0">' +
+						'</div>' +
+					'</div>';
+
+				$('#step-3 .orders').append($extra_item);
+				});
+			}
+
 		})
 
 		$('.order input[type="number"]').on('keyup', inputNumberListener);
