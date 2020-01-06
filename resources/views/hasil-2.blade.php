@@ -730,10 +730,6 @@
 			<label><span class="icon">!</span> Informasi Umum</label>
 			<div class="box-wrapper">
 				<div>
-					<label>TOTAL KAMAR</label>
-					<p>2 Kamar</p>
-				</div>
-				<div>
 					<label>TELEPON</label>
 					<p id="phone">085701609034</p>
 				</div>
