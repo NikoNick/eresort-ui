@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Palawi Resort</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/custom-fonts.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui.css') }}">
@@ -1398,6 +1399,7 @@
 			.order-steps {
 				padding: 5% 10% !important;
 				width: 100vw !important;
+				font-size: 1em;
 			}
 
 			.order-steps .step {
@@ -1481,7 +1483,7 @@
 				display: none;
 			}
 
-			.form-reservasi .form, .nav-button span {
+			.form-reservasi .form {
 				display: none;
 			}
 
@@ -1598,23 +1600,23 @@
 		<div class="order-steps flex">
 			<div id="trigger-1" class="step">
 				<div class="bar"></div>
-				<p>1. RESERVASI</p>
+				<p><span class="number">1</span><span class="name">RESERVASI</span></p>
 			</div>
 			<div id="trigger-3" class="step">
 				<div class="bar"></div>
-				<p>2. EXTRA ORDER</p>
+				<p><span class="number">2</span><span class="name">EXTRA ORDER</span></p>
 			</div>
 			<div id="trigger-4" class="step">
 				<div class="bar"></div>
-				<p>3. IDENTITAS DIRI</p>
+				<p><span class="number">3</span><span class="name">IDENTITAS DIRI</span></p>
 			</div>
 			<div id="trigger-5" class="step">
 				<div class="bar"></div>
-				<p>4. PEMBAYARAN</p>
+				<p><span class="number">4</span><span class="name">PEMBAYARAN</span></p>
 			</div>
 			<div id="trigger-6" class="step">
 				<div class="bar"></div>
-				<p>5. CHECK OUT</p>
+				<p><span class="number">5</span><span class="name">CHECK OUT</span></p>
 			</div>
 		</div>
 		
@@ -2526,8 +2528,9 @@
 					'</div>';
 
 				$('#step-3 .orders').append($extra_item);
-				});
 			}
+
+		});
 
 		})
 

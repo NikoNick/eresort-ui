@@ -18,7 +18,7 @@ class CatalogController extends Controller {
     } else if ($business_id == 2) {
       $url = ExtrernalRequest::API_RESORT_URL . "availability/area?start_date={$start_date}&end_date={$end_date}&item_id={$id_resort}";
     } else if ($business_id == 3) {
-      $url = ExtrernalRequest::API_RESORT_URL . "availability/outbound-program?start_date={$start_date}&end_date={$end_date}&item_id={$id_resort}";
+      $url = ExtrernalRequest::API_RESORT_URL . "availability/outbound-program?start_date={$start_date}&item_id={$id_resort}";
     }
 
 

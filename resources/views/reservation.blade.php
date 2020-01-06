@@ -1712,7 +1712,7 @@
 					<div class="md-form">
 						<select class="fillable form-control list-resort" name="list-resort">	
 						</select>
-						<label for="form1" class="active">NAMA RESORT</label>
+						<label for="form1" class="active">PILIH LAYANAN</label>
 					</div>
 					<div class="md-form">
 						<div class="md-input-wrapper">

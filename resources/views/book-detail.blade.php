@@ -990,6 +990,7 @@
 		@media screen and (max-width: 600px) {
 			.background {
 				padding-top: 20%;
+				font-size: 1em;
 			}
 
 			.background.show-invoice {

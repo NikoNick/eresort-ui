@@ -847,10 +847,18 @@
 
 	$('#facility').append(facilities);
 
+	if (business_id == '1') {
+		var nama_layanan = 'Book Satu Resort';
+	} else if (business_id == '2') {
+		var nama_layanan = 'Book Satu Camping Area';
+	} else if (business_id == '3') {
+		var nama_layanan = 'Satu Paket Outbound';
+	}
+
 	var $kamar = 
 		'<div class="card animation active">' +
 			'<div>' +
-				'<b>Book Satu Villa</b>' +
+				'<b>' + nama_layanan + '</b>' +
 				'<span class="font-currency">' + harga_sewa + ' / malam</span>' +
 				'<h1>AVAILABLE</h1>' +
 			'</div>' +
