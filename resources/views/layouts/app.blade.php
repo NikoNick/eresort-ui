@@ -21,6 +21,6 @@
 <body>
     @yield('body')
     @yield('js-bottom')
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app-custom.js') }}"></script>
 </body>
 </html>
