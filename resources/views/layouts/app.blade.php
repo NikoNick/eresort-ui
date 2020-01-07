@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Palawi Resort</title>
+	<title>Booking | Palawi Risorsis</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/custom-fonts.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">

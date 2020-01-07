@@ -102,7 +102,7 @@
 			display: none;
 			flex-grow: 1;
 		    margin: 25px 0px;
-		    width: 2px;
+		    width: 0px;
 		    background-image: linear-gradient(white 33%, rgba(255,255,255,0) 0%);
 		    background-position: right;
 		    background-size: 1px 25px;
@@ -377,7 +377,7 @@
 
 			.content {
 				display: flex;
-				padding-bottom: 15%;
+				padding-bottom: 10%;
 			}
 			.content .coba {
 				width: 100%;
@@ -390,7 +390,7 @@
 			.content .coba h1 {
     		    font-size: 1.6em;
 			    text-align: center;
-			    margin-top: 90%;
+			    margin-top: 80%;
 			    margin-bottom: 10%;
 			    letter-spacing: 4px;
 			    word-spacing: 0px;
@@ -469,13 +469,18 @@
     			width: 100% !important;
 			}
 
-			.ui-datepicker table {
-				font-size: .7em;
-			}
-
 			.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 				width: auto;
 			}
+		}
+
+		.ui-datepicker table {
+			font-size: .7em;
+			border-spacing: 5px;
+		}
+
+		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+			width: 40px;
 		}
 	</style>
 @endsection
@@ -540,13 +545,13 @@
 				<div class="md-form">
 					<div class="md-input-wrapper">
 						<div class="date-wrapper">
-							<span class="date-string">10 Desember 2019</span>
-							<input type="text" id="form1" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+							<span id="start-resort" class="date-string">10 Desember 2019</span>
+							<input type="text" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
 						</div>
 						<span class="separator">sampai</span>		
 						<div class="date-wrapper">
-							<span class="date-string">11 Desember 2019</span>
-							<input type="text" id="form2" class="form-control date" name="end_date" spellcheck="false" value="11 Desember 2019" placeholder="Check-Out">
+							<span id="end-resort" class="date-string">11 Desember 2019</span>
+							<input type="text" class="form-control date" name="end_date" spellcheck="false" value="11 Desember 2019" placeholder="Check-Out">
 						</div>
 						
 					</div>
@@ -554,7 +559,7 @@
 				</div>
 				<div class="md-form">
 					<div class="md-input-wrapper">
-						<input type="number" id="form1" class="form-control" name="person" spellcheck="false" value="1" min="1">
+						<input type="number" class="form-control" name="person" spellcheck="false" value="1" min="1">
 						<span>Orang</span>
 					</div>
 					
@@ -599,13 +604,13 @@
 				<div class="md-form">
 					<div class="md-input-wrapper">
 						<div class="date-wrapper">
-							<span class="date-string">10 Desember 2019</span>
-							<input type="text" id="form1" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+							<span id="start-camping" class="date-string">10 Desember 2019</span>
+							<input type="text" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
 						</div>
 						<span class="separator">sampai</span>		
 						<div class="date-wrapper">
-							<span class="date-string">11 Desember 2019</span>
-							<input type="text" id="form2" class="form-control date" name="end_date" spellcheck="false" value="11 Desember 2019" placeholder="Check-Out">
+							<span id="end-camping" class="date-string">11 Desember 2019</span>
+							<input type="text" class="form-control date" name="end_date" spellcheck="false" value="11 Desember 2019" placeholder="Check-Out">
 						</div>
 						
 					</div>
@@ -658,11 +663,11 @@
 				<div class="md-form">
 					<div class="md-input-wrapper">
 						<div class="date-wrapper">
-							<span class="date-string">10 Desember 2019</span>
-							<input type="text" id="form1" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Tanggal">	
+							<span id="start-outbound" class="date-string">10 Desember 2019</span>
+							<input type="text" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Tanggal">	
 						</div>
 						<span class="separator">Pukul.</span>		
-						<input type="text" id="form2" class="form-control" name="waktu" spellcheck="false" value="09:00" placeholder="Waktu">
+						<input type="text" class="form-control" name="waktu" spellcheck="false" value="09:00" placeholder="Waktu">
 						
 					</div>
 					<label for="form1" class="active">TANGGAL & WAKTU</label>
@@ -805,6 +810,8 @@
 		$('input.date').on('change', function() {
 			const value = $(this).val();
 			const value_string = dateToString(value, 'short');
+
+			console.log($(this).prev().attr('id'));
 
 			$(this).prev().text(value_string);
 		})

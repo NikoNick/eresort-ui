@@ -191,6 +191,7 @@
 		    z-index: 2;
 		    padding: 0px 0px;
 		    color: #fff;
+		    font-size: 0.8em;
 		}
 
 		.bg>div {
@@ -198,15 +199,16 @@
 		}
 
 		.bg .upload {
-			padding: 100px 150px;
+			padding: 60px 150px;
 			height: 100%;
 			background: #fff;
 			color: #000;
 		}
 
 		.bg .upload .photo-container {
-		    width: 250px;
-			height: 250px;
+		    width: 180px;
+			height: 180px;
+			margin: auto;
 			padding: 8px;
 			box-shadow: 50px 20px 0px 0px #b5b5b52b, -50px 50px 0px 0px #b5b5b52b;
 			border: 1px solid #b5b5b5;
@@ -223,7 +225,7 @@
 		}
 
 		.bg .upload .photo-detail {
-		    margin-top: 100px;
+		    margin-top: 50px;
     		text-align: center;
 		}
 
@@ -238,16 +240,17 @@
 		    letter-spacing: 3px;
 		    border-radius: 0px;
 		    padding: 10px;
-		    box-shadow: 0px 4px 0px 0px #cac
+		    font-size: 0.8em;
+		    box-shadow: 0px 4px 0px 0px #cacaca;
 		}
 
 		.bg .desc {
-			padding: 80px 100px;
+			padding: 40px 60px;
 		}
 
 		.bg .desc>.flex {
 			margin-top: 20px;
-			margin-bottom: 80px;
+			margin-bottom: 30px;
 		}
 
 		.bg .desc>.flex p {
@@ -258,6 +261,7 @@
 
 		.bg .desc h1 {
 		    margin: 0;
+		    font-size: 2em;
 		    font-family: Raleway;
 		    letter-spacing: 2px;
 		    font-weight: 600;
@@ -265,7 +269,7 @@
 
 		.bg .desc p {
 		    line-height: 40px;
-		    font-size: 1.2em;
+		    font-size: 0.9em;
 		    letter-spacing: 2px;
 		}
 
@@ -1196,7 +1200,7 @@
 			}
 			.bg .upload {
 				flex-grow: 1;
-				padding: 5% 10%;
+				padding: 20% 10%;
 			}
 			.bg .upload .photo-container {
 				margin: auto;

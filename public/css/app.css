@@ -610,4 +610,8 @@ button {
         width: 40px;
         line-height: 15px;
     }
+
+    input[name="waktu"] {
+        width: 30%;
+    }
 }

@@ -548,7 +548,7 @@
 			display: flex;
 			/*flex-flow: wrap;*/
 			flex-direction: column;
-			max-height: 400px;
+			/*max-height: 400px;*/
 			border: 0;
 		}
 
@@ -1483,7 +1483,7 @@
 				display: none;
 			}
 
-			.form-reservasi .form {
+			.form-reservasi .form, .nav-button span {
 				display: none;
 			}
 
@@ -1586,6 +1586,35 @@
 			.mobile-info p {
 				font-size: 1.2em;
 			}
+
+			#ui-datepicker-div {
+				top: 25% !important;
+    			left: 0px !important;
+    			width: 100% !important;
+			}
+
+			.ui-datepicker table {
+				font-size: .7em;
+			}
+
+			.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+				width: auto;
+			}
+
+			.md-form label.active {
+				transform: translateY(-1rem) scale(0.8);
+			}
+
+			.md-form {
+				margin-top: 4rem;
+			}
+
+			.form-dialog {
+				border-radius: 0px;
+				width: 100%;
+				left: 0px;
+				top: 20%;
+			}
 		}
 	</style>
 </head>
@@ -1627,7 +1656,7 @@
 				</div>
 				<div class="mobile-visible">
 					<div class="md-form">
-						<select name="list-resort" class="fillable form-control">
+						<select name="list-resort" class="fillable list-resort form-control">
 							
 						</select>
 						<label for="form1" class="active">PAKET OUTBOUND</label>
@@ -1636,13 +1665,14 @@
 						<div class="md-input-wrapper">
 							<div class="date-wrapper">
 								<span class="date-string">10 Desember 2019</span>
-								<input type="text" id="form1" class="form-control date" name="start_date" spellcheck="false" value="{{ $start_date }}" placeholder="Tanggal">	
-							</div>
-							<span class="separator">Pukul.</span>		
-							<input type="text" id="form2" class="form-control" name="waktu" spellcheck="false" value="{{ $waktu }}" placeholder="Waktu">
-							
+								<input type="text" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+							</div>	
 						</div>
-						<label for="form1" class="active">TANGGAL & WAKTU</label>
+						<label for="form1" class="active">TANGGAL</label>
+					</div>
+					<div class="md-form">
+						<input type="text" id="form2" class="form-control" name="waktu" spellcheck="false" value="{{ $waktu }}" placeholder="Waktu">
+						<label for="form1" class="active">WAKTU</label>
 					</div>
 					<div class="md-form">
 						<div class="md-input-wrapper">
@@ -1702,7 +1732,7 @@
 					<input type="hidden" name="business_id">
 				</div>	
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span><a for="1" next="3" class="form-nav form-next">Lanjutkan</a></span>
+					<a for="1" next="3" class="form-nav form-next">Lanjutkan</a>
 				</div>
 			</div>
 			
@@ -1718,7 +1748,7 @@
 					
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span>Tidak ada tambahan, <a next="4" class="form-nav">Lanjutkan</a></span>
+					<span>Tidak ada tambahan, </span><a next="4" class="form-nav">Lanjutkan</a>
 				</div>
 			</div>
 		</div>
@@ -1727,6 +1757,20 @@
 			<div class="wrapper">
 				<div class="form-title animation anim-scale-black disappear">
 					<h1>Beritahu Kami Tentang Anda</h1>
+				</div>
+				<div class="mobile-visible">
+					<div class="md-form">
+						<input type="text" id="form1" class="form-control" name="identitas_nama" spellcheck="false" placeholder="Nama Lengkap Anda">	
+						<label for="form1" class="active">NAMA LENGKAP</label>
+					</div>
+					<div class="md-form">
+						<input type="text" id="form1" class="form-control" name="identitas_telepon" spellcheck="false" placeholder="0000-0000-0000">	
+						<label for="form1" class="active">TELEPON</label>
+					</div>
+					<div class="md-form">
+						<input type="text" id="form1" class="form-control" name="identitas_email" spellcheck="false" placeholder="john_doe@mail.com">	
+						<label for="form1" class="active">E-MAIL</label>
+					</div>
 				</div>
 				<div class="form animation anim-scale-black disappear">
 					<div class="bg"></div>
@@ -1784,7 +1828,7 @@
 					</div> -->
 				</div>
 				<div class="nav-button animation anim-slide-down-up disappear">
-					<span id="btn-submit-detail">Identitas saya sudah benar, <a next="5" class="form-nav">Lanjutkan</a></span>
+					<a id="btn-submit-detail" next="5" class="form-nav">Lanjutkan</a>
 				</div>
 			</div>
 		</div>
@@ -1870,10 +1914,6 @@
 							<div class="mobile-info">
 								<span><b>CHECK-OUT</b></span>
 								<p class="val-end-date font-number">01 Nov 2019</p>
-							</div>
-							<div class="mobile-info">
-								<span><b>DETAIL PESANAN</b></span>
-								<p class="val-detail-pesanan font-number"><span class="val-lama-inap">1</span> malam</p>
 							</div>
 						</div>
 						<button class="btn btn-black btn-book">BOOK NOW</button>
@@ -1985,7 +2025,7 @@
 		$('input[name="start_date"]').val(start_date).change();
 		$('input[name="end_date"]').val(end_date).change();
 
-		$('ul.list-resort').empty();
+		$('.list-resort').empty();
 
 		$.each(resorts, function(index, resort) {
 			var item_detail_id = resort.details.filter(data => data.is_booked === 0)[0].id;
@@ -1995,6 +2035,7 @@
 			var duration_hour = resort.price.duration.hour;
 			var duration_minute = resort.price.duration.minute;
 			var price = resort.price.service_price;
+			var $list_mobile = $('<option id="' + item_detail_id + '" value="' + item_detail_id + '">' + nama_resort + '</option>');
 			var $list = $('<li id="' + item_detail_id + '" for="' + service_id + '">' + 
 							'<span>' + nama_resort + '</span>' + 
 							'<input type="hidden" name="day" value="' + duration_day + '">' +
@@ -2004,9 +2045,13 @@
 						  '</li>');
 			if (service_id == item_id) {
 				$list.addClass('active');
+				$list_mobile.prop('selected', true);
+				$('.list-resort').val(item_detail_id);
 				$('.input-nama-resort').text(nama_resort);
 			}
+
 			$('ul.list-resort').append($list);
+			$('select.list-resort').append($list_mobile);
 		})
  
 		$('.input-field-toggle').on('click', function() {
