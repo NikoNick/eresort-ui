@@ -39,7 +39,7 @@
 
 		.navbar .nav>li {
 			font-size: 0.8em;
-			font-weight: 300;
+			font-weight: 500;
 			letter-spacing: 4px;
 		}
 
