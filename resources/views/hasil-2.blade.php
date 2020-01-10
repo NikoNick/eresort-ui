@@ -856,32 +856,12 @@
 	</style>
 @endsection
 @section('body')
-	<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<ol class="carousel-indicators">
-			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarousel" data-slide-to="1"></li>
-			<li data-target="#myCarousel" data-slide-to="2"></li>		
-		</ol>
-
-		
-		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-			</div>
-			<div class="item">
-			</div>
-			<div class="item">
-			</div>				
+	<div class="loading-screen animation anim-blink disappear gone">
+		<div class="loading-wrapper">
+			<div class="loader"></div>
+			<p class="loading-text">Loading</p>
 		</div>
-
-		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-			<span class="fas fa-angle-left" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-			<span class="fas fa-angle-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
-	</div> -->
+	</div>
 	
 	<div class="background">
 		<div class="bg animation"></div>
@@ -986,6 +966,8 @@
 @endsection
 @section('js-bottom')
 <script type="text/javascript">
+	showLoader('Memuat Halaman');
+
 	var resort = {!! json_encode($result) !!};
 	var business_id = {!! json_encode($business_id) !!};
 	var business_name = {!! json_encode($business_name) !!};
@@ -1050,8 +1032,6 @@
 
 	$('.card-container').append($kamar);
 
-	console.log(tipe_kamar);
-
 	$.each(tipe_kamar, function(index, kamar) {
 		var id_kamar = kamar.id;
 		var nama_kamar = kamar.name;
@@ -1100,6 +1080,8 @@
 		$('.card-container').append($kamar);
 
 	})
+
+	hideLoader();
 
 	var $_backgrounds = $('.slides .slide');
 	
@@ -1197,5 +1179,20 @@
     		}, 500);
     	}
 	}
+
+	function showLoader(message) {
+    	$('.loading-text').text(message);
+    	$('.loading-screen').removeClass('gone');
+    	setTimeout(function() {
+    		$('.loading-screen').removeClass('disappear');	
+    	}, 200);
+    }
+
+    function hideLoader() {
+    	$('.loading-screen').addClass('disappear');	
+    	setTimeout(function() {
+    		$('.loading-screen').addClass('gone');	
+    	}, 500);	
+    }
 </script>
 @endsection
