@@ -12,13 +12,21 @@
 			/*overflow: hidden;*/
 		}
 
+		.navbar {
+			padding: 2% 12%;
+		}
+
+		.background {
+			padding: 5% 12% 3%;
+		}
+
 		.wrapper {
 			align-items: baseline;
 		}
 
 		.font-number {
 			font-family: Calibri Light !important;
-			font-size: 1.2em;
+			font-size: 1.1em;
 		}
 
 		.font-currency {
@@ -67,32 +75,65 @@
 			color: #fff;
 		}
 
-		.left {
-			padding: 0px 100px;
-		}
-
 		.title {
 			z-index: 5;
 			/*padding: 00px 100px;*/
 			margin-top: 50px;
-			/*position: relative;*/
+			position: relative;
 		}
 
-		.title:after {
+		.title .headline {
+			/*display: inline;*/
+			position: relative;
+			width: 718px;
+			height: 403px;
+			border-radius: 15px;
+			overflow: hidden;
+		}
+
+		.title .headline .slides {
+			position: relative;
+			white-space: nowrap;
+		}
+
+		.title .headline .slide {
+			display: inline-block;
+			position: relative;
+		}
+
+		.title .headline img {
+			width: 718px;
+			height: 403px;
+		}
+
+		.title .headline h1 {
+			position: absolute;
+			right: 0px;
+			bottom: 0px;
+		    padding: 20px 40px;
+		    background: #0000004a;
+		    color: #fff;
+		    z-index: 2;
+		    margin-bottom: 0px;
+		    border-bottom-right-radius: 15px;
+		    border-top-left-radius: 15px;
+		}
+
+		/*.title:after {
 		    content: '';
 		    position: absolute;
 		    width: 100%;
 		    height: 2px;
 		    left: 0;
 		    border-top: 1px solid #dcdcdc;
-		}
+		}*/
 
 		.title h1 {
 		    font-family: Raleway;
 		    color: #000;
 		    letter-spacing: 3px;
 		    font-size: 4em;
-		    font-weight: 800;
+		    font-weight: 700;
 		    margin-bottom: 30px;
 		    text-shadow: none;
 		}
@@ -118,6 +159,11 @@
 
 		.title b.basic-info span {
 			margin-right: 20px;
+		}
+
+		.title p {
+			margin-bottom: 30px;
+			text-transform: uppercase;
 		}
 
 		.animation {
@@ -231,6 +277,10 @@
 
         .flex {
         	display: flex;
+        }
+
+        .flex.baseline {
+        	align-items: baseline;
         }
 
         .flex-grow-1 {
@@ -415,7 +465,7 @@
         	align-items: center;
         	margin-right: -20px;
         	margin-top: 20px;
-		    margin-bottom: 5px;
+		    margin-bottom: -15px;
 		    /*text-shadow: -5px 0px 0px #ffffff40;*/
         }
 
@@ -440,6 +490,8 @@
         .content-label {
         	position: relative;
         	font-size: 0.9em;
+        	font-weight: 600;
+        	letter-spacing: 1px;
         }
 
         .content-label:before {
@@ -453,11 +505,9 @@
         }
 
         .general-info {
-    	    position: fixed;
-		    right: 10%;
-		    width: 18%;
-		    top: 25%;
-		    z-index: 5;
+    	    position: relative;
+    	    margin-left: 8%;
+    	    min-width: 22%;
         }
 
         .icon {
@@ -466,6 +516,10 @@
 		    border-radius: 50%;
 		    color: #b5b5b5;
 		    margin-right: 5px;
+        }
+
+        .general-info>label {
+        	margin-bottom: 30px;
         }
 
         .general-info .box-wrapper {
@@ -478,6 +532,44 @@
 		    margin-top: 20px;
 		    background: #fff;
         }
+
+        .general-info .info-card {
+		    text-align: center;
+		    padding: 15px 20px;
+		    border: 1px solid #2da9ff;
+		    border-radius: 15px;
+		    /* width: 50%; */
+		    position: relative;
+		    margin-bottom: 20px;
+		}
+
+		.general-info .info-card.phone img {
+			width: 20%;
+		}
+
+		.general-info .info-card.phone p {
+			font-size: 0.9em;
+		}
+
+        .general-info .info-card img {
+        	width: 15%;
+        }
+
+        .general-info .info-card label {
+		    position: absolute;
+		    right: 20px;
+		    font-size: 0.65em;
+		    color: #2da9ff;
+		    font-weight: 600;
+		    letter-spacing: 1px;
+		}
+
+		.general-info .info-card p {
+		    margin-top: 20px;
+		    margin-bottom: 5px;
+		    font-size: 0.8em;
+		    letter-spacing: 1px;
+		}
 
         .general-info .box-wrapper label {
         	font-size: 0.8rem;
@@ -501,12 +593,21 @@
 		    font-weight: 800;
 		    margin-top: 40px;
 		    padding: 5%;
+	        background: linear-gradient(90deg, #0f9cff 0%, #137ac2 100%);
+			border-bottom: 3px solid #07609e;
+        }
+
+        .general-info button:active {
+        	background: linear-gradient(90deg, #137ac2 0%, #0f9cff 100%);
+        	border-bottom: 0px;
+        	outline: none;
+        	highlight: none;
         }
 
         .data-info {
     	    margin-top: 50px;
 		    padding-left: 20px;
-		    padding-right: 25%;
+		    /*padding-right: 25%;*/
         }
 
         .data-info .data {
@@ -531,6 +632,49 @@
         	margin-left: 20px;
         }
 
+        .main-info {
+        	margin-top: 50px;
+        	position: relative;
+        	font-size: 0.8em;
+        }
+
+        .main-info .main-price img {
+    	    margin-top: -5px;
+    		width: 8%;
+    		margin-right: 5%;
+        }
+
+        .main-info .main-price label {
+        	margin: 0;
+        }
+
+        .main-info .main-price p {
+        	font-size: 2em;
+        	letter-spacing: 2px;
+		    font-family: Calibri Light;
+		    margin: 0;
+        }
+
+        .main-info button {
+    	    display: block;
+		    width: 60%;
+		    border-radius: 5px;
+		    font-size: 1em;
+		    letter-spacing: 2px;
+		    font-weight: 700;
+		    /* margin-top: 40px; */
+		    padding: 2%;
+		    background: linear-gradient(90deg, #0f9cff 0%, #137ac2 100%);
+		    border-bottom: 3px solid #07609e;
+        }
+
+        .main-info button:active {
+        	background: linear-gradient(90deg, #137ac2 0%, #0f9cff 100%);
+        	border-bottom: 0px;
+        	outline: none;
+        	highlight: none;
+        }
+
         @media screen and (max-width: 600px) {
         	.navbar .special {
         		display: none;
@@ -545,6 +689,7 @@
         	}
         	.background {
         		overflow-y: auto;
+        		padding: 5% 10%;
         		padding-top: 25%;
         	}
 
@@ -676,33 +821,58 @@
 				position: relative;
 				right: 0;
 				margin-top: 30px;
+				display: none;
+			}
+
+			.title .headline {
+			    width: calc(100% + 20%);
+			    left: -10%;
+			    height: auto; 
+			    border-radius: 0px;
+			}
+
+			.title .headline h1 {
+				width: 100%;
+				font-size: 2.5em;
+				border-radius: 0px;
+			}
+
+			.title .headline img {
+				height: auto;
+				width: 100%;
+			}
+
+			.main-info {
+				display: block;
+			}
+
+			.main-info button {
+				display: block;
+				width: 100%;
+				margin-top: 30px;
+				padding: 5%;
 			}
         }
 	</style>
 @endsection
 @section('body')
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
+	<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>		
 		</ol>
 
-		<!-- deklarasi carousel -->
+		
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
-				<!-- <img src="{{ asset('img/thumbnail-1.jpeg') }}" alt="www.malasngoding.com"> -->
 			</div>
 			<div class="item">
-				<!-- <img src="{{ asset('img/thumbnail-2.jpg') }}" alt="www.malasngoding.com"> -->
 			</div>
 			<div class="item">
-				<!-- <img src="{{ asset('img/thumbnail-3.jpg') }}" alt="www.malasngoding.com"> -->
 			</div>				
 		</div>
 
-		<!-- membuat panah next dan previous -->
 		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 			<span class="fas fa-angle-left" aria-hidden="true"></span>
 			<span class="sr-only">Previous</span>
@@ -711,90 +881,90 @@
 			<span class="fas fa-angle-right" aria-hidden="true"></span>
 			<span class="sr-only">Next</span>
 		</a>
-	</div>
+	</div> -->
 	
 	<div class="background">
 		<div class="bg animation"></div>
 		@component('components/navbar')
 		@endcomponent
-		<div class="title animation">
-			<p><b>SEARCH</b> / <i class="business-name">{{ $business_name }}</i></p>
-			<h1 class="val-nama">Merkusii Villa</h1>
-			<!-- <b class="basic-info"><span id="address"></span> | <span id="phone"></span></b> -->
-			<!-- <div class="mobile-button flex">
-				<button class="btn flex-grow-1 btn-reservasi">BOOKING</button>
-				<button class="btn btn-icon"><i class="fas fa-camera-retro"></i></button>
-			</div> -->
-		</div>
-		<div class="general-info">
-			<label><span class="icon">!</span> Informasi Umum</label>
-			<div class="box-wrapper">
-				<div>
-					<label>TELEPON</label>
-					<p id="phone">085701609034</p>
+		<div class="flex baseline">
+			<div class="left">
+				<div class="title">
+					<p><b>SEARCH</b> / <i class="business-name">{{ $business_name }}</i> / <i class="location-name"></i></p>
+					<div class="headline">
+						<h1 class="val-nama">Merkusii Villa</h1>
+						<div class="slides">
+							<div id="satu" class="slide active">
+								<img src="{{ asset('img/index3.jpg') }}">	
+							</div>
+							<div id="dua" class="slide">
+								<img src="{{ asset('img/index3.jpg') }}">	
+							</div>
+							<div id="tiga" class="slide">
+								<img src="{{ asset('img/index3.jpg') }}">	
+							</div>
+						</div>
+						
+					</div>
 				</div>
-				<div>
-					<label>ALAMAT</label>
-					<p id="address">Jl. Overste Isdiman Gg.II/5A Purwokerto</p>
+				<div class="flex main-info">
+					<div class="flex main-price">
+						<img src="{{ asset('img/icon-price.png') }}">
+						<div>
+							<label>Book Satu Villa</label>
+							<p><b class="val-price">Rp 1.500.000</b> / malam</p>
+						</div>
+					</div>
+					<button class="btn btn-black btn-reservasi">BOOKING</button>	
 				</div>
-			</div>
-			<button class="btn btn-black btn-reservasi">BOOKING</button>
-		</div>
-		<div class="data-info">
-			<div id="description" class="data animation">
-				<label class="content-label">Deskripsi</label>
-			</div>
-			<div id="facility" class="data">
-				<label class="content-label">Fasilitas Umum</label>
-			</div>
-			<div id="services" class="data">
-				<label class="content-label">Services & Price</label>
-				<div class="card-container">
+				<!-- <b class="basic-info"><span id="address"></span> | <span id="phone"></span></b> -->
+				<!-- <div class="mobile-button flex">
+					<button class="btn flex-grow-1 btn-reservasi">BOOKING</button>
+					<button class="btn btn-icon"><i class="fas fa-camera-retro"></i></button>
+				</div> -->
+				<div class="data-info">
+					<div id="description" class="data animation">
+						<label class="content-label">Deskripsi</label>
+					</div>
+					<div id="facility" class="data">
+						<label class="content-label">Fasilitas Umum</label>
+					</div>
+					<div id="services" class="data">
+						<label class="content-label">Services & Price</label>
+						<div class="card-container">
+							
+						</div>
+					</div>
 					
 				</div>
 			</div>
-			
+			<div class="general-info">
+				<label><span class="icon">!</span> Informasi Umum</label>
+				<!-- <div class="box-wrapper">
+					<div>
+						<label>TELEPON</label>
+						<p id="phone">085701609034</p>
+					</div>
+					<div>
+						<label>ALAMAT</label>
+						<p id="address">Jl. Overste Isdiman Gg.II/5A Purwokerto</p>
+					</div>
+				</div> -->
+
+				<div class="info-card phone">
+					<label>PHONE</label>
+					<img src="{{ asset('img/icon-phone.png') }}">
+					<p id="phone" class="font-number">(0341) 502514</p>
+				</div>
+				<div class="info-card">
+					<label>ADDRESS</label>
+					<img src="{{ asset('img/icon-location.png') }}">
+					<p id="address"></p>
+				</div>
+			</div>
 		</div>
 		
-		<!-- <div class="right animation">
-			<div class="card-bg">
-				<div class="flex">
-					<p><b>SERVICES & PRICE</b></p>
-				</div>
-			</div>
-			<div class="card-container">
-				<label class="content-label">Services & Price</label>
-				<div class="card">
-					<div>
-						<b>Book Satu Villa</b>
-						<span class="font-currency">Rp 855.000 / malam</span>
-						<h1>AVAILABLE</h1>
-					</div>
-				</div>
-				<div class="card">
-					<div>
-						<b>Merkusii Villa Executive</b>
-						<span class="font-currency">Rp 300.000 / malam</span>
-						<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
-						<div class="info-kamar">
-							<p>SISA<br>KAMAR</p>
-							<b>2</b>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div>
-						<b>Merkusii Villa Deluxe</b>
-						<span class="font-currency">Rp 400.000 / malam</span>
-						<p class="sub-desc">The view from our balcony in room # 409, was terrific. It was centrally located to everything</p>
-						<div class="info-kamar">
-							<p>SISA<br>KAMAR</p>
-							<b>1</b>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
+		
 		
 		<div class="btn-slider">
 			<button class="btn btn-icon slide-left animation"><i class="fas fa-angle-left"></i></button>
@@ -821,11 +991,29 @@
 	var business_name = {!! json_encode($business_name) !!};
 	var id_resort = resort.id;
 	var nama_resort = resort.name;
+	var location_name = resort.location.name;
 	var description = (resort.description != null) ? `<p>${resort.description}</p>` : `<span>Tidak ada deskripsi</span>`;
+	var media = resort.media;
 	var tipe_kamar = resort.availability;
 	var harga_sewa = resort.price.service_price;
 		harga_sewa = accounting.formatMoney(
 					harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+	$('.slides').empty();
+
+	$.each(media, function(index, image) {
+		const image_path = image.path;
+
+		var $img_slide = 
+			'<div class="slide">' +
+				'<img src="' + image_path + '">' +
+			'</div>';
+
+		$('.slides').append($img_slide);
+	})
+	
+
+	$('.location-name').text(location_name);
 
 	$('input[name="item_id"]').val(id_resort);
 	$('.card-container').empty();
@@ -871,9 +1059,21 @@
 		var description = kamar.description;
 		var max_out = kamar.max_out;
 		var wide = kamar.wide;
+		var media = kamar.media;
 		var harga = kamar.price.service_price;
 			harga = accounting.formatMoney(
 					harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+
+		$.each(media, function(index, image) {
+			const image_path = image.path;
+
+			var $img_slide = 
+				'<div class="slide">' +
+					'<img src="' + image_path + '">' +
+				'</div>';
+
+			$('.slides').append($img_slide);
+		})	
 
 		if (business_id == '1' || business_id == '3') {
 			(description != null) ? description = '<p class="sub-desc">' + description + '</p>' : description = '';
@@ -900,6 +1100,21 @@
 		$('.card-container').append($kamar);
 
 	})
+
+	var $_backgrounds = $('.slides .slide');
+	
+	if ($_backgrounds.length > 1) {
+		var $_first_background = $_backgrounds.first();
+		var $_last_background = $_backgrounds.last();
+		var $_first_background_clone = $_first_background.clone().removeClass('active');
+		var el_length = $_backgrounds.length;
+
+		$_first_background.addClass('active');
+		$_last_background.after($_first_background_clone);
+
+		setInterval(slideNext, 5000);	
+	}
+	
 
 	$('.val-nama').html(nama_resort + ' <sup>' + business_name + '</sup>');
 	$('#description').append(description);
@@ -958,5 +1173,29 @@
 	$('.slide-right').on('click', function() {
 		$('.carousel-control.right').click();
 	})
+
+	function slideNext() {
+		var $_active_background = $('.slide.active');
+    	var index = $_active_background.index('.slide');
+    	var $_target_background = $_active_background.next();
+
+    	console.log($_target_background.attr('id'));
+
+    	var offset = '-' + $_target_background.position().left + 'px';
+
+    	$('.slides').animate({left: offset});
+
+    	$_active_background.removeClass('active');
+    	$_target_background.addClass('active');
+
+    	if (index == (el_length-1)) {
+    		// alert('oke');
+    		setTimeout(function() {
+    			$('.slides').css('left', '0px');
+				$_target_background.removeClass('active');
+				$('.slide').first().addClass('active');
+    		}, 500);
+    	}
+	}
 </script>
 @endsection

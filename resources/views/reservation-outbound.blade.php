@@ -1209,9 +1209,6 @@
 		}
 
 		.form-dialog {
-		    top: -120px;
-    		left: 600px;
-			position: absolute;
 			z-index: 5;
 			background: #fff;
 			border-radius: 5px;
@@ -1389,6 +1386,18 @@
 
 		.mobile-visible {
 			display: none;
+		}
+
+		#guest-dialog {
+			width: 100vw;
+			height: 100vh;
+			display: flex;
+			top: 0;
+			left: 0;
+		}
+
+		#guest-dialog .form-dialog {
+			margin: auto;
 		}
 
 		@media screen and (max-width: 600px) {
@@ -1758,6 +1767,31 @@
 				<div class="form-title animation anim-scale-black disappear">
 					<h1>Beritahu Kami Tentang Anda</h1>
 				</div>
+				<div id="guest-dialog" class="bg">
+					<div class="form-dialog animation anim-blink disappear gone">
+						<div class="header">
+							<h3>Identitas Tamu</h3>
+							<p>Informasi data diri tamu yang akan check-in</p>
+						</div>
+						<div class="body">
+							<div>
+								<div class="input-wrapper">
+									<label>NAMA</label>
+									<input type="text" name="name_for" placeholder="Nama Lengkap">
+								</div>
+							</div>
+							<div>
+								<div class="input-wrapper">
+									<label>TELEPON</label>
+									<input type="text" name="phone_for" placeholder="xxxx-xxxx-xxxx">
+								</div>
+							</div>
+						</div>
+						<div>
+							<button id="btn-confirm-guest" class="btn">Ok !</button>
+						</div>
+					</div>	
+				</div>
 				<div class="mobile-visible">
 					<div class="md-form">
 						<input type="text" id="form1" class="form-control" name="identitas_nama" spellcheck="false" placeholder="Nama Lengkap Anda">	
@@ -2100,17 +2134,22 @@
 			}
 		})
 
-		$('.bg').on('click', function() {
-			$('.bg').hide();
+		$('.bg').on('click', function(e) {
+			var $target = $('.form-dialog');
 
-			$('.input-field ul.show').removeClass('fade');
-			$('.text-field-wrapper.show').removeClass('fade');
-			$('.form-dialog').addClass('disappear');
-			setTimeout(function() {
-				$('.input-field ul.show').removeClass('show');
-				$('.text-field-wrapper.show').removeClass('show');
-				$('.form-dialog').addClass('gone');
-			}, 500);
+			if (!$target.is(e.target) && $target.has(e.target).length === 0) {
+				$('.bg').hide();
+
+				$('.input-field ul.show').removeClass('fade');
+				$('.text-field-wrapper.show').removeClass('fade');
+				$('.form-dialog').addClass('disappear');
+				setTimeout(function() {
+					$('.input-field ul.show').removeClass('show');
+					$('.text-field-wrapper.show').removeClass('show');
+					$('.form-dialog').addClass('gone');
+				}, 500);
+            }   
+			
 		})
 
 		$('#btn-check-promo').on('click', function() {
@@ -2519,7 +2558,7 @@
 	}
 
 	function showInput(trigger) {
-		$('.bg').show();
+		trigger.closest('.form').find('.bg').show();
 		trigger.parent().find('ul').addClass('show');
 		trigger.parent().find('.text-field-wrapper').addClass('show');
 		trigger.parent().find('.text-field-wrapper').find('.input').focus();

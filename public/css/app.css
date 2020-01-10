@@ -88,11 +88,12 @@ button {
     display: flex;
     font-size: 0.7em;
     left: 0;
-    padding: 3% 10%;
+    padding: 2% 10%;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 10;
+    border-bottom: 1px solid #efefef;
 }
 .navbar.transparent {
     background: transparent;
@@ -116,7 +117,7 @@ button {
     display: none;
 }
 .navbar .logo img {
-    width: 60%;
+    width: 50%;
 }
 .navbar .nav {
     flex-grow: 1;
@@ -162,6 +163,9 @@ button {
     font-weight: 600;
     letter-spacing: 2px;
     padding: 10px 25px;
+}
+.navbar.text-white {
+    border: 0;
 }
 .navbar.text-white .logo .logo-default {
     display: none;

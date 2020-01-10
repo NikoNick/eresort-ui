@@ -179,19 +179,18 @@
 		}
 
 		.bg {
-		    width: 80vw;
-		    height: 80vh;
-		    position: absolute;
-		    top: 10vh;
-		    box-shadow: 0px 0px 50px 1px #b9b9b9;
-		    border-radius: 50px;
+		    width: 100%;
+		    height: 100%;
+		    position: fixed;
+		    top: 0;
 		    overflow: hidden;
-		    left: 10vw;
+		    left: 0;
 		    background: #000000d6;
 		    z-index: 2;
 		    padding: 0px 0px;
 		    color: #fff;
 		    font-size: 0.8em;
+		    display: flex;
 		}
 
 		.bg>div {
@@ -199,27 +198,29 @@
 		}
 
 		.bg .upload {
-			padding: 60px 150px;
-			height: 100%;
+			padding: 40px 50px;
+			width: 30%;
 			background: #fff;
 			color: #000;
+			margin: auto;
+			height: auto;
+			border-radius: 15px;
 		}
 
 		.bg .upload .photo-container {
 		    width: 180px;
 			height: 180px;
 			margin: auto;
-			padding: 8px;
-			box-shadow: 50px 20px 0px 0px #b5b5b52b, -50px 50px 0px 0px #b5b5b52b;
-			border: 1px solid #b5b5b5;
-			border-radius: 25px;
+			margin-top: 30px;
+			/*border: 1px solid #b5b5b5;*/
+			
 		}
 
 		.bg .upload .photo-container .photo {
 			width: 100%;
 			height: 100%;
-			border-radius: 20px;
 			cursor: pointer;
+			border-radius: 15px;
 			/*background: url('../img/thumbnail-5.jpg');
 			background-size: cover;*/
 		}
@@ -235,13 +236,18 @@
 		}
 
 		.bg .upload .photo-detail button {
-			margin-top: 50px;
-		    width: 100%;
-		    letter-spacing: 3px;
-		    border-radius: 0px;
+			display: block;
+			width: 100%;
+		    margin-top: 50px;
+		    color: #fff;
+		    border-radius: 5px;
+		    font-size: 1em;
+		    letter-spacing: 2px;
+		    font-weight: 700;
 		    padding: 10px;
-		    font-size: 0.8em;
-		    box-shadow: 0px 4px 0px 0px #cacaca;
+		    /* margin-top: 40px; */
+		    background: linear-gradient(90deg, #0f9cff 0%, #137ac2 100%);
+		    border-bottom: 3px solid #07609e;
 		}
 
 		.bg .desc {
@@ -1200,10 +1206,11 @@
 			}
 			.bg .upload {
 				flex-grow: 1;
-				padding: 20% 10%;
+				padding: 10%;
+				border-radius: 0px;
 			}
 			.bg .upload .photo-container {
-				margin: auto;
+				/*margin: auto;*/
 				width: 200px;
 				height: 200px;
 			}
@@ -1534,8 +1541,10 @@
 	</div>
 
 	<div class="bg animation anim-scale disappear gone">
-		<div class="flex stretch">
 			<div class="upload">
+				<div id="btn-close-form" style="text-align: right; font-size: 1.5em;">
+					<i class="fas fa-times"></i>
+				</div>
 				<div class="photo-container">
 					<img src="https://www.pngitem.com/pimgs/m/77-777159_transparent-holiday-icon-png-file-upload-icon-font.png" class="photo">
 				</div>
@@ -1545,7 +1554,7 @@
 					<button id="btn-upload" class="btn">Upload</button>
 				</div>
 				<input type="file" name="bukti_transfer" class="invisible">
-			</div>
+			<!-- 
 			<div class="desc">
 				<div class="flex">
 					<h1 class="flex-grow-1">Upload foto bukti transfer.</h1>	
@@ -1565,7 +1574,7 @@
 					<div class="line"><p>03</p></div>
 					<p>Bukti transfer yang anda kirimkan akan di-verifikasi terlebih dahulu dalam waktu maksimal 1x24 jam</p>
 				</div>
-			</div>
+			</div> -->
 			
 		</div>		
 	</div>
