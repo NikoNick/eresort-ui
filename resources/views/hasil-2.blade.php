@@ -891,8 +891,8 @@
 					<div class="flex main-price">
 						<img src="{{ asset('img/icon-price.png') }}">
 						<div>
-							<label>Book Satu Villa</label>
-							<p><b class="val-price">Rp 1.500.000</b> / malam</p>
+							<label class="val-default">Book Satu Villa</label>
+							<p><b class="val-price">Rp 1.500.000</b> / <span class="val-satuan">malam</span></p>
 						</div>
 					</div>
 					<button class="btn btn-black btn-reservasi">BOOKING</button>	
@@ -1015,22 +1015,29 @@
 
 	if (business_id == '1') {
 		var nama_layanan = 'Book Satu Resort';
+		var satuan_harga = 'malam';
 	} else if (business_id == '2') {
 		var nama_layanan = 'Book Satu Camping Area';
+		var satuan_harga = 'malam';
 	} else if (business_id == '3') {
 		var nama_layanan = 'Satu Paket Outbound';
+		var satuan_harga = 'paket';
 	}
 
-	var $kamar = 
-		'<div class="card animation active">' +
-			'<div>' +
-				'<b>' + nama_layanan + '</b>' +
-				'<span class="font-currency">' + harga_sewa + ' / malam</span>' +
-				'<h1>AVAILABLE</h1>' +
-			'</div>' +
-		'</div>';
+	$('.val-default').text(nama_layanan);
+	$('.val-price').text(harga_sewa)
+	$('.val-satuan').text(satuan_harga);
 
-	$('.card-container').append($kamar);
+	// var $kamar = 
+	// 	'<div class="card animation active">' +
+	// 		'<div>' +
+	// 			'<b>' + nama_layanan + '</b>' +
+	// 			'<span class="font-currency">' + harga_sewa + ' / malam</span>' +
+	// 			'<h1>AVAILABLE</h1>' +
+	// 		'</div>' +
+	// 	'</div>';
+
+	// $('.card-container').append($kamar);
 
 	$.each(tipe_kamar, function(index, kamar) {
 		var id_kamar = kamar.id;
