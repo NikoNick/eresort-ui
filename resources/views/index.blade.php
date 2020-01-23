@@ -243,6 +243,16 @@
 			border-bottom: 1px solid #dcdcdc;
 			transition: all 0.2s;
 			transform-origin: 0% 100%;
+			position: relative;
+		}
+
+		.md-input-wrapper.alert {
+			border-bottom-color: red;
+			border-radius: 0px;
+		}
+
+		.md-input-wrapper.alert .text-alert {
+			display: block !important;
 		}
 
 		.md-form .md-input-wrapper input, .md-form .md-input-wrapper .date-wrapper {
@@ -482,6 +492,17 @@
 		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 			width: 40px;
 		}
+
+		.text-alert {
+			color: red;
+			font-style: italic;
+			font-size: 0.8em;
+			letter-spacing: 0.5px;
+			position: absolute;
+			bottom: -30px;
+			right: 0px;
+			display: none;
+		}
 	</style>
 @endsection
 
@@ -553,7 +574,7 @@
 							<span id="end-resort" class="date-string">11 Desember 2019</span>
 							<input type="text" class="form-control date" name="end_date" spellcheck="false" value="11 Desember 2019" placeholder="Check-Out">
 						</div>
-						
+						<p class="text-alert">* Tanggal akhir booking harus lebih besar</p>
 					</div>
 					<label for="form1" class="active">TANGGAL</label>
 				</div>
@@ -602,7 +623,7 @@
 					<label for="form1" class="active">PILIH LOKASI</label>
 				</div>
 				<div class="md-form">
-					<div class="md-input-wrapper">
+					<div class="md-input-wrapper alert">
 						<div class="date-wrapper">
 							<span id="start-camping" class="date-string">10 Desember 2019</span>
 							<input type="text" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
@@ -612,7 +633,7 @@
 							<span id="end-camping" class="date-string">11 Desember 2019</span>
 							<input type="text" class="form-control date" name="end_date" spellcheck="false" value="11 Desember 2019" placeholder="Check-Out">
 						</div>
-						
+						<p class="text-alert">* Tanggal akhir booking harus lebih besar</p>
 					</div>
 					<label for="form1" class="active">TANGGAL</label>
 				</div>
@@ -732,6 +753,36 @@
 			dateFormat: 'yy-mm-dd',
 			minDate: 0
 		});
+
+		$('input[name="start_date"]').on('change', function() {
+			var start_date = $(this).val();
+			var end_date = $(this).closest('.md-input-wrapper').find('input[name="end_date"]').val();
+
+			var day_diff = dateDiffInDays(start_date, end_date);
+
+			if (day_diff <= 0) {
+				$(this).closest('.form').find('button[type="submit"]').attr('disabled', true);
+				$(this).closest('.md-input-wrapper').addClass('alert');
+			} else {
+				$(this).closest('.form').find('button[type="submit"]').attr('disabled', false);
+				$(this).closest('.md-input-wrapper').removeClass('alert');
+			}
+		})
+
+		$('input[name="end_date"]').on('change', function() {
+			var start_date = $(this).closest('.md-input-wrapper').find('input[name="start_date"]').val();
+			var end_date = $(this).val();
+
+			var day_diff = dateDiffInDays(start_date, end_date);
+
+			if (day_diff <= 0) {
+				$(this).closest('.form').find('button[type="submit"]').attr('disabled', true);
+				$(this).closest('.md-input-wrapper').addClass('alert');
+			} else {
+				$(this).closest('.form').find('button[type="submit"]').attr('disabled', false);
+				$(this).closest('.md-input-wrapper').removeClass('alert');
+			}
+		})
 
 		$('.bullet-point').on('click', function() {
 			var index = $(this).attr('for');
@@ -929,6 +980,16 @@
 	    	setTimeout(function() {
 	    		$('.loading-screen').addClass('gone');	
 	    	}, 500);	
+	    }
+
+	    function dateDiffInDays(start, end) {
+	    	var new_start = new Date(start);
+	    	var new_end = new Date(end);
+
+	    	var diff = new Date(new_end - new_start);
+	    	var day_diff = diff/1000/60/60/24;
+
+	    	return Math.round(day_diff);
 	    }
 	</script>
 @endsection

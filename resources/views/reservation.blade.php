@@ -599,6 +599,12 @@
     		white-space: nowrap;
 		}
 
+		.input-field .input-field-toggle.alert {
+			background: red;
+			padding: 0;
+			border-radius: 0px;
+		}
+
 		.input-field .input-field-toggle.allow-whitespace {
     		white-space: normal;
 		}
@@ -1329,6 +1335,10 @@
 			transform-origin: 0% 100%;
 		}
 
+		.md-form .md-input-wrapper.alert {
+			border-bottom-color: red;
+		}
+
 		.md-form .md-input-wrapper input, .md-form .md-input-wrapper .date-wrapper,
 		.md-form .md-input-wrapper .qty-wrapper {
 			flex-grow: 1;
@@ -1410,6 +1420,11 @@
 
 		#guest-dialog .form-dialog {
 			margin: auto;
+		}
+
+		.form-next.disabled {
+			cursor: not-allowed;
+			color: #b5b5b5;
 		}
 
 		@media screen and (max-width: 600px) {
@@ -2158,6 +2173,54 @@
 			$(this).prev().text(date);
 		})
 
+		$('input[name="start_date"]').on('change', function() {
+			var start_date = $(this).val();
+			var end_date = $(this).closest('.form').find('input[name="end_date"]').val();
+
+			var start_date_mobile = $(this).val();
+			var end_date_mobile = $(this).closest('.mobile-visible').find('input[name="end_date"]').val();
+
+			var day_diff = dateDiffInDays(start_date, end_date);
+			var day_diff_mobile = dateDiffInDays(start_date_mobile, end_date_mobile);
+
+			if (day_diff <= 0 || day_diff_mobile <= 0) {
+				alert('Tanggal akhir booking harus lebih besar');
+				// $(this).closest('.form').find('button[type="submit"]').attr('disabled', true);
+				$(this).closest('.md-input-wrapper').addClass('alert');
+				$(this).closest('.input-field').find('.input-field-toggle').addClass('alert');
+				$('.form-next').addClass('disabled');
+			} else {
+				// $(this).closest('.form').find('button[type="submit"]').attr('disabled', false);
+				$(this).closest('.md-input-wrapper').removeClass('alert');
+				$(this).closest('.input-field').find('.input-field-toggle').removeClass('alert');
+				$('.form-next').removeClass('disabled');
+			}
+		})
+
+		$('input[name="end_date"]').on('change', function() {
+			var start_date = $(this).closest('.form').find('input[name="start_date"]').val();
+			var end_date = $(this).val();
+
+			var start_date_mobile = $(this).closest('.mobile-visible').find('input[name="start_date"]').val();
+			var end_date_mobile = $(this).val();
+
+			var day_diff = dateDiffInDays(start_date, end_date);
+			var day_diff_mobile = dateDiffInDays(start_date_mobile, end_date_mobile);
+
+			if (day_diff <= 0 || day_diff_mobile <= 0) {
+				alert('Tanggal akhir booking harus lebih besar');
+				// $(this).closest('.form').find('button[type="submit"]').attr('disabled', true);
+				$(this).closest('.md-input-wrapper').addClass('alert');
+				$(this).closest('.input-field').find('.input-field-toggle').addClass('alert');
+				$('.form-next').addClass('disabled');
+			} else {
+				// $(this).closest('.form').find('button[type="submit"]').attr('disabled', false);
+				$(this).closest('.md-input-wrapper').removeClass('alert');
+				$(this).closest('.input-field').find('.input-field-toggle').removeClass('alert');
+				$('.form-next').removeClass('disabled');
+			}
+		})
+
 		$('.checkbox').on('change', function() {
 			$('.checkbox').prop('checked', false);
 
@@ -2326,121 +2389,127 @@
 		})
 
 		$('.form-next').on('click', async function() {
-			showLoader('Memuat Data');
-			var start_date = $('input[name="start_date"]').val();
-			var end_date = $('input[name="end_date"]').val();
-			var id_resort = $('input[name="list-resort"]').val();
-			var id_business = $('input[name="business_id"]').val();
-			var nama_resort = resorts.filter(resort => resort.id == id_resort)[0].name;
+			if ($(this).hasClass('disabled') ==  false) {
+				showLoader('Memuat Data');
+				var start_date = $('input[name="start_date"]').val();
+				var end_date = $('input[name="end_date"]').val();
+				var id_resort = $('input[name="list-resort"]').val();
+				var id_business = $('input[name="business_id"]').val();
+				var nama_resort = resorts.filter(resort => resort.id == id_resort)[0].name;
 
-			day_diff = Math.round(dateDiffInDays(start_date, end_date));
+				day_diff = Math.round(dateDiffInDays(start_date, end_date));
 
-			if (business_id == 1) {
-				loadExtraItem(extra_item);
-			} else if (business_id == 2) {
-				loadExtraItem2(extra_item);
-			}	
+				if (business_id == 1) {
+					loadExtraItem(extra_item);
+				} else if (business_id == 2) {
+					loadExtraItem2(extra_item);
+				}	
 
-			var bookingTimeOut = await getBookingTimeOut();
-			$('#booking-timeout').text(`${bookingTimeOut.wait_time_hour} Jam`);
+				var bookingTimeOut = await getBookingTimeOut();
+				$('#booking-timeout').text(`${bookingTimeOut.wait_time_hour} Jam`);
 
-			$.post(
-				base_url + '/resort/availability',
-				{
-					'_token' : '{{ csrf_token() }}',
-					'start_date' : start_date,
-					'end_date' : end_date,
-					'business_id' : id_business,
-					'id_resort' : id_resort
-				},
-				function(data) {
-					resort_variant = $.parseJSON(data).availability;
-					console.log(resort_variant);
+				$.post(
+					base_url + '/resort/availability',
+					{
+						'_token' : '{{ csrf_token() }}',
+						'start_date' : start_date,
+						'end_date' : end_date,
+						'business_id' : id_business,
+						'id_resort' : id_resort
+					},
+					function(data) {
+						resort_variant = $.parseJSON(data).availability;
+						console.log(resort_variant);
 
-					$('#step-2 .orders').empty();
+						$('#step-2 .orders').empty();
 
-					$.each(resort_variant, function(index, kamar) {
-						const item_detail = kamar.details.filter(detail => detail.is_booked === 0);
-						var id_kamar = item_detail[0].id;
-						var fake_id = kamar.id;
-						var nama_kamar = kamar.name;
-						var id_harga = kamar.price.id;
-						var amount = kamar.amount;
-						var is_per_pax = kamar.price.is_per_pax;
-						var harga = kamar.price.service_price;
-						var harga_string = accounting.formatMoney(
-							harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
-						var sisa_kamar = kamar.count_availability;
+						$.each(resort_variant, function(index, kamar) {
+							const item_detail = kamar.details.filter(detail => detail.is_booked === 0);
+							var id_kamar = item_detail[0].id;
+							var fake_id = kamar.id;
+							var nama_kamar = kamar.name;
+							var id_harga = kamar.price.id;
+							var amount = kamar.amount;
+							var is_per_pax = kamar.price.is_per_pax;
+							var harga = kamar.price.service_price;
+							var harga_string = accounting.formatMoney(
+								harga, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+							var sisa_kamar = kamar.count_availability;
 
-						var $kamar = 
-							'<div id="' + id_kamar + '" class="order flex" for="' + fake_id + '">' +
-								'<div class="flex name">' +
-									'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
-									'<span class="line"></span>' +
-									'<span>' + nama_kamar + '</span>' + 
-								'</div>' +
-								'<div class="availability">' + 
-									'<span>' + sisa_kamar + ' kamar</span>' + 
-								'</div>' +
-								'<div class="price">' + 
-									'<span>' + harga_string + '<span class="mobile-invisible"> / malam</span></span>' +
-									'<input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '">' +
-									'<input type="hidden" name="is_per_pax" value="' + is_per_pax + '">' +
-								'</div>' +
-								'<div class="unit">' +
-									'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" max="' + amount + '" disabled="true">' +
-								'</div>' +
-								'<div class="nights">' +
-									'<span>' + day_diff + ' malam</span>' +
-									'<input type="hidden" name="lama_inap" value="' + day_diff + '">' +
-								'</div>' +
-								'<div class="total-price">' +
-									'<span>Rp 0</span>' +
-									'<input type="hidden" name="total_harga" value="0">' +
-								'</div>' +
-							'</div>';
+							var $kamar = 
+								'<div id="' + id_kamar + '" class="order flex" for="' + fake_id + '">' +
+									'<div class="flex name">' +
+										'<span class="index"><span>' + (index + 1) + '</span><i class="fas fa-check deselect"></i></span>' +
+										'<span class="line"></span>' +
+										'<span>' + nama_kamar + '</span>' + 
+									'</div>' +
+									'<div class="availability">' + 
+										'<span>' + sisa_kamar + ' kamar</span>' + 
+									'</div>' +
+									'<div class="price">' + 
+										'<span>' + harga_string + '<span class="mobile-invisible"> / malam</span></span>' +
+										'<input id="' + id_harga + '" type="hidden" name="harga" value="' + harga + '">' +
+										'<input type="hidden" name="is_per_pax" value="' + is_per_pax + '">' +
+									'</div>' +
+									'<div class="unit">' +
+										'<span>x</span> <input type="number" class="input-unit fillable" value="0" min="1" max="' + amount + '" disabled="true">' +
+									'</div>' +
+									'<div class="nights">' +
+										'<span>' + day_diff + ' malam</span>' +
+										'<input type="hidden" name="lama_inap" value="' + day_diff + '">' +
+									'</div>' +
+									'<div class="total-price">' +
+										'<span>Rp 0</span>' +
+										'<input type="hidden" name="total_harga" value="0">' +
+									'</div>' +
+								'</div>';
 
-						$('#step-2 .orders').append($kamar);
-					})
+							$('#step-2 .orders').append($kamar);
+						})
 
-					start_date = dateToString(start_date, 'short');
-					end_date = dateToString(end_date, 'short');
+						start_date = dateToString(start_date, 'short');
+						end_date = dateToString(end_date, 'short');
 
-					$('.val-nama-item').text(nama_resort);
-					$('.val-start-date').text(start_date);
-					$('.val-end-date').text(end_date);
-					$('.val-lama-inap').text(day_diff);
+						$('.val-nama-item').text(nama_resort);
+						$('.val-start-date').text(start_date);
+						$('.val-end-date').text(end_date);
+						$('.val-lama-inap').text(day_diff);
 
-					$('.order input[type="number"]').on('keyup', inputNumberListener);
-					$('.order input[type="number"]').on('change', inputNumberListener);
-					$('.order input.checkbox').on('change', checkboxListener);
-					$('#step-2 .order').on('click', function(e) {
-						var condition = $(this).hasClass('selected');
-						var target = $(this).find('.input-unit');
+						$('.order input[type="number"]').on('keyup', inputNumberListener);
+						$('.order input[type="number"]').on('change', inputNumberListener);
+						$('.order input.checkbox').on('change', checkboxListener);
+						$('#step-2 .order').on('click', function(e) {
+							var condition = $(this).hasClass('selected');
+							var target = $(this).find('.input-unit');
 
-						if (condition) {
-							if (! target.is(e.target)) {
-								$(this).removeClass('selected');
-								$(this).find('input[type="number"]').attr('disabled', true);
-								$(this).find('input[type="number"]').val(0).change();
+							if (condition) {
+								if (! target.is(e.target)) {
+									$(this).removeClass('selected');
+									$(this).find('input[type="number"]').attr('disabled', true);
+									$(this).find('input[type="number"]').val(0).change();
+								}
+							} else {
+								$(this).addClass('selected');
+								$(this).find('input[type="number"]').val(1).change();
+								$(this).find('input[type="number"]').attr('disabled', false);
+								$(this).find('input[type="number"]').focus();
 							}
-						} else {
-							$(this).addClass('selected');
-							$(this).find('input[type="number"]').val(1).change();
-							$(this).find('input[type="number"]').attr('disabled', false);
-							$(this).find('input[type="number"]').focus();
-						}
-					})
+						})
 
-					hideLoader();
-				}
-			)
+						hideLoader();
+					}
+				)
+			}
 		})
 		
 		$('.form-nav').on('click', function() {
 			var key = $(this).attr('next');
 			
-			showForm(key, 'next');
+
+			if (!$(this).hasClass('disabled')) {
+				showForm(key, 'next');	
+			}
+			
 		})
 
 		$('#btn-submit-detail').on('click', async function() {
