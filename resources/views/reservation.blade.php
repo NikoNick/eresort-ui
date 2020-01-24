@@ -1624,7 +1624,7 @@
 			}
 
 			#ui-datepicker-div {
-				top: 25% !important;
+				top: 20% !important;
     			left: 0px !important;
     			width: 100% !important;
 			}
