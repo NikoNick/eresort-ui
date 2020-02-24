@@ -203,7 +203,7 @@
 
 		.form-reservasi {
 			padding: 5% 10%;
-			padding-top: 180px;
+			padding-top: 15%;
 			/*padding-bottom: 120px;*/
 			height: auto;
 			min-height: 100vh;
@@ -1742,7 +1742,7 @@
 						<div class="md-input-wrapper">
 							<div class="date-wrapper">
 								<span class="date-string">10 Desember 2019</span>
-								<input type="text" class="form-control date" name="start_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+								<input type="text" class="form-control date" name="start_date_mobile" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
 							</div>	
 						</div>
 						
@@ -1752,7 +1752,7 @@
 						<div class="md-input-wrapper">
 							<div class="date-wrapper">
 								<span class="date-string">10 Desember 2019</span>
-								<input type="text" class="form-control date" name="end_date" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
+								<input type="text" class="form-control date" name="end_date_mobile" spellcheck="false" value="10 Desember 2019" placeholder="Check-In">	
 							</div>	
 						</div>
 						
@@ -2177,22 +2177,14 @@
 			var start_date = $(this).val();
 			var end_date = $(this).closest('.form').find('input[name="end_date"]').val();
 
-			var start_date_mobile = $(this).val();
-			var end_date_mobile = $(this).closest('.mobile-visible').find('input[name="end_date"]').val();
-
 			var day_diff = dateDiffInDays(start_date, end_date);
-			var day_diff_mobile = dateDiffInDays(start_date_mobile, end_date_mobile);
 
-			if (day_diff <= 0 || day_diff_mobile <= 0) {
+			if (day_diff <= 0) {
 				alert('Tanggal akhir booking harus lebih besar');
-				// $(this).closest('.form').find('button[type="submit"]').attr('disabled', true);
-				$(this).closest('.md-input-wrapper').addClass('alert');
 				$(this).closest('.input-field').find('.input-field-toggle').addClass('alert');
 				$('.form-next').addClass('disabled');
 			} else {
-				// $(this).closest('.form').find('button[type="submit"]').attr('disabled', false);
-				$(this).closest('.md-input-wrapper').removeClass('alert');
-				$(this).closest('.input-field').find('.input-field-toggle').removeClass('alert');
+				$('#step-1 .form .input-field-toggle.alert').removeClass('alert');
 				$('.form-next').removeClass('disabled');
 			}
 		})
@@ -2201,22 +2193,46 @@
 			var start_date = $(this).closest('.form').find('input[name="start_date"]').val();
 			var end_date = $(this).val();
 
-			var start_date_mobile = $(this).closest('.mobile-visible').find('input[name="start_date"]').val();
-			var end_date_mobile = $(this).val();
-
 			var day_diff = dateDiffInDays(start_date, end_date);
-			var day_diff_mobile = dateDiffInDays(start_date_mobile, end_date_mobile);
 
-			if (day_diff <= 0 || day_diff_mobile <= 0) {
+			if (day_diff <= 0) {
 				alert('Tanggal akhir booking harus lebih besar');
-				// $(this).closest('.form').find('button[type="submit"]').attr('disabled', true);
-				$(this).closest('.md-input-wrapper').addClass('alert');
 				$(this).closest('.input-field').find('.input-field-toggle').addClass('alert');
 				$('.form-next').addClass('disabled');
 			} else {
-				// $(this).closest('.form').find('button[type="submit"]').attr('disabled', false);
-				$(this).closest('.md-input-wrapper').removeClass('alert');
-				$(this).closest('.input-field').find('.input-field-toggle').removeClass('alert');
+				$('#step-1 .form .input-field-toggle.alert').removeClass('alert');
+				$('.form-next').removeClass('disabled');
+			}
+		})
+
+		$('input[name="start_date_mobile"]').on('change', function() {
+			var start_date_mobile = $(this).val();
+			var end_date_mobile = $(this).closest('.mobile-visible').find('input[name="end_date_mobile"]').val();
+
+			var day_diff_mobile = dateDiffInDays(start_date_mobile, end_date_mobile);
+
+			if (day_diff_mobile <= 0) {
+				alert('Tanggal akhir booking harus lebih besar');
+				$(this).closest('.md-input-wrapper').addClass('alert');
+				$('.form-next').addClass('disabled');
+			} else {
+				$(this).closest('.mobile-visible .md-input-wrapper.alert').removeClass('alert');
+				$('.form-next').removeClass('disabled');
+			}
+		})
+
+		$('input[name="end_date_mobile"]').on('change', function() {
+			var start_date_mobile = $(this).closest('.mobile-visible').find('input[name="start_date_mobile"]').val();
+			var end_date_mobile = $(this).val();
+
+			var day_diff_mobile = dateDiffInDays(start_date_mobile, end_date_mobile);
+
+			if (day_diff_mobile <= 0) {
+				alert('Tanggal akhir booking harus lebih besar');
+				$(this).closest('.md-input-wrapper').addClass('alert');
+				$('.form-next').addClass('disabled');
+			} else {
+				$(this).closest('.mobile-visible .md-input-wrapper.alert').removeClass('alert');
 				$('.form-next').removeClass('disabled');
 			}
 		})
@@ -2234,6 +2250,8 @@
 
 		$('input[name="start_date"]').val(start_date).change();
 		$('input[name="end_date"]').val(end_date).change();
+		$('input[name="start_date_mobile"]').val(start_date).change();
+		$('input[name="end_date_mobile"]').val(end_date).change();
 
 		$('.list-resort').empty();
 
@@ -2379,7 +2397,8 @@
 			var input_name = $(this).attr('name');
 			var value = $(this).val();
 
-
+			if (input_name == 'start_date_mobile') input_name = 'start_date';
+			if (input_name == 'end_date_mobile') input_name = 'end_date';
 			
 			var $target = $(this).closest('.mobile-visible').next().find('input[name="' + input_name + '"]');
 				$target.val(value);

@@ -24,7 +24,7 @@
 	transform: translateX(0px);
 	opacity: 1;
 }
-.anim-slide-right-left.disappear {
+.anim-slide-right.disappear {
 	transform: translateX(150px);
 	opacity: 0;
 }

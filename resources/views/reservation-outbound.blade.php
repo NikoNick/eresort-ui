@@ -203,7 +203,7 @@
 
 		.form-reservasi {
 			padding: 5% 10%;
-			padding-top: 180px;
+			padding-top: 15%;
 			/*padding-bottom: 120px;*/
 			height: auto;
 			min-height: 100vh;
@@ -1944,10 +1944,6 @@
 							<div class="mobile-info">
 								<span><b>CHECK-IN</b></span>
 								<p class="val-start-date font-number">31 Okt 2019</p>
-							</div>
-							<div class="mobile-info">
-								<span><b>CHECK-OUT</b></span>
-								<p class="val-end-date font-number">01 Nov 2019</p>
 							</div>
 						</div>
 						<button class="btn btn-black btn-book">BOOK NOW</button>

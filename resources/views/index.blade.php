@@ -695,7 +695,7 @@
 				</div>
 				<div class="md-form">
 					<div class="md-input-wrapper">
-						<input type="number" id="form1" class="form-control" name="person" spellcheck="false" value="1" min="1">
+						<input type="number" id="form1" class="form-control" name="person" spellcheck="false" value="50" min="1">
 						<span>Orang</span>
 					</div>
 					
