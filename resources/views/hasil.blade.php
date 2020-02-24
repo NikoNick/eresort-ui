@@ -68,8 +68,10 @@
 		var catalog = {!! json_encode($catalog) !!};
 		var result = data.data;
 
+		console.log(result);
+
 		person = parseInt(person);
-		result = result.filter(item => item.min_out >= person && (item.max_out >= person || item.max_out == null));
+		result = result.filter(item => Number(item.max_out) >= person); //SHOULD BE ONLY FOR RESORT
 
 		$('.thumbnails').empty();
 

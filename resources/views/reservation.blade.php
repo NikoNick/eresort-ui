@@ -1990,8 +1990,8 @@
 			<div class="wrapper">
 				<div class="form-title flex">
 					<div class="flex-grow-1">
-						<h1 class="anim-slide-left-right animation disappear">Pilih Metode Pembayaran</h1>
-						<p>Dan gunakan kode promo untuk mendapat potongan harga</p>	
+						<h1 class="anim-slide-left-right animation disappear">&nbsp;</h1>
+						<p>&nbsp;</p>
 					</div>
 					<div class="kode-promo flex">
 						<span>KODE PROMO</span>
@@ -2332,48 +2332,47 @@
 					'_token' : '{{ csrf_token() }}',
 					'promo_code' : kode_promo
 				},
-				async function(data) {
-					if (data != '') {
-						var promo = $.parseJSON(data);
-						var id_promo = promo.id;
-						var disc = (promo.amount_percent == null) ? promo.amount_fixed : promo.amount_percent;
-						var items = promo.items;
+			).done(function(data){
+				hideLoader();
+				if (data != '') {
+					var promo = $.parseJSON(data);
+					var id_promo = promo.id;
+					var disc = (promo.amount_percent == null) ? promo.amount_fixed : promo.amount_percent;
+					var items = promo.items;
 
-						obj_booking.promo_id = id_promo;
-						orders.kode_promo = id_promo;
+					obj_booking.promo_id = id_promo;
+					orders.kode_promo = id_promo;
 
-						$.each(items, function(index, item) {
-							const item_id = item.item.id;
+					$.each(items, function(index, item) {
+						const item_id = item.item.id;
 
-							$.each(orders.items, function(index2, item2) {
-								const ordered_item_id = item2.real_id;
-								const harga = item2.harga;
-								const total_harga = item2.total_harga;
+						$.each(orders.items, function(index2, item2) {
+							const ordered_item_id = item2.real_id;
+							const harga = item2.harga;
+							const total_harga = item2.total_harga;
 
-								if (item_id == ordered_item_id) {
-									const int_diskon = (promo.amount_percent == null) ? disc : disc * parseInt(harga);
-									item2.diskon = int_diskon;
-									item2.after_diskon = parseInt(total_harga) - int_diskon;
-								}
-							})
-						})
-
-						var grand_total_diskon = calculateDiscountBill();
-						grand_total_diskon = accounting.formatMoney(grand_total_diskon,
-							{
-								symbol: 'Rp', format: '%s %v',
-								thousand: '.',
-								precision: 0
+							if (item_id == ordered_item_id) {
+								alert('Promo berhasil digunakan');
+								const int_diskon = (promo.amount_percent == null) ? disc : disc * parseInt(harga);
+								item2.diskon = int_diskon;
+								item2.after_diskon = parseInt(total_harga) - int_diskon;
 							}
-						);
+						})
+					})
 
-						$('.val-grand-total').text(grand_total_diskon);
-						calculateDiscount();
-					}
+					var grand_total_diskon = calculateDiscountBill();
+					grand_total_diskon = accounting.formatMoney(grand_total_diskon,
+						{
+							symbol: 'Rp', format: '%s %v',
+							thousand: '.',
+							precision: 0
+						}
+					);
 
-					hideLoader();
+					$('.val-grand-total').text(grand_total_diskon);
+					calculateDiscount();
 				}
-			)
+			})
 		})
 
 		$('.mobile-visible .form-control').on('change', function() {
@@ -2526,7 +2525,7 @@
 			var end_time = moment(check_out + 'T' + config.hour_check_out).format('YYYY-MM-DD HH:mm:SS');
 
 			const params = `booking_date=${check_in}`;
-			const bookingTimeOut = await $.getJSON(`https://api.resort.shafarizkyf.com/api/booking-time-out?${params}`);
+			const bookingTimeOut = await $.getJSON(`https://api.booking.mypalawi.com/api/booking-time-out?${params}`);
 
 			if(bookingTimeOut){
 				obj_booking.booking_time_out_id = bookingTimeOut.id;
@@ -2675,7 +2674,7 @@
 			obj_booking.full_payment = true;
 			showLoader('Memuat Data');
 			$.ajax({
-				url: 'https://api.resort.shafarizkyf.com/api/booking',
+				url: 'https://api.booking.mypalawi.com/api/booking',
 				method: 'POST',
 				data: JSON.stringify(obj_booking),
 				headers: {
@@ -3132,7 +3131,7 @@
 	async function getBookingTimeOut(){
 		const check_in = $('input[name="start_date"]').val();
 		const params = `booking_date=${check_in}`;
-		bookingTimeOut = await $.getJSON(`https://api.resort.shafarizkyf.com/api/booking-time-out?${params}`);
+		bookingTimeOut = await $.getJSON(`https://api.booking.mypalawi.com/api/booking-time-out?${params}`);
 		return bookingTimeOut;
 	}
 

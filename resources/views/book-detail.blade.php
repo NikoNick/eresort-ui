@@ -1600,7 +1600,7 @@
 
 
 	$.ajax({
-		url: 'https://api.resort.shafarizkyf.com/api/bank',
+		url: 'https://api.booking.mypalawi.com/api/bank',
 		method: 'GET',
 		headers: {
 			'Accept': 'application/json',
@@ -1680,7 +1680,7 @@
 		showLoader('Memuat Invoice');
 
 		$.ajax({
-			url: 'https://api.resort.shafarizkyf.com/api/booking/search?invoice=' + invoice + '&email=' + email,
+			url: 'https://api.booking.mypalawi.com/api/booking/search?invoice=' + invoice + '&email=' + email,
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',
@@ -1800,7 +1800,7 @@
 			// var created_at = data.created_at.split('T')[0];
 
 			// $.ajax({
-			// 	url: 'https://api.resort.shafarizkyf.com/api/booking-time-out?booking_date=' + created_at,
+			// 	url: 'https://api.booking.mypalawi.com/api/booking-time-out?booking_date=' + created_at,
 			// 	method: 'GET',
 			// 	headers: {
 			// 		'Accept': 'application/json',
@@ -1945,7 +1945,7 @@
 		var total_bill = booking.total_bill;
 
 		$.ajax({
-            url: 'https://api.resort.shafarizkyf.com/api/transaction',  
+            url: 'https://api.booking.mypalawi.com/api/transaction',  
             type: 'POST',
             data: form,
             cache: false,

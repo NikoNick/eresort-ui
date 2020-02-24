@@ -4,8 +4,8 @@ namespace App\Helper;
 
 class ExtrernalRequest {
 
-  const RESORT_URL = 'https://api.resort.shafarizkyf.com/';
-  const API_RESORT_URL = 'https://api.resort.shafarizkyf.com/api/';
+  const RESORT_URL = 'https://api.booking.mypalawi.com/';
+  const API_RESORT_URL = 'https://api.booking.mypalawi.com/api/';
 
   public static function get($url, $decode = true, $asArray = false){
     $ch = curl_init();

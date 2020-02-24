@@ -1,0 +1,23 @@
+{
+    "host": "mypalawi.com",
+    "username": "dev@booking.mypalawi.com",
+    "password": "Rahasia123",
+    "remotePath": "",
+    "protocol": "ftp",
+    "port": 0,
+    "fileNameEncoding": "utf8",
+    "autoUpload": true,
+    "autoDelete": false,
+    "autoDownload": false,
+    "ignore": [
+        ".git",
+        "/.vscode"
+    ],
+    "altServer": [
+        {
+            "host": "shafarizkyf.com",
+            "username": "resortui@shafarizkyf.com",
+            "password": "rahasia123"
+        }
+    ]
+}

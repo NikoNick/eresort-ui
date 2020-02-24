@@ -2270,7 +2270,7 @@
 
 
 			const params = `booking_date=${check_in}`;
-			const bookingTimeOut = await $.getJSON(`https://api.resort.shafarizkyf.com/api/booking-time-out?${params}`);
+			const bookingTimeOut = await $.getJSON(`https://api.booking.mypalawi.com/api/booking-time-out?${params}`);
 
 			if(bookingTimeOut){
 				obj_booking.booking_time_out_id = bookingTimeOut.id;
@@ -2409,7 +2409,7 @@
 			obj_booking.full_payment = true;
 			showLoader('Memuat Data');
 			$.ajax({
-				url: 'https://api.resort.shafarizkyf.com/api/booking',
+				url: 'https://api.booking.mypalawi.com/api/booking',
 				method: 'POST',
 				data: JSON.stringify(obj_booking),
 				headers: {
@@ -2847,7 +2847,7 @@
 	async function getBookingTimeOut(){
 		const check_in = $('input[name="start_date"]').val();
 		const params = `booking_date=${check_in}`;
-		bookingTimeOut = await $.getJSON(`https://api.resort.shafarizkyf.com/api/booking-time-out?${params}`);
+		bookingTimeOut = await $.getJSON(`https://api.booking.mypalawi.com/api/booking-time-out?${params}`);
 		return bookingTimeOut;
 	}
 

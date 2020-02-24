@@ -714,6 +714,7 @@
 @section('js-bottom')
 	<script type="text/javascript">
 		showLoader('');
+		console.log('hereeee2');
 
 		$(window).load(function() {
 			hideLoader();

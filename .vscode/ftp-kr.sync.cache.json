@@ -1,0 +1,222 @@
+{
+  "ftp://mypalawi.com@dev@booking.mypalawi.com": {
+    ".editorconfig": {
+      "type": "-",
+      "size": 235,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".env": {
+      "type": "-",
+      "size": 821,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".env.example": {
+      "type": "-",
+      "size": 770,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".ftpquota": {
+      "type": "-",
+      "size": 15,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".gitattributes": {
+      "type": "-",
+      "size": 116,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".gitignore": {
+      "type": "-",
+      "size": 175,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".styleci.yml": {
+      "type": "-",
+      "size": 187,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".well-known": {},
+    "app": {},
+    "artisan": {
+      "type": "-",
+      "size": 1739,
+      "lmtime": 0,
+      "modified": false
+    },
+    "bootstrap": {},
+    "composer.json": {
+      "type": "-",
+      "size": 1600,
+      "lmtime": 0,
+      "modified": false
+    },
+    "composer.lock": {
+      "type": "-",
+      "size": 185304,
+      "lmtime": 0,
+      "modified": false
+    },
+    "config": {},
+    "database": {},
+    "eresort-ui.zip": {
+      "type": "-",
+      "size": 29878951,
+      "lmtime": 0,
+      "modified": false
+    },
+    "package.json": {
+      "type": "-",
+      "size": 1034,
+      "lmtime": 0,
+      "modified": false
+    },
+    "phpunit.xml": {
+      "type": "-",
+      "size": 1627,
+      "lmtime": 0,
+      "modified": false
+    },
+    "public": {},
+    "readme.md": {
+      "type": "-",
+      "size": 4270,
+      "lmtime": 0,
+      "modified": false
+    },
+    "resources": {},
+    "routes": {},
+    "server.php": {
+      "type": "-",
+      "size": 584,
+      "lmtime": 0,
+      "modified": false
+    },
+    "storage": {},
+    "tests": {},
+    "vendor": {},
+    "webpack.mix.js": {
+      "type": "-",
+      "size": 553,
+      "lmtime": 0,
+      "modified": false
+    }
+  },
+  "ftp://shafarizkyf.com@resortui@shafarizkyf.com": {
+    ".editorconfig": {
+      "type": "-",
+      "size": 235,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".env": {
+      "type": "-",
+      "size": 821,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".env.example": {
+      "type": "-",
+      "size": 770,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".ftpquota": {
+      "type": "-",
+      "size": 15,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".gitattributes": {
+      "type": "-",
+      "size": 116,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".gitignore": {
+      "type": "-",
+      "size": 175,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".styleci.yml": {
+      "type": "-",
+      "size": 187,
+      "lmtime": 0,
+      "modified": false
+    },
+    "app": {},
+    "app.zip": {
+      "type": "-",
+      "size": 55552393,
+      "lmtime": 0,
+      "modified": false
+    },
+    "artisan": {
+      "type": "-",
+      "size": 1739,
+      "lmtime": 0,
+      "modified": false
+    },
+    "bootstrap": {},
+    "cgi-bin": {},
+    "composer.json": {
+      "type": "-",
+      "size": 1600,
+      "lmtime": 0,
+      "modified": false
+    },
+    "composer.lock": {
+      "type": "-",
+      "size": 185304,
+      "lmtime": 0,
+      "modified": false
+    },
+    "config": {},
+    "database": {},
+    "package.json": {
+      "type": "-",
+      "size": 1034,
+      "lmtime": 0,
+      "modified": false
+    },
+    "phpunit.xml": {
+      "type": "-",
+      "size": 1627,
+      "lmtime": 0,
+      "modified": false
+    },
+    "public": {},
+    "readme.md": {
+      "type": "-",
+      "size": 4270,
+      "lmtime": 0,
+      "modified": false
+    },
+    "resources": {},
+    "routes": {},
+    "server.php": {
+      "type": "-",
+      "size": 584,
+      "lmtime": 0,
+      "modified": false
+    },
+    "storage": {},
+    "tests": {},
+    "vendor": {},
+    "webpack.mix.js": {
+      "type": "-",
+      "size": 553,
+      "lmtime": 0,
+      "modified": false
+    }
+  },
+  "$targetServer": 1,
+  "$version": 1
+}

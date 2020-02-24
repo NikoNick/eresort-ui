@@ -20,7 +20,7 @@ class LoginController extends Controller {
       'state'         => $state,
     ]);
 
-    return redirect('https://api.resort.shafarizkyf.com/oauth/authorize?' . $query);
+    return redirect('https://api.booking.mypalawi.com/oauth/authorize?' . $query);
   }
 
   public function callback(Request $request){
@@ -32,7 +32,7 @@ class LoginController extends Controller {
     );
 
     $http = new Client;
-    $response = $http->post('https://api.resort.shafarizkyf.com/oauth/token', [
+    $response = $http->post('https://api.booking.mypalawi.com/oauth/token', [
       'form_params' => [
         'grant_type'    => 'authorization_code',
         'client_id'     => '6HaGvn8J0X01FgXPV2wvRCmCid6iLV61Y836Tsim',
