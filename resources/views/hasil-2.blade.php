@@ -983,16 +983,27 @@
 
 	$('.slides').empty();
 
-	$.each(media, function(index, image) {
-		const image_path = image.path;
-
+	if (media.length == 0) {
 		var $img_slide = 
 			'<div class="slide">' +
-				'<img src="' + image_path + '">' +
+				'<img src="https://via.placeholder.com/600x600?text=' + nama_resort + '">' +
 			'</div>';
 
-		$('.slides').append($img_slide);
-	})
+		$('.slides').append($img_slide);		
+	} else {
+		$.each(media, function(index, image) {
+			const image_path = image.path;
+
+			var $img_slide = 
+				'<div class="slide">' +
+					'<img src="' + image_path + '">' +
+				'</div>';
+
+			$('.slides').append($img_slide);
+		})	
+	}
+
+	
 	
 
 	$('.location-name').text(location_name);
