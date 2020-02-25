@@ -676,6 +676,11 @@
         }
 
         @media screen and (max-width: 600px) {
+        	.btn-reservasi-full {
+        		margin: 0 !important;
+        		margin-top: 1em !important;
+        	}
+
         	.navbar .special {
         		display: none;
         	}
@@ -993,6 +998,11 @@
 	var harga_sewa = resort.price.service_price;
 		harga_sewa = accounting.formatMoney(
 					harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+	var full_availability = resort.details[0].is_booked;
+
+	if (full_availability == 1) {
+		$('.btn-reservasi-full').attr('disabled', 'true');
+	}
 
 	$('.slides').empty();
 
