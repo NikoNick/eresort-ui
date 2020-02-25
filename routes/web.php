@@ -22,6 +22,7 @@ Route::get('hasil-camping', 'SearchController@resultCamping')->name('search.resu
 Route::get('hasil-outbound', 'SearchController@resultOutbound')->name('search.result.outbound');
 Route::post('detail', 'CatalogController@detail')->name('catalog.detail');
 Route::post('reservasi', 'BookingController@index')->name('booking.index');
+Route::post('reservasi-full', 'BookingController@full')->name('booking.full');
 Route::post('resort/availability', 'CatalogController@availability')->name('catalog.availability');
 Route::post('booking', 'BookingController@store')->name('booking.store');
 Route::get('book-detail', 'BookingController@detail')->name('booking.detail');
