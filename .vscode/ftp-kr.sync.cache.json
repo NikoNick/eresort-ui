@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "ftp://shafarizkyf.com@resortui@shafarizkyf.com": {
+=======
+  "ftp://mypalawi.com@dev@booking.mypalawi.com": {
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
     ".editorconfig": {
       "type": "-",
       "size": 235,
@@ -42,6 +46,7 @@
       "lmtime": 0,
       "modified": false
     },
+<<<<<<< HEAD
     "app": {},
     "app.zip": {
       "type": "-",
@@ -49,6 +54,10 @@
       "lmtime": 0,
       "modified": false
     },
+=======
+    ".well-known": {},
+    "app": {},
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
     "artisan": {
       "type": "-",
       "size": 1739,
@@ -56,120 +65,30 @@
       "modified": false
     },
     "bootstrap": {},
+<<<<<<< HEAD
     "cgi-bin": {},
+=======
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
     "composer.json": {
       "type": "-",
       "size": 1600,
       "lmtime": 0,
+<<<<<<< HEAD
       "modified": true
+=======
+      "modified": false
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
     },
     "composer.lock": {
       "type": "-",
       "size": 185304,
       "lmtime": 0,
+<<<<<<< HEAD
       "modified": true
     },
     "config": {},
     "database": {},
-    "package.json": {
-      "type": "-",
-      "size": 1034,
-      "lmtime": 0,
-      "modified": false
-    },
-    "phpunit.xml": {
-      "type": "-",
-      "size": 1627,
-      "lmtime": 0,
-      "modified": false
-    },
-    "public": {},
-    "readme.md": {
-      "type": "-",
-      "size": 4270,
-      "lmtime": 0,
-      "modified": false
-    },
-    "resources": {},
-    "routes": {},
-    "server.php": {
-      "type": "-",
-      "size": 584,
-      "lmtime": 0,
-      "modified": false
-    },
-    "storage": {},
-    "tests": {},
-    "vendor": {},
-    "webpack.mix.js": {
-      "type": "-",
-      "size": 553,
-      "lmtime": 0,
-      "modified": false
-    }
-  },
-  "ftp://mypalawi.com@dev@booking.mypalawi.com": {
-    ".editorconfig": {
-      "type": "-",
-      "size": 235,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".env": {
-      "type": "-",
-      "size": 821,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".env.example": {
-      "type": "-",
-      "size": 770,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".ftpquota": {
-      "type": "-",
-      "size": 15,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".gitattributes": {
-      "type": "-",
-      "size": 116,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".gitignore": {
-      "type": "-",
-      "size": 175,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".styleci.yml": {
-      "type": "-",
-      "size": 187,
-      "lmtime": 0,
-      "modified": false
-    },
-    ".well-known": {},
-    "app": {},
-    "artisan": {
-      "type": "-",
-      "size": 1739,
-      "lmtime": 0,
-      "modified": false
-    },
-    "bootstrap": {},
-    "composer.json": {
-      "type": "-",
-      "size": 1600,
-      "lmtime": 0,
-      "modified": false
-    },
-    "composer.lock": {
-      "type": "-",
-      "size": 185304,
-      "lmtime": 0,
+=======
       "modified": false
     },
     "config": {},
@@ -180,6 +99,7 @@
       "lmtime": 0,
       "modified": false
     },
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
     "package.json": {
       "type": "-",
       "size": 1034,
@@ -217,5 +137,139 @@
       "modified": false
     }
   },
+<<<<<<< HEAD
+  "ftp://mypalawi.com@dev@booking.mypalawi.com": {
+=======
+  "ftp://shafarizkyf.com@resortui@shafarizkyf.com": {
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
+    ".editorconfig": {
+      "type": "-",
+      "size": 235,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".env": {
+      "type": "-",
+      "size": 821,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".env.example": {
+      "type": "-",
+      "size": 770,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".ftpquota": {
+      "type": "-",
+      "size": 15,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".gitattributes": {
+      "type": "-",
+      "size": 116,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".gitignore": {
+      "type": "-",
+      "size": 175,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".styleci.yml": {
+      "type": "-",
+      "size": 187,
+      "lmtime": 0,
+      "modified": false
+    },
+<<<<<<< HEAD
+    ".well-known": {},
+    "app": {},
+=======
+    "app": {},
+    "app.zip": {
+      "type": "-",
+      "size": 55552393,
+      "lmtime": 0,
+      "modified": false
+    },
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
+    "artisan": {
+      "type": "-",
+      "size": 1739,
+      "lmtime": 0,
+      "modified": false
+    },
+    "bootstrap": {},
+<<<<<<< HEAD
+=======
+    "cgi-bin": {},
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
+    "composer.json": {
+      "type": "-",
+      "size": 1600,
+      "lmtime": 0,
+      "modified": false
+    },
+    "composer.lock": {
+      "type": "-",
+      "size": 185304,
+      "lmtime": 0,
+      "modified": false
+    },
+    "config": {},
+    "database": {},
+<<<<<<< HEAD
+    "eresort-ui.zip": {
+      "type": "-",
+      "size": 29878951,
+      "lmtime": 0,
+      "modified": false
+    },
+=======
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
+    "package.json": {
+      "type": "-",
+      "size": 1034,
+      "lmtime": 0,
+      "modified": false
+    },
+    "phpunit.xml": {
+      "type": "-",
+      "size": 1627,
+      "lmtime": 0,
+      "modified": false
+    },
+    "public": {},
+    "readme.md": {
+      "type": "-",
+      "size": 4270,
+      "lmtime": 0,
+      "modified": false
+    },
+    "resources": {},
+    "routes": {},
+    "server.php": {
+      "type": "-",
+      "size": 584,
+      "lmtime": 0,
+      "modified": false
+    },
+    "storage": {},
+    "tests": {},
+    "vendor": {},
+    "webpack.mix.js": {
+      "type": "-",
+      "size": 553,
+      "lmtime": 0,
+      "modified": false
+    }
+  },
+<<<<<<< HEAD
+=======
+  "$targetServer": 1,
+>>>>>>> 1f9322be64b2e2d22b46e53a7bdf77f070964935
   "$version": 1
 }

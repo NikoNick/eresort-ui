@@ -119,7 +119,7 @@
 
 	console.log('here');
 
-	$.get('https://api.resort.shafarizkyf.com/oauth/client').then(response => {
+	$.get('https://api.booking.mypalawi.com/oauth/client').then(response => {
 		console.log(response);
 	});
 

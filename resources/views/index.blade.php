@@ -474,7 +474,7 @@
 			}
 
 			#ui-datepicker-div {
-				top: 25% !important;
+				top: 20% !important;
     			left: 0px !important;
     			width: 100% !important;
 			}
@@ -695,7 +695,7 @@
 				</div>
 				<div class="md-form">
 					<div class="md-input-wrapper">
-						<input type="number" id="form1" class="form-control" name="person" spellcheck="false" value="1" min="1">
+						<input type="number" id="form1" class="form-control" name="person" spellcheck="false" value="50" min="1">
 						<span>Orang</span>
 					</div>
 					
@@ -714,6 +714,7 @@
 @section('js-bottom')
 	<script type="text/javascript">
 		showLoader('');
+		console.log('hereeee2');
 
 		$(window).load(function() {
 			hideLoader();

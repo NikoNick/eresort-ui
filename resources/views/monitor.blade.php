@@ -950,7 +950,7 @@
 		alert('hay');
 
 		$.ajax({
-			url: 'http://api.resort.shafarizkyf.com/api/booking/search?invoice=' + invoice + '&email=' + email,
+			url: 'http://api.booking.mypalawi.com/api/booking/search?invoice=' + invoice + '&email=' + email,
 			method: 'GET',
 			headers: {
 				'Accept': 'application/json',
@@ -1032,7 +1032,7 @@
 		form.append("file", file);
 
 		$.ajax({
-            url: 'http://api.resort.shafarizkyf.com/api/transaction',  
+            url: 'http://api.booking.mypalawi.com/api/transaction',  
             type: 'POST',
             data: form,
             cache: false,

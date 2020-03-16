@@ -1,7 +1,7 @@
 {
-    "host": "shafarizkyf.com",
-    "username": "resortui@shafarizkyf.com",
-    "password": "rahasia123",
+    "host": "mypalawi.com",
+    "username": "dev@booking.mypalawi.com",
+    "password": "Rahasia123",
     "remotePath": "",
     "protocol": "ftp",
     "port": 0,
@@ -15,9 +15,9 @@
     ],
     "altServer": [
         {
-            "host": "mypalawi.com",
-            "username": "dev@booking.mypalawi.com",
-            "password": "Rahasia123"
+            "host": "shafarizkyf.com",
+            "username": "resortui@shafarizkyf.com",
+            "password": "rahasia123"
         }
     ]
 }

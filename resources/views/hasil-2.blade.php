@@ -657,13 +657,13 @@
 
         .main-info button {
     	    display: block;
-		    width: 60%;
+		    /*width: 60%;*/
 		    border-radius: 5px;
 		    font-size: 1em;
 		    letter-spacing: 2px;
 		    font-weight: 700;
 		    /* margin-top: 40px; */
-		    padding: 2%;
+		    padding: 2% 3%;
 		    background: linear-gradient(90deg, #0f9cff 0%, #137ac2 100%);
 		    border-bottom: 3px solid #07609e;
         }
@@ -676,6 +676,11 @@
         }
 
         @media screen and (max-width: 600px) {
+        	.btn-reservasi-full {
+        		margin: 0 !important;
+        		margin-top: 1em !important;
+        	}
+
         	.navbar .special {
         		display: none;
         	}
@@ -895,7 +900,8 @@
 							<p><b class="val-price">Rp 1.500.000</b> / <span class="val-satuan">malam</span></p>
 						</div>
 					</div>
-					<button class="btn btn-black btn-reservasi">BOOKING</button>	
+					<button class="btn btn-black btn-reservasi">BOOKING KAMAR</button>
+					<button class="btn btn-black btn-reservasi-full" style="margin-left: 10px;">BOOK SATU RESORT</button>	
 				</div>
 				<!-- <b class="basic-info"><span id="address"></span> | <span id="phone"></span></b> -->
 				<!-- <div class="mobile-button flex">
@@ -963,6 +969,18 @@
 
 		<button type="submit">OK</button>
 	</form>
+
+	<form id="form-target-2" method="POST" action="/reservasi-full">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="text" name="start_date" value="{{ $start_date }}">
+		<input type="text" name="end_date" value="{{ $end_date }}">
+		<input type="text" name="person" value="{{ $person }}">
+		<input type="text" name="waktu" value="{{ $waktu }}">
+		<input type="text" name="business_id" value="{{ $business_id }}">
+		<input type="text" name="item_id">
+
+		<button type="submit">OK</button>
+	</form>
 @endsection
 @section('js-bottom')
 <script type="text/javascript">
@@ -980,19 +998,35 @@
 	var harga_sewa = resort.price.service_price;
 		harga_sewa = accounting.formatMoney(
 					harga_sewa, { symbol: 'Rp', format: '%s %v', thousand: '.', precision: 0 });
+	var full_availability = resort.details[0].is_booked;
+
+	if (full_availability == 1) {
+		$('.btn-reservasi-full').attr('disabled', 'true');
+	}
 
 	$('.slides').empty();
 
-	$.each(media, function(index, image) {
-		const image_path = image.path;
-
+	if (media.length == 0) {
 		var $img_slide = 
 			'<div class="slide">' +
-				'<img src="' + image_path + '">' +
+				'<img src="https://via.placeholder.com/600x600?text=' + nama_resort + '">' +
 			'</div>';
 
-		$('.slides').append($img_slide);
-	})
+		$('.slides').append($img_slide);		
+	} else {
+		$.each(media, function(index, image) {
+			const image_path = image.path;
+
+			var $img_slide = 
+				'<div class="slide">' +
+					'<img src="' + image_path + '">' +
+				'</div>';
+
+			$('.slides').append($img_slide);
+		})	
+	}
+
+	
 	
 
 	$('.location-name').text(location_name);
@@ -1154,6 +1188,10 @@
 
 	$('.btn-reservasi').on('click', function() {
 		$('#form-target').find('button').click();
+	})
+
+	$('.btn-reservasi-full').on('click', function() {
+		$('#form-target-2').find('button').click();
 	})
 
 	$('.slide-left').on('click', function() {
